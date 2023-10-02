@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import MainNavigation from '../navigation/MainNavigation';
+import DesktopNavigation from '../navigation/DesktopNavigation';
+import MobileNavigation from '../navigation/MobileNavigation';
 
 import classes from './Header.module.css';
 import logo from '../../assets/images/logo.svg';
@@ -8,23 +9,37 @@ import cartIcon from '../../assets/images/icon-cart.svg';
 import avatarImg from '../../assets/images/image-avatar.png';
 
 const Header = () => {
-	const [mobileIsActive, setMobileIsActive] = useState(true);
+	const [isMobile, setIsMobile] = useState(window.innerWidth < 768 ? true : false);
+	const [mobileIsActive, setMobileIsActive] = useState(false);
 
-	const showNavigationHandler = () => {
+	const screenSizeChangeHandler = () => {
+		setIsMobile(window.innerWidth < 768 ? true : false);
+	};
+
+	const showMobileNavigationHandler = () => {
 		setMobileIsActive(prev => !prev);
 	};
 
 	const navBtnClasses = mobileIsActive ? `${classes['nav-btn']} ${classes['btn-active']}` : `${classes['nav-btn']}`;
 
+	useEffect(() => {
+		window.addEventListener('resize', screenSizeChangeHandler);
+	}, []);
+
 	return (
 		<header className={classes.header}>
-			{/* {mobileIsActive && <div className={classes['nav-backdrop']}></div>} */}
-			<div className={classes['nav-container']}>
-				<button type="button" className={navBtnClasses} aria-label="navigation menu" onClick={showNavigationHandler}>
-					<span className={classes['btn-content']}></span>
-				</button>
-				<MainNavigation mobileIsActive={mobileIsActive} />
-			</div>
+			{isMobile && (
+				<div className={classes['nav-container']}>
+					<button
+						type="button"
+						className={navBtnClasses}
+						aria-label="navigation menu"
+						onClick={showMobileNavigationHandler}>
+						<span className={classes['btn-content']}></span>
+					</button>
+					<MobileNavigation mobileIsActive={mobileIsActive} />
+				</div>
+			)}
 
 			<Link to="#" className={classes['logo-link']}>
 				<img src={logo} alt="sneakers" className={classes.logo} />
