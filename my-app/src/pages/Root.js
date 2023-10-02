@@ -1,12 +1,13 @@
 import { Outlet } from 'react-router-dom';
-import MainNavigation from '../components/MainNavigation';
+import Wrapper from '../components/ui/Wrapper';
+import Header from '../components/layout/Header';
 
 const RootPage = () => {
 	return (
-		<>
-			<MainNavigation />
+		<Wrapper>
+			<Header />
 			<Outlet />
-		</>
+		</Wrapper>
 	);
 };
 

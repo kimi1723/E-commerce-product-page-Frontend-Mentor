@@ -1,0 +1,81 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1em;
+}
+
+.nav-btn {
+	position: relative;
+	padding: 20px;
+	background: none;
+	outline: none;
+	border: none;
+	cursor: pointer;
+}
+
+.btn-content,
+.btn-content::before,
+.btn-content::after {
+	position: absolute;
+	height: 3.5px;
+	width: 18px;
+	background-color: hsl(219, 9%, 45%);
+	transition: background-color 0.3s;
+	transform-origin: right;
+}
+
+.btn-content {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: height 0.1s;
+}
+
+.btn-content::before,
+.btn-content::after {
+	content: '';
+	left: 0;
+	transition: transform 0.3s;
+}
+
+.btn-content::before {
+	top: -8px;
+}
+
+.btn-content::after {
+	bottom: -8px;
+}
+
+.nav-btn:hover .btn-content,
+.nav-btn:hover .btn-content::before,
+.nav-btn:hover .btn-content::after,
+.nav-btn:focus .btn-content,
+.nav-btn:focus .btn-content::before,
+.nav-btn:focus .btn-content::after {
+	background-color: hsl(26, 100%, 55%);
+}
+
+.active .btn-content {
+	height: 0;
+}
+
+.active .btn-content::before {
+	transform: rotate(-45deg);
+}
+
+.active .btn-content::after {
+	transform: rotate(45deg);
+}
+
+.logo-link {
+	padding: 0.4em;
+	border-radius: 8px;
+	outline: none;
+	transition: background-color 0.3s;
+}
+
+.logo-link:hover,
+.logo-link:focus {
+	background-color: hsl(26, 100%, 55%);
+}

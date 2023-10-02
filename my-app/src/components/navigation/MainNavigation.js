@@ -6,19 +6,19 @@ const MainNavigation = () => {
 	return (
 		<ul role="list">
 			<li>
-				<NavLink to="">Collections</NavLink>
+				<NavLink to="#">Collections</NavLink>
 			</li>
 			<li>
-				<NavLink to="">Men</NavLink>
+				<NavLink to="#">Men</NavLink>
 			</li>
 			<li>
-				<NavLink to="">Women</NavLink>
+				<NavLink to="#">Women</NavLink>
 			</li>
 			<li>
-				<NavLink to="">About</NavLink>
+				<NavLink to="#">About</NavLink>
 			</li>
 			<li>
-				<NavLink to="">Contact</NavLink>
+				<NavLink to="#">Contact</NavLink>
 			</li>
 		</ul>
 	);
