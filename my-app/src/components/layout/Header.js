@@ -8,7 +8,7 @@ import cartIcon from '../../assets/images/icon-cart.svg';
 import avatarImg from '../../assets/images/image-avatar.png';
 
 const Header = () => {
-	const [mobileIsActive, setMobileIsActive] = useState(false);
+	const [mobileIsActive, setMobileIsActive] = useState(true);
 
 	const showNavigationHandler = () => {
 		setMobileIsActive(prev => !prev);
@@ -18,6 +18,7 @@ const Header = () => {
 
 	return (
 		<header className={classes.header}>
+			{/* {mobileIsActive && <div className={classes['nav-backdrop']}></div>} */}
 			<div className={classes['nav-container']}>
 				<button type="button" className={navBtnClasses} aria-label="navigation menu" onClick={showNavigationHandler}>
 					<span className={classes['btn-content']}></span>

@@ -6,7 +6,6 @@
 }
 
 .nav-container {
-	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -17,6 +16,7 @@
 .nav-btn {
 	position: relative;
 	padding: 20px;
+	z-index: 1;
 }
 
 .btn-content,
@@ -93,5 +93,12 @@
 }
 
 .avatar-img {
-	width: 30px;
+	width: 35px;
+	border: 3px solid transparent;
+	transition: border-color 0.3s;
+}
+
+.avatar-img:hover {
+	border: 3px solid hsl(26, 100%, 55%);
+	border-radius: 50%;
 }
