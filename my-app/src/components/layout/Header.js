@@ -4,24 +4,37 @@ import MainNavigation from '../navigation/MainNavigation';
 
 import classes from './Header.module.css';
 import logo from '../../assets/images/logo.svg';
+import cartIcon from '../../assets/images/icon-cart.svg';
+import avatarImg from '../../assets/images/image-avatar.png';
 
 const Header = () => {
-	const [mobileIsActive, setMobileIsActive] = useState(true);
+	const [mobileIsActive, setMobileIsActive] = useState(false);
+
 	const showNavigationHandler = () => {
-		setMobileIsActive(!mobileIsActive);
+		setMobileIsActive(prev => !prev);
 	};
 
-	const navBtnClasses = mobileIsActive ? `${classes['nav-btn']} ${classes.active}` : `${classes['nav-btn']}`;
+	const navBtnClasses = mobileIsActive ? `${classes['nav-btn']} ${classes['btn-active']}` : `${classes['nav-btn']}`;
 
 	return (
 		<header className={classes.header}>
-			<button type="button" className={navBtnClasses} aria-label="navigation menu" onClick={showNavigationHandler}>
-				<span className={classes['btn-content']}></span>
-			</button>
+			<div className={classes['nav-container']}>
+				<button type="button" className={navBtnClasses} aria-label="navigation menu" onClick={showNavigationHandler}>
+					<span className={classes['btn-content']}></span>
+				</button>
+				<MainNavigation mobileIsActive={mobileIsActive} />
+			</div>
+
 			<Link to="#" className={classes['logo-link']}>
 				<img src={logo} alt="sneakers" className={classes.logo} />
 			</Link>
-			<MainNavigation mobileIsActive={true} />
+
+			<button type="button" className={classes['cart-btn']}>
+				<img src={cartIcon} alt="cart" />
+			</button>
+			<button type="button" className={classes['avatar-btn']}>
+				<img src={avatarImg} alt="" className={classes['avatar-img']} />
+			</button>
 		</header>
 	);
 };

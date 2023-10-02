@@ -1,0 +1,43 @@
+.nav-list {
+	position: absolute;
+	display: none;
+	margin-top: 1em;
+}
+
+.hero-bg {
+	visibility: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: hsl(0, 0%, 100%);
+	transform: translate(-120%, 0);
+	transition: transform 0.5s;
+	z-index: -1;
+}
+
+.active {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1.5em;
+}
+
+.hero-bg-active {
+	visibility: visible;
+	transform: translate(-33%, 0);
+}
+
+.nav-link {
+	padding: 0.4em 0.8em;
+	color: hsl(220, 13%, 13%);
+	font-weight: bold;
+	font-size: 1rem;
+	outline: none;
+	transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+	color: hsl(26, 100%, 55%);
+}

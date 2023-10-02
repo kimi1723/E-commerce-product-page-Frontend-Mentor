@@ -20,6 +20,17 @@ ul li::before {
 	content: '\200B';
 }
 
+a {
+	text-decoration: none;
+}
+
+button {
+	background: none;
+	outline: none;
+	border: none;
+	cursor: pointer;
+}
+
 /* // - Mobile: 375px
 // - Desktop: 1440px
 
