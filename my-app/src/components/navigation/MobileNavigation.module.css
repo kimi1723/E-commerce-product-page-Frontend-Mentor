@@ -47,6 +47,11 @@
 	color: hsl(26, 100%, 55%);
 }
 
+.nav {
+	visibility: hidden;
+	transition: visibility 0.5s;
+}
+
 .nav-active {
 	.hero-backdrop {
 		transform: translate(200%, 0);

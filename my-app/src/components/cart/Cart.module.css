@@ -1,6 +1,6 @@
 .cart {
 	position: fixed;
-	top: 10%;
+	top: 75px;
 	right: 5%;
 	padding: 1.5em;
 	width: 90%;
@@ -44,6 +44,15 @@
 
 @media (min-width: 768px) {
 	.cart {
-		top: 15%;
+		top: 110px;
+	}
+}
+
+@media (min-width: 1300px) {
+	.cart {
+		position: absolute;
+		top: 70px;
+		left: -100%;
+		min-width: 350px;
 	}
 }

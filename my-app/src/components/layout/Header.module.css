@@ -4,6 +4,8 @@
 	grid-template-columns: repeat(5, 1fr);
 	align-items: center;
 	padding: 1em;
+	max-width: 1200px;
+	border-bottom: 3px solid hsl(223, 64%, 98%);
 }
 
 .mobile-nav-container {
@@ -88,6 +90,7 @@
 }
 
 .cart-btn {
+	position: relative;
 	grid-column: -3/-2;
 }
 
@@ -121,7 +124,7 @@
 
 @media (min-width: 768px) {
 	.header {
-		padding: 1em 2em;
+		padding: 1.5em 3em;
 		grid-template-columns: repeat(12, 1fr);
 	}
 
@@ -131,5 +134,11 @@
 
 	.avatar-img {
 		width: 50px;
+	}
+}
+
+@media (min-width: 1260px) {
+	.header {
+		padding: 1.5em 0;
 	}
 }

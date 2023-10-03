@@ -9,7 +9,7 @@
 
 .nav-link {
 	position: relative;
-	padding: 0.4em 0.8em;
+	padding: 0.4em 0.8em 43px;
 	color: hsl(219, 9%, 45%);
 	font-size: 1rem;
 	outline: none;
@@ -19,7 +19,8 @@
 
 .nav-link:hover,
 .nav-link:focus {
-	color: hsl(26, 100%, 55%);
+	color: hsl(220, 13%, 13%);
+	border-bottom: 3px solid hsl(26, 100%, 55%);
 }
 
 @media (min-width: 992px) {
