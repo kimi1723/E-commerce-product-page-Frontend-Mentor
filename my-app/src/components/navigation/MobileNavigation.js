@@ -3,41 +3,36 @@ import { NavLink } from 'react-router-dom';
 import classes from './MobileNavigation.module.css';
 
 const MobileNavigation = ({ mobileIsActive }) => {
-	const listClasses = mobileIsActive
-		? `${classes['nav-list']} ${classes['nav-list-active']}`
-		: `${classes['nav-list']}`;
-	const heroBgClasses = mobileIsActive ? `${classes['hero-bg']} ${classes['hero-bg-active']}` : `${classes['hero-bg']}`;
-	const heroBackdropClasses = mobileIsActive
-		? `${classes['hero-backdrop']} ${classes['hero-backdrop-active']}`
-		: `${classes['hero-backdrop']}`;
+	const navClasses = mobileIsActive ? `${classes['nav-active']}` : '';
+	const linksIndex = mobileIsActive ? 0 : -1;
 
 	return (
-		<nav>
-			<div className={heroBgClasses}></div>
-			<div className={heroBackdropClasses}></div>
-			<ul role="list" className={listClasses}>
+		<nav className={navClasses}>
+			<div className={classes['hero-bg']}></div>
+			<div className={classes['hero-backdrop']}></div>
+			<ul role="list" className={classes['nav-list']}>
 				<li>
-					<NavLink to="#" className={classes['nav-link']} tabIndex={mobileIsActive ? 0 : -1}>
+					<NavLink to="#" className={classes['nav-link']} tabIndex={linksIndex}>
 						Collections
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="#" className={classes['nav-link']} tabIndex={mobileIsActive ? 0 : -1}>
+					<NavLink to="#" className={classes['nav-link']} tabIndex={linksIndex}>
 						Men
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="#" className={classes['nav-link']} tabIndex={mobileIsActive ? 0 : -1}>
+					<NavLink to="#" className={classes['nav-link']} tabIndex={linksIndex}>
 						Women
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="#" className={classes['nav-link']} tabIndex={mobileIsActive ? 0 : -1}>
+					<NavLink to="#" className={classes['nav-link']} tabIndex={linksIndex}>
 						About
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="#" className={classes['nav-link']} tabIndex={mobileIsActive ? 0 : -1}>
+					<NavLink to="#" className={classes['nav-link']} tabIndex={linksIndex}>
 						Contact
 					</NavLink>
 				</li>
