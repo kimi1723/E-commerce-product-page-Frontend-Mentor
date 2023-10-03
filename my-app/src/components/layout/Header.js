@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import DesktopNavigation from '../navigation/DesktopNavigation';
 import MobileNavigation from '../navigation/MobileNavigation';
+import Cart from '../cart/Cart';
 
 import classes from './Header.module.css';
 import logo from '../../assets/images/logo.svg';
@@ -50,6 +51,7 @@ const Header = () => {
 			<button type="button" className={classes['cart-btn']}>
 				<img src={cartIcon} alt="cart" />
 			</button>
+			<Cart />
 			<button type="button" className={classes['avatar-btn']}>
 				<img src={avatarImg} alt="" className={classes['avatar-img']} />
 			</button>
