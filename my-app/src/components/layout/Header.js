@@ -42,38 +42,41 @@ const Header = () => {
 	}, []);
 
 	return (
-		<header className={classes.header}>
-			{isMobile && (
-				<div className={classes['mobile-nav-container']}>
-					<button
-						type="button"
-						className={navBtnClasses}
-						aria-label="navigation menu"
-						onClick={showMobileNavigationHandler}>
-						<span className={classes['btn-content']}></span>
-					</button>
-					<MobileNavigation mobileNavIsActive={mobileNavIsActive} />
-				</div>
-			)}
+		<>
+			<div className={classes.placeholder}></div>
+			<header className={classes.header}>
+				{isMobile && (
+					<div className={classes['mobile-nav-container']}>
+						<button
+							type="button"
+							className={navBtnClasses}
+							aria-label="navigation menu"
+							onClick={showMobileNavigationHandler}>
+							<span className={classes['btn-content']}></span>
+						</button>
+						<MobileNavigation mobileNavIsActive={mobileNavIsActive} />
+					</div>
+				)}
 
-			<Link to="#" className={classes['logo-link']}>
-				<img src={logo} alt="sneakers" className={classes.logo} />
-			</Link>
+				<Link to="#" className={classes['logo-link']}>
+					<img src={logo} alt="sneakers" className={classes.logo} />
+				</Link>
 
-			{!isMobile && <DesktopNavigation />}
+				{!isMobile && <DesktopNavigation />}
 
-			<button
-				type="button"
-				className={classes['cart-btn']}
-				onMouseOver={showCartHandler}
-				onMouseLeave={hideCartHandler}>
-				<img src={cartIcon} alt="cart" />
-				{isCartVisible && <Cart />}
-			</button>
-			<button type="button" className={classes['avatar-btn']}>
-				<img src={avatarImg} alt="" className={classes['avatar-img']} />
-			</button>
-		</header>
+				<button
+					type="button"
+					className={classes['cart-btn']}
+					onMouseOver={showCartHandler}
+					onMouseLeave={hideCartHandler}>
+					<img src={cartIcon} alt="cart" />
+					{isCartVisible && <Cart />}
+				</button>
+				<button type="button" className={classes['avatar-btn']}>
+					<img src={avatarImg} alt="" className={classes['avatar-img']} />
+				</button>
+			</header>
+		</>
 	);
 };
 

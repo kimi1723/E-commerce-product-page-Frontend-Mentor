@@ -1,10 +1,16 @@
+.placeholder {
+	height: 75px;
+}
+
 .header {
+	top: 0;
 	position: fixed;
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	align-items: center;
 	padding: 1em;
 	max-width: 1200px;
+	background-color: hsl(0, 0%, 100%);
 	border-bottom: 3px solid hsl(223, 64%, 98%);
 }
 
@@ -123,6 +129,10 @@
 }
 
 @media (min-width: 768px) {
+	.placeholder {
+		height: 110px;
+	}
+
 	.header {
 		padding: 1.5em 3em;
 		grid-template-columns: repeat(12, 1fr);

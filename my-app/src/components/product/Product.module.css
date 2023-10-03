@@ -1,0 +1,139 @@
+.main {
+	height: 100vh;
+	width: 100%;
+}
+
+.info {
+	padding: 1em;
+}
+
+.gallery {
+	position: relative;
+}
+
+.main-img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.carousel-icon {
+	aspect-ratio: 1/1;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 50%;
+	width: 50px;
+	background-color: hsl(223, 64%, 98%);
+	border-radius: 50%;
+	transform: translate(0, -50%);
+	transition: background-color 0.4s;
+	cursor: pointer;
+}
+
+.carousel-icon:first-of-type {
+	left: 5%;
+}
+
+.carousel-icon:last-of-type {
+	right: 5%;
+}
+
+.carousel-icon:hover,
+.carousel-icon:focus {
+	background-color: hsl(26, 100%, 55%);
+}
+
+.annotation {
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	color: hsl(26, 100%, 55%);
+}
+
+.h1 {
+	margin: 0.5em 0;
+	font-size: 1.6rem;
+	color: hsl(220, 13%, 13%);
+}
+
+.description {
+	line-height: 1.4;
+	color: hsl(219, 9%, 45%);
+}
+
+.prices {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	align-items: center;
+	margin: 2em 0;
+	font-weight: bold;
+}
+
+.discounted-price {
+	grid-column: 1 / 2;
+	font-size: 1.6rem;
+}
+
+.discount-percent {
+	grid-column: 3 / 4;
+	padding: 0.3em 0.6em;
+	color: hsl(26, 100%, 55%);
+	background-color: hsl(25, 100%, 94%);
+	border-radius: 8px;
+}
+
+.original-price {
+	grid-column: -2 / -1;
+	color: hsl(220, 14%, 75%);
+	text-decoration: line-through;
+}
+
+.btns {
+}
+
+.amount-btns {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.8em;
+	width: 100%;
+	background-color: hsl(223, 64%, 98%);
+	border-radius: 8px;
+}
+
+.reduce-amount-btn,
+.add-amount-btn {
+	padding: 0.5em 1em;
+}
+
+/* .reduce-amount-btn:hover img path,
+.add-amount-btn:hover img path {
+	fill: #fff;
+	transform: rotate(45deg);
+} */
+
+.items-amount {
+	font-weight: bold;
+}
+
+.add-to-cart-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 1em;
+	padding: 1em;
+	width: 100%;
+	font-weight: bold;
+	color: hsl(0, 0%, 100%);
+	background-color: hsl(26, 100%, 55%);
+	border-radius: 8px;
+	transition: background-color 0.4s;
+}
+
+.add-to-cart-btn:hover {
+	background-color: hsl(220, 13%, 13%);
+}
+
+.cart-icon {
+	margin-right: 1.5em;
+}
