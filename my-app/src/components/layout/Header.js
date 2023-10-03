@@ -9,9 +9,12 @@ import logo from '../../assets/images/logo.svg';
 import cartIcon from '../../assets/images/icon-cart.svg';
 import avatarImg from '../../assets/images/image-avatar.png';
 
+let hideCartTimeout;
+
 const Header = () => {
 	const [isMobile, setIsMobile] = useState(window.innerWidth < 768 ? true : false);
 	const [mobileNavIsActive, setMobileNavIsActive] = useState(false);
+	const [isCartVisible, setIsCartVisible] = useState(false);
 
 	const screenSizeChangeHandler = () => {
 		setIsMobile(window.innerWidth < 768 ? true : false);
@@ -19,6 +22,17 @@ const Header = () => {
 
 	const showMobileNavigationHandler = () => {
 		setMobileNavIsActive(prev => !prev);
+	};
+
+	const showCartHandler = () => {
+		setIsCartVisible(true);
+		clearTimeout(hideCartTimeout);
+	};
+
+	const hideCartHandler = () => {
+		hideCartTimeout = setTimeout(() => {
+			setIsCartVisible(false);
+		}, 100);
 	};
 
 	const navBtnClasses = mobileNavIsActive ? `${classes['nav-btn']} ${classes['btn-active']}` : `${classes['nav-btn']}`;
@@ -48,10 +62,14 @@ const Header = () => {
 
 			{!isMobile && <DesktopNavigation />}
 
-			<button type="button" className={classes['cart-btn']}>
+			<button
+				type="button"
+				className={classes['cart-btn']}
+				onMouseOver={showCartHandler}
+				onMouseLeave={hideCartHandler}>
 				<img src={cartIcon} alt="cart" />
+				{isCartVisible && <Cart />}
 			</button>
-			<Cart />
 			<button type="button" className={classes['avatar-btn']}>
 				<img src={avatarImg} alt="" className={classes['avatar-img']} />
 			</button>
