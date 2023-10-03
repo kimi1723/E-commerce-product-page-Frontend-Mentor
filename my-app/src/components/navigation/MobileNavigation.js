@@ -2,9 +2,9 @@ import { NavLink } from 'react-router-dom';
 
 import classes from './MobileNavigation.module.css';
 
-const MobileNavigation = ({ mobileIsActive }) => {
-	const navClasses = mobileIsActive ? `${classes['nav-active']}` : '';
-	const linksIndex = mobileIsActive ? 0 : -1;
+const MobileNavigation = ({ mobileNavIsActive }) => {
+	const navClasses = mobileNavIsActive ? `${classes['nav-active']}` : '';
+	const linksIndex = mobileNavIsActive ? 0 : -1;
 
 	return (
 		<nav className={navClasses}>

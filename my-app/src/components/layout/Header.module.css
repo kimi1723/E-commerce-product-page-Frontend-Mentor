@@ -6,7 +6,7 @@
 	padding: 1em;
 }
 
-.nav-container {
+.mobile-nav-container {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -127,5 +127,9 @@
 
 	.logo-link {
 		grid-column: 1 / 2;
+	}
+
+	.avatar-img {
+		width: 50px;
 	}
 }

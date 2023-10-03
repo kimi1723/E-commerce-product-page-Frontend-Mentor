@@ -10,17 +10,17 @@ import avatarImg from '../../assets/images/image-avatar.png';
 
 const Header = () => {
 	const [isMobile, setIsMobile] = useState(window.innerWidth < 768 ? true : false);
-	const [mobileIsActive, setMobileIsActive] = useState(false);
+	const [mobileNavIsActive, setMobileNavIsActive] = useState(false);
 
 	const screenSizeChangeHandler = () => {
 		setIsMobile(window.innerWidth < 768 ? true : false);
 	};
 
 	const showMobileNavigationHandler = () => {
-		setMobileIsActive(prev => !prev);
+		setMobileNavIsActive(prev => !prev);
 	};
 
-	const navBtnClasses = mobileIsActive ? `${classes['nav-btn']} ${classes['btn-active']}` : `${classes['nav-btn']}`;
+	const navBtnClasses = mobileNavIsActive ? `${classes['nav-btn']} ${classes['btn-active']}` : `${classes['nav-btn']}`;
 
 	useEffect(() => {
 		window.addEventListener('resize', screenSizeChangeHandler);
@@ -29,7 +29,7 @@ const Header = () => {
 	return (
 		<header className={classes.header}>
 			{isMobile && (
-				<div className={classes['nav-container']}>
+				<div className={classes['mobile-nav-container']}>
 					<button
 						type="button"
 						className={navBtnClasses}
@@ -37,13 +37,15 @@ const Header = () => {
 						onClick={showMobileNavigationHandler}>
 						<span className={classes['btn-content']}></span>
 					</button>
-					<MobileNavigation mobileIsActive={mobileIsActive} />
+					<MobileNavigation mobileNavIsActive={mobileNavIsActive} />
 				</div>
 			)}
 
 			<Link to="#" className={classes['logo-link']}>
 				<img src={logo} alt="sneakers" className={classes.logo} />
 			</Link>
+
+			{!isMobile && <DesktopNavigation />}
 
 			<button type="button" className={classes['cart-btn']}>
 				<img src={cartIcon} alt="cart" />

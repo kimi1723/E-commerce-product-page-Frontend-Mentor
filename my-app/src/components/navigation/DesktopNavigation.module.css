@@ -1,0 +1,29 @@
+.nav {
+	grid-column: 2 / 11;
+}
+
+.nav-list {
+	display: flex;
+	align-items: center;
+}
+
+.nav-link {
+	position: relative;
+	padding: 0.4em 0.8em;
+	color: hsl(219, 9%, 45%);
+	font-size: 1rem;
+	outline: none;
+	transition: color 0.3s;
+	z-index: 1;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+	color: hsl(26, 100%, 55%);
+}
+
+@media (min-width: 992px) {
+	.nav {
+		grid-column: 3 / 11;
+	}
+}
