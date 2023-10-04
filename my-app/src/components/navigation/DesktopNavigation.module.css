@@ -13,14 +13,15 @@
 	color: hsl(219, 9%, 45%);
 	font-size: 1rem;
 	outline: none;
-	transition: color 0.3s;
+	border-bottom: 5px solid transparent;
+	transition: border-bottom 0.3s, color 0.3s;
 	z-index: 1;
 }
 
 .nav-link:hover,
 .nav-link:focus {
 	color: hsl(220, 13%, 13%);
-	border-bottom: 3px solid hsl(26, 100%, 55%);
+	border-bottom: 5px solid hsl(26, 100%, 55%);
 }
 
 @media (min-width: 992px) {

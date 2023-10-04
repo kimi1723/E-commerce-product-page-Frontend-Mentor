@@ -112,7 +112,9 @@
 }
 
 .reduce-amount-btn:hover img,
-.add-amount-btn:hover img {
+.add-amount-btn:hover img,
+.reduce-amount-btn:focus img,
+.add-amount-btn:focus img {
 	scale: 1.5;
 }
 
@@ -134,7 +136,8 @@
 	transition: box-shadow 0.4s, opacity 0.4s;
 }
 
-.add-to-cart-btn:hover {
+.add-to-cart-btn:hover,
+.add-to-cart-btn:focus {
 	opacity: 0.6;
 	-webkit-box-shadow: 0px 17px 35px -11px rgba(255, 125, 26, 1);
 	-moz-box-shadow: 0px 17px 35px -11px rgba(255, 125, 26, 1);

@@ -11,7 +11,8 @@
 	padding: 1em;
 	max-width: 1200px;
 	background-color: hsl(0, 0%, 100%);
-	border-bottom: 3px solid hsl(223, 64%, 98%);
+	border-bottom: 5px solid hsl(223, 64%, 98%);
+	z-index: 1000;
 }
 
 .mobile-nav-container {
@@ -98,6 +99,7 @@
 .cart-btn {
 	position: relative;
 	grid-column: -3/-2;
+	z-index: -1;
 }
 
 .avatar-btn {

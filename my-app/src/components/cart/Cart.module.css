@@ -26,6 +26,7 @@
 .heading {
 	padding-bottom: 1em;
 	font-size: 1rem;
+	text-align: left;
 	color: hsl(220, 13%, 13%);
 }
 
