@@ -6,7 +6,7 @@ import plusIcon from '../../assets/images/icon-plus.svg';
 import prevIcon from '../../assets/images/icon-previous.svg';
 import nextIcon from '../../assets/images/icon-next.svg';
 
-const Product = () => {
+const Product = ({ imgUrl }) => {
 	const isDesktop = false;
 
 	return (
@@ -16,7 +16,7 @@ const Product = () => {
 					<img src={prevIcon} alt="" />
 				</button>
 				<img
-					src={img1}
+					src={imgUrl}
 					alt="white shoes with brown endings on orange background wall"
 					className={classes['main-img']}
 				/>

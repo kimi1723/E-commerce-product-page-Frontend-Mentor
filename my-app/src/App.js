@@ -7,6 +7,7 @@ import ErrorPage from './pages/Error';
 import ProductPage from './pages/Product';
 import LightboxPage from './pages/Lightbox';
 import CheckoutPage from './pages/Checkout';
+import { loader as productLoader } from './pages/Product';
 
 const router = createBrowserRouter([
 	{
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
 			{
 				path: '/products/:id',
 				element: <ProductPage />,
-				children: [{ path: 'lightbox-gallery', element: <LightboxPage /> }],
+				loader: productLoader,
+				// children: [{ path: 'lightbox-gallery', element: <LightboxPage /> }],
 			},
 			{ path: '/checkout', element: <CheckoutPage /> },
 		],
