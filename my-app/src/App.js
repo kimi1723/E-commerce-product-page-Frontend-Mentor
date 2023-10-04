@@ -19,7 +19,7 @@ const router = createBrowserRouter([
 				path: '/products/:id',
 				element: <ProductPage />,
 				loader: productLoader,
-				// children: [{ path: 'lightbox-gallery', element: <LightboxPage /> }],
+				children: [{ path: 'lightbox-gallery', element: <LightboxPage /> }],
 			},
 			{ path: '/checkout', element: <CheckoutPage /> },
 		],

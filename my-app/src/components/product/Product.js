@@ -1,26 +1,45 @@
+import { useState } from 'react';
+
 import classes from './Product.module.css';
-import { img1, img2, img3, img4, img1Thumbnail, img2Thumbnail, img3Thumbnail, img4Thumbnail } from './p1-images';
 import cartImg from '../../assets/images/white-icon-cart.svg';
 import minusIcon from '../../assets/images/icon-minus.svg';
 import plusIcon from '../../assets/images/icon-plus.svg';
 import prevIcon from '../../assets/images/icon-previous.svg';
 import nextIcon from '../../assets/images/icon-next.svg';
 
-const Product = ({ imgUrl }) => {
+const Product = ({ imagesUrls }) => {
 	const isDesktop = false;
+	const [actualImageIndex, setActualImageIndex] = useState(1);
+
+	const imageIndexHandler = whereTo => {
+		setActualImageIndex(prevIndex => {
+			switch (whereTo) {
+				case 'previous':
+					if (prevIndex < 3) {
+						return (prevIndex = 7);
+					} else {
+						return (prevIndex -= 2);
+					}
+				case 'next':
+					if (prevIndex < 7) {
+						return (prevIndex += 2);
+					} else {
+						return (prevIndex = 1);
+					}
+				default:
+					return console.log('error');
+			}
+		});
+	};
 
 	return (
 		<main className={classes.main}>
 			<section className={classes.gallery}>
-				<button className={classes['carousel-icon']}>
+				<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('previous')}>
 					<img src={prevIcon} alt="" />
 				</button>
-				<img
-					src={imgUrl}
-					alt="white shoes with brown endings on orange background wall"
-					className={classes['main-img']}
-				/>
-				<button className={classes['carousel-icon']}>
+				<img src={imagesUrls[actualImageIndex]} alt="l" className={classes['main-img']} />
+				<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('next')}>
 					<img src={nextIcon} alt="" />
 				</button>
 				{isDesktop && <div className={classes['thumbnails']}></div>}

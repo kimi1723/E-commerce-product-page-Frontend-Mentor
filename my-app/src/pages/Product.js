@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref, getDownloadURL, listAll } from 'firebase/storage';
 import { useLoaderData, json } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import Product from '../components/product/Product';
@@ -19,11 +19,11 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 const ProductPage = () => {
-	const { imgUrl } = useLoaderData();
+	const imagesUrls = useLoaderData();
 
 	return (
 		<Wrapper>
-			<Product imgUrl={imgUrl} />
+			<Product imagesUrls={imagesUrls} />
 			<Outlet />
 		</Wrapper>
 	);
@@ -31,10 +31,15 @@ const ProductPage = () => {
 
 export const loader = async ({ request, params }) => {
 	const id = params.id;
+	const imagesRef = ref(storage, `products/${id}`);
 
-	const response = await getDownloadURL(ref(storage, `products/${id}/image-${id}.jpg`)).then(url => url);
+	const images = await listAll(imagesRef);
+	const { items } = images;
+	const imagesUrls = await Promise.all(items.map(item => getDownloadURL(item)));
 
-	return { imgUrl: response };
+	// const response = await getDownloadURL(ref(storage, `products/${id}/image-${id}.jpg`));
+
+	return imagesUrls;
 };
 
 export default ProductPage;
