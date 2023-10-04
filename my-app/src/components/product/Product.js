@@ -15,17 +15,10 @@ const Product = ({ imagesUrls }) => {
 		setActualImageIndex(prevIndex => {
 			switch (whereTo) {
 				case 'previous':
-					if (prevIndex < 3) {
-						return (prevIndex = 7);
-					} else {
-						return (prevIndex -= 2);
-					}
+					return prevIndex < 3 ? (prevIndex = 7) : (prevIndex -= 2);
+
 				case 'next':
-					if (prevIndex < 7) {
-						return (prevIndex += 2);
-					} else {
-						return (prevIndex = 1);
-					}
+					return prevIndex < 7 ? (prevIndex += 2) : (prevIndex = 1);
 				default:
 					return console.log('error');
 			}
