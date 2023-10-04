@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import DesktopNavigation from '../navigation/DesktopNavigation';
 import MobileNavigation from '../navigation/MobileNavigation';
 import Cart from '../cart/Cart';
@@ -12,13 +13,9 @@ import avatarImg from '../../assets/images/image-avatar.png';
 let hideCartTimeout;
 
 const Header = () => {
-	const [isMobile, setIsMobile] = useState(window.innerWidth < 768 ? true : false);
+	const isMobile = useSelector(state => state.deviceType.isMobile);
 	const [mobileNavIsActive, setMobileNavIsActive] = useState(false);
 	const [isCartVisible, setIsCartVisible] = useState(false);
-
-	const screenSizeChangeHandler = () => {
-		setIsMobile(window.innerWidth < 768 ? true : false);
-	};
 
 	const showMobileNavigationHandler = () => {
 		setMobileNavIsActive(prev => !prev);
@@ -36,10 +33,6 @@ const Header = () => {
 	};
 
 	const navBtnClasses = mobileNavIsActive ? `${classes['nav-btn']} ${classes['btn-active']}` : `${classes['nav-btn']}`;
-
-	useEffect(() => {
-		window.addEventListener('resize', screenSizeChangeHandler);
-	}, []);
 
 	return (
 		<>

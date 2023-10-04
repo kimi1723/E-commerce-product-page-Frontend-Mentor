@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
-import { deviceTypeSlice } from './store';
+import { detectDeviceTypeActions } from './store/detectDeviceType-slice';
 import RootPage from './pages/Root';
 import ErrorPage from './pages/Error';
 import ProductPage from './pages/Product';
@@ -26,7 +26,14 @@ const router = createBrowserRouter([
 
 function App() {
 	const dispatch = useDispatch();
-	dispatch(deviceTypeSlice.actions.detectDeviceType());
+
+	const detectDeviceHandler = () => {
+		const isMobile = window.innerWidth < 768 ? true : false;
+
+		dispatch(detectDeviceTypeActions.detectDeviceType(isMobile));
+	};
+
+	window.addEventListener('resize', detectDeviceHandler);
 
 	return <RouterProvider router={router}></RouterProvider>;
 }
