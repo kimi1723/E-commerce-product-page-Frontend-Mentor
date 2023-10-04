@@ -1,4 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+import { deviceTypeSlice } from './store';
 import RootPage from './pages/Root';
 import ErrorPage from './pages/Error';
 import ProductPage from './pages/Product';
@@ -20,7 +23,11 @@ const router = createBrowserRouter([
 		],
 	},
 ]);
+
 function App() {
+	const dispatch = useDispatch();
+	dispatch(deviceTypeSlice.actions.detectDeviceType());
+
 	return <RouterProvider router={router}></RouterProvider>;
 }
 
