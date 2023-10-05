@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import classes from './Product.module.css';
 import cartImg from '../../assets/images/white-icon-cart.svg';
@@ -10,9 +11,29 @@ import nextIcon from '../../assets/images/icon-next.svg';
 const Product = ({ productDetails, imagesData }) => {
 	const isDesktop = false;
 	const [actualImageIndex, setActualImageIndex] = useState(1);
+	const { annotation, description, price, name, discount } = productDetails;
 
 	const urls = imagesData.urls;
 	const alts = imagesData.alts;
+
+	const cacheImages = async urls => {
+		const promises = await urls.map(url => {
+			return new Promise((resolve, reject) => {
+				const img = new Image();
+
+				img.src = url;
+				img.onload = resolve();
+				img.onerror = reject();
+			});
+		});
+		await Promise.all(promises);
+	};
+
+	useEffect(() => {
+		cacheImages(urls);
+	});
+
+	const totalPrice = (price * ((100 - discount) / 100)).toFixed(2);
 
 	const imageIndexHandler = whereTo => {
 		setActualImageIndex(prevIndex => {
@@ -28,11 +49,6 @@ const Product = ({ productDetails, imagesData }) => {
 		});
 	};
 
-	const totalPrice = 251 * ((100 - productDetails.discount) / 100);
-	const hasFractional = 251 % 1 === 0 ? true : false;
-	// console.log(hasFractional);
-	console.log(253 % 1);
-
 	return (
 		<main className={classes.main}>
 			<section className={classes.gallery}>
@@ -47,17 +63,17 @@ const Product = ({ productDetails, imagesData }) => {
 			</section>
 
 			<section className={classes.info}>
-				<h2 className={classes.annotation}>{productDetails.annotation}</h2>
-				<h1 className={classes.h1}>{productDetails.name}</h1>
-				<p className={classes.description}>{productDetails.description}</p>
+				<h2 className={classes.annotation}>{annotation}</h2>
+				<h1 className={classes.h1}>{name}</h1>
+				<p className={classes.description}>{description}</p>
 
 				<section className={classes.prices}>
 					<p className={classes['discounted-price']}>
 						${totalPrice}
-						{!hasFractional && '.00'}
+						{Number.isInteger(totalPrice) && '.00'}
 					</p>
-					<p className={classes['discount-percent']}>{productDetails.discount}%</p>
-					<p className={classes['original-price']}>${productDetails.price}</p>
+					<p className={classes['discount-percent']}>{discount}%</p>
+					<p className={classes['original-price']}>${price}</p>
 				</section>
 
 				<section className={classes['btns']}>
