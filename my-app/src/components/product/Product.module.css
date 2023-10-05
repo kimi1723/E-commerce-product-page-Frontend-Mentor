@@ -7,50 +7,6 @@
 	padding: 1em;
 }
 
-.annotation {
-	font-size: 0.8rem;
-	text-transform: uppercase;
-	color: hsl(26, 100%, 55%);
-}
-
-.h1 {
-	margin: 0.5em 0;
-	font-size: 1.6rem;
-	color: hsl(220, 13%, 13%);
-}
-
-.description {
-	line-height: 1.4;
-	color: hsl(219, 9%, 45%);
-}
-
-.prices {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	align-items: center;
-	margin: 2em 0;
-	font-weight: bold;
-}
-
-.discounted-price {
-	grid-column: 1 / 2;
-	font-size: 1.6rem;
-}
-
-.discount-percent {
-	grid-column: 3 / 4;
-	padding: 0.3em 0.6em;
-	color: hsl(26, 100%, 55%);
-	background-color: hsl(25, 100%, 94%);
-	border-radius: 8px;
-}
-
-.original-price {
-	grid-column: -2 / -1;
-	color: hsl(220, 14%, 75%);
-	text-decoration: line-through;
-}
-
 .btns {
 }
 

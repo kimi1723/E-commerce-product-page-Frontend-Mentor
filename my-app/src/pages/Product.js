@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref as storageRef, getDownloadURL, listAll } from 'firebase/storage';
 import { getDatabase, ref as databaseRef, get } from 'firebase/database';
-import { useLoaderData, json } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import Product from '../components/product/Product';
 import Wrapper from '../components/ui/Wrapper';

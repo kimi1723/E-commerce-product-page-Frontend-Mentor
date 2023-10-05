@@ -4,8 +4,7 @@ import classes from './ImagesGallery.module.css';
 import prevIcon from '../../assets/images/icon-previous.svg';
 import nextIcon from '../../assets/images/icon-next.svg';
 
-const ImagesGallery = ({ urls, alts }) => {
-	const isDesktop = false;
+const ImagesGallery = ({ urls, alts, isMobile }) => {
 	const [actualImageIndex, setActualImageIndex] = useState(1);
 
 	const cacheImages = async urls => {
@@ -64,7 +63,7 @@ const ImagesGallery = ({ urls, alts }) => {
 			<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('next')}>
 				<img src={nextIcon} alt="" />
 			</button>
-			{isDesktop && <div className={classes['thumbnails']}></div>}
+			{!isMobile && <div className={classes['thumbnails']}>asdasdasdasd</div>}
 		</section>
 	);
 };
