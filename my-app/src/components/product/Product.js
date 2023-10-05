@@ -1,66 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import ImagesGallery from './ImagesGallery';
 
 import classes from './Product.module.css';
 import cartImg from '../../assets/images/white-icon-cart.svg';
 import minusIcon from '../../assets/images/icon-minus.svg';
 import plusIcon from '../../assets/images/icon-plus.svg';
-import prevIcon from '../../assets/images/icon-previous.svg';
-import nextIcon from '../../assets/images/icon-next.svg';
+
 
 const Product = ({ productDetails, imagesData }) => {
 	const isDesktop = false;
-	const [actualImageIndex, setActualImageIndex] = useState(1);
+
 	const { annotation, description, price, name, discount } = productDetails;
-
-	const urls = imagesData.urls;
-	const alts = imagesData.alts;
-
-	const cacheImages = async urls => {
-		const promises = await urls.map(url => {
-			return new Promise((resolve, reject) => {
-				const img = new Image();
-
-				img.src = url;
-				img.onload = resolve();
-				img.onerror = reject();
-			});
-		});
-		await Promise.all(promises);
-	};
-
-	useEffect(() => {
-		cacheImages(urls);
-	});
 
 	const totalPrice = (price * ((100 - discount) / 100)).toFixed(2);
 
-	const imageIndexHandler = whereTo => {
-		setActualImageIndex(prevIndex => {
-			switch (whereTo) {
-				case 'previous':
-					return prevIndex < 3 ? (prevIndex = 7) : (prevIndex -= 2);
-
-				case 'next':
-					return prevIndex < 7 ? (prevIndex += 2) : (prevIndex = 1);
-				default:
-					return console.log('error');
-			}
-		});
-	};
-
 	return (
 		<main className={classes.main}>
-			<section className={classes.gallery}>
-				<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('previous')}>
-					<img src={prevIcon} alt="" />
-				</button>
-				<img src={imagesData.urls[actualImageIndex]} alt="l" className={classes['main-img']} />
-				<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('next')}>
-					<img src={nextIcon} alt="" />
-				</button>
-				{isDesktop && <div className={classes['thumbnails']}></div>}
-			</section>
+			<ImagesGallery urls={imagesData.urls} alts={imagesData.alts} />
 
 			<section className={classes.info}>
 				<h2 className={classes.annotation}>{annotation}</h2>
