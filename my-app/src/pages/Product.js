@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, getDownloadURL, listAll } from 'firebase/storage';
+import { getStorage, ref as storageRef, getDownloadURL, listAll } from 'firebase/storage';
+import { getDatabase, ref as databaseRef, get } from 'firebase/database';
 import { useLoaderData, json } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import Product from '../components/product/Product';
@@ -19,27 +20,37 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 const ProductPage = () => {
-	const imagesUrls = useLoaderData();
+	const { productDetails, imagesData } = useLoaderData();
 
 	return (
 		<Wrapper>
-			<Product imagesUrls={imagesUrls} />
+			<Product productDetails={productDetails} imagesData={imagesData} />
 			<Outlet />
 		</Wrapper>
 	);
 };
 
-export const loader = async ({ request, params }) => {
+export const loader = async ({ params }) => {
+	const database = getDatabase();
 	const id = params.id;
-	const imagesRef = ref(storage, `products/${id}`);
+	const productRef = databaseRef(database, `/products/${id}`);
+	const imagesRef = storageRef(storage, `products/${id}`);
 
+	const snapshot = await get(productRef);
+	const productData = snapshot.val();
 	const images = await listAll(imagesRef);
 	const { items } = images;
+
 	const imagesUrls = await Promise.all(items.map(item => getDownloadURL(item)));
 
-	// const response = await getDownloadURL(ref(storage, `products/${id}/image-${id}.jpg`));
+	const { imagesAlts, ...productDetails } = productData;
 
-	return imagesUrls;
+	const imagesData = {
+		urls: imagesUrls,
+		alts: imagesAlts,
+	};
+
+	return { productDetails, imagesData };
 };
 
 export default ProductPage;

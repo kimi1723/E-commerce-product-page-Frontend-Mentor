@@ -7,9 +7,12 @@ import plusIcon from '../../assets/images/icon-plus.svg';
 import prevIcon from '../../assets/images/icon-previous.svg';
 import nextIcon from '../../assets/images/icon-next.svg';
 
-const Product = ({ imagesUrls }) => {
+const Product = ({ productDetails, imagesData }) => {
 	const isDesktop = false;
 	const [actualImageIndex, setActualImageIndex] = useState(1);
+
+	const urls = imagesData.urls;
+	const alts = imagesData.alts;
 
 	const imageIndexHandler = whereTo => {
 		setActualImageIndex(prevIndex => {
@@ -25,13 +28,18 @@ const Product = ({ imagesUrls }) => {
 		});
 	};
 
+	const totalPrice = 251 * ((100 - productDetails.discount) / 100);
+	const hasFractional = 251 % 1 === 0 ? true : false;
+	// console.log(hasFractional);
+	console.log(253 % 1);
+
 	return (
 		<main className={classes.main}>
 			<section className={classes.gallery}>
 				<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('previous')}>
 					<img src={prevIcon} alt="" />
 				</button>
-				<img src={imagesUrls[actualImageIndex]} alt="l" className={classes['main-img']} />
+				<img src={imagesData.urls[actualImageIndex]} alt="l" className={classes['main-img']} />
 				<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('next')}>
 					<img src={nextIcon} alt="" />
 				</button>
@@ -39,17 +47,17 @@ const Product = ({ imagesUrls }) => {
 			</section>
 
 			<section className={classes.info}>
-				<h2 className={classes.annotation}>Sneaker Company</h2>
-				<h1 className={classes.h1}>Fall Limited Edition Sneakers</h1>
-				<p className={classes.description}>
-					These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole,
-					they'll withstand everything the weather can offer.
-				</p>
+				<h2 className={classes.annotation}>{productDetails.annotation}</h2>
+				<h1 className={classes.h1}>{productDetails.name}</h1>
+				<p className={classes.description}>{productDetails.description}</p>
 
 				<section className={classes.prices}>
-					<p className={classes['discounted-price']}>$125.00</p>
-					<p className={classes['discount-percent']}>50%</p>
-					<p className={classes['original-price']}>$250.00</p>
+					<p className={classes['discounted-price']}>
+						${totalPrice}
+						{!hasFractional && '.00'}
+					</p>
+					<p className={classes['discount-percent']}>{productDetails.discount}%</p>
+					<p className={classes['original-price']}>${productDetails.price}</p>
 				</section>
 
 				<section className={classes['btns']}>
