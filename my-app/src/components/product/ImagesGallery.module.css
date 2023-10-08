@@ -34,3 +34,43 @@
 .carousel-icon:focus {
 	background-color: hsl(26, 100%, 55%);
 }
+
+@media (min-width: 768px) {
+	.gallery {
+		width: 45%;
+	}
+
+	.main-img {
+		border-radius: 15px;
+	}
+
+	.thumbnails {
+		display: flex;
+		margin-top: 1.5em;
+		column-gap: 1.5em;
+		min-width: 0;
+	}
+
+	.img-button {
+		width: 25%;
+		min-width: 0;
+	}
+
+	.img {
+		width: 100%;
+		border: 3px solid transparent;
+		border-radius: 15px;
+		cursor: pointer;
+	}
+
+	.img-active {
+		border: 3px solid hsl(26, 100%, 55%);
+		opacity: 0.4;
+	}
+
+	.img-btn:hover .img,
+	.img-btn:focus .img {
+		border: 3px solid hsl(26, 100%, 55%);
+		opacity: 0.4;
+	}
+}

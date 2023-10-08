@@ -54,16 +54,38 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 	};
 
 	const imageAlt = imageAltHandler();
+
+	// const mainImgClasses = isMobile ? `${classes['main-img']}` : `${classes['main-img']} ${classes.img}`;
+
 	return (
 		<section className={classes.gallery}>
-			<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('previous')}>
-				<img src={prevIcon} alt="" />
-			</button>
+			{isMobile && (
+				<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('previous')}>
+					<img src={prevIcon} alt="" />
+				</button>
+			)}
 			<img src={urls[actualImageIndex]} alt={imageAlt} className={classes['main-img']} />
-			<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('next')}>
-				<img src={nextIcon} alt="" />
-			</button>
-			{!isMobile && <div className={classes['thumbnails']}>asdasdasdasd</div>}
+			{isMobile && (
+				<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('next')}>
+					<img src={nextIcon} alt="" />
+				</button>
+			)}
+			{!isMobile && (
+				<div className={classes['thumbnails']}>
+					<button type="button" className={classes['img-btn']} aria-label="thumbnail image 1">
+						<img src={urls[0]} alt={alts.image1} className={classes.img} />
+					</button>
+					<button type="button" className={classes['img-btn']} aria-label="thumbnail image 2">
+						<img src={urls[2]} alt={alts.image2} className={classes.img} />
+					</button>
+					<button type="button" className={classes['img-btn']} aria-label="thumbnail image 3">
+						<img src={urls[4]} alt={alts.image3} className={classes.img} />
+					</button>
+					<button type="button" className={classes['img-btn']} aria-label="thumbnail image 4">
+						<img src={urls[6]} alt={alts.image4} className={classes.img} />
+					</button>
+				</div>
+			)}
 		</section>
 	);
 };

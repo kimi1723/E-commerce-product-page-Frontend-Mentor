@@ -7,9 +7,6 @@
 	padding: 1em;
 }
 
-.btns {
-}
-
 .amount-btns {
 	display: flex;
 	justify-content: space-between;
@@ -65,4 +62,30 @@
 
 .cart-icon {
 	margin-right: 1.5em;
+}
+
+@media (min-width: 768px) {
+	.main {
+		display: flex;
+		column-gap: 7em;
+		margin-top: 5em;
+	}
+
+	.info {
+		margin-top: 2.5em;
+		width: 55%;
+	}
+
+	.btns {
+		display: flex;
+		column-gap: 1em;
+	}
+
+	.amount-btns {
+		width: 50%;
+	}
+
+	.add-to-cart-btn {
+		margin: 0;
+	}
 }

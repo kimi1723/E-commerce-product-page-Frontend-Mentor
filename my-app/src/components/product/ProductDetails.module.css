@@ -41,3 +41,27 @@
 	color: hsl(220, 14%, 75%);
 	text-decoration: line-through;
 }
+
+@media (min-width: 768px) {
+	.h1 {
+		font-size: 3rem;
+	}
+
+	.description {
+		margin-top: 2em;
+	}
+
+	.prices {
+		grid-template-rows: repeat(2, 1fr);
+		column-gap: 1em;
+	}
+
+	.discount-percent {
+		grid-column: 2 / 3;
+	}
+
+	.original-price {
+		grid-column: 1 / 2;
+		grid-row: 2 / 3;
+	}
+}
