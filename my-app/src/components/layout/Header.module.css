@@ -130,7 +130,7 @@
 	}
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 	.placeholder {
 		height: 110px;
 	}

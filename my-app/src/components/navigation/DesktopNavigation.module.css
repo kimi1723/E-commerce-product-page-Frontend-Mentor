@@ -1,5 +1,5 @@
 .nav {
-	grid-column: 2 / 11;
+	grid-column: 3 / 11;
 }
 
 .nav-list {
@@ -22,10 +22,4 @@
 .nav-link:focus {
 	color: hsl(220, 13%, 13%);
 	border-bottom: 5px solid hsl(26, 100%, 55%);
-}
-
-@media (min-width: 992px) {
-	.nav {
-		grid-column: 3 / 11;
-	}
 }

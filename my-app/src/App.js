@@ -30,7 +30,7 @@ function App() {
 	const dispatch = useDispatch();
 
 	const detectDeviceHandler = () => {
-		const isMobile = window.innerWidth < 768 ? true : false;
+		const isMobile = window.innerWidth < 992 ? true : false;
 
 		dispatch(detectDeviceTypeActions.detectDeviceType(isMobile));
 	};

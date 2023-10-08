@@ -36,31 +36,44 @@
 }
 
 @media (min-width: 768px) {
-	.gallery {
-		width: 45%;
-	}
-
 	.main-img {
 		border-radius: 15px;
+	}
+}
+
+@media (min-width: 992px) {
+	.gallery {
+		width: 45%;
 	}
 
 	.thumbnails {
 		display: flex;
 		margin-top: 1.5em;
-		column-gap: 1.5em;
-		min-width: 0;
-	}
-
-	.img-button {
-		width: 25%;
+		column-gap: 1em;
 		min-width: 0;
 	}
 
 	.img {
+		position: relative;
 		width: 100%;
 		border: 3px solid transparent;
 		border-radius: 15px;
 		cursor: pointer;
+	}
+
+	.img::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		display: inline-block;
+		/* left: 0; */
+		/* right: 0; */
+		/* bottom: 0; */
+		width: 100px;
+		height: 100px;
+		background-color: red;
+		z-index: 100;
+		border: 3px solid hsl(26, 100%, 55%);
 	}
 
 	.img-active {

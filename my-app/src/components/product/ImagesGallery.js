@@ -24,7 +24,7 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 		cacheImages(urls);
 	});
 
-	const imageIndexHandler = whereTo => {
+	const imageIndexMobileHandler = whereTo => {
 		setActualImageIndex(prevIndex => {
 			switch (whereTo) {
 				case 'previous':
@@ -53,35 +53,53 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 		}
 	};
 
-	const imageAlt = imageAltHandler();
+	const imageIndexDesktopHandler = index => {
+		setActualImageIndex(index);
+	};
 
-	// const mainImgClasses = isMobile ? `${classes['main-img']}` : `${classes['main-img']} ${classes.img}`;
+	const imageAlt = imageAltHandler();
 
 	return (
 		<section className={classes.gallery}>
 			{isMobile && (
-				<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('previous')}>
+				<button className={classes['carousel-icon']} onClick={() => imageIndexMobileHandler('previous')}>
 					<img src={prevIcon} alt="" />
 				</button>
 			)}
 			<img src={urls[actualImageIndex]} alt={imageAlt} className={classes['main-img']} />
 			{isMobile && (
-				<button className={classes['carousel-icon']} onClick={() => imageIndexHandler('next')}>
+				<button className={classes['carousel-icon']} onClick={() => imageIndexMobileHandler('next')}>
 					<img src={nextIcon} alt="" />
 				</button>
 			)}
 			{!isMobile && (
 				<div className={classes['thumbnails']}>
-					<button type="button" className={classes['img-btn']} aria-label="thumbnail image 1">
+					<button
+						type="button"
+						className={classes['img-btn']}
+						aria-label="thumbnail image 1"
+						onClick={() => imageIndexDesktopHandler(1)}>
 						<img src={urls[0]} alt={alts.image1} className={classes.img} />
 					</button>
-					<button type="button" className={classes['img-btn']} aria-label="thumbnail image 2">
+					<button
+						type="button"
+						className={classes['img-btn']}
+						aria-label="thumbnail image 2"
+						onClick={() => imageIndexDesktopHandler(3)}>
 						<img src={urls[2]} alt={alts.image2} className={classes.img} />
 					</button>
-					<button type="button" className={classes['img-btn']} aria-label="thumbnail image 3">
+					<button
+						type="button"
+						className={classes['img-btn']}
+						aria-label="thumbnail image 3"
+						onClick={() => imageIndexDesktopHandler(5)}>
 						<img src={urls[4]} alt={alts.image3} className={classes.img} />
 					</button>
-					<button type="button" className={classes['img-btn']} aria-label="thumbnail image 4">
+					<button
+						type="button"
+						className={classes['img-btn']}
+						aria-label="thumbnail image 4"
+						onClick={() => imageIndexDesktopHandler(7)}>
 						<img src={urls[6]} alt={alts.image4} className={classes.img} />
 					</button>
 				</div>
