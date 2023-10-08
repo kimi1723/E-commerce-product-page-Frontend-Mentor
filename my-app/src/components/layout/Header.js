@@ -61,7 +61,9 @@ const Header = () => {
 					type="button"
 					className={classes['cart-btn']}
 					onMouseOver={showCartHandler}
-					onMouseLeave={hideCartHandler}>
+					onMouseLeave={hideCartHandler}
+					onFocus={showCartHandler}
+					onBlur={hideCartHandler}>
 					<img src={cartIcon} alt="cart" />
 					{isCartVisible && <Cart />}
 				</button>
