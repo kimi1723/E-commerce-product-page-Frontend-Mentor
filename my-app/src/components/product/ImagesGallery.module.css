@@ -45,29 +45,4 @@
 	.gallery {
 		width: 45%;
 	}
-
-	.thumbnails {
-		display: flex;
-		margin-top: 1.5em;
-		column-gap: 1em;
-		min-width: 0;
-	}
-
-	.img {
-		position: relative;
-		width: 100%;
-		border: 3px solid transparent;
-		border-radius: 15px;
-		cursor: pointer;
-	}
-
-	.img-active {
-		border: 3px solid hsl(26, 100%, 55%);
-		opacity: 0.4;
-	}
-
-	.img-btn:hover .img,
-	.img-btn:focus .img {
-		opacity: 0.4;
-	}
 }
