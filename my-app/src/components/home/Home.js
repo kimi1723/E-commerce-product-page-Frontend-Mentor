@@ -4,27 +4,29 @@ import Wrapper from '../ui/Wrapper';
 
 import classes from './Home.module.css';
 
-const Home = ({ products: productsArray }) => {
-	const DUMMY_PRODUCTS = [
-		{
-			address: 'product-1',
-			title: 'Fall Limited Edition Sneakers',
-		},
-		{ address: 'product-2', title: 'Fall Limited Edition Sneakers2' },
-	];
-
-	const products = productsArray.map(product => {
+const Home = ({ products: productsData }) => {
+	const products = productsData.map(product => {
 		return (
-			<Link key={product.name} to="/products/product-1">
-				{product.name}
-			</Link>
+			<li key={product.name} className={classes.li}>
+				<img src={product.imageUrl} alt={product.imagesAlts.image1} className={classes.img} />
+				<section className={classes.details}>
+					<p className={classes.annotation}>{product.annotation}</p>
+					<Link to="/products/product-1" className={classes.name}>
+						{product.name}
+					</Link>
+					<p className={classes.price}>{product.price}</p>
+					<span className={classes.discount}>{product.discount}%</span>
+					<p className={classes.description}>{product.description}</p>
+				</section>
+			</li>
 		);
 	});
+
 	return (
 		<Wrapper>
 			<main className={classes.main}>
 				<h1>Feel free to browse our assortment!</h1>
-				{products}
+				<ul className={classes.ul}>{products}</ul>
 			</main>
 		</Wrapper>
 	);

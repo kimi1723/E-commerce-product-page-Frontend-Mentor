@@ -21,7 +21,6 @@ export const loader = async () => {
 		products.push(newProduct);
 	}
 
-	console.log(products);
 	return products;
 };
 
