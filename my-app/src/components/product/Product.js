@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ImagesGallery from './ImagesGallery';
 import ProductDetails from './ProductDetails';
@@ -9,6 +10,19 @@ import plusIcon from '../../assets/images/icon-plus.svg';
 
 const Product = ({ productDetails, imagesData }) => {
 	const isMobile = useSelector(state => state.deviceType.isMobile);
+	const [itemCounter, setItemCounter] = useState(0);
+
+	const itemCounterHandler = action => {
+		setItemCounter(prevCounter => {
+			if (action === 'add') {
+				return (prevCounter += 1);
+			} else if (action === 'remove' && prevCounter > 0) {
+				return (prevCounter -= 1);
+			} else {
+				return prevCounter;
+			}
+		});
+	};
 
 	return (
 		<main className={classes.main}>
@@ -19,11 +33,11 @@ const Product = ({ productDetails, imagesData }) => {
 
 				<section className={classes['btns']}>
 					<div className={classes['amount-btns']}>
-						<button className={classes['reduce-amount-btn']}>
+						<button className={classes['reduce-amount-btn']} onClick={() => itemCounterHandler('remove')}>
 							<img src={minusIcon} alt="" />
 						</button>
-						<p className={classes['items-amount']}>0</p>
-						<button className={classes['add-amount-btn']}>
+						<p className={classes['items-amount']}>{itemCounter}</p>
+						<button className={classes['add-amount-btn']} onClick={() => itemCounterHandler('add')}>
 							<img src={plusIcon} alt="" />
 						</button>
 					</div>
