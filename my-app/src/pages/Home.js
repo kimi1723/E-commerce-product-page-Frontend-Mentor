@@ -1,7 +1,28 @@
+import { useLoaderData } from 'react-router-dom';
+import getProductsData from '../utils/getProductsData';
+import getImages from '../utils/getImages';
 import Home from '../components/home/Home';
 
 const HomePage = () => {
-	return <Home />;
+	const products = useLoaderData();
+
+	return <Home products={products} />;
+};
+
+export const loader = async () => {
+	const products = [];
+
+	const data = await getProductsData('/products');
+
+	for (const id in data) {
+		const imageUrl = await getImages(id, 'one');
+		const newProduct = { ...data[id], imageUrl };
+
+		products.push(newProduct);
+	}
+
+	console.log(products);
+	return products;
 };
 
 export default HomePage;

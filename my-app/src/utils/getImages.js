@@ -12,7 +12,6 @@ const getImages = async (id, action) => {
 
 			return imagesUrls;
 		case 'one':
-			console.log(id);
 			const imageRef = ref(storage, `/products/${id}/image-${id}.jpg`);
 			const imageUrl = await getDownloadURL(imageRef);
 

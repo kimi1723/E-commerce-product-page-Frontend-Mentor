@@ -9,6 +9,7 @@ import ProductPage from './pages/Product';
 import LightboxPage from './pages/Lightbox';
 import CheckoutPage from './pages/Checkout';
 import { loader as productLoader } from './pages/Product';
+import { loader as homeLoader } from './pages/Home';
 
 const router = createBrowserRouter([
 	{
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
 		element: <RootPage />,
 		errorElement: <ErrorPage />,
 		children: [
-			{ index: true, element: <HomePage /> },
+			{ index: true, element: <HomePage />, loader: homeLoader },
 			{
 				path: '/products/:id',
 				element: <ProductPage />,
