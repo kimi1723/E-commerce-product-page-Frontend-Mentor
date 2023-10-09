@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { detectDeviceTypeActions } from './store/detectDeviceType-slice';
 import RootPage from './pages/Root';
+import HomePage from './pages/Home';
 import ErrorPage from './pages/Error';
 import ProductPage from './pages/Product';
 import LightboxPage from './pages/Lightbox';
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
 		element: <RootPage />,
 		errorElement: <ErrorPage />,
 		children: [
+			{ index: true, element: <HomePage /> },
 			{
 				path: '/products/:id',
 				element: <ProductPage />,
