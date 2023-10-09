@@ -1,9 +1,27 @@
 import { Link } from 'react-router-dom';
+import getProductsData from '../../utils/getProductsData';
+import getImages from '../../utils/getImages';
 import Wrapper from '../ui/Wrapper';
 
 import classes from './Home.module.css';
 
 const Home = () => {
+	const fun = async () => {
+		const data = await getProductsData('/products');
+		const arr = [];
+
+		for (const id in data) {
+			const imageUrl = await getImages(id, 'one');
+			console.log(imageUrl);
+			arr.push(data[id]);
+		}
+		// console.log(arr);
+		// const imagesData = await getImages('/products', 'one');
+		// console.log(imagesData);
+		// console.log(data);
+	};
+	fun();
+
 	const DUMMY_PRODUCTS = [
 		{
 			address: 'product-1',

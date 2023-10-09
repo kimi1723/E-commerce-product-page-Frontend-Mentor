@@ -1,23 +1,10 @@
-import { initializeApp } from 'firebase/app';
-import { getStorage, ref as storageRef, getDownloadURL, listAll } from 'firebase/storage';
-import { getDatabase, ref as databaseRef, get } from 'firebase/database';
 import { useLoaderData } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
+import getProductsData from '../utils/getProductsData';
+import getImages from '../utils/getImages';
+
 import Product from '../components/product/Product';
 import Wrapper from '../components/ui/Wrapper';
-
-const firebaseConfig = {
-	apiKey: 'AIzaSyCU0TDnQ3VtHG8olkS32xGbJejiJwlr-T8',
-	authDomain: 'react-cdfed.firebaseapp.com',
-	databaseURL: 'https://react-cdfed-default-rtdb.firebaseio.com',
-	projectId: 'react-cdfed',
-	storageBucket: 'gs://react-cdfed.appspot.com',
-	messagingSenderId: '425753321003',
-	appId: '1:425753321003:web:725b498f3cfd8dd4e8946e',
-};
-
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
 
 const ProductPage = () => {
 	const { productDetails, imagesData } = useLoaderData();
@@ -31,17 +18,9 @@ const ProductPage = () => {
 };
 
 export const loader = async ({ params }) => {
-	const database = getDatabase();
 	const id = params.id;
-	const productRef = databaseRef(database, `/products/${id}`);
-	const imagesRef = storageRef(storage, `products/${id}`);
-
-	const snapshot = await get(productRef);
-	const productData = snapshot.val();
-	const images = await listAll(imagesRef);
-	const { items } = images;
-
-	const imagesUrls = await Promise.all(items.map(item => getDownloadURL(item)));
+	const productData = await getProductsData(`/products/${id}`);
+	const imagesUrls = await getImages(id, 'all');
 
 	const { imagesAlts, ...productDetails } = productData;
 
