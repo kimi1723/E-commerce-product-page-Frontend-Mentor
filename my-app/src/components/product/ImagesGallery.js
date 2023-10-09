@@ -4,8 +4,19 @@ import classes from './ImagesGallery.module.css';
 import prevIcon from '../../assets/images/icon-previous.svg';
 import nextIcon from '../../assets/images/icon-next.svg';
 
+const initialThumbnailClasses = {
+	1: `${classes.img} `,
+	3: `${classes.img} `,
+	5: `${classes.img} `,
+	7: `${classes.img}`,
+};
+
 const ImagesGallery = ({ urls, alts, isMobile }) => {
 	const [actualImageIndex, setActualImageIndex] = useState(1);
+	const [thumbnailsClasses, setThumbnailsClasses] = useState({
+		...initialThumbnailClasses,
+		1: `${classes.img} ${classes['img-active']}`,
+	});
 
 	const cacheImages = async urls => {
 		const promises = await urls.map(url => {
@@ -53,8 +64,15 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 		}
 	};
 
-	const imageIndexDesktopHandler = index => {
+	const imageIndexDesktopHandler = (e, index) => {
 		setActualImageIndex(index);
+		setThumbnailsClasses(prev => {
+			const newState = { ...initialThumbnailClasses };
+
+			newState[index] = `${classes.img} ${classes['img-active']}`;
+
+			return newState;
+		});
 	};
 
 	const imageAlt = imageAltHandler();
@@ -76,31 +94,31 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 				<div className={classes['thumbnails']}>
 					<button
 						type="button"
-						className={classes['img-btn']}
+						className={`${classes['img-btn']}`}
 						aria-label="thumbnail image 1"
-						onClick={() => imageIndexDesktopHandler(1)}>
-						<img src={urls[0]} alt={alts.image1} className={classes.img} />
+						onClick={e => imageIndexDesktopHandler(e, 1)}>
+						<img src={urls[0]} alt={alts.image1} className={thumbnailsClasses[1]} />
 					</button>
 					<button
 						type="button"
 						className={classes['img-btn']}
 						aria-label="thumbnail image 2"
-						onClick={() => imageIndexDesktopHandler(3)}>
-						<img src={urls[2]} alt={alts.image2} className={classes.img} />
+						onClick={e => imageIndexDesktopHandler(e, 3)}>
+						<img src={urls[2]} alt={alts.image2} className={thumbnailsClasses[3]} />
 					</button>
 					<button
 						type="button"
 						className={classes['img-btn']}
 						aria-label="thumbnail image 3"
-						onClick={() => imageIndexDesktopHandler(5)}>
-						<img src={urls[4]} alt={alts.image3} className={classes.img} />
+						onClick={e => imageIndexDesktopHandler(e, 5)}>
+						<img src={urls[4]} alt={alts.image3} className={thumbnailsClasses[5]} />
 					</button>
 					<button
 						type="button"
 						className={classes['img-btn']}
 						aria-label="thumbnail image 4"
-						onClick={() => imageIndexDesktopHandler(7)}>
-						<img src={urls[6]} alt={alts.image4} className={classes.img} />
+						onClick={e => imageIndexDesktopHandler(e, 7)}>
+						<img src={urls[6]} alt={alts.image4} className={thumbnailsClasses[7]} />
 					</button>
 				</div>
 			)}
