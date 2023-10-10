@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import ImagesThubmnails from './ImagesThumbnails';
+import cacheImages from '../../utils/cacheImages';
 
 import classes from './ImagesGallery.module.css';
 import prevIcon from '../../assets/images/icon-previous.svg';
@@ -7,19 +8,6 @@ import nextIcon from '../../assets/images/icon-next.svg';
 
 const ImagesGallery = ({ urls, alts, isMobile }) => {
 	const [actualImageIndex, setActualImageIndex] = useState(1);
-
-	const cacheImages = async urls => {
-		const promises = await urls.map(url => {
-			return new Promise((resolve, reject) => {
-				const img = new Image();
-
-				img.src = url;
-				img.onload = resolve();
-				img.onerror = reject();
-			});
-		});
-		await Promise.all(promises);
-	};
 
 	useEffect(() => {
 		cacheImages(urls);

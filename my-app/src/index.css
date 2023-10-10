@@ -26,6 +26,11 @@ a {
 	text-decoration: none;
 }
 
+a:focus,
+a:active {
+	color: currentColor;
+}
+
 button {
 	background: none;
 	outline: none;
