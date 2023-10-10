@@ -1,9 +1,13 @@
 .link {
 	outline: none;
 }
-.li:has(> .link:focus),
+
 .li:has(> .link:hover) {
 	box-shadow: 0px 3px 12px 4px rgba(0, 0, 0, 0.75);
+}
+
+.li:has(> .link:focus) {
+	box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.75);
 }
 
 .li {
@@ -11,6 +15,7 @@
 	width: 150px;
 	border-radius: 15px;
 	box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.75);
+	transition: box-shadow 0.3s;
 }
 
 .img {
@@ -40,8 +45,7 @@
 	transition: color 0.3s;
 }
 
-.name,
-.description {
+.name {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -64,23 +68,19 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	padding: 0.2em;
+	padding: 0.2em 0.3em;
 	font-size: 0.8rem;
-	color: hsl(26, 100%, 55%);
-	background-color: hsl(25, 100%, 94%);
+	color: hsl(0, 0%, 100%);
+	background-color: hsl(26, 100%, 45%);
 	border-top-left-radius: 15px;
 	border-bottom-right-radius: 15px;
+	box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.75);
 }
 
 .original-price {
 	grid-column: -2 / -1;
 	color: hsl(220, 14%, 75%);
 	text-decoration: line-through;
-}
-
-.description {
-	font-weight: lighter;
-	font-size: 0.8rem;
 }
 
 @media (min-width: 768px) {

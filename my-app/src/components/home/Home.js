@@ -5,7 +5,7 @@ import Wrapper from '../ui/Wrapper';
 import classes from './Home.module.css';
 
 const Home = ({ products: productsData }) => {
-	const products = productsData.map(product => <Product key={product.name} product={product} />);
+	const products = productsData.map(product => <Product key={product.id} product={product} />);
 
 	return (
 		<Wrapper>

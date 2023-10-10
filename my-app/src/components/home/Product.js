@@ -4,7 +4,7 @@ import cacheImages from '../../utils/cacheImages';
 
 import classes from './Product.module.css';
 
-const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, discount, description } }) => {
+const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, discount, id } }) => {
 	const [imgData, setImgData] = useState({
 		src: imagesUrls[0],
 		alt: imagesAlts.image1,
@@ -13,6 +13,8 @@ const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, d
 	useEffect(() => {
 		cacheImages(imagesUrls);
 	});
+
+	const linkPath = `/products/${id}`;
 
 	const totalPrice = (price * ((100 - discount) / 100)).toFixed(2);
 
@@ -34,7 +36,7 @@ const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, d
 		<li className={classes.li}>
 			<Link
 				className={classes.link}
-				to="/products/product-1"
+				to={linkPath}
 				onMouseOver={nextImageHandler}
 				onFocus={nextImageHandler}
 				onBlur={previousImageHandler}
@@ -52,7 +54,6 @@ const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, d
 						<span className={classes['original-price']}>${price}</span>
 						<span className={classes['discount-percent']}>-{discount}%</span>
 					</p>
-					<p className={classes.description}>{description}</p>
 				</section>
 			</Link>
 		</li>

@@ -17,7 +17,7 @@ export const loader = async () => {
 	for (const id in data) {
 		const imagesUrls = await getImages(id, 'two');
 
-		const newProduct = { ...data[id], imagesUrls };
+		const newProduct = { ...data[id], imagesUrls, id };
 
 		products.push(newProduct);
 	}
