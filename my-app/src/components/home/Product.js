@@ -50,7 +50,7 @@ const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, d
 							{Number.isInteger(totalPrice) && '.00'}
 						</span>
 						<span className={classes['original-price']}>${price}</span>
-						<span className={classes['discount-percent']}>{discount}%</span>
+						<span className={classes['discount-percent']}>-{discount}%</span>
 					</p>
 					<p className={classes.description}>{description}</p>
 				</section>
