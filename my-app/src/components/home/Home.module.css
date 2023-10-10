@@ -1,5 +1,7 @@
 .main {
-	padding: 2em;
+	display: flex;
+	flex-direction: column;
+	padding: 1em;
 }
 
 .h1 {
@@ -9,11 +11,19 @@
 }
 
 .ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2em;
+	align-self: center;
 	font-size: 0.7rem;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
 	.h1 {
 		font-size: 3rem;
+	}
+
+	.ul {
+		align-self: flex-start;
 	}
 }

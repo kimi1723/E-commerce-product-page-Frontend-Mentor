@@ -12,13 +12,13 @@ const getImages = async (id, action) => {
 
 			return imagesUrls;
 		case 'two':
-			const imageRef = ref(storage, `/products/${id}/image-${id}.jpg`);
+			const imageRef = ref(storage, `/products/${id}/image-product-1.jpg`);
 			const imageSecondRef = ref(storage, `/products/${id}/image-product-2.jpg`);
 
 			const imageUrl = await getDownloadURL(imageRef);
 			const imageSecondUrl = await getDownloadURL(imageSecondRef);
 
-			return [ imageUrl, imageSecondUrl ];
+			return [imageUrl, imageSecondUrl];
 		default:
 			console.log('error');
 	}
