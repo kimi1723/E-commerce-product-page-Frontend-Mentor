@@ -1,3 +1,6 @@
+@value gallery from './ImagesGallery.module.css';
+@value lightbox from './LightBox.module.css';
+
 .main-img {
 	aspect-ratio: 1 / 1;
 	width: 100%;
@@ -19,12 +22,24 @@
 	cursor: pointer;
 }
 
-.carousel-icon:first-of-type {
+.gallery .carousel-icon:first-of-type {
 	left: 5%;
 }
 
-.carousel-icon:last-of-type {
+.gallery .carousel-icon:last-of-type {
 	right: 5%;
+}
+
+.lightbox .carousel-icon:first-of-type {
+	left: -5%;
+}
+
+.lightbox .carousel-icon:last-of-type {
+	right: -5%;
+}
+
+.lightbox .main-img {
+	border-radius: 15px;
 }
 
 .carousel-icon:hover,

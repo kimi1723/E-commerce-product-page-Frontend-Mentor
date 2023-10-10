@@ -8,7 +8,7 @@ import classes from './ImagesGallery.module.css';
 
 const ImagesGallery = ({ urls, alts, isMobile }) => {
 	const [actualImageIndex, setActualImageIndex] = useState(1);
-	const [isLightBoxVisible, setIsLightBoxVisible] = useState(false);
+	const [isLightBoxVisible, setIsLightBoxVisible] = useState(true);
 	const numberOfUrls = urls.length;
 
 	useEffect(() => {
@@ -29,13 +29,11 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 		});
 	};
 
-	const showLigthBoxHandler = () => {
-		setIsLightBoxVisible(true);
-	};
-
 	return (
 		<section className={classes.gallery}>
-			{isLightBoxVisible && <Lightbox src={urls[actualImageIndex]} />}
+			{isLightBoxVisible && (
+				<Lightbox urls={urls} carouselHandler={carouselHandler} alts={alts} imgIndex={actualImageIndex} />
+			)}
 			<MainImageCarousel
 				urls={urls}
 				showCarousel={isMobile}

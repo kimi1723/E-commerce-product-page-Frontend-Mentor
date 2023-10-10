@@ -6,7 +6,6 @@ import RootPage from './pages/Root';
 import HomePage from './pages/Home';
 import ErrorPage from './pages/Error';
 import ProductPage from './pages/Product';
-import LightboxPage from './pages/Lightbox';
 import CheckoutPage from './pages/Checkout';
 import { loader as productLoader } from './pages/Product';
 import { loader as homeLoader } from './pages/Home';
@@ -22,7 +21,6 @@ const router = createBrowserRouter([
 				path: '/products/:id',
 				element: <ProductPage />,
 				loader: productLoader,
-				children: [{ path: 'lightbox-gallery', element: <LightboxPage /> }],
 			},
 			{ path: '/checkout', element: <CheckoutPage /> },
 		],
