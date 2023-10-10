@@ -1,0 +1,17 @@
+.lightbox {
+	aspect-ratio: 1 / 1;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 55vw;
+	background-color: red;
+	border-radius: 15px;
+	transform: translate(-50%, -50%);
+	z-index: 9999;
+}
+
+.img {
+	aspect-ratio: 1 / 1;
+	width: 50vw;
+	/* height: 50vw; */
+}
