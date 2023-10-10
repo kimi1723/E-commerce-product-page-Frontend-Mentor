@@ -16,6 +16,8 @@ const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, d
 
 	const linkPath = `/products/${id}`;
 
+	const isDiscount = Boolean(discount);
+
 	const totalPrice = (price * ((100 - discount) / 100)).toFixed(2);
 
 	const nextImageHandler = () => {
@@ -51,8 +53,12 @@ const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, d
 							${totalPrice}
 							{Number.isInteger(totalPrice) && '.00'}
 						</span>
-						<span className={classes['original-price']}>${price}</span>
-						<span className={classes['discount-percent']}>-{discount}%</span>
+						{isDiscount && (
+							<>
+								<span className={classes['original-price']}>${price}</span>
+								<span className={classes['discount-percent']}>-{discount}%</span>
+							</>
+						)}
 					</p>
 				</section>
 			</Link>

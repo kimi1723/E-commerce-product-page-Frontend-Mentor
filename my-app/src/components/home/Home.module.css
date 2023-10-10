@@ -1,7 +1,7 @@
 .main {
 	display: flex;
 	flex-direction: column;
-	padding: 1em;
+	padding: 1em 2rem;
 }
 
 .h1 {
@@ -13,8 +13,8 @@
 .ul {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 2em;
-	align-self: center;
+	justify-content: space-between;
+	gap: 2rem;
 	font-size: 0.7rem;
 }
 

@@ -3,6 +3,8 @@ import classes from './ProductDetails.module.css';
 const ProductDetails = ({ productDetails }) => {
 	const { annotation, description, price, name, discount } = productDetails;
 
+	const isDiscount = Boolean(discount);
+
 	const totalPrice = (price * ((100 - discount) / 100)).toFixed(2);
 
 	return (
@@ -16,8 +18,12 @@ const ProductDetails = ({ productDetails }) => {
 					${totalPrice}
 					{Number.isInteger(totalPrice) && '.00'}
 				</p>
-				<p className={classes['discount-percent']}>{discount}%</p>
-				<p className={classes['original-price']}>${price}</p>
+				{isDiscount && (
+					<>
+						<p className={classes['discount-percent']}>{discount}%</p>
+						<p className={classes['original-price']}>${price}</p>
+					</>
+				)}
 			</section>
 		</>
 	);
