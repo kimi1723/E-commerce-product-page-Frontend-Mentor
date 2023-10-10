@@ -3,15 +3,17 @@
 	position: fixed;
 	top: 20%;
 	left: 50%;
-	/* height: 50vh; */
-	width: 50vw;
-	background-color: red;
+	height: 50vh;
 	border-radius: 15px;
 	transform: translate(-50%, 0);
 	z-index: 9999;
 	display: flex;
 	flex-direction: column;
 	row-gap: 1em;
+}
+
+.main-img {
+	position: relative;
 }
 
 .close-btn {

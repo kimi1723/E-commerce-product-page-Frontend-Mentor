@@ -39,6 +39,7 @@
 }
 
 .lightbox .main-img {
+	height: 100%;
 	border-radius: 15px;
 }
 

@@ -12,13 +12,15 @@ const Lightbox = ({ urls, carouselHandler, alts, imgIndex }) => {
 			{createPortal(
 				<section className={classes.lightbox}>
 					<img src={closeBtn} alt="" className={classes['close-btn']} />
-					<MainImageCarousel
-						urls={urls}
-						showCarousel={true}
-						carouselHandler={carouselHandler}
-						alts={alts}
-						imgIndex={imgIndex}
-					/>
+					<div className={classes['main-img']}>
+						<MainImageCarousel
+							urls={urls}
+							showCarousel={true}
+							carouselHandler={carouselHandler}
+							alts={alts}
+							imgIndex={imgIndex}
+						/>
+					</div>
 				</section>,
 				document.getElementById('lightbox'),
 			)}
