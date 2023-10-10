@@ -8,6 +8,7 @@ import nextIcon from '../../assets/images/icon-next.svg';
 
 const ImagesGallery = ({ urls, alts, isMobile }) => {
 	const [actualImageIndex, setActualImageIndex] = useState(1);
+	const numberOfUrls = urls.length;
 
 	useEffect(() => {
 		cacheImages(urls);
@@ -17,10 +18,10 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 		setActualImageIndex(prevIndex => {
 			switch (whereTo) {
 				case 'previous':
-					return prevIndex < 3 ? (prevIndex = 7) : (prevIndex -= 2);
+					return prevIndex < 3 ? (prevIndex = numberOfUrls - 1) : (prevIndex -= 2);
 
 				case 'next':
-					return prevIndex < 7 ? (prevIndex += 2) : (prevIndex = 1);
+					return prevIndex < numberOfUrls - 1 ? (prevIndex += 2) : (prevIndex = 1);
 				default:
 					return console.log('error');
 			}
@@ -28,18 +29,10 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 	};
 
 	const imageAltHandler = () => {
-		switch (actualImageIndex) {
-			case 1:
-				return alts.image1;
-			case 3:
-				return alts.image2;
-			case 5:
-				return alts.image3;
-			case 7:
-				return alts.image4;
-			default:
-				return console.log('error');
-		}
+		const altIndex = Math.round(actualImageIndex / 2);
+		const key = `image${altIndex}`;
+
+		return alts[key];
 	};
 
 	const imageAlt = imageAltHandler();

@@ -24,11 +24,7 @@ ul li::before {
 
 a {
 	text-decoration: none;
-}
-
-a:focus,
-a:active {
-	color: currentColor;
+	color: inherit;
 }
 
 button {

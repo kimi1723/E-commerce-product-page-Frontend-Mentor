@@ -11,3 +11,9 @@
 .ul {
 	font-size: 0.7rem;
 }
+
+@media (min-width: 992px) {
+	.h1 {
+		font-size: 3rem;
+	}
+}

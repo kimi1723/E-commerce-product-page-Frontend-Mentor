@@ -5,7 +5,10 @@ import cacheImages from '../../utils/cacheImages';
 import classes from './Product.module.css';
 
 const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, discount, description } }) => {
-	const [imgSrc, setImgSrc] = useState(imagesUrls[0]);
+	const [imgData, setImgData] = useState({
+		src: imagesUrls[0],
+		alt: imagesAlts.image1,
+	});
 
 	useEffect(() => {
 		cacheImages(imagesUrls);
@@ -14,22 +17,29 @@ const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, d
 	const totalPrice = (price * ((100 - discount) / 100)).toFixed(2);
 
 	const nextImageHandler = () => {
-		setImgSrc(imagesUrls[1]);
+		setImgData({
+			src: imagesUrls[1],
+			alt: imagesAlts.image2,
+		});
 	};
 
 	const previousImageHandler = () => {
-		setImgSrc(imagesUrls[0]);
+		setImgData({
+			src: imagesUrls[0],
+			alt: imagesAlts.image1,
+		});
 	};
 
 	return (
 		<li className={classes.li}>
 			<Link
+				className={classes.link}
 				to="/products/product-1"
 				onMouseOver={nextImageHandler}
 				onFocus={nextImageHandler}
 				onBlur={previousImageHandler}
 				onMouseLeave={previousImageHandler}>
-				<img src={imgSrc} alt={imagesAlts.image1} className={classes.img} />
+				<img src={imgData.src} alt={imgData.alt} className={classes.img} />
 
 				<section className={classes.details}>
 					<p className={classes.annotation}>{annotation}</p>
