@@ -7,7 +7,7 @@ const initializeThumbnailClasses = urls => {
 
 	urls.forEach((url, index) => {
 		if (index % 2 === 0) {
-			initialThumbnailClasses[index] = `${classes.img}`;
+			initialThumbnailClasses[index] = `${classes['img-btn']}`;
 		}
 	});
 
@@ -19,14 +19,14 @@ const ImagesThubmnails = ({ urls, alts, setActualImageIndex, imgIndex }) => {
 
 	const [thumbnailsClasses, setThumbnailsClasses] = useState({
 		...initialThumbnailClasses,
-		0: `${classes.img} ${classes['img-active']}`,
+		0: `${classes['img-btn']} ${classes['img-btn-active']}`,
 	});
 
 	useEffect(() => {
 		setThumbnailsClasses(prev => {
 			const newState = { ...initialThumbnailClasses };
 
-			newState[imgIndex - 1] = `${classes.img} ${classes['img-active']}`;
+			newState[imgIndex - 1] = `${classes['img-btn']} ${classes['img-btn-active']}`;
 
 			return newState;
 		});
@@ -45,10 +45,10 @@ const ImagesThubmnails = ({ urls, alts, setActualImageIndex, imgIndex }) => {
 			<li key={urls[i]}>
 				<button
 					type="button"
-					className={`${classes['img-btn']}`}
+					className={thumbnailsClasses[i]}
 					aria-label={`thumbnail ${altIndex}`}
 					onClick={() => imageIndexHandler(i)}>
-					<img src={urls[i]} alt={alts[altIndex]} className={thumbnailsClasses[i]} />
+					<img src={urls[i]} alt={alts[altIndex]} className={`${classes.img}`} />
 				</button>
 			</li>,
 		);

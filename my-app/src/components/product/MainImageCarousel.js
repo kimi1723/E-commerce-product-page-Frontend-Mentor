@@ -21,6 +21,8 @@ const MainImageCarousel = ({ urls, showCarousel, carouselHandler, imgIndex, alts
 	const imageAlt = imageAltHandler();
 
 	const liftShowLigthBoxHandler = () => {
+		document.querySelectorAll('button').forEach(btn => (btn.tabIndex = -1));
+		document.querySelectorAll('a').forEach(btn => (btn.tabIndex = -1));
 		showLightBox();
 	};
 

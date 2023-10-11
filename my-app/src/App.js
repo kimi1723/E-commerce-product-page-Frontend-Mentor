@@ -8,6 +8,10 @@ import ErrorPage from './pages/Error';
 import ProductPage from './pages/Product';
 import CheckoutPage from './pages/Checkout';
 import CollectionsPage from './pages/Collections';
+import MenPage from './pages/Men';
+import WomenPage from './pages/Women';
+import AboutPage from './pages/About';
+import ContactPage from './pages/Contact';
 import { loader as productLoader } from './pages/Product';
 import { loader as homeLoader } from './pages/Home';
 
@@ -24,6 +28,10 @@ const router = createBrowserRouter([
 				loader: productLoader,
 			},
 			{ path: '/collections', element: <CollectionsPage /> },
+			{ path: '/men', element: <MenPage /> },
+			{ path: '/women', element: <WomenPage /> },
+			{ path: '/about', element: <AboutPage /> },
+			{ path: '/contact', element: <ContactPage /> },
 			{ path: '/checkout', element: <CheckoutPage /> },
 		],
 	},
