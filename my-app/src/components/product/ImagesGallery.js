@@ -8,7 +8,7 @@ import classes from './ImagesGallery.module.css';
 
 const ImagesGallery = ({ urls, alts, isMobile }) => {
 	const [actualImageIndex, setActualImageIndex] = useState(1);
-	const [isLightBoxVisible, setIsLightBoxVisible] = useState(true);
+	const [isLightBoxVisible, setIsLightBoxVisible] = useState(false);
 	const numberOfUrls = urls.length;
 
 	useEffect(() => {
