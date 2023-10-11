@@ -1,19 +1,10 @@
 @value gallery from './ImagesGallery.module.css';
-@value gallery-desktop from './ImagesGallery.module.css';
 @value lightbox from './LightBox.module.css';
 
 .main-img {
 	aspect-ratio: 1 / 1;
 	width: 100%;
 	object-fit: cover;
-}
-
-.gallery .main-img-btn {
-	cursor: default;
-}
-
-.gallery-desktop .main-img-btn {
-	cursor: pointer;
 }
 
 .carousel-icon {
@@ -60,13 +51,13 @@
 	background-color: hsl(26, 100%, 55%);
 }
 
-.gallery-desktop .main-img-btn {
+.main-img-btn {
 	transition: box-shadow 0.3s;
 	border-radius: 20px;
 	font-size: 0;
 }
 
-.gallery-desktop .main-img-btn-active {
+.main-img-btn-active {
 	box-shadow: 0px 3px 12px 4px hsl(26, 100%, 55%);
 }
 

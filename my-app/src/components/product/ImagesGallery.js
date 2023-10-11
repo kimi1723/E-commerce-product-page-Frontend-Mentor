@@ -37,10 +37,8 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 		!isMobile && setIsLightBoxVisible(true);
 	};
 
-	const galleryClasses = isMobile ? classes.gallery : `${classes.gallery} ${classes['gallery-desktop']}`;
-
 	return (
-		<section className={galleryClasses}>
+		<section className={classes.gallery}>
 			{isLightBoxVisible && !isMobile && (
 				<Lightbox
 					urls={urls}
