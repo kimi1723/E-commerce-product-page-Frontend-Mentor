@@ -2,7 +2,7 @@ import classes from './MainImageCarousel.module.css';
 import prevIcon from '../../assets/images/icon-previous.svg';
 import nextIcon from '../../assets/images/icon-next.svg';
 
-const MainImageCarousel = ({ urls, showCarousel, carouselHandler, onClick, imgIndex, alts, showLightBox }) => {
+const MainImageCarousel = ({ urls, showCarousel, carouselHandler, imgIndex, alts, showLightBox }) => {
 	const liftCarouselHandler = whereTo => {
 		carouselHandler(whereTo);
 	};

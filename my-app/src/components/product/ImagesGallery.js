@@ -34,12 +34,14 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 	};
 
 	const showLightBoxHandler = () => {
-		setIsLightBoxVisible(true);
+		!isMobile && setIsLightBoxVisible(true);
 	};
 
+	const galleryClasses = isMobile ? classes.gallery : `${classes.gallery} ${classes['gallery-desktop']}`;
+
 	return (
-		<section className={classes.gallery}>
-			{isLightBoxVisible && (
+		<section className={galleryClasses}>
+			{isLightBoxVisible && !isMobile && (
 				<Lightbox
 					urls={urls}
 					carouselHandler={carouselHandler}

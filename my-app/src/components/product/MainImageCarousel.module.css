@@ -1,4 +1,5 @@
 @value gallery from './ImagesGallery.module.css';
+@value gallery-desktop from './ImagesGallery.module.css';
 @value lightbox from './LightBox.module.css';
 
 .main-img {
@@ -7,7 +8,7 @@
 	object-fit: cover;
 }
 
-.gallery .main-img {
+.gallery-desktop .main-img {
 	cursor: pointer;
 }
 
