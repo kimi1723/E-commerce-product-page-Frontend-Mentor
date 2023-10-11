@@ -7,6 +7,10 @@
 	object-fit: cover;
 }
 
+.gallery .main-img {
+	cursor: pointer;
+}
+
 .carousel-icon {
 	aspect-ratio: 1/1;
 	position: absolute;

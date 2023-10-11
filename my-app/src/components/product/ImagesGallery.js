@@ -29,6 +29,14 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 		});
 	};
 
+	const hideLightBoxHandler = () => {
+		setIsLightBoxVisible(false);
+	};
+
+	const showLightBoxHandler = () => {
+		setIsLightBoxVisible(true);
+	};
+
 	return (
 		<section className={classes.gallery}>
 			{isLightBoxVisible && (
@@ -38,6 +46,7 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 					alts={alts}
 					imgIndex={actualImageIndex}
 					setActualImageIndex={setActualImageIndex}
+					hideLightBox={hideLightBoxHandler}
 				/>
 			)}
 			<MainImageCarousel
@@ -46,6 +55,7 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 				carouselHandler={carouselHandler}
 				alts={alts}
 				imgIndex={actualImageIndex}
+				showLightBox={showLightBoxHandler}
 			/>
 			{!isMobile && (
 				<ImagesThubmnails

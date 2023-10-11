@@ -2,7 +2,7 @@ import classes from './MainImageCarousel.module.css';
 import prevIcon from '../../assets/images/icon-previous.svg';
 import nextIcon from '../../assets/images/icon-next.svg';
 
-const MainImageCarousel = ({ urls, showCarousel, carouselHandler, onClick, imgIndex, alts }) => {
+const MainImageCarousel = ({ urls, showCarousel, carouselHandler, onClick, imgIndex, alts, showLightBox }) => {
 	const liftCarouselHandler = whereTo => {
 		carouselHandler(whereTo);
 	};
@@ -16,6 +16,10 @@ const MainImageCarousel = ({ urls, showCarousel, carouselHandler, onClick, imgIn
 
 	const imageAlt = imageAltHandler();
 
+	const liftShowLigthBoxHandler = () => {
+		showLightBox();
+	};
+
 	return (
 		<>
 			{showCarousel && (
@@ -23,7 +27,7 @@ const MainImageCarousel = ({ urls, showCarousel, carouselHandler, onClick, imgIn
 					<img src={prevIcon} alt="" />
 				</button>
 			)}
-			<img src={urls[imgIndex]} alt={imageAlt} className={classes['main-img']} onClick={onClick} />
+			<img src={urls[imgIndex]} alt={imageAlt} className={classes['main-img']} onClick={liftShowLigthBoxHandler} />
 			{showCarousel && (
 				<button className={classes['carousel-icon']} onClick={() => liftCarouselHandler('next')}>
 					<img src={nextIcon} alt="" />

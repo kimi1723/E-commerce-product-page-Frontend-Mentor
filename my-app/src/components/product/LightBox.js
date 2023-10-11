@@ -6,13 +6,21 @@ import ImagesThubmnails from './ImagesThumbnails';
 import closeBtn from '../../assets/images/icon-close.svg';
 import classes from './LightBox.module.css';
 
-const Lightbox = ({ urls, carouselHandler, alts, imgIndex, setActualImageIndex }) => {
+const Lightbox = ({ urls, carouselHandler, alts, imgIndex, setActualImageIndex, hideLightBox }) => {
+	const liftHideLightBoxHandler = () => {
+		hideLightBox();
+	};
+
 	return (
 		<>
-			<Modal />
+			<Modal onClick={liftHideLightBoxHandler} />
 			{createPortal(
 				<section className={classes.lightbox}>
-					<button type="button" aria-label="Close lightbox" className={classes['close-btn']}>
+					<button
+						type="button"
+						aria-label="Close lightbox"
+						className={classes['close-btn']}
+						onClick={liftHideLightBoxHandler}>
 						<img src={closeBtn} alt="" />
 					</button>
 					<div className={classes['main-img']}>
@@ -22,6 +30,7 @@ const Lightbox = ({ urls, carouselHandler, alts, imgIndex, setActualImageIndex }
 							carouselHandler={carouselHandler}
 							alts={alts}
 							imgIndex={imgIndex}
+							showLightBox={() => {}}
 						/>
 					</div>
 					<ImagesThubmnails urls={urls} alts={alts} setActualImageIndex={setActualImageIndex} imgIndex={imgIndex} />
