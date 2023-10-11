@@ -1,3 +1,5 @@
+@value lightbox from './LightBox.module.css';
+
 .thumbnails {
 	display: flex;
 	justify-content: space-between;
@@ -8,7 +10,6 @@
 
 .img {
 	aspect-ratio: 1 / 1;
-	position: relative;
 	width: 100%;
 	max-width: 110px;
 	border: 3px solid transparent;
@@ -23,5 +24,12 @@
 
 .img-btn:hover .img,
 .img-btn:focus .img {
-	opacity: 0.4;
+	opacity: 0.6;
+}
+
+.lightbox .thumbnails {
+	margin-top: 0;
+	max-width: 80%;
+	align-self: center;
+	justify-content: space-around;
 }

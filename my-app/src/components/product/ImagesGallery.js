@@ -32,7 +32,13 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 	return (
 		<section className={classes.gallery}>
 			{isLightBoxVisible && (
-				<Lightbox urls={urls} carouselHandler={carouselHandler} alts={alts} imgIndex={actualImageIndex} />
+				<Lightbox
+					urls={urls}
+					carouselHandler={carouselHandler}
+					alts={alts}
+					imgIndex={actualImageIndex}
+					setActualImageIndex={setActualImageIndex}
+				/>
 			)}
 			<MainImageCarousel
 				urls={urls}
@@ -41,7 +47,14 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 				alts={alts}
 				imgIndex={actualImageIndex}
 			/>
-			{!isMobile && <ImagesThubmnails setActualImageIndex={setActualImageIndex} urls={urls} alts={alts} />}
+			{!isMobile && (
+				<ImagesThubmnails
+					setActualImageIndex={setActualImageIndex}
+					urls={urls}
+					alts={alts}
+					imgIndex={actualImageIndex}
+				/>
+			)}
 		</section>
 	);
 };

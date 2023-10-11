@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import classes from './ImagesThumbnails.module.css';
 
@@ -14,7 +14,7 @@ const initializeThumbnailClasses = urls => {
 	return initialThumbnailClasses;
 };
 
-const ImagesThubmnails = ({ urls, alts, setActualImageIndex }) => {
+const ImagesThubmnails = ({ urls, alts, setActualImageIndex, imgIndex }) => {
 	const initialThumbnailClasses = initializeThumbnailClasses(urls);
 
 	const [thumbnailsClasses, setThumbnailsClasses] = useState({
@@ -22,15 +22,18 @@ const ImagesThubmnails = ({ urls, alts, setActualImageIndex }) => {
 		0: `${classes.img} ${classes['img-active']}`,
 	});
 
-	const imageIndexDesktopHandler = index => {
-		setActualImageIndex(index + 1);
+	useEffect(() => {
 		setThumbnailsClasses(prev => {
 			const newState = { ...initialThumbnailClasses };
 
-			newState[index] = `${classes.img} ${classes['img-active']}`;
+			newState[imgIndex - 1] = `${classes.img} ${classes['img-active']}`;
 
 			return newState;
 		});
+	}, [imgIndex]);
+
+	const imageIndexHandler = index => {
+		setActualImageIndex(index + 1);
 	};
 
 	const thumbnails = [];
@@ -44,7 +47,7 @@ const ImagesThubmnails = ({ urls, alts, setActualImageIndex }) => {
 					type="button"
 					className={`${classes['img-btn']}`}
 					aria-label={`thumbnail ${altIndex}`}
-					onClick={() => imageIndexDesktopHandler(i)}>
+					onClick={() => imageIndexHandler(i)}>
 					<img src={urls[i]} alt={alts[altIndex]} className={thumbnailsClasses[i]} />
 				</button>
 			</li>,

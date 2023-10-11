@@ -1,15 +1,16 @@
 .lightbox {
 	aspect-ratio: 1 / 1;
 	position: fixed;
-	top: 20%;
+	top: 40%;
 	left: 50%;
-	height: 50vh;
-	border-radius: 15px;
-	transform: translate(-50%, 0);
-	z-index: 9999;
 	display: flex;
 	flex-direction: column;
 	row-gap: 1em;
+	height: clamp(200px, 70vh, 600px);
+	max-width: 80vw;
+	border-radius: 15px;
+	transform: translate(-50%, -50%);
+	z-index: 9999;
 }
 
 .main-img {
@@ -18,5 +19,12 @@
 
 .close-btn {
 	align-self: end;
+	transition: filter 0.3s;
 	cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+	filter: brightness(0) saturate(100%) invert(52%) sepia(69%) saturate(1460%) hue-rotate(347deg) brightness(102%)
+		contrast(101%);
 }
