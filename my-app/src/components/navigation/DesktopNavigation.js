@@ -1,37 +1,13 @@
-import { NavLink } from 'react-router-dom';
+import NavigationList from './NavigationList';
 
 import classes from './DesktopNavigation.module.css';
 
 const DesktopNavigation = () => {
+	const classesObj = { link: classes['nav-link'], list: classes['nav-list'] };
+
 	return (
 		<nav className={classes.nav}>
-			<ul role="list" className={classes['nav-list']}>
-				<li>
-					<NavLink to="#" className={classes['nav-link']}>
-						Collections
-					</NavLink>
-				</li>
-				<li>
-					<NavLink to="#" className={classes['nav-link']}>
-						Men
-					</NavLink>
-				</li>
-				<li>
-					<NavLink to="#" className={classes['nav-link']}>
-						Women
-					</NavLink>
-				</li>
-				<li>
-					<NavLink to="#" className={classes['nav-link']}>
-						About
-					</NavLink>
-				</li>
-				<li>
-					<NavLink to="#" className={classes['nav-link']}>
-						Contact
-					</NavLink>
-				</li>
-			</ul>
+			<NavigationList classes={classesObj} linksIndex={0} />
 		</nav>
 	);
 };

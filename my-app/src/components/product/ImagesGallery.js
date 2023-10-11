@@ -58,6 +58,7 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 				alts={alts}
 				imgIndex={actualImageIndex}
 				showLightBox={showLightBoxHandler}
+				isMobile={isMobile}
 			/>
 			{!isMobile && (
 				<ImagesThubmnails

@@ -53,6 +53,16 @@
 	background-color: hsl(26, 100%, 55%);
 }
 
+.gallery-desktop .main-img-btn {
+	transition: box-shadow 0.3s;
+	border-radius: 20px;
+	font-size: 0;
+}
+
+.gallery-desktop .main-img-btn-active {
+	box-shadow: 0px 3px 12px 4px hsl(26, 100%, 55%);
+}
+
 @media (min-width: 768px) {
 	.main-img {
 		border-radius: 15px;

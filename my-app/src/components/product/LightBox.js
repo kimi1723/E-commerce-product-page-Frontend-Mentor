@@ -9,7 +9,12 @@ import classes from './LightBox.module.css';
 const Lightbox = ({ urls, carouselHandler, alts, imgIndex, setActualImageIndex, hideLightBox }) => {
 	const liftHideLightBoxHandler = () => {
 		hideLightBox();
+		document.querySelectorAll('button').forEach(btn => (btn.tabIndex = 0));
+		document.querySelectorAll('a').forEach(btn => (btn.tabIndex = 0));
 	};
+
+	document.querySelectorAll('button').forEach(btn => (btn.tabIndex = -1));
+	document.querySelectorAll('a').forEach(btn => (btn.tabIndex = -1));
 
 	return (
 		<>
