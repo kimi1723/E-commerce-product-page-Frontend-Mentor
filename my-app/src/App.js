@@ -7,6 +7,7 @@ import HomePage from './pages/Home';
 import ErrorPage from './pages/Error';
 import ProductPage from './pages/Product';
 import CheckoutPage from './pages/Checkout';
+import CollectionsPage from './pages/Collections';
 import { loader as productLoader } from './pages/Product';
 import { loader as homeLoader } from './pages/Home';
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
 				element: <ProductPage />,
 				loader: productLoader,
 			},
+			{ path: '/collections', element: <CollectionsPage /> },
 			{ path: '/checkout', element: <CheckoutPage /> },
 		],
 	},
