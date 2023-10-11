@@ -13,7 +13,7 @@ import WomenPage from './pages/Women';
 import AboutPage from './pages/About';
 import ContactPage from './pages/Contact';
 import { loader as productLoader } from './pages/Product';
-import { loader as homeLoader } from './pages/Home';
+import { productsLoader } from './pages/Home';
 
 const router = createBrowserRouter([
 	{
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
 		element: <RootPage />,
 		errorElement: <ErrorPage />,
 		children: [
-			{ index: true, element: <HomePage />, loader: homeLoader },
+			{ index: true, element: <HomePage />, loader: productsLoader },
 			{
 				path: '/products/:id',
 				element: <ProductPage />,
