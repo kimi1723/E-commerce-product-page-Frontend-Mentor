@@ -8,7 +8,11 @@
 	object-fit: cover;
 }
 
-.gallery-desktop .main-img {
+.gallery .main-img-btn {
+	cursor: default;
+}
+
+.gallery-desktop .main-img-btn {
 	cursor: pointer;
 }
 

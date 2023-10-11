@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { useLoaderData, Await, defer, json } from 'react-router-dom';
+import { useLoaderData, Await, defer } from 'react-router-dom';
 
 import getProductsData from '../utils/getProductsData';
 import getImages from '../utils/getImages';
