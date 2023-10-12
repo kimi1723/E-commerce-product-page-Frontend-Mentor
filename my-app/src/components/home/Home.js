@@ -4,14 +4,8 @@ import Wrapper from '../ui/Wrapper';
 
 import classes from './Home.module.css';
 
-const Home = ({ products: productsData }) => {
-	const loadedProducts = [];
-
-	for (const product in productsData) {
-		loadedProducts.push(productsData[product]);
-	}
-
-	const products = loadedProducts.map(product => <Product key={product.id} product={product} />);
+const Home = ({ productsData }) => {
+	const products = productsData.map(product => <Product key={product.id} product={product} />);
 
 	return (
 		<Wrapper>

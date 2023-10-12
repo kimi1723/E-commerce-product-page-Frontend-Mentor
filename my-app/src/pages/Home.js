@@ -6,17 +6,17 @@ import getImages from '../utils/getImages';
 import Home from '../components/home/Home';
 
 const HomePage = () => {
-	const { products } = useLoaderData();
+	const { productsData } = useLoaderData();
 
 	return (
 		<Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
-			<Await resolve={products}>{loadedProducts => <Home products={loadedProducts} />}</Await>
+			<Await resolve={productsData}>{loadedProducts => <Home productsData={loadedProducts} />}</Await>
 		</Suspense>
 	);
 };
 
 export const loader = async () => {
-	const products = [];
+	const productsData = [];
 
 	const data = await getProductsData('/products');
 
@@ -25,15 +25,15 @@ export const loader = async () => {
 
 		const newProduct = { ...data[id], imagesUrls, id };
 
-		products.push(newProduct);
+		productsData.push(newProduct);
 	}
 
-	return products;
+	return productsData;
 };
 
 export const productsLoader = () => {
 	return defer({
-		products: loader(),
+		productsData: loader(),
 	});
 };
 
