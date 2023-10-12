@@ -9,12 +9,12 @@ const Collections = () => {
 		<main className={classes.main}>
 			<h1 className={classes.title}>Collections</h1>
 			<section className={classes.collections}>
-				<Link className={classes.link}>
+				<Link className={classes.link} to="fall">
 					<div className={classes['hero-bg']}></div>
 					<p className={classes.name}>Fall</p>
 					<img src={fall} className={classes.img} alt="" />
 				</Link>
-				<Link className={classes.link}>
+				<Link className={classes.link} to="spring">
 					<div className={classes['hero-bg']}></div>
 					<p className={classes.name}>Spring</p>
 					<img src={spring} className={classes.img} alt="" />

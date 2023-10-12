@@ -13,6 +13,11 @@ const loadProducts = async filter => {
 
 			const newProduct = { ...data[id], imagesUrls, id };
 			productsData.push(newProduct);
+		} else if (filter === 'fall' || filter === 'spring') {
+			const imagesUrls = await getImages(id, 'two');
+
+			const newProduct = { ...data[id], imagesUrls, id };
+			productsData.push(newProduct);
 		}
 	}
 

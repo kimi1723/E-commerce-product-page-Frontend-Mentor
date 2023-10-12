@@ -12,10 +12,14 @@ import MenPage from './pages/Men';
 import WomenPage from './pages/Women';
 import AboutPage from './pages/About';
 import ContactPage from './pages/Contact';
+import FallPage from './pages/Fall';
+import SpringPage from './pages/Spring';
 import { loader as productLoader } from './pages/Product';
 import { loader as homeProductsLoader } from './pages/Home';
 import { loader as menProductsLoader } from './pages/Men';
 import { loader as womenProductsLoader } from './pages/Women';
+import { loader as fallProductsLoader } from './pages/Fall';
+import { loader as springProductsLoader } from './pages/Spring';
 
 const router = createBrowserRouter([
 	{
@@ -29,7 +33,23 @@ const router = createBrowserRouter([
 				element: <ProductPage />,
 				loader: productLoader,
 			},
-			{ path: '/collections', element: <CollectionsPage /> },
+			{
+				path: '/collections',
+
+				children: [
+					{ index: true, element: <CollectionsPage /> },
+					{
+						path: 'fall',
+						element: <FallPage />,
+						loader: fallProductsLoader,
+					},
+					{
+						path: 'spring',
+						element: <SpringPage />,
+						loader: springProductsLoader,
+					},
+				],
+			},
 			{ path: '/men', element: <MenPage />, loader: menProductsLoader },
 			{ path: '/women', element: <WomenPage />, loader: womenProductsLoader },
 			{ path: '/about', element: <AboutPage /> },
