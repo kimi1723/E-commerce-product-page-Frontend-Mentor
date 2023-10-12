@@ -1,6 +1,7 @@
-import LoaderSpinner from '../components/ui/LoaderSpinner';
+import Collections from '../components/nav-sections/collections/Collections';
+
 const CollectionsPage = () => {
-	return <LoaderSpinner title={'collections'} />;
+	return <Collections />;
 };
 
 export default CollectionsPage;
