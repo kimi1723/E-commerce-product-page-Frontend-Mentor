@@ -3,7 +3,7 @@ import { defer } from 'react-router-dom';
 import getProductsData from './getProductsData';
 import getImages from './getImages';
 
-export const loadProducts = async filter => {
+const loadProducts = async filter => {
 	const productsData = [];
 	const data = await getProductsData('/products');
 
@@ -19,7 +19,7 @@ export const loadProducts = async filter => {
 	return productsData;
 };
 
-export const productsLoader = filter => {
+const productsLoader = filter => {
 	return defer({
 		productsData: loadProducts(filter),
 	});

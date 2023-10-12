@@ -21,6 +21,10 @@ const Header = () => {
 		setMobileNavIsActive(prev => !prev);
 	};
 
+	const hideMobileNavHandler = () => {
+		setMobileNavIsActive(false);
+	};
+
 	const showCartHandler = () => {
 		setIsCartVisible(true);
 		clearTimeout(hideCartTimeout);
@@ -47,7 +51,7 @@ const Header = () => {
 							onClick={showMobileNavigationHandler}>
 							<span className={classes['btn-content']}></span>
 						</button>
-						<MobileNavigation mobileNavIsActive={mobileNavIsActive} />
+						<MobileNavigation mobileNavIsActive={mobileNavIsActive} hideNav={hideMobileNavHandler} />
 					</div>
 				)}
 
@@ -67,7 +71,7 @@ const Header = () => {
 					<img src={cartIcon} alt="cart" />
 					{isCartVisible && <Cart />}
 				</button>
-				<button type="button" className={classes['avatar-btn']}>
+				<button type="button" className={classes['avatar-btn']} aria-label="profile">
 					<img src={avatarImg} alt="" className={classes['avatar-img']} />
 				</button>
 			</header>

@@ -2,7 +2,7 @@ import NavigationList from './NavigationList';
 
 import classes from './MobileNavigation.module.css';
 
-const MobileNavigation = ({ mobileNavIsActive }) => {
+const MobileNavigation = ({ mobileNavIsActive, hideNav }) => {
 	const navClasses = mobileNavIsActive ? `${classes['nav-active']}` : classes.nav;
 	const linksIndex = mobileNavIsActive ? 0 : -1;
 
@@ -12,7 +12,7 @@ const MobileNavigation = ({ mobileNavIsActive }) => {
 		<nav className={navClasses}>
 			<div className={classes['hero-bg']}></div>
 			<div className={classes['hero-backdrop']}></div>
-			<NavigationList classes={classesObj} linksIndex={linksIndex} />
+			<NavigationList classes={classesObj} linksIndex={linksIndex} hideNav={hideNav} />
 		</nav>
 	);
 };

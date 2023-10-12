@@ -37,8 +37,9 @@
 	color: hsl(220, 13%, 13%);
 	font-weight: bold;
 	font-size: 1rem;
-	outline: none;
+	text-transform: capitalize;
 	transition: color 0.3s;
+	outline: none;
 	z-index: 1;
 }
 
