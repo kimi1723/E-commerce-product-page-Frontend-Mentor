@@ -1,9 +1,8 @@
 import { Suspense } from 'react';
-import { useLoaderData, Await, defer } from 'react-router-dom';
+import { useLoaderData, Await } from 'react-router-dom';
+import productsLoader from '../utils/loadProducts';
 
-import getProductsData from '../utils/getProductsData';
-import getImages from '../utils/getImages';
-import Home from '../components/home/Home';
+import Home from '../components/nav-sections/home/Home';
 
 const HomePage = () => {
 	const { productsData } = useLoaderData();
@@ -16,25 +15,9 @@ const HomePage = () => {
 };
 
 export const loader = async () => {
-	const productsData = [];
-
-	const data = await getProductsData('/products');
-
-	for (const id in data) {
-		const imagesUrls = await getImages(id, 'two');
-
-		const newProduct = { ...data[id], imagesUrls, id };
-
-		productsData.push(newProduct);
-	}
+	const productsData = productsLoader();
 
 	return productsData;
-};
-
-export const productsLoader = () => {
-	return defer({
-		productsData: loader(),
-	});
 };
 
 export default HomePage;

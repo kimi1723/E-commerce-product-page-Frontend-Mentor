@@ -1,5 +1,23 @@
+import { Suspense } from 'react';
+import { Await, useLoaderData } from 'react-router-dom';
+import Men from '../components/nav-sections/men/Men';
+
+import productsLoader from '../utils/loadProducts';
+
 const MenPage = () => {
-	return <h1>Men</h1>;
+	const { productsData } = useLoaderData();
+
+	return (
+		<Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
+			<Await resolve={productsData}>{loadedProducts => <Men productsData={loadedProducts} />}</Await>
+		</Suspense>
+	);
+};
+
+export const loader = async () => {
+	const productsData = productsLoader();
+
+	return productsData;
 };
 
 export default MenPage;

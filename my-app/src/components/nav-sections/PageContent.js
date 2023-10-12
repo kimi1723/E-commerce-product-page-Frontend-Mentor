@@ -2,19 +2,19 @@ import Product from './Product';
 
 import Wrapper from '../ui/Wrapper';
 
-import classes from './Home.module.css';
+import classes from './PageContent.module.css';
 
-const Home = ({ productsData }) => {
+const PageContent = ({ productsData, title }) => {
 	const products = productsData.map(product => <Product key={product.id} product={product} />);
 
 	return (
 		<Wrapper>
 			<main className={classes.main}>
-				<h1 className={classes.h1}>sneakers</h1>
+				<h1 className={classes.h1}>{title}</h1>
 				<ul className={classes.ul}>{products}</ul>
 			</main>
 		</Wrapper>
 	);
 };
 
-export default Home;
+export default PageContent;

@@ -13,7 +13,8 @@ import WomenPage from './pages/Women';
 import AboutPage from './pages/About';
 import ContactPage from './pages/Contact';
 import { loader as productLoader } from './pages/Product';
-import { productsLoader } from './pages/Home';
+import { loader as homeProductsLoader } from './pages/Home';
+import { loader as menProductsLoader } from './pages/Men';
 
 const router = createBrowserRouter([
 	{
@@ -21,14 +22,14 @@ const router = createBrowserRouter([
 		element: <RootPage />,
 		errorElement: <ErrorPage />,
 		children: [
-			{ index: true, element: <HomePage />, loader: productsLoader },
+			{ index: true, element: <HomePage />, loader: homeProductsLoader },
 			{
 				path: '/products/:id',
 				element: <ProductPage />,
 				loader: productLoader,
 			},
 			{ path: '/collections', element: <CollectionsPage /> },
-			{ path: '/men', element: <MenPage /> },
+			{ path: '/men', element: <MenPage />, loader: menProductsLoader },
 			{ path: '/women', element: <WomenPage /> },
 			{ path: '/about', element: <AboutPage /> },
 			{ path: '/contact', element: <ContactPage /> },
