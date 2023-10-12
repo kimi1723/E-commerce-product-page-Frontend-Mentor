@@ -2,9 +2,9 @@ import Product from './Product';
 
 import Wrapper from '../ui/Wrapper';
 
-import classes from './PageContent.module.css';
+import classes from './ProductsPageContent.module.css';
 
-const PageContent = ({ productsData, title }) => {
+const ProductsPageContent = ({ productsData, title }) => {
 	const products = productsData.map(product => <Product key={product.id} product={product} />);
 
 	return (
@@ -17,4 +17,4 @@ const PageContent = ({ productsData, title }) => {
 	);
 };
 
-export default PageContent;
+export default ProductsPageContent;

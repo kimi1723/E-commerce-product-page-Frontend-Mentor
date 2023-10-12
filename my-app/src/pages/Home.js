@@ -15,7 +15,8 @@ const HomePage = () => {
 };
 
 export const loader = async () => {
-	const productsData = productsLoader();
+	const filter = 'all';
+	const productsData = productsLoader(filter);
 
 	return productsData;
 };

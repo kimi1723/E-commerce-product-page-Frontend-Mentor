@@ -15,7 +15,8 @@ const MenPage = () => {
 };
 
 export const loader = async () => {
-	const productsData = productsLoader();
+	const filter = 'male';
+	const productsData = productsLoader(filter);
 
 	return productsData;
 };

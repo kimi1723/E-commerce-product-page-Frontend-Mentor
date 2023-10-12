@@ -15,6 +15,7 @@ import ContactPage from './pages/Contact';
 import { loader as productLoader } from './pages/Product';
 import { loader as homeProductsLoader } from './pages/Home';
 import { loader as menProductsLoader } from './pages/Men';
+import { loader as womenProductsLoader } from './pages/Women';
 
 const router = createBrowserRouter([
 	{
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
 			},
 			{ path: '/collections', element: <CollectionsPage /> },
 			{ path: '/men', element: <MenPage />, loader: menProductsLoader },
-			{ path: '/women', element: <WomenPage /> },
+			{ path: '/women', element: <WomenPage />, loader: womenProductsLoader },
 			{ path: '/about', element: <AboutPage /> },
 			{ path: '/contact', element: <ContactPage /> },
 			{ path: '/checkout', element: <CheckoutPage /> },

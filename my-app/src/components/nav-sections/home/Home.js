@@ -1,4 +1,4 @@
-import PageContent from '../PageContent';
+import PageContent from '../ProductsPageContent';
 
 const Home = ({ productsData }) => {
 	const title = 'sneakers';
