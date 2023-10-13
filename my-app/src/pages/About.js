@@ -1,5 +1,7 @@
+import About from '../components/nav-sections/about/About';
+
 const AboutPage = () => {
-	return <h1>About</h1>;
+	return <About />;
 };
 
 export default AboutPage;
