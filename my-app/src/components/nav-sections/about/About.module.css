@@ -1,0 +1,36 @@
+.main {
+	line-height: 1.5;
+}
+
+.h2 {
+	font-size: inherit;
+}
+
+.article {
+	margin-top: 1.5em;
+}
+
+.list {
+	list-style: inside;
+}
+
+.footer {
+	margin-top: 1.5em;
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+.link {
+	font-weight: normal;
+	font-size: 1.2rem;
+	color: hsl(26, 100%, 55%);
+	transition: color 0.3s;
+}
+
+.link:hover {
+	color: hsl(220, 14%, 75%);
+}
+
+.bold {
+	font-weight: bold;
+}
