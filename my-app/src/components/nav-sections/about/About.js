@@ -4,7 +4,7 @@ import PageContent from '../../ui/PageContent';
 import classes from './About.module.css';
 
 const About = () => {
-	const title = 'About (me)';
+	const title = 'About (project)';
 
 	return (
 		<PageContent title={title}>
@@ -12,7 +12,7 @@ const About = () => {
 				<article>
 					<h2 className={classes.h2}>
 						At first it was only a project from Frontend Mentor in which I wanted to practice
-						<strong> React-Router,</strong> <strong> Redux</strong> and <strong>Redux Toolkit</strong>.
+						<strong> React Router </strong> and <strong> Redux (React Redux, Redux Toolkit)</strong>.
 					</h2>
 					In order to do this, I would need to expand the project a little, e.g. create a cashout section and the cart
 					usable. I was looking forward to it and going along the way of learning these technologies I have found myself

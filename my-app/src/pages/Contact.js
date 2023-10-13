@@ -1,5 +1,7 @@
+import Contact from '../components/nav-sections/contact/Contact';
+
 const ContactPage = () => {
-	return <h1>contact</h1>;
+	return <Contact />;
 };
 
 export default ContactPage;

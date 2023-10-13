@@ -18,16 +18,19 @@
 	margin-top: 1.5em;
 	text-align: center;
 	font-size: 1.5rem;
+	line-height: 1.2;
 }
 
 .link {
-	font-weight: normal;
+	font-weight: bold;
 	font-size: 1.2rem;
 	color: hsl(26, 100%, 55%);
+	outline: none;
 	transition: color 0.3s;
 }
 
-.link:hover {
+.link:hover,
+.link:focus {
 	color: hsl(220, 14%, 75%);
 }
 
