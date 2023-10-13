@@ -1,9 +1,12 @@
-import PageContent from '../ProductsPageContent';
+import Product from '../Product';
+import PageContent from '../../ui/PageContent';
+import { ulClasses } from '../../ui/PageContent';
 
-const Women = ({ productsData }) => {
+const Men = ({ productsData }) => {
 	const title = 'Women';
+	const products = productsData.map(product => <Product key={product.id} product={product} />);
 
-	return <PageContent productsData={productsData} title={title} />;
+	return <PageContent title={title}>{<ul className={ulClasses}>{products}</ul>} </PageContent>;
 };
 
-export default Women;
+export default Men;
