@@ -16,7 +16,7 @@ const WomenPage = () => {
 };
 
 export const loader = async () => {
-	const filter = 'female';
+	const filter = { gender: ['female', 'unisex'] };
 	const productsData = productsLoader(filter);
 
 	return productsData;

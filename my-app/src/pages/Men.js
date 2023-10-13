@@ -16,7 +16,7 @@ const MenPage = () => {
 };
 
 export const loader = async () => {
-	const filter = 'male';
+	const filter = { gender: ['unisex', 'male'] };
 	const productsData = productsLoader(filter);
 
 	return productsData;

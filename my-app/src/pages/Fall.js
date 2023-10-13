@@ -16,7 +16,7 @@ const FallPage = () => {
 };
 
 export const loader = async () => {
-	const filter = 'fall';
+	const filter = { gender: [], season: 'fall' };
 	const productsData = productsLoader(filter);
 
 	return productsData;

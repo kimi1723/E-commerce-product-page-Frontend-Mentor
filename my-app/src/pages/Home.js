@@ -16,7 +16,7 @@ const HomePage = () => {
 };
 
 export const loader = async () => {
-	const filter = 'all';
+	const filter = { gender: 'all' };
 	const productsData = productsLoader(filter);
 
 	return productsData;

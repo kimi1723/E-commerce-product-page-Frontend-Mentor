@@ -16,7 +16,7 @@ const SpringPage = () => {
 };
 
 export const loader = async () => {
-	const filter = 'spring';
+	const filter = { gender: [], season: 'spring' };
 	const productsData = productsLoader(filter);
 
 	return productsData;

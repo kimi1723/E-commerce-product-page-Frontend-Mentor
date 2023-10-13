@@ -8,12 +8,7 @@ const loadProducts = async filter => {
 	const data = await getProductsData('/products');
 
 	for (const id in data) {
-		if (filter === 'all' || data[id].gender === filter || data[id].gender === 'unisex') {
-			const imagesUrls = await getImages(id, 'two');
-
-			const newProduct = { ...data[id], imagesUrls, id };
-			productsData.push(newProduct);
-		} else if (filter === 'fall' || filter === 'spring') {
+		if (filter.gender === 'all' || filter.gender.includes(data[id].gender) || filter.season === data[id].season) {
 			const imagesUrls = await getImages(id, 'two');
 
 			const newProduct = { ...data[id], imagesUrls, id };
