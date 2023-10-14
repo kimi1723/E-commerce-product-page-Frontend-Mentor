@@ -14,7 +14,7 @@ import AboutPage from './pages/About';
 import ContactPage from './pages/Contact';
 import FallPage from './pages/Fall';
 import SpringPage from './pages/Spring';
-import { loader as productLoader } from './pages/Product';
+import { productLoader } from './pages/Product';
 import { loader as homeProductsLoader } from './pages/Home';
 import { loader as menProductsLoader } from './pages/Men';
 import { loader as womenProductsLoader } from './pages/Women';

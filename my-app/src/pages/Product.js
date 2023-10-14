@@ -1,23 +1,34 @@
-import { useLoaderData } from 'react-router-dom';
+import { Suspense } from 'react';
+import { useLoaderData, Await, defer } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import getProductsData from '../utils/getProductsData';
 import getImages from '../utils/getImages';
 
 import Product from '../components/product/Product';
 import Wrapper from '../components/ui/Wrapper';
+import LoaderSpinner from '../components/ui/LoaderSpinner';
 
 const ProductPage = () => {
-	const { productDetails, imagesData } = useLoaderData();
+	const { productData } = useLoaderData();
+	console.log(productData);
 
 	return (
-		<Wrapper>
-			<Product productDetails={productDetails} imagesData={imagesData} />
-			<Outlet />
-		</Wrapper>
+		<Suspense fallback={<LoaderSpinner title="product" />}>
+			<Await resolve={productData}>
+				{({ productDetails, imagesData }) => {
+					return (
+						<Wrapper>
+							<Product productDetails={productDetails} imagesData={imagesData} />
+							<Outlet />
+						</Wrapper>
+					);
+				}}
+			</Await>
+		</Suspense>
 	);
 };
 
-export const loader = async ({ params }) => {
+export const loader = async params => {
 	const id = params.id;
 	const productData = await getProductsData(`/products/${id}`);
 	const imagesUrls = await getImages(id, 'all');
@@ -30,6 +41,12 @@ export const loader = async ({ params }) => {
 	};
 
 	return { productDetails, imagesData };
+};
+
+export const productLoader = ({ params, request }) => {
+	return defer({
+		productData: loader(params),
+	});
 };
 
 export default ProductPage;
