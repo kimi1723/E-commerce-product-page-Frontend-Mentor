@@ -11,7 +11,8 @@ const cartSlice = createSlice({
 	reducers: {
 		addItemToCart(state, action) {},
 		replaceCart(state, action) {
-			console.log(action);
+			state.items = action.payload.items;
+			state.totalQuantity = action.payload.totalQuantity;
 		},
 	},
 });

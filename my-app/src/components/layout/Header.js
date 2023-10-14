@@ -10,7 +10,7 @@ import classes from './Header.module.css';
 import logo from '../../assets/images/logo.svg';
 import cartIcon from '../../assets/images/icon-cart.svg';
 import avatarImg from '../../assets/images/image-avatar.png';
-import CartItemsCounted from '../cart/CartItemsCounted';
+import CartItemsCounted from '../cart/CartItemsQuantity';
 
 let hideCartTimeout;
 
