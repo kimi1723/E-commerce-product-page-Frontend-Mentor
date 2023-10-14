@@ -4,7 +4,7 @@ const initialState = {
 	isMobile: window.innerWidth < 992 ? true : false,
 };
 
-const detectDeviceType = createSlice({
+const detectDeviceTypeSlice = createSlice({
 	name: 'deviceType',
 	initialState,
 	reducers: {
@@ -14,6 +14,6 @@ const detectDeviceType = createSlice({
 	},
 });
 
-export const detectDeviceTypeActions = detectDeviceType.actions;
+export const detectDeviceTypeActions = detectDeviceTypeSlice.actions;
 
-export default detectDeviceType.reducer;
+export default detectDeviceTypeSlice.reducer;
