@@ -4,17 +4,16 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { detectDeviceTypeActions } from './store/detectDeviceType-slice';
 
-import router from './router/router';
-import getUid from './auth/auth';
+import router from './router';
+import getCartData from './hooks/useCartData';
 
 function App() {
-	useEffect(() => {
-		const fetchCartData = async () => {
-			const uid = await getUid();
-			console.log(uid);
-		};
+	require('react-dom');
+	window.React2 = require('react');
+	console.log(window.React1 === window.React2);
 
-		fetchCartData();
+	useEffect(() => {
+		getCartData();
 	});
 
 	const dispatch = useDispatch();
