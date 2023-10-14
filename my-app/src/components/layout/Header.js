@@ -10,6 +10,7 @@ import classes from './Header.module.css';
 import logo from '../../assets/images/logo.svg';
 import cartIcon from '../../assets/images/icon-cart.svg';
 import avatarImg from '../../assets/images/image-avatar.png';
+import CartItemsCounted from '../cart/CartItemsCounted';
 
 let hideCartTimeout;
 
@@ -48,10 +49,9 @@ const Header = () => {
 		document.querySelectorAll('button').forEach(btn => (btn.tabIndex = 0));
 		document.querySelectorAll('a').forEach(btn => (btn.tabIndex = 0));
 
-		setIsProfileVisible('it wont work, why?');
+		setIsProfileVisible(false);
 	};
 
-	console.log(isProfileVisible);
 	const navBtnClasses = mobileNavIsActive ? `${classes['nav-btn']} ${classes['btn-active']}` : `${classes['nav-btn']}`;
 
 	return (
@@ -84,7 +84,10 @@ const Header = () => {
 					onMouseLeave={hideCartHandler}
 					onFocus={showCartHandler}
 					onBlur={hideCartHandler}>
-					<img src={cartIcon} alt="cart" />
+					<div className={classes['cart-img-container']}>
+						<img src={cartIcon} alt="cart" />
+						{<CartItemsCounted />}
+					</div>
 					{isCartVisible && <Cart />}
 				</button>
 				<button type="button" className={classes['avatar-btn']} aria-label="profile" onClick={showProfileHandler}>
