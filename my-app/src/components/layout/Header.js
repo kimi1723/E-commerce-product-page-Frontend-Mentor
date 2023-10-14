@@ -48,10 +48,10 @@ const Header = () => {
 		document.querySelectorAll('button').forEach(btn => (btn.tabIndex = 0));
 		document.querySelectorAll('a').forEach(btn => (btn.tabIndex = 0));
 
-		setIsProfileVisible(false);
-		console.log(setIsProfileVisible(true));
+		setIsProfileVisible('it wont work, why?');
 	};
 
+	console.log(isProfileVisible);
 	const navBtnClasses = mobileNavIsActive ? `${classes['nav-btn']} ${classes['btn-active']}` : `${classes['nav-btn']}`;
 
 	return (
