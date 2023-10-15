@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import classes from './Cart.module.css';
@@ -8,16 +9,20 @@ const Cart = () => {
 	const items = useSelector(state => state.cart.items);
 
 	if (items.length > 0) {
-		const mappedItems = items.map(item => {
-			return (
-				<li key={item.id} className={classes.item}>
-					<img src={item.imageUrl} className={classes['item-img']} alt="item" />
+		const mappedItems = items.map(({ price: originalPrice, quantity, id, imageUrl, name }) => {
+			const priceToDisplay = Number.isInteger(originalPrice) ? `${originalPrice}.00` : originalPrice;
+			const totalPrice = Number.isInteger(originalPrice) ? `${originalPrice * quantity}.00` : originalPrice * quantity;
 
-					<h3 className={classes.name}>{item.name}</h3>
-					<p className={classes.pricing}>
-						{`$${item.price} x ${item.quantity} `}
-						<span className={classes['total-price']}>{`$${item.price * item.quantity}`}</span>
-					</p>
+			return (
+				<li key={id} className={classes.item}>
+					<Link to={`/products/${id}`} className={classes.link}>
+						<img src={imageUrl} className={classes['item-img']} alt="item" />
+						<h3 className={classes.name}>{name}</h3>
+						<p className={classes.pricing}>
+							{`$${priceToDisplay} x ${quantity} `}
+							<span className={classes['total-price']}>{`$${totalPrice}`}</span>
+						</p>
+					</Link>
 
 					<button className={classes['remove-item-btn']}>
 						<img src={deleteIcon} alt="delete " />
