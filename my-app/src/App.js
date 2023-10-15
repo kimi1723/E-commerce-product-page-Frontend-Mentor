@@ -1,17 +1,15 @@
 import { RouterProvider } from 'react-router-dom';
-import { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { detectDeviceTypeActions } from './store/detectDeviceType-slice';
 
 import router from './router';
-import getCartData from './hooks/useCartData';
+import useCartData from './hooks/useCartData';
 
 function App() {
-	getCartData();
-	useEffect(() => {});
-
 	const dispatch = useDispatch();
+
+	useCartData();
 
 	const detectDeviceHandler = () => {
 		const isMobile = window.innerWidth < 992 ? true : false;

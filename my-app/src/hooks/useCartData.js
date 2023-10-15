@@ -4,24 +4,20 @@ import { useDispatch } from 'react-redux';
 import { cartActions } from '../store/cart-slice';
 import getUid from '../auth';
 
-const useCartData = () => {
+const useCartData = async () => {
 	const dispatch = useDispatch();
+	const uid = await getUid();
 
-	const fetchCartData = async () => {
-		const uid = await getUid();
-		const cartRef = ref(database, `/userCarts/${uid}`);
-		const snapshot = await get(cartRef);
-		const cartData = snapshot.val();
-		const items = [];
+	const cartRef = ref(database, `/userCarts/${uid}`);
+	const snapshot = await get(cartRef);
+	const cartData = snapshot.val();
+	const items = [];
 
-		for (const id in cartData.items) {
-			items.push(cartData.items[id]);
-		}
+	for (const id in cartData.items) {
+		items.push(cartData.items[id]);
+	}
 
-		dispatch(cartActions.replaceCart({ items, totalQuantity: cartData.totalQuantity }));
-	};
-
-	fetchCartData();
+	dispatch(cartActions.replaceCart({ items, totalQuantity: cartData.totalQuantity }));
 };
 
 export default useCartData;

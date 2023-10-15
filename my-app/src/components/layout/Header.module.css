@@ -96,6 +96,11 @@
 	background-color: hsl(26, 100%, 55%);
 }
 
+.cart-container {
+	position: relative;
+	z-index: -1;
+}
+
 .cart-btn {
 	display: flex;
 	justify-content: center;
