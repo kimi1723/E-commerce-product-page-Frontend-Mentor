@@ -98,13 +98,6 @@
 
 .cart-container {
 	position: relative;
-	z-index: -1;
-}
-
-.cart-btn {
-	display: flex;
-	justify-content: center;
-	position: relative;
 	grid-column: -3/-2;
 	z-index: -1;
 }

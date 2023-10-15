@@ -49,6 +49,17 @@
 	grid-template-rows: repeat(2, 1fr);
 	column-gap: 15px;
 	width: 95%;
+	color: hsl(219, 9%, 45%);
+	border-radius: 8px;
+	transition: color 0.3s;
+	outline: none;
+}
+
+.link:hover,
+.link:focus,
+.link:hover .total-price,
+.link:focus .total-price {
+	color: hsl(26, 100%, 55%);
 }
 
 .item-img {
@@ -65,7 +76,6 @@
 	width: 100%;
 	font-size: 1rem;
 	grid-column: 3 / 13;
-	color: hsl(219, 9%, 45%);
 }
 
 .name {
@@ -80,11 +90,18 @@
 .total-price {
 	font-weight: bold;
 	color: hsl(220, 13%, 13%);
+	transition: color 0.3s;
 }
 
 .remove-item-btn {
 	padding: 1em;
 	width: 5%;
+}
+
+.remove-item-btn:hover,
+.remove-item-btn:focus {
+	filter: brightness(0) saturate(100%) invert(52%) sepia(69%) saturate(1460%) hue-rotate(347deg) brightness(102%)
+		contrast(101%);
 }
 
 .empty {

@@ -77,21 +77,20 @@ const Header = () => {
 
 				{!isMobile && <DesktopNavigation />}
 
-				<div className={classes['cart-container']}>
-					<button
-						type="button"
-						className={classes['cart-btn']}
-						onMouseOver={showCartHandler}
-						onMouseLeave={hideCartHandler}
-						onFocus={showCartHandler}
-						onBlur={hideCartHandler}>
+				<div
+					className={classes['cart-container']}
+					onMouseOver={showCartHandler}
+					onMouseLeave={hideCartHandler}
+					onFocus={showCartHandler}
+					onBlur={hideCartHandler}>
+					<button type="button">
 						<div className={classes['cart-img-container']}>
 							<img src={cartIcon} alt="cart" />
 							{<CartItemsCounted />}
 						</div>
 					</button>
-					{/* {isCartVisible && <Cart />} */}
-					{<Cart />}
+					{isCartVisible && <Cart />}
+					{/* {<Cart />} */}
 				</div>
 				<button type="button" className={classes['avatar-btn']} aria-label="profile" onClick={showProfileHandler}>
 					<img src={avatarImg} alt="" className={classes['avatar-img']} />

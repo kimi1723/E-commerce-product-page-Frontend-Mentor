@@ -30,11 +30,14 @@ const Cart = () => {
 				</li>
 			);
 		});
-		content = <ul className={classes.list}>{mappedItems}</ul>;
+		content = (
+			<ul className={classes.list} role="list">
+				{mappedItems}
+			</ul>
+		);
 	} else {
 		content = (
 			<>
-				<div className={classes.items}></div>
 				<p className={classes.empty}>Your cart is empty.</p>
 			</>
 		);
