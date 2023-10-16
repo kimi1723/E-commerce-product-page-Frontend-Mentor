@@ -137,17 +137,24 @@
 	transform: translate(-50%, 0);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
 	.cart {
-		top: 110px;
+		position: absolute;
+		top: 54px;
+		left: -160%;
+		min-width: 350px;
+		max-width: auto;
 	}
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 768px) {
 	.cart {
-		position: absolute;
-		top: 70px;
 		left: -100%;
-		min-width: 350px;
+	}
+}
+
+@media (min-width: 992px) {
+	.cart {
+		top: 70px;
 	}
 }
