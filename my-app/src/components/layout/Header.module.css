@@ -47,7 +47,7 @@
 	transform: translate(-50%, -50%);
 	transition: height 0.1s;
 }
-
+ 
 .btn-content::before,
 .btn-content::after {
 	content: '';

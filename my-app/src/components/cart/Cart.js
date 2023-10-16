@@ -31,9 +31,14 @@ const Cart = () => {
 			);
 		});
 		content = (
-			<ul className={classes.list} role="list">
-				{mappedItems}
-			</ul>
+			<>
+				<ul className={classes.list} role="list">
+					{mappedItems}
+				</ul>
+				<Link to="/checkout" className={classes['checkout-link']}>
+					Checkout
+				</Link>
+			</>
 		);
 	} else {
 		content = (
