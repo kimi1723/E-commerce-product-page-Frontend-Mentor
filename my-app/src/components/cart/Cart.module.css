@@ -47,7 +47,7 @@
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: repeat(2, 1fr);
-	column-gap: 15px;
+	column-gap: 30px;
 	width: 95%;
 	color: hsl(219, 9%, 45%);
 	border-radius: 8px;

@@ -7,10 +7,10 @@ import deleteIcon from '../../assets/images/icon-delete.svg';
 let content;
 
 const Cart = () => {
-	const items = useSelector(state => state.cart.items);
+	const products = useSelector(state => state.cart.products);
 
-	if (items.length > 0) {
-		const mappedItems = items.map(({ price: originalPrice, quantity, id, imageUrl, name, alt }) => {
+	if (products.length > 0) {
+		const mappedProducts = products.map(({ price: originalPrice, quantity, id, imageUrl, name, alt }) => {
 			const priceToDisplay = Number.isInteger(originalPrice) ? `${originalPrice}.00` : originalPrice;
 			const totalPrice = Number.isInteger(Number(originalPrice))
 				? `${originalPrice * quantity}.00`
@@ -36,7 +36,7 @@ const Cart = () => {
 		content = (
 			<>
 				<ul className={classes.list} role="list">
-					{mappedItems}
+					{mappedProducts}
 				</ul>
 				<Link to="/checkout" className={classes['checkout-link']}>
 					Checkout

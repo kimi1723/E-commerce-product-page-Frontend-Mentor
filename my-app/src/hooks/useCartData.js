@@ -14,13 +14,13 @@ const useCartData = async () => {
 	const cartData = snapshot.val();
 
 	if (cartData !== null) {
-		const items = [];
+		const products = [];
 
-		for (const id in cartData.items) {
-			items.push(cartData.items[id]);
+		for (const id in cartData.products) {
+			products.push(cartData.products[id]);
 		}
 
-		dispatch(cartActions.replaceCart({ items, totalQuantity: cartData.totalQuantity }));
+		dispatch(cartActions.replaceCart({ products, totalQuantity: cartData.totalQuantity }));
 	}
 };
 

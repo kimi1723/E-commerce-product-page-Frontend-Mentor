@@ -9,7 +9,7 @@ const AddToCartBtn = ({ productData: { id, name, price, quantity, imageUrl, alt 
 	const updateCartDataHandler = () => {
 		if (quantity > 0) {
 			dispatch(
-				cartActions.addItemToCart({
+				cartActions.addProductToCart({
 					id,
 					name,
 					price,
