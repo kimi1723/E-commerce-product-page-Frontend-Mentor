@@ -8,7 +8,7 @@ const Profile = ({ hideProfile }) => {
 		<>
 			{createPortal(
 				<main className={classes.main}>
-					<h1 className={classes.h1}>Sorry, this feature is not available yet.</h1>
+					<h2 className={classes.h2}>Sorry, this feature is not available yet.</h2>
 					<button className={classes.btn} onClick={hideProfile}>
 						Okay
 					</button>

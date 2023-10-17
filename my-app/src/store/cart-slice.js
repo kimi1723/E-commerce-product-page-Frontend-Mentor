@@ -1,4 +1,3 @@
-import { remove } from '@firebase/database';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {

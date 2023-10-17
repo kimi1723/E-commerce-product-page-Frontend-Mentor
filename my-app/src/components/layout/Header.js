@@ -46,9 +46,6 @@ const Header = () => {
 	};
 
 	const hideProfileHandler = () => {
-		document.querySelectorAll('button').forEach(btn => (btn.tabIndex = 0));
-		document.querySelectorAll('a').forEach(btn => (btn.tabIndex = 0));
-
 		setIsProfileVisible(false);
 	};
 
@@ -89,13 +86,12 @@ const Header = () => {
 							{<CartItemsCounted />}
 						</div>
 					</button>
-					{/* {isCartVisible && <Cart />} */}
-					{<Cart />}
+					{isCartVisible && <Cart />}
 				</div>
 				<button type="button" className={classes['avatar-btn']} aria-label="profile" onClick={showProfileHandler}>
 					<img src={avatarImg} alt="" className={classes['avatar-img']} />
-					{isProfileVisible && <Profile hideProfile={hideProfileHandler} />}
 				</button>
+				{isProfileVisible && <Profile hideProfile={hideProfileHandler} />}
 			</header>
 		</>
 	);
