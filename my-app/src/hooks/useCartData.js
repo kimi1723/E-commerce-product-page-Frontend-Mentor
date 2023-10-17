@@ -1,27 +1,34 @@
 import { ref, get } from 'firebase/database';
 import { database } from '../firebaseConfig';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { cartActions } from '../store/cart-slice';
 import getUid from '../auth';
 
-const useCartData = async () => {
+const useCartData = () => {
 	const dispatch = useDispatch();
 
-	const uid = await getUid();
+	useEffect(() => {
+		const fetchCartData = async () => {
+			const uid = await getUid();
 
-	const cartRef = ref(database, `/userCarts/${uid}`);
-	const snapshot = await get(cartRef);
-	const cartData = snapshot.val();
+			const cartRef = ref(database, `/userCarts/${uid}`);
+			const snapshot = await get(cartRef);
+			const cartData = snapshot.val();
 
-	if (cartData !== null) {
-		const products = [];
+			if (cartData !== null) {
+				const products = [];
 
-		for (const id in cartData.products) {
-			products.push(cartData.products[id]);
-		}
+				for (const id in cartData.products) {
+					products.push(cartData.products[id]);
+				}
 
-		dispatch(cartActions.replaceCart({ products, totalQuantity: cartData.totalQuantity }));
-	}
+				dispatch(cartActions.replaceCart({ products, totalQuantity: cartData.totalQuantity }));
+			}
+		};
+
+		fetchCartData();
+	}, [dispatch]);
 };
 
 export default useCartData;
