@@ -41,6 +41,7 @@
 .item {
 	display: flex;
 	align-items: center;
+	column-gap: 10px;
 }
 
 .link {
@@ -48,7 +49,7 @@
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 	column-gap: 30px;
-	width: 95%;
+	width: 90%;
 	color: hsl(219, 9%, 45%);
 	border-radius: 8px;
 	transition: color 0.3s;
@@ -91,17 +92,6 @@
 	font-weight: bold;
 	color: hsl(220, 13%, 13%);
 	transition: color 0.3s;
-}
-
-.remove-item-btn {
-	padding: 1em;
-	width: 5%;
-}
-
-.remove-item-btn:hover,
-.remove-item-btn:focus {
-	filter: brightness(0) saturate(100%) invert(52%) sepia(69%) saturate(1460%) hue-rotate(347deg) brightness(102%)
-		contrast(101%);
 }
 
 .checkout-link {

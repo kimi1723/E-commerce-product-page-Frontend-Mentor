@@ -1,3 +1,4 @@
+import { remove } from '@firebase/database';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -23,6 +24,18 @@ const cartSlice = createSlice({
 		replaceCart(state, action) {
 			state.products = action.payload.products;
 			state.totalQuantity = action.payload.totalQuantity;
+		},
+		removeItemFromCart(state, action) {
+			const product = state.products.find(product => product.id === action.payload.id);
+			const removeQuantity = action.payload.quantity;
+
+			if (product.quantity === 1) {
+				state.totalQuantity -= 1;
+				state.products = state.products.filter(item => item.id !== product.id);
+			} else {
+				product.quantity -= removeQuantity;
+				state.totalQuantity -= removeQuantity;
+			}
 		},
 	},
 });

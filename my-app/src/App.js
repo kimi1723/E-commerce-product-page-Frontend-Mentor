@@ -1,7 +1,5 @@
 import { RouterProvider } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
-
 import { detectDeviceTypeActions } from './store/detectDeviceType-slice';
 
 import router from './router';

@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cart-slice';
-import useSendCartData from '../../hooks/useSendCartData';
 
 import classes from './AddToCartBtn.module.css';
 import cartImg from '../../assets/images/white-icon-cart.svg';

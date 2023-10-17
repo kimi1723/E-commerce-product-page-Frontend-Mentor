@@ -16,7 +16,6 @@ const useSendCartData = async () => {
 			} else {
 				const id = await getUid();
 
-				console.log(data);
 				set(ref(database, `/userCarts/${id}`), data);
 			}
 		};

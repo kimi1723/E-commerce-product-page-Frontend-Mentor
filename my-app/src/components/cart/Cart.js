@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import RemoveItemBtn from './RemoveItemBtn';
 
 import classes from './Cart.module.css';
-import deleteIcon from '../../assets/images/icon-delete.svg';
 
 let content;
 
@@ -14,7 +14,7 @@ const Cart = () => {
 			const priceToDisplay = Number.isInteger(originalPrice) ? `${originalPrice}.00` : originalPrice;
 			const totalPrice = Number.isInteger(Number(originalPrice))
 				? `${originalPrice * quantity}.00`
-				: originalPrice * quantity;
+				: (originalPrice * quantity).toFixed(2);
 
 			return (
 				<li key={id} className={classes.item}>
@@ -27,9 +27,7 @@ const Cart = () => {
 						</p>
 					</Link>
 
-					<button className={classes['remove-item-btn']}>
-						<img src={deleteIcon} alt="delete " />
-					</button>
+					<RemoveItemBtn id={id} />
 				</li>
 			);
 		});
