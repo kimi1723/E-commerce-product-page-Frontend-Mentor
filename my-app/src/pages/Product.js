@@ -10,7 +10,6 @@ import LoaderSpinner from '../components/ui/LoaderSpinner';
 
 const ProductPage = () => {
 	const { productData } = useLoaderData();
-	console.log(productData);
 
 	return (
 		<Suspense fallback={<LoaderSpinner title="product" />}>

@@ -4,19 +4,22 @@ import { useSelector } from 'react-redux';
 import classes from './Cart.module.css';
 import deleteIcon from '../../assets/images/icon-delete.svg';
 
+let content;
+
 const Cart = () => {
-	let content;
 	const items = useSelector(state => state.cart.items);
 
 	if (items.length > 0) {
-		const mappedItems = items.map(({ price: originalPrice, quantity, id, imageUrl, name }) => {
+		const mappedItems = items.map(({ price: originalPrice, quantity, id, imageUrl, name, alt }) => {
 			const priceToDisplay = Number.isInteger(originalPrice) ? `${originalPrice}.00` : originalPrice;
-			const totalPrice = Number.isInteger(originalPrice) ? `${originalPrice * quantity}.00` : originalPrice * quantity;
+			const totalPrice = Number.isInteger(Number(originalPrice))
+				? `${originalPrice * quantity}.00`
+				: originalPrice * quantity;
 
 			return (
 				<li key={id} className={classes.item}>
 					<Link to={`/products/${id}`} className={classes.link}>
-						<img src={imageUrl} className={classes['item-img']} alt="item" />
+						<img src={imageUrl} className={classes['item-img']} alt={alt} />
 						<h3 className={classes.name}>{name}</h3>
 						<p className={classes.pricing}>
 							{`$${priceToDisplay} x ${quantity} `}
