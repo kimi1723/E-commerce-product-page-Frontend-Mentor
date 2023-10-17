@@ -46,10 +46,10 @@
 
 .link {
 	display: grid;
-	grid-template-columns: repeat(12, 1fr);
+	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: repeat(2, 1fr);
-	column-gap: 30px;
-	width: 90%;
+	column-gap: 0.5em;
+	width: 95%;
 	color: hsl(219, 9%, 45%);
 	border-radius: 8px;
 	transition: color 0.3s;
@@ -64,7 +64,7 @@
 }
 
 .item-img {
-	grid-column: 1 / 3;
+	grid-column: 1 / 2;
 	grid-row: 1 / 3;
 	aspect-ratio: 1 / 1;
 	width: 50px;
@@ -76,7 +76,7 @@
 .pricing {
 	width: 100%;
 	font-size: 1rem;
-	grid-column: 3 / 13;
+	grid-column: 2 / -1;
 }
 
 .name {
