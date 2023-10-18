@@ -8,7 +8,17 @@ const ProductsPage = ({ productsData, title }) => {
 	}
 
 	if (productsData.error) {
-		return <PageContent title={title}>{<p>{productsData.error.message}</p>} </PageContent>;
+		return (
+			<PageContent title={title}>
+				{
+					<>
+						<p className={classes.error}>
+							An error has occured!<span className={classes['error-msg']}>{productsData.error.message}</span>
+						</p>
+					</>
+				}
+			</PageContent>
+		);
 	} else {
 		const products = productsData.map(product => <Product key={product.id} product={product} />);
 

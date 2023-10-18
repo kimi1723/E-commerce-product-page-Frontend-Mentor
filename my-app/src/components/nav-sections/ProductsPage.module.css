@@ -5,3 +5,15 @@
 	font-size: 0.7rem;
 }
 
+.error {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-weight: bold;
+	row-gap: 0.5em;
+	font-size: 1.4rem;
+}
+
+.error-msg {
+	color: hsl(26, 100%, 55%);
+}
