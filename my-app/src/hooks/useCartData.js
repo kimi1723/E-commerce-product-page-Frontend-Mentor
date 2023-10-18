@@ -3,6 +3,7 @@ import { database } from '../firebaseConfig';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { cartActions } from '../store/cart-slice';
+import { errorActions } from '../store/error-slice';
 import getUid from '../auth';
 
 const useCartData = () => {
@@ -24,9 +25,24 @@ const useCartData = () => {
 					}
 
 					dispatch(cartActions.replaceCart({ products, totalQuantity: cartData.totalQuantity }));
+
+					dispatch(
+						errorActions.setError({
+							isError: false,
+							message: '',
+						}),
+					);
 				}
 			} catch (error) {
-				console.log('asdasd');
+				dispatch(
+					errorActions.setError({
+						isError: true,
+						message: {
+							content: 'Unable to load cart data',
+							error: error.message,
+						},
+					}),
+				);
 			}
 		};
 
