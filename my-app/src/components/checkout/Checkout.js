@@ -27,7 +27,7 @@ const Checkout = () => {
 							<input id="email" name="email" type="email" placeholder="Enter email..." />
 
 							<label htmlFor="tel">Phone Number</label>
-							<input id="tel" name="tel" type="tel" placeholder="Enter phone number..." minlength="7" maxlength="11" />
+							<input id="tel" name="tel" type="tel" placeholder="Enter phone number..." minLength="7" maxLength="11" />
 						</section>
 
 						<section className={classes['shipping-info']}>
@@ -55,10 +55,10 @@ const Checkout = () => {
 								<label htmlFor="card">Card</label>
 								<input type="radio" id="card" name="payment-method" />
 
-								<label htmlFor="card">Bank</label>
+								<label htmlFor="bank">Bank</label>
 								<input type="radio" id="bank" name="payment-method" />
 
-								<label htmlFor="card">Cash</label>
+								<label htmlFor="cash">Cash</label>
 								<input type="radio" id="cash" name="payment-method" />
 							</fieldset>
 						</section>
