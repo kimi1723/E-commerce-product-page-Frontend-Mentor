@@ -20,7 +20,6 @@ const useSendCartData = async () => {
 					const id = await getUid();
 					await set(ref(database, `/userCarts/${id}`), data);
 				} catch (error) {
-					console.log('error');
 					dispatch(
 						errorActions.setError({
 							isError: true,

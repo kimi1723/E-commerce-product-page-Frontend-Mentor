@@ -38,7 +38,11 @@
 	font-weight: bold;
 }
 
-
+.error {
+	font-size: 2rem;
+	color: hsl(26, 100%, 55%);
+	font-weight: bold;
+}
 
 @media (min-width: 768px) {
 	.main {
@@ -67,6 +71,4 @@
 	.amount-btns {
 		width: 50%;
 	}
-
-
 }
