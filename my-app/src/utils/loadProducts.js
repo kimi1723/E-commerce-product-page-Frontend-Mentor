@@ -6,20 +6,21 @@ import getImages from './getImages';
 const loadProducts = async filter => {
 	const productsData = [];
 
-	try {
-		const data = await getProductsData('/products');
+	const data = await getProductsData('/products');
 
-		for (const id in data) {
-			if (filter.gender === 'all' || filter.gender.includes(data[id].gender) || filter.season === data[id].season) {
-				const imagesUrls = await getImages(id, 'two');
-
-				const newProduct = { ...data[id], imagesUrls, id };
-				productsData.push(newProduct);
-			}
-		}
-	} catch (error) {
-		console.log('error');
+	if (data.error) {
+		return data;
 	}
+
+	for (const id in data) {
+		if (filter.gender === 'all' || filter.gender.includes(data[id].gender) || filter.season === data[id].season) {
+			const imagesUrls = await getImages(id, 'two');
+
+			const newProduct = { ...data[id], imagesUrls, id };
+			productsData.push(newProduct);
+		}
+	}
+
 	return productsData;
 };
 

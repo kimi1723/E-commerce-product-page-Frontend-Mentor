@@ -1,16 +1,19 @@
 import { Suspense } from 'react';
 import { Await, useLoaderData } from 'react-router-dom';
-import Men from '../components/nav-sections/men/Men';
 import LoaderSpinner from '../components/ui/LoaderSpinner';
 
 import productsLoader from '../utils/loadProducts';
+import ProductsPage from '../components/nav-sections/ProductsPage';
 
 const MenPage = () => {
 	const { productsData } = useLoaderData();
+	const title = 'men';
 
 	return (
-		<Suspense fallback={<LoaderSpinner title="men section" />}>
-			<Await resolve={productsData}>{loadedProducts => <Men productsData={loadedProducts} />}</Await>
+		<Suspense fallback={<LoaderSpinner title={title} />}>
+			<Await resolve={productsData}>
+				{loadedProducts => <ProductsPage productsData={loadedProducts} title={title} />}
+			</Await>
 		</Suspense>
 	);
 };

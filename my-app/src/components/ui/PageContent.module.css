@@ -11,13 +11,6 @@
 	border-bottom: 1px solid hsl(26, 100%, 55%);
 }
 
-.ul {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 2rem;
-	font-size: 0.7rem;
-}
-
 @media (min-width: 768px) {
 	.h1 {
 		font-size: 3rem;

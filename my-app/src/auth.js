@@ -8,7 +8,7 @@ const getUid = async () => {
 
 		return signIn.user.uid;
 	} catch (error) {
-		console.log(error);
+		console.log('error auth');
 	}
 };
 

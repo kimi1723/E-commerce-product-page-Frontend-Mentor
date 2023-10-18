@@ -8,8 +8,8 @@ const getProductsData = async path => {
 		const data = snapshot.val();
 
 		return data;
-	} catch {
-		console.log('asdasdasdasdsad');
+	} catch (error) {
+		return { error };
 	}
 };
 

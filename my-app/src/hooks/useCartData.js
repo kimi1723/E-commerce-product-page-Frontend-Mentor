@@ -10,9 +10,8 @@ const useCartData = () => {
 
 	useEffect(() => {
 		const fetchCartData = async () => {
-			const uid = await getUid();
-
 			try {
+				const uid = await getUid();
 				const cartRef = ref(database, `/userCarts/${uid}`);
 				const snapshot = await get(cartRef);
 				const cartData = snapshot.val();
