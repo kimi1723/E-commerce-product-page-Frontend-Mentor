@@ -12,18 +12,22 @@ const useCartData = () => {
 		const fetchCartData = async () => {
 			const uid = await getUid();
 
-			const cartRef = ref(database, `/userCarts/${uid}`);
-			const snapshot = await get(cartRef);
-			const cartData = snapshot.val();
+			try {
+				const cartRef = ref(database, `/userCarts/${uid}`);
+				const snapshot = await get(cartRef);
+				const cartData = snapshot.val();
 
-			if (cartData !== null) {
-				const products = [];
+				if (cartData !== null) {
+					const products = [];
 
-				for (const id in cartData.products) {
-					products.push(cartData.products[id]);
+					for (const id in cartData.products) {
+						products.push(cartData.products[id]);
+					}
+
+					dispatch(cartActions.replaceCart({ products, totalQuantity: cartData.totalQuantity }));
 				}
-
-				dispatch(cartActions.replaceCart({ products, totalQuantity: cartData.totalQuantity }));
+			} catch (error) {
+				console.log('asdasd');
 			}
 		};
 
