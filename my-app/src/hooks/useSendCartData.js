@@ -1,27 +1,41 @@
 import { set, ref } from 'firebase/database';
 import { database } from '../firebaseConfig';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { errorActions } from '../store/error-slice';
 import { useEffect } from 'react';
 import getUid from '../auth';
 
-let isInitial = true;
+let i = 0;
 
 const useSendCartData = async () => {
+	const dispatch = useDispatch();
 	const data = useSelector(state => state.cart);
 
 	useEffect(() => {
 		const sendData = async () => {
-			if (isInitial) {
-				isInitial = false;
+			if (i < 2) {
+				i++;
 			} else {
-				const id = await getUid();
-
-				set(ref(database, `/userCarts/${id}`), data);
+				try {
+					const id = await getUid();
+					await set(ref(database, `/userCarts/${id}`), data);
+				} catch (error) {
+					console.log('error');
+					dispatch(
+						errorActions.setError({
+							isError: true,
+							message: {
+								content: 'Unable to send cart data',
+								error: error.code || error.message,
+							},
+						}),
+					);
+				}
 			}
 		};
 
 		sendData();
-	}, [data]);
+	}, [data, dispatch]);
 };
 
 export default useSendCartData;

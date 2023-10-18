@@ -9,8 +9,8 @@ import useSendCartData from './hooks/useSendCartData';
 function App() {
 	const dispatch = useDispatch();
 
-	useCartData();
 	useSendCartData();
+	useCartData();
 
 	const detectDeviceHandler = () => {
 		const isMobile = window.innerWidth < 992 ? true : false;

@@ -33,6 +33,8 @@ const useCartData = () => {
 						}),
 					);
 				}
+
+				return false;
 			} catch (error) {
 				dispatch(
 					errorActions.setError({
