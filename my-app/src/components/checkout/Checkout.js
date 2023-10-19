@@ -4,13 +4,8 @@ import Select from 'react-select';
 
 import classes from './Checkout.module.css';
 
-const Checkout = () => {
+const Checkout = ({ countriesList }) => {
 	const navigate = useNavigate();
-	const options = [
-		{ value: 'poland', label: 'Poland' },
-		{ value: 'germany', label: 'Germany' },
-		{ value: 'france', label: 'France' },
-	];
 
 	return (
 		<Wrapper>
@@ -49,7 +44,7 @@ const Checkout = () => {
 							<input id="city" name="city" type="text" placeholder="Enter city..." />
 
 							<Select
-								options={options}
+								options={countriesList}
 								placeholder="Select country..."
 								noOptionsMessage={() => 'Country unavailable'}
 							/>

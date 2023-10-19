@@ -4,21 +4,26 @@ import Checkout from '../components/checkout/Checkout';
 import LoaderSpinner from '../components/ui/LoaderSpinner';
 
 const CheckoutPage = () => {
+	const { countriesData } = useLoaderData();
 	const title = 'checkout';
-	const { countriesList } = useLoaderData();
 
 	return (
 		<Suspense fallback={<LoaderSpinner title={title} />}>
-			<Await resolve={countriesList}>{loadedCountries => <Checkout countriesList={countriesList} />}</Await>
+			<Await resolve={countriesData}>{loadedCountries => <Checkout countriesList={loadedCountries} />}</Await>
 		</Suspense>
 	);
 };
 
 const checkoutLoader = async () => {
-	fetch('https://countriesnow.space/api/v0.1/countries/population')
-		.then(res => res.json())
-		.then(data => console.log(data));
-	// .then(data => console.log(JSON.stringify(data)));
+	const data = await fetch('https://countriesnow.space/api/v0.1/countries/population');
+	const countriesData = await data.json();
+	const countries = countriesData.data;
+
+	const countriesList = countries.map(country => {
+		return { value: country.country, label: country.country };
+	});
+
+	return countriesList;
 };
 
 export const loader = () => {
