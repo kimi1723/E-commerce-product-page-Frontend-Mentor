@@ -18,6 +18,7 @@ import { loader as menProductsLoader } from './pages/Men';
 import { loader as womenProductsLoader } from './pages/Women';
 import { loader as fallProductsLoader } from './pages/Fall';
 import { loader as springProductsLoader } from './pages/Spring';
+import { loader as checkoutLoader } from './pages/Checkout';
 
 const router = createBrowserRouter([
 	{
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
 			{ path: '/women', element: <WomenPage />, loader: womenProductsLoader },
 			{ path: '/about', element: <AboutPage /> },
 			{ path: '/contact', element: <ContactPage /> },
-			{ path: '/checkout', element: <CheckoutPage /> },
+			{ path: '/checkout', element: <CheckoutPage />, loader: checkoutLoader },
 		],
 	},
 ]);

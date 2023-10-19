@@ -1,10 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import Wrapper from '../ui/Wrapper';
+import Select from 'react-select';
 
 import classes from './Checkout.module.css';
 
 const Checkout = () => {
 	const navigate = useNavigate();
+	const options = [
+		{ value: 'poland', label: 'Poland' },
+		{ value: 'germany', label: 'Germany' },
+		{ value: 'france', label: 'France' },
+	];
 
 	return (
 		<Wrapper>
@@ -42,8 +48,11 @@ const Checkout = () => {
 							<label htmlFor="city">City</label>
 							<input id="city" name="city" type="text" placeholder="Enter city..." />
 
-							<label htmlFor="country">Country</label>
-							<input id="country" name="country" type="text" placeholder="Enter country..." />
+							<Select
+								options={options}
+								placeholder="Select country..."
+								noOptionsMessage={() => 'Country unavailable'}
+							/>
 						</section>
 
 						<section className={classes['payment-details']}>
