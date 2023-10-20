@@ -36,6 +36,7 @@ const Details = ({ countriesList }) => {
 						options={countriesList}
 						placeholder="Select country..."
 						noOptionsMessage={() => 'Country unavailable'}
+						aria-label="Select country"
 					/>
 				</section>
 

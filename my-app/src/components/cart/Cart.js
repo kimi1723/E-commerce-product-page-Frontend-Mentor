@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import RemoveItemBtn from './RemoveItemBtn';
+import getDecimals from '../../utils/getDecimals';
 
 import classes from './Cart.module.css';
 
@@ -11,10 +12,8 @@ const Cart = ({ hideCart }) => {
 
 	if (products.length > 0) {
 		const mappedProducts = products.map(({ discountedPrice, quantity, id, imageUrl, name, alt }) => {
-			const priceToDisplay = Number.isInteger(discountedPrice) ? `${discountedPrice}.00` : discountedPrice;
-			const totalPrice = Number.isInteger(Number(discountedPrice))
-				? `${discountedPrice * quantity}.00`
-				: (discountedPrice * quantity).toFixed(2);
+			const priceToDisplay = getDecimals(discountedPrice);
+			const totalPrice = getDecimals(discountedPrice * quantity);
 
 			return (
 				<li key={id} className={classes.item}>

@@ -1,3 +1,4 @@
+import getDecimals from '../../utils/getDecimals';
 import classes from './ProductDetails.module.css';
 
 const ProductDetails = ({ productDetails }) => {
@@ -5,7 +6,7 @@ const ProductDetails = ({ productDetails }) => {
 
 	const isDiscount = Boolean(discount);
 
-	const totalPrice = (price * ((100 - discount) / 100)).toFixed(2);
+	const totalPrice = price * ((100 - discount) / 100);
 
 	return (
 		<>
@@ -14,10 +15,7 @@ const ProductDetails = ({ productDetails }) => {
 			<p className={classes.description}>{description}</p>
 
 			<section className={classes.prices}>
-				<p className={classes['discounted-price']}>
-					${totalPrice}
-					{Number.isInteger(totalPrice) && '.00'}
-				</p>
+				<p className={classes['discounted-price']}>${getDecimals(totalPrice)}</p>
 				{isDiscount && (
 					<>
 						<p className={classes['discount-percent']}>{discount}%</p>
