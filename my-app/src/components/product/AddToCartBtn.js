@@ -4,12 +4,15 @@ import { cartActions } from '../../store/cart-slice';
 import classes from './AddToCartBtn.module.css';
 import cartImg from '../../assets/images/white-icon-cart.svg';
 
-const AddToCartBtn = ({ productData: { id, name, price, quantity, imageUrl, alt } }) => {
+const AddToCartBtn = ({ productData: { id, annotation, discount, name, price, quantity, imageUrl, alt } }) => {
 	const dispatch = useDispatch();
 
 	const updateCartDataHandler = () => {
 		if (quantity > 0) {
-			const data = { id, name, price, quantity, imageUrl, alt };
+			const originalPrice = Number(price);
+			const discountedPrice = Number((originalPrice * ((100 - discount) / 100)).toFixed(2));
+
+			const data = { id, annotation, name, originalPrice, discountedPrice, quantity, imageUrl, alt };
 
 			dispatch(cartActions.addProductToCart(data));
 		}

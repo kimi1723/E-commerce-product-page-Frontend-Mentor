@@ -54,7 +54,9 @@ const Product = ({ productDetails, imagesData }) => {
 							productData={{
 								id: productDetails.id,
 								name: productDetails.name,
-								price: (productDetails.price * ((100 - productDetails.discount) / 100)).toFixed(2),
+								annotation: productDetails.annotation,
+								price: productDetails.price,
+								discount: productDetails.discount,
 								quantity: itemQuantity,
 								imageUrl: imagesData.urls[1],
 								alt: imagesData.alts.image1,

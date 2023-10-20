@@ -1,12 +1,7 @@
 .nav {
 	margin: 1.5em 0;
-}
-
-.nav,
-.main {
 	padding: 0 2rem;
 }
 
-.main {
-	display: flex;
+.go-back-btn {
 }

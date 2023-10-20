@@ -60,8 +60,8 @@ const router = createBrowserRouter([
 				path: '/checkout',
 				element: <CheckoutPage />,
 				children: [
-					{ index: true, element: <CheckoutDetails />, loader: checkoutDetailsLoader },
-					{ path: 'summary', element: <CheckoutSummary /> },
+					{ index: true, element: <CheckoutSummary /> },
+					{ path: 'details', element: <CheckoutDetails />, loader: checkoutDetailsLoader },
 				],
 			},
 		],

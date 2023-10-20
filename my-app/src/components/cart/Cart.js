@@ -10,11 +10,11 @@ const Cart = ({ hideCart }) => {
 	const products = useSelector(state => state.cart.products);
 
 	if (products.length > 0) {
-		const mappedProducts = products.map(({ price: originalPrice, quantity, id, imageUrl, name, alt }) => {
-			const priceToDisplay = Number.isInteger(originalPrice) ? `${originalPrice}.00` : originalPrice;
-			const totalPrice = Number.isInteger(Number(originalPrice))
-				? `${originalPrice * quantity}.00`
-				: (originalPrice * quantity).toFixed(2);
+		const mappedProducts = products.map(({ discountedPrice, quantity, id, imageUrl, name, alt }) => {
+			const priceToDisplay = Number.isInteger(discountedPrice) ? `${discountedPrice}.00` : discountedPrice;
+			const totalPrice = Number.isInteger(Number(discountedPrice))
+				? `${discountedPrice * quantity}.00`
+				: (discountedPrice * quantity).toFixed(2);
 
 			return (
 				<li key={id} className={classes.item}>
