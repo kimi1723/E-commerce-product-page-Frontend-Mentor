@@ -30,7 +30,7 @@ const ImagesThubmnails = ({ urls, alts, setActualImageIndex, imgIndex }) => {
 
 			return newState;
 		});
-	}, [imgIndex]);
+	}, [imgIndex, initialThumbnailClasses]);
 
 	const imageIndexHandler = index => {
 		setActualImageIndex(index + 1);
