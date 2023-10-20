@@ -6,7 +6,7 @@ import classes from './Cart.module.css';
 
 let content;
 
-const Cart = () => {
+const Cart = ({ hideCart }) => {
 	const products = useSelector(state => state.cart.products);
 
 	if (products.length > 0) {
@@ -36,7 +36,7 @@ const Cart = () => {
 				<ul className={classes.list} role="list">
 					{mappedProducts}
 				</ul>
-				<Link to="/checkout" className={classes['checkout-link']}>
+				<Link to="/checkout" className={classes['checkout-link']} onClick={hideCart}>
 					Checkout
 				</Link>
 			</>

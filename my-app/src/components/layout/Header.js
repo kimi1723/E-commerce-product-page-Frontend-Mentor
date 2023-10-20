@@ -86,7 +86,7 @@ const Header = () => {
 							{<CartItemsCounted />}
 						</div>
 					</button>
-					{isCartVisible && <Cart />}
+					{isCartVisible && <Cart hideCart={hideCartHandler} />}
 				</div>
 				<button type="button" className={classes['avatar-btn']} aria-label="profile" onClick={showProfileHandler}>
 					<img src={avatarImg} alt="" className={classes['avatar-img']} />
