@@ -6,6 +6,7 @@ import Error from '../components/ui/Error';
 
 const RootPage = () => {
 	const isError = useSelector(state => state.error.isError);
+
 	return (
 		<Wrapper>
 			{isError === true && <Error />}

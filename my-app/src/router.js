@@ -12,13 +12,16 @@ import AboutPage from './pages/About';
 import ContactPage from './pages/Contact';
 import FallPage from './pages/Fall';
 import SpringPage from './pages/Spring';
+import CheckoutSummary from './pages/CheckoutSummary';
+import CheckoutDetails from './pages/CheckoutDetails';
+
 import { productLoader } from './pages/Product';
 import { loader as homeProductsLoader } from './pages/Home';
 import { loader as menProductsLoader } from './pages/Men';
 import { loader as womenProductsLoader } from './pages/Women';
 import { loader as fallProductsLoader } from './pages/Fall';
 import { loader as springProductsLoader } from './pages/Spring';
-import { loader as checkoutLoader } from './pages/Checkout';
+import { loader as checkoutDetailsLoader } from './pages/CheckoutDetails';
 
 const router = createBrowserRouter([
 	{
@@ -53,7 +56,14 @@ const router = createBrowserRouter([
 			{ path: '/women', element: <WomenPage />, loader: womenProductsLoader },
 			{ path: '/about', element: <AboutPage /> },
 			{ path: '/contact', element: <ContactPage /> },
-			{ path: '/checkout', element: <CheckoutPage />, loader: checkoutLoader },
+			{
+				path: '/checkout',
+				element: <CheckoutPage />,
+				children: [
+					{ index: true, element: <CheckoutDetails />, loader: checkoutDetailsLoader },
+					{ path: 'summary', element: <CheckoutSummary /> },
+				],
+			},
 		],
 	},
 ]);
