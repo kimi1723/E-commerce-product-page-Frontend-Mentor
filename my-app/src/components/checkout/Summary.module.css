@@ -50,14 +50,15 @@
 }
 
 .annotation {
+	font-size: 0.6rem;
 	font-weight: bold;
 	text-transform: uppercase;
 	color: hsl(26, 100%, 55%);
-	font-size: 0.7rem;
 }
 
-.h2 {
-	font-size: 1.2rem;
+.h2,
+.discounted-price {
+	font-size: 1.1rem;
 }
 
 .prices {
@@ -70,15 +71,11 @@
 
 .original-price {
 	padding: 0.3em 0.6em;
-	font-size: 0.8rem;
+	font-size: 0.75rem;
 	color: hsl(26, 100%, 55%);
 	background-color: hsl(25, 100%, 94%);
 	border-radius: 8px;
 	text-decoration: line-through;
-}
-
-.discounted-price {
-	font-size: 1.2rem;
 }
 
 .select {
