@@ -82,7 +82,7 @@ const Summary = () => {
 				<ul className={classes.list} role="list">
 					{products}
 				</ul>
-				<p>You are saving ${calculateSavings()} </p>
+				<p className={classes.savings}>You are saving ${calculateSavings()} </p>
 			</main>
 		</>
 	);
