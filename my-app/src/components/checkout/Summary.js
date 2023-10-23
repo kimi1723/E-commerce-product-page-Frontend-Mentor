@@ -8,6 +8,7 @@ import classes from './Summary.module.css';
 const Summary = () => {
 	const cart = useSelector(state => state.cart.products);
 	const totalQuantity = useSelector(state => state.cart.totalQuantity);
+	const discountRef = useRef(false);
 
 	return (
 		<>
@@ -20,7 +21,9 @@ const Summary = () => {
 					{<Products cart={cart} />}
 				</ul>
 				{<Savings cart={cart} />}
-				{/* <input type="text" name="discount" id="discount" /> */}
+				<form>
+					<input type="text" name="discount" id="discount" placeholder="Enter discount" />
+				</form>
 			</main>
 		</>
 	);

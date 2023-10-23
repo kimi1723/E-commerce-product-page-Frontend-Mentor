@@ -25,10 +25,6 @@
 	padding: 0 2rem;
 }
 
-.main {
-	position: relative;
-}
-
 .list {
 	display: flex;
 	flex-direction: column;

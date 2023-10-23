@@ -8,7 +8,7 @@ const Savings = ({ cart }) => {
 
 	const savingsContent = savings > 0 ? <p className={classes.savings}>You are saving ${savings} </p> : '';
 
-	return savingsContent;
+	return <div className={classes.div}>{savingsContent}</div>;
 };
 
 export default Savings;
