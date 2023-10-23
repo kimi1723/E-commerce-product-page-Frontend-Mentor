@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cart-slice';
+import { Link } from 'react-router-dom';
 import Creatable from 'react-select/creatable';
 import getDecimals from '../../utils/getDecimals';
 
@@ -37,7 +38,9 @@ const Products = ({ cart }) => {
 
 		return (
 			<li key={id} className={classes.product}>
-				<img src={imageUrl} alt={alt} className={classes.img} />
+				<Link to={`/products/${id}`}>
+					<img src={imageUrl} alt={alt} className={classes.img} />
+				</Link>
 
 				<section className={classes['product-details']}>
 					<p className={classes.annotation}>{annotation}</p>

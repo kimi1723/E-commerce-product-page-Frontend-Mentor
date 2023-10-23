@@ -4,6 +4,7 @@ import Savings from './Savings';
 import Products from './Products';
 
 import classes from './Summary.module.css';
+import DiscountForm from './Discount';
 
 const Summary = () => {
 	const cart = useSelector(state => state.cart.products);
@@ -18,20 +19,10 @@ const Summary = () => {
 			</header>
 			<main className={classes.main}>
 				<ul className={classes.list} role="list">
-					{<Products cart={cart} />}
+					<Products cart={cart} />
 				</ul>
-				{<Savings cart={cart} />}
-				<form className={classes['discount-form']}>
-					<div className={classes['discount-input-container']}>
-						<input type="text" name="discount" id="discount" className={classes['discount-input']} placeholder="" />
-						<label htmlFor="discount" className={classes['discount-label']}>
-							Enter discount
-						</label>
-					</div>
-					<button type="submit" className={classes['discount-submit']}>
-						Add
-					</button>
-				</form>
+				<Savings cart={cart} />
+				<DiscountForm />
 			</main>
 		</>
 	);
