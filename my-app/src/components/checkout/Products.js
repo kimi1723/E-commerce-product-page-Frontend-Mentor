@@ -46,8 +46,8 @@ const Products = ({ cart }) => {
 					<p className={classes.annotation}>{annotation}</p>
 					<h2 className={classes.h2}>{name}</h2>
 					<div className={classes.prices}>
-						<p className={classes['original-price']}>${getDecimals(discountedPrice * quantity)}</p>
-						<p className={classes['discounted-price']}>${getDecimals(originalPrice * quantity)}</p>
+						<p className={classes['original-price']}>${getDecimals(originalPrice * quantity)}</p>
+						<p className={classes['discounted-price']}>${getDecimals(discountedPrice * quantity)}</p>
 					</div>
 					<Creatable
 						options={selectOptions}

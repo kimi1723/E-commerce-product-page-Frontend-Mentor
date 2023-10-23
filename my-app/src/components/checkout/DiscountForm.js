@@ -63,7 +63,7 @@ const DiscountForm = ({ getDiscount }) => {
 					Add
 				</button>
 			</form>
-			{isModalVisible && <ModalContent content={'Discount added!'} onClick={hideModalHandler} />}
+			{isModalVisible && <ModalContent content={'Discount added successfully!'} onClick={hideModalHandler} />}
 		</>
 	);
 };

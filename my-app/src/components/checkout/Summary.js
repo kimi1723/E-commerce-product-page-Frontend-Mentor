@@ -6,14 +6,20 @@ import Products from './Products';
 
 import classes from './Summary.module.css';
 import DiscountForm from './DiscountForm';
+import PricingDetails from './PricingDetails';
 
 const Summary = () => {
 	const cart = useSelector(state => state.cart.products);
 	const totalQuantity = useSelector(state => state.cart.totalQuantity);
 	const [discount, setDiscount] = useState(false);
+	const [productsTotal, setProductsTotal] = useState(null);
 
 	const discountHandler = discount => {
 		setDiscount(discount);
+	};
+
+	const totalPriceHandler = productsTotal => {
+		setProductsTotal(productsTotal);
 	};
 
 	return (
@@ -26,8 +32,9 @@ const Summary = () => {
 				<ul className={classes.list} role="list">
 					<Products cart={cart} />
 				</ul>
-				<Savings cart={cart} discount={discount} />
+				<Savings cart={cart} discount={discount} getTotal={totalPriceHandler} />
 				<DiscountForm getDiscount={discountHandler} />
+				<PricingDetails productsTotal={productsTotal} discount={discount} />
 			</main>
 		</>
 	);
