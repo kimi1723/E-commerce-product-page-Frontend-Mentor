@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cart-slice';
+import { useRef } from 'react';
 import Creatable from 'react-select/creatable';
 import getDecimals from '../../utils/getDecimals';
+import Savings from './Savings';
 
 import classes from './Summary.module.css';
 
@@ -63,15 +65,6 @@ const Summary = () => {
 		);
 	});
 
-	const calculateSavings = () => {
-		const originalTotal = cart.map(product => product.originalPrice * product.quantity).reduce((a, b) => a + b, 0);
-		const discountedTotal = cart.map(product => product.discountedPrice * product.quantity).reduce((a, b) => a + b, 0);
-
-		const savings = (originalTotal - discountedTotal).toFixed(2);
-
-		return savings;
-	};
-
 	return (
 		<>
 			<header className={classes.header}>
@@ -82,7 +75,8 @@ const Summary = () => {
 				<ul className={classes.list} role="list">
 					{products}
 				</ul>
-				<p className={classes.savings}>You are saving ${calculateSavings()} </p>
+				{<Savings cart={cart} />}
+				{/* <input type="text" name="discount" id="discount" /> */}
 			</main>
 		</>
 	);

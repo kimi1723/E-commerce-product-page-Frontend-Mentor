@@ -25,6 +25,10 @@
 	padding: 0 2rem;
 }
 
+.main {
+	position: relative;
+}
+
 .list {
 	display: flex;
 	flex-direction: column;
@@ -76,14 +80,4 @@
 	background-color: hsl(25, 100%, 94%);
 	border-radius: 8px;
 	text-decoration: line-through;
-}
-
-.savings {
-	margin-top: 2em;
-	padding: 1em 2em;
-	font-size: 1.1rem;
-	font-weight: bold;
-	color: hsl(223, 64%, 98%);
-	background-color: hsl(26, 100%, 55%);
-	border-radius: 8px;
 }
