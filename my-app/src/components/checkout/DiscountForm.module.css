@@ -1,6 +1,7 @@
 .form {
 	display: flex;
 	justify-content: space-between;
+	gap: 0.5em;
 	padding-top: 20px;
 	flex-wrap: wrap;
 }
@@ -40,7 +41,7 @@
 }
 
 .submit {
-	margin: 0 0 14px 0.5em;
+	margin-bottom: 14px;
 	text-align: center;
 	padding: 0.6em 0.8em;
 	flex: 1 1 auto;
