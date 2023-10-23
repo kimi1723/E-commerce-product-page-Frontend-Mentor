@@ -1,0 +1,46 @@
+.product {
+	display: flex;
+	column-gap: 1.5em;
+}
+
+.img {
+	aspect-ratio: 1 / 1;
+	height: 120px;
+	border-radius: 8px;
+	object-fit: cover;
+}
+
+.product-details {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.2em;
+}
+
+.annotation {
+	font-size: 0.6rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: hsl(26, 100%, 55%);
+}
+
+.h2,
+.discounted-price {
+	font-size: 1.1rem;
+}
+
+.prices {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	row-gap: 0.5em;
+	font-weight: bold;
+}
+
+.original-price {
+	padding: 0.3em 0.6em;
+	font-size: 0.75rem;
+	color: hsl(26, 100%, 55%);
+	background-color: hsl(25, 100%, 94%);
+	border-radius: 8px;
+	text-decoration: line-through;
+}
