@@ -21,8 +21,16 @@ const Summary = () => {
 					{<Products cart={cart} />}
 				</ul>
 				{<Savings cart={cart} />}
-				<form>
-					<input type="text" name="discount" id="discount" placeholder="Enter discount" />
+				<form className={classes['discount-form']}>
+					<div className={classes['discount-input-container']}>
+						<input type="text" name="discount" id="discount" className={classes['discount-input']} placeholder="" />
+						<label htmlFor="discount" className={classes['discount-label']}>
+							Enter discount
+						</label>
+					</div>
+					<button type="submit" className={classes['discount-submit']}>
+						Add
+					</button>
 				</form>
 			</main>
 		</>
