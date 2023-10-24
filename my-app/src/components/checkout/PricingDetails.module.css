@@ -1,13 +1,19 @@
 .dl {
-	margin: 3em 0;
-	padding: 0.2em 0;
-	border-style: solid none;
-	border-width: 2px 0;
-	border-color: hsl(220, 13%, 13%);
+	margin: 2.5em 0 1.5em;
+	display: flex;
+	flex-direction: column;
 }
 
 .container {
 	display: flex;
 	justify-content: space-between;
-	padding: 0.5em 0;
+	padding: 0.75em 0;
+}
+
+.container:first-of-type {
+	border-top: 1px solid hsl(220, 14%, 75%);
+}
+
+.container:nth-of-type(2) {
+	border-bottom: 1px solid hsl(220, 14%, 75%);
 }

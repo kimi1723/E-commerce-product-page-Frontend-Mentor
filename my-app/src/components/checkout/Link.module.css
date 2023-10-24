@@ -5,6 +5,7 @@
 	font-size: 1.3rem;
 	font-weight: bold;
 	text-align: center;
+	text-transform: uppercase;
 	color: hsl(220, 13%, 13%);
 	border: 2px solid hsl(220, 13%, 13%);
 	transition: background-color 0.3s, color 0.3s;
