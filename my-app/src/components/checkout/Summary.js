@@ -32,11 +32,12 @@ const Summary = () => {
 			</header>
 			<main className={classes.main}>
 				<Products cart={cart} />
-
-				<Savings cart={cart} discount={discount} getTotal={totalPriceHandler} />
-				<DiscountForm getDiscount={discountHandler} />
-				<PricingDetails productsTotal={productsTotal} discount={discount} />
-				<Link path="details" content="Next" />
+				<div>
+					<Savings cart={cart} discount={discount} getTotal={totalPriceHandler} />
+					<DiscountForm getDiscount={discountHandler} />
+					<PricingDetails productsTotal={productsTotal} discount={discount} />
+					<Link path="details" content="Next" />
+				</div>
 			</main>
 		</>
 	);

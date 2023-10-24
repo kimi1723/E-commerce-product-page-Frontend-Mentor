@@ -60,14 +60,3 @@
 	color: hsl(223, 64%, 98%);
 	background-color: hsl(220, 13%, 13%);
 }
-
-@media (min-width: 992px) {
-	.form {
-		grid-row: 4 / 5;
-		grid-column: 3 / 4;
-	}
-
-	.submit {
-		height: 50%;
-	}
-}
