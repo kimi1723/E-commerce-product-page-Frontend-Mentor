@@ -1,7 +1,8 @@
 .form {
 	display: flex;
 	justify-content: space-between;
-	gap: 0.5em;
+	row-gap: 0.5em;
+	column-gap: 2em;
 	padding-top: 20px;
 	flex-wrap: wrap;
 	min-height: 80px;
@@ -43,9 +44,10 @@
 
 .submit {
 	margin-bottom: 14px;
-	text-align: center;
 	padding: 0.6em 0.8em;
 	flex: 1 1 auto;
+	align-self: flex-end;
+	text-align: center;
 	font-size: 1rem;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -57,4 +59,15 @@
 .submit:hover {
 	color: hsl(223, 64%, 98%);
 	background-color: hsl(220, 13%, 13%);
+}
+
+@media (min-width: 992px) {
+	.form {
+		grid-row: 4 / 5;
+		grid-column: 3 / 4;
+	}
+
+	.submit {
+		height: 50%;
+	}
 }

@@ -1,18 +1,32 @@
 .link {
 	display: block;
-	padding: 1.2em 0;
+	padding: 0.6em 0;
 	width: 100%;
 	font-size: 1.3rem;
 	font-weight: bold;
 	text-align: center;
 	text-transform: uppercase;
-	color: hsl(220, 13%, 13%);
+	color: hsl(223, 64%, 98%);
+	text-shadow: 0 0 1px #000;
+	background-color: hsl(220, 13%, 13%);
 	border: 2px solid hsl(220, 13%, 13%);
-	transition: background-color 0.3s, color 0.3s;
+	transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
 .link:hover,
 .link:focus {
-	color: hsl(223, 64%, 98%);
-	background-color: hsl(220, 13%, 13%);
+	background-color: hsl(219, 9%, 45%);
+	border: 2px solid hsl(219, 9%, 45%);
+	box-shadow: 0 1px 2px 1px hsl(219, 9%, 45%);
+}
+
+@media (min-width: 992px) {
+	.link {
+		grid-row: 3 / 4;
+		grid-column: 3 / 4;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 50%;
+	}
 }

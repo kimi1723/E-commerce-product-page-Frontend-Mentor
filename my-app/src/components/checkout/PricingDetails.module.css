@@ -17,3 +17,10 @@
 .container:nth-of-type(2) {
 	border-bottom: 1px solid hsl(220, 14%, 75%);
 }
+
+@media (min-width: 992px) {
+	.dl {
+		grid-row: 2 / 3;
+		grid-column: 3 / 4;
+	}
+}

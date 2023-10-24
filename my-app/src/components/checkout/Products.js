@@ -31,6 +31,7 @@ const Products = ({ cart }) => {
 				boxShadow: state.isFocused ? '0px 0px 2px 1px hsl(26, 100%, 55%)' : 'none',
 				border: state.isFocused ? '1px solid hsl(26, 100%, 55%)' : '1px solid hsl(220, 13%, 13%)',
 				transition: 'border 0.2s, box-shadow 0.2s',
+				minWidth: '75px',
 				cursor: 'pointer',
 				'&:hover': { border: '1px solid hsl(26, 100%, 55%)' },
 			}),
@@ -63,7 +64,7 @@ const Products = ({ cart }) => {
 		);
 	});
 
-	return productsList;
+	return <ul className={classes.list} role="list">{productsList}</ul>;
 };
 
 export default Products;

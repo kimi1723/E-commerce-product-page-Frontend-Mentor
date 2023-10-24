@@ -31,9 +31,8 @@ const Summary = () => {
 				<p className={classes.art}>{totalQuantity} Art.</p>
 			</header>
 			<main className={classes.main}>
-				<ul className={classes.list} role="list">
-					<Products cart={cart} />
-				</ul>
+				<Products cart={cart} />
+
 				<Savings cart={cart} discount={discount} getTotal={totalPriceHandler} />
 				<DiscountForm getDiscount={discountHandler} />
 				<PricingDetails productsTotal={productsTotal} discount={discount} />

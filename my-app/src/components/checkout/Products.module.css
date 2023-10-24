@@ -1,5 +1,13 @@
+.list {
+	display: flex;
+	flex-direction: column;
+	row-gap: 2em;
+	margin-bottom: 2em;
+}
+
 .product {
 	display: flex;
+	justify-content: space-between;
 	column-gap: 1.5em;
 }
 
@@ -13,6 +21,7 @@
 .product-details {
 	display: flex;
 	flex-direction: column;
+	align-items: flex-end;
 	row-gap: 0.2em;
 }
 
@@ -43,4 +52,20 @@
 	background-color: hsl(25, 100%, 94%);
 	border-radius: 8px;
 	text-decoration: line-through;
+}
+
+@media (min-width: 992px) {
+	.list {
+		grid-row: 1 / -1;
+		grid-column: 1 / 3;
+		row-gap: 2.5em;
+	}
+
+	.product-details {
+		row-gap: 0.5em;
+	}
+
+	.img {
+		height: 150px;
+	}
 }
