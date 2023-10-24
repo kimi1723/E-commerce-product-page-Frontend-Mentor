@@ -24,7 +24,9 @@ const DiscountForm = ({ getDiscount }) => {
 
 				if (discount) {
 					getDiscount(discount);
-					setIsModalVisible(true);
+					// setIsModalVisible(true);
+				} else {
+					getDiscount(false);
 				}
 			} catch (error) {
 				dispatch(

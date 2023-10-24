@@ -4,6 +4,7 @@
 	gap: 0.5em;
 	padding-top: 20px;
 	flex-wrap: wrap;
+	min-height: 80px;
 }
 
 .input-container {

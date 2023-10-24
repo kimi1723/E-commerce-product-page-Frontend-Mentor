@@ -24,7 +24,7 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 				case 'next':
 					return prevIndex < numberOfUrls - 1 ? (prevIndex += 2) : (prevIndex = 1);
 				default:
-					return console.log('error');
+					return console.error('error');
 			}
 		});
 	};

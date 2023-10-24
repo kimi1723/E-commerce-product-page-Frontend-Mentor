@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import classes from './ImagesThumbnails.module.css';
 
@@ -15,7 +15,7 @@ const initializeThumbnailClasses = urls => {
 };
 
 const ImagesThubmnails = ({ urls, alts, setActualImageIndex, imgIndex }) => {
-	const initialThumbnailClasses = initializeThumbnailClasses(urls);
+	const initialThumbnailClasses = useCallback(initializeThumbnailClasses(urls), [urls]);
 
 	const [thumbnailsClasses, setThumbnailsClasses] = useState({
 		...initialThumbnailClasses,

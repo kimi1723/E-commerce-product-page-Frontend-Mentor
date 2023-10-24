@@ -11,7 +11,7 @@ import PricingDetails from './PricingDetails';
 const Summary = () => {
 	const cart = useSelector(state => state.cart.products);
 	const totalQuantity = useSelector(state => state.cart.totalQuantity);
-	const [discount, setDiscount] = useState(false);
+	const [discount, setDiscount] = useState(null);
 	const [productsTotal, setProductsTotal] = useState(null);
 
 	const discountHandler = discount => {
