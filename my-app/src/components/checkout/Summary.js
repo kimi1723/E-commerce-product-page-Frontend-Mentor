@@ -4,9 +4,11 @@ import { useState } from 'react';
 import Savings from './Savings';
 import Products from './Products';
 
-import classes from './Summary.module.css';
 import DiscountForm from './DiscountForm';
 import PricingDetails from './PricingDetails';
+import Link from './Link';
+
+import classes from './Summary.module.css';
 
 const Summary = () => {
 	const cart = useSelector(state => state.cart.products);
@@ -35,6 +37,7 @@ const Summary = () => {
 				<Savings cart={cart} discount={discount} getTotal={totalPriceHandler} />
 				<DiscountForm getDiscount={discountHandler} />
 				<PricingDetails productsTotal={productsTotal} discount={discount} />
+				<Link path="details" content="Next" />
 			</main>
 		</>
 	);

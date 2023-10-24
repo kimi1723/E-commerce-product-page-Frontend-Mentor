@@ -1,0 +1,17 @@
+.link {
+	display: block;
+	padding: 1.2em 0;
+	width: 100%;
+	font-size: 1.3rem;
+	font-weight: bold;
+	text-align: center;
+	color: hsl(220, 13%, 13%);
+	border: 2px solid hsl(220, 13%, 13%);
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.link:hover,
+.link:focus {
+	color: hsl(223, 64%, 98%);
+	background-color: hsl(220, 13%, 13%);
+}

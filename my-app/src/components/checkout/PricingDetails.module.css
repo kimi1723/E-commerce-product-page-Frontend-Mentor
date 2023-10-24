@@ -1,5 +1,13 @@
+.dl {
+	margin: 3em 0;
+	padding: 0.2em 0;
+	border-style: solid none;
+	border-width: 2px 0;
+	border-color: hsl(220, 13%, 13%);
+}
+
 .container {
-	padding: 0.5em 0;
 	display: flex;
 	justify-content: space-between;
+	padding: 0.5em 0;
 }
