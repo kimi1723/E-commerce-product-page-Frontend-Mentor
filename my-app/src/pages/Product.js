@@ -5,7 +5,7 @@ import getProductsData from '../utils/getProductsData';
 import getImages from '../utils/getImages';
 
 import Product from '../components/product/Product';
-import Wrapper from '../components/ui/Wrapper';
+import Wrapper from '../components/ui/wrappers/Wrapper';
 import LoaderSpinner from '../components/ui/LoaderSpinner';
 
 const ProductPage = () => {

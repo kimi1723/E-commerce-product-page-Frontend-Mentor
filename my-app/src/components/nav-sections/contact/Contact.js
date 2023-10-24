@@ -1,4 +1,4 @@
-import PageContent from '../../ui/PageContent';
+import PageContent from '../../ui/wrappers/PageContent';
 
 import classes from './Contact.module.css';
 

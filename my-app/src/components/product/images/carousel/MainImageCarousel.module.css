@@ -1,0 +1,68 @@
+@value gallery from '../ImagesGallery.module.css';
+@value lightbox from '../lightbox/LightBox.module.css';
+
+.main-img {
+	aspect-ratio: 1 / 1;
+	width: 100%;
+	object-fit: cover;
+}
+
+.carousel-icon {
+	aspect-ratio: 1/1;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 50%;
+	width: 50px;
+	background-color: hsl(223, 64%, 98%);
+	border-radius: 50%;
+	transition: background-color 0.4s;
+	cursor: pointer;
+}
+
+.gallery .carousel-icon:first-of-type {
+	left: 5%;
+	transform: translate(0, -50%);
+}
+
+.gallery .carousel-icon:last-of-type {
+	right: 5%;
+	transform: translate(0, -50%);
+}
+
+.lightbox .carousel-icon:first-of-type {
+	left: 0;
+	transform: translate(-50%, -50%);
+}
+
+.lightbox .carousel-icon:last-of-type {
+	right: 0;
+	transform: translate(50%, -50%);
+}
+
+.lightbox .main-img {
+	height: 100%;
+	border-radius: 15px;
+}
+
+.carousel-icon:hover,
+.carousel-icon:focus {
+	background-color: hsl(26, 100%, 55%);
+}
+
+.main-img-btn {
+	transition: box-shadow 0.3s;
+	border-radius: 20px;
+	font-size: 0;
+}
+
+.main-img-btn-active {
+	box-shadow: 0px 3px 12px 4px hsl(26, 100%, 55%);
+}
+
+@media (min-width: 768px) {
+	.main-img {
+		border-radius: 15px;
+	}
+}

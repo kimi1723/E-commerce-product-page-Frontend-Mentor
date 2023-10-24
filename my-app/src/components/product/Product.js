@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import ImagesGallery from './ImagesGallery';
+import ImagesGallery from './images/ImagesGallery';
 import ProductDetails from './ProductDetails';
-import AddToCartBtn from './AddToCartBtn';
-import PageContent from '../ui/PageContent';
+import AddToCartBtn from './generic/AddToCartBtn';
+import PageContent from '../ui/wrappers/PageContent';
 
 import classes from './Product.module.css';
 import minusIcon from '../../assets/images/icon-minus.svg';

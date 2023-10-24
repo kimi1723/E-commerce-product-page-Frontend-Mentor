@@ -1,27 +1,27 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import RootPage from './pages/Root';
-import HomePage from './pages/Home';
+import HomePage from './pages/nav-sections/Home';
 import ErrorPage from './pages/Error';
 import ProductPage from './pages/Product';
-import CheckoutPage from './pages/Checkout';
-import CollectionsPage from './pages/Collections';
-import MenPage from './pages/Men';
-import WomenPage from './pages/Women';
-import AboutPage from './pages/About';
-import ContactPage from './pages/Contact';
-import FallPage from './pages/Fall';
-import SpringPage from './pages/Spring';
-import CheckoutSummary from './pages/CheckoutSummary';
-import CheckoutDetails from './pages/CheckoutDetails';
+import CheckoutPage from './pages/checkout/Checkout';
+import CollectionsPage from './pages/nav-sections/collections/Collections';
+import MenPage from './pages/nav-sections/Men';
+import WomenPage from './pages/nav-sections/Women';
+import AboutPage from './pages/nav-sections/About';
+import ContactPage from './pages/nav-sections/Contact';
+import FallPage from './pages/nav-sections/collections/Fall';
+import SpringPage from './pages/nav-sections/collections/Spring';
+import CheckoutSummary from './pages/checkout/CheckoutSummary';
+import CheckoutDetails from './pages/checkout/CheckoutDetails';
 
 import { productLoader } from './pages/Product';
-import { loader as homeProductsLoader } from './pages/Home';
-import { loader as menProductsLoader } from './pages/Men';
-import { loader as womenProductsLoader } from './pages/Women';
-import { loader as fallProductsLoader } from './pages/Fall';
-import { loader as springProductsLoader } from './pages/Spring';
-import { loader as checkoutDetailsLoader } from './pages/CheckoutDetails';
+import { loader as homeProductsLoader } from './pages/nav-sections/Home';
+import { loader as menProductsLoader } from './pages/nav-sections/Men';
+import { loader as womenProductsLoader } from './pages/nav-sections/Women';
+import { loader as fallProductsLoader } from './pages/nav-sections/collections/Fall';
+import { loader as springProductsLoader } from './pages/nav-sections/collections/Spring';
+import { loader as checkoutDetailsLoader } from './pages/checkout/CheckoutDetails';
 
 const router = createBrowserRouter([
 	{
