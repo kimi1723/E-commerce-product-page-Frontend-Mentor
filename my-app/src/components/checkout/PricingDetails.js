@@ -11,7 +11,7 @@ const PricingDetails = ({ productsTotal, discount }) => {
 				<dd>${productsTotal}</dd>
 			</div>
 			<div className={classes.container}>
-				<dt>Shippment</dt>
+				<dt>Shipment</dt>
 				<dd>${shipmentPrice}.00</dd>
 			</div>
 			<div className={classes.container}>

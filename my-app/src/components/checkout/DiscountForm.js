@@ -10,7 +10,7 @@ import classes from './DiscountForm.module.css';
 const DiscountForm = ({ getDiscount }) => {
 	const discountRef = useRef(false);
 	const dispatch = useDispatch();
-	const [isModalVisible, setIsModalVisible] = useState(false);
+	const [modalProperties, setModalProperties] = useState({ isVisible: false, content: '' });
 
 	const checkDiscountHandler = async e => {
 		e.preventDefault();
@@ -24,9 +24,10 @@ const DiscountForm = ({ getDiscount }) => {
 
 				if (discount) {
 					getDiscount(discount);
-					// setIsModalVisible(true);
+					setModalProperties({ isVisible: true, content: 'Discount added successfully!' });
 				} else {
-					getDiscount(false);
+					setModalProperties({ isVisible: true, content: 'Discount code is incorrect!' });
+					getDiscount(discount);
 				}
 			} catch (error) {
 				dispatch(
@@ -42,7 +43,7 @@ const DiscountForm = ({ getDiscount }) => {
 		}
 	};
 
-	const hideModalHandler = () => setIsModalVisible(false);
+	const hideModalHandler = () => setModalProperties(false);
 
 	return (
 		<>
@@ -65,7 +66,7 @@ const DiscountForm = ({ getDiscount }) => {
 					Add
 				</button>
 			</form>
-			{isModalVisible && <ModalContent content={'Discount added successfully!'} onClick={hideModalHandler} />}
+			{modalProperties.isVisible && <ModalContent content={modalProperties.content} onClick={hideModalHandler} />}
 		</>
 	);
 };
