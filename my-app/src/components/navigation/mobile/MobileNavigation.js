@@ -11,7 +11,7 @@ const MobileNavigation = ({ mobileNavIsActive, hideNav }) => {
 	return (
 		<nav className={navClasses}>
 			<div className={classes['hero-bg']}></div>
-			<div className={classes['hero-backdrop']}></div>
+			<div className={classes['hero-backdrop']} onClick={hideNav}></div>
 			<NavigationList classes={classesObj} linksIndex={linksIndex} hideNav={hideNav} />
 		</nav>
 	);
