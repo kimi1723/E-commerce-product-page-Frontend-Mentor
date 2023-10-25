@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Await, useLoaderData, defer } from 'react-router-dom';
 import LoaderSpinner from '../../components/ui/LoaderSpinner';
-import Details from '../../components/checkout/details/Details';
+import Details from '../../components/checkout/shipment-details/ShipmentDetails';
 
 const CheckoutDetailsPage = () => {
 	const { countriesData } = useLoaderData();

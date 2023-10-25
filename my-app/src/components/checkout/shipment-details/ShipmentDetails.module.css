@@ -1,0 +1,55 @@
+.main,
+.header {
+	padding: 0 2rem;
+}
+
+.h1 {
+	color: hsl(220, 13%, 13%);
+	font-size: 1.8rem;
+	margin-bottom: 1em;
+}
+
+.h2 {
+	margin-bottom: 0.3em;
+	font-size: 1.1rem;
+	text-transform: uppercase;
+	color: hsl(26, 100%, 55%);
+	letter-spacing: 1px;
+	width: 100%;
+}
+
+.form-section {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+	margin-bottom: 3em;
+}
+
+.inputs-container {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.3em;
+	width: 45%;
+}
+
+.label {
+	font-weight: bold;
+}
+
+.text-input {
+	padding: 0.6em 0.8em;
+	font-size: 0.9rem;
+	border-radius: 8px;
+	border: 2px solid rgba(0, 0, 0, 0.5);
+	outline: none;
+	transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.text-input:focus {
+	box-shadow: 0px 1px 5px 1px hsl(26, 100%, 55%);
+	border-color: hsl(26, 100%, 55%);
+}
+
+.text-input:hover {
+	border-color: hsl(26, 100%, 55%);
+}
