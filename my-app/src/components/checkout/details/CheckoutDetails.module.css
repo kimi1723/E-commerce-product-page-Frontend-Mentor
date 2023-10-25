@@ -11,7 +11,7 @@
 
 .h2 {
 	margin-bottom: 0.3em;
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 	text-transform: uppercase;
 	color: hsl(26, 100%, 55%);
 	letter-spacing: 1px;
@@ -28,7 +28,9 @@
 .inputs-container {
 	display: flex;
 	flex-direction: column;
-	row-gap: 0.3em;
+	justify-content: flex-end;
+	row-gap: 0.5em;
+	margin-bottom: 0.5em;
 	width: 45%;
 }
 
@@ -52,4 +54,14 @@
 
 .text-input:hover {
 	border-color: hsl(26, 100%, 55%);
+}
+
+.fieldest {
+	display: flex;
+	width: 100%;
+	background-color: red;
+}
+
+.legend {
+	font-size: 1.1rem;
 }
