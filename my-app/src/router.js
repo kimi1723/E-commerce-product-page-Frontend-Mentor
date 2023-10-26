@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
 
 import RootPage from './pages/Root';
 import HomePage from './pages/nav-sections/Home';
@@ -23,6 +24,8 @@ import { loader as fallProductsLoader } from './pages/nav-sections/collections/F
 import { loader as springProductsLoader } from './pages/nav-sections/collections/Spring';
 import { loader as checkoutDetailsLoader } from './pages/checkout/CheckoutDetails';
 
+const CollectionsPageLazy = lazy(() => import('./pages/nav-sections/collections/Collections'));
+
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -39,16 +42,32 @@ const router = createBrowserRouter([
 				path: '/collections',
 
 				children: [
-					{ index: true, element: <CollectionsPage /> },
+					{
+						index: true,
+						element: (
+							<Suspense fallback="Loading...">
+								<CollectionsPageLazy />
+							</Suspense>
+						),
+						// loader: () => import('./pages/nav-sections/collections/Collections').then(module => module.loader()),
+					},
 					{
 						path: 'fall',
-						element: <FallPage />,
-						loader: fallProductsLoader,
+						element: (
+							<Suspense fallback="Loading...">
+								<FallPage />
+							</Suspense>
+						),
+						loader: () => import('./pages/nav-sections/collections/Fall').then(module => module.loader()),
 					},
 					{
 						path: 'spring',
-						element: <SpringPage />,
-						loader: springProductsLoader,
+						element: (
+							<Suspense falllback="Loading...">
+								<SpringPage />
+							</Suspense>
+						),
+						loader: () => import('./pages/nav-sections/collections/Spring').then(module => module.loader()),
 					},
 				],
 			},
