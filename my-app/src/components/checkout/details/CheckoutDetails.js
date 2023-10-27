@@ -1,6 +1,7 @@
 import Select from 'react-select';
 
 import classes from './CheckoutDetails.module.css';
+import cardImg from '../../../assets/images/checkout-details/credit-card-23250_640.png';
 
 const Details = ({ countriesList }) => {
 	const customStyles = {
@@ -128,20 +129,27 @@ const Details = ({ countriesList }) => {
 						<fieldset className={classes.fieldset}>
 							<legend className={classes.legend}>Choose payment method</legend>
 
-							<label htmlFor="card" className={classes.label}>
-								Card
-							</label>
-							<input type="radio" id="card" name="payment-method" />
+							<div className={classes['radio-inputs-container']}>
+								<input type="radio" id="card" name="payment-method" className={classes['radio-input']} />
+								<label htmlFor="card" className={classes.label}>
+									Card
+									<div className={classes['hero-bg']}></div>
+								</label>
+							</div>
 
-							<label htmlFor="bank" className={classes.label}>
-								Bank
-							</label>
-							<input type="radio" id="bank" name="payment-method" />
+							<div className={classes['radio-inputs-container']}>
+								<label htmlFor="bank" className={classes.label}>
+									Bank
+								</label>
+								<input type="radio" id="bank" name="payment-method" />
+							</div>
 
-							<label htmlFor="cash" className={classes.label}>
-								Cash
-							</label>
-							<input type="radio" id="cash" name="payment-method" />
+							<div className={classes['radio-inputs-container']}>
+								<label htmlFor="cash" className={classes.label}>
+									Cash
+								</label>
+								<input type="radio" id="cash" name="payment-method" />
+							</div>
 						</fieldset>
 					</section>
 				</form>
