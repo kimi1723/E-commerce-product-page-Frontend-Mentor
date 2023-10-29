@@ -1,5 +1,7 @@
 import Select from 'react-select';
+import { Form } from 'react-router-dom';
 
+import Redirect from '../generic/Redirect';
 import classes from './CheckoutDetails.module.css';
 
 const Details = ({ countriesList }) => {
@@ -31,7 +33,7 @@ const Details = ({ countriesList }) => {
 			</header>
 
 			<main className={classes.main}>
-				<form className={classes.form}>
+				<Form method="post" className={classes.form} action="/checkout/done">
 					<section className={`${classes['billing-details']} ${classes['form-section']}`}>
 						<h2 className={classes.h2}>Billing details</h2>
 
@@ -154,7 +156,11 @@ const Details = ({ countriesList }) => {
 							</div>
 						</fieldset>
 					</section>
-				</form>
+
+					<Redirect componentType="button" type="submit">
+						Next
+					</Redirect>
+				</Form>
 			</main>
 		</>
 	);

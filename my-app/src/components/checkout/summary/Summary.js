@@ -6,7 +6,7 @@ import Products from './Products';
 
 import DiscountForm from './DiscountForm';
 import PricingDetails from './PricingDetails';
-import Link from '../generic/Link';
+import Redirect from '../generic/Redirect';
 
 import classes from './Summary.module.css';
 
@@ -36,7 +36,10 @@ const Summary = () => {
 					<Savings cart={cart} discount={discount} getTotal={totalPriceHandler} />
 					<DiscountForm getDiscount={discountHandler} />
 					<PricingDetails productsTotal={productsTotal} discount={discount} />
-					<Link path="details" content="Next" />
+
+					<Redirect to="details" componentType="link">
+						Next
+					</Redirect>
 				</div>
 			</main>
 		</>

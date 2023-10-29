@@ -1,12 +1,17 @@
 .main,
 .header {
 	padding: 0 2rem;
+	margin-bottom: 3em;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
 }
 
 .h1 {
 	color: hsl(220, 13%, 13%);
 	font-size: 1.8rem;
-	margin-bottom: 1.5em;
 }
 
 .h2 {

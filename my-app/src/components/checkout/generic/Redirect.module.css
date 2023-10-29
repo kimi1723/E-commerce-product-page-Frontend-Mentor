@@ -1,7 +1,9 @@
 .link {
+	align-self: flex-end;
 	display: block;
 	padding: 0.6em 0;
 	width: 100%;
+	max-width: 400px;
 	font-size: 1.3rem;
 	font-weight: bold;
 	text-align: center;

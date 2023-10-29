@@ -23,6 +23,8 @@ import { loader as womenProductsLoader } from './pages/nav-sections/Women';
 import { loader as fallProductsLoader } from './pages/nav-sections/collections/Fall';
 import { loader as springProductsLoader } from './pages/nav-sections/collections/Spring';
 import { loader as checkoutDetailsLoader } from './pages/checkout/CheckoutDetails';
+import CheckoutDone from './pages/checkout/CheckoutDone';
+import { action as checkoutAction } from './pages/checkout/CheckoutDone';
 
 const CollectionsPageLazy = lazy(() => import('./pages/nav-sections/collections/Collections'));
 
@@ -81,6 +83,7 @@ const router = createBrowserRouter([
 				children: [
 					{ index: true, element: <CheckoutSummary /> },
 					{ path: 'details', element: <CheckoutDetails />, loader: checkoutDetailsLoader },
+					{ path: 'done', element: <CheckoutDone />, action: checkoutAction },
 				],
 			},
 		],
