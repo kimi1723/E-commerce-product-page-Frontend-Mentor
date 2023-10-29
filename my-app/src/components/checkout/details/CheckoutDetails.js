@@ -1,7 +1,6 @@
 import Select from 'react-select';
 
 import classes from './CheckoutDetails.module.css';
-import cardImg from '../../../assets/images/checkout-details/credit-card-23250_640.png';
 
 const Details = ({ countriesList }) => {
 	const customStyles = {
