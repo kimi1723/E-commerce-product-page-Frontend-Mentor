@@ -13,6 +13,7 @@ const Details = ({ countriesList }) => {
 		}),
 		control: (styles, state) => ({
 			...styles,
+			minHeight: '43px',
 			fontSize: '0.9rem',
 			border: state.isFocused ? '2px solid hsl(26, 100%, 55%)' : '2px solid rgba(0, 0, 0, 0.5)',
 			borderRadius: '8px',
