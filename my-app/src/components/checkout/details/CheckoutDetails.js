@@ -131,24 +131,26 @@ const Details = ({ countriesList }) => {
 
 							<div className={classes['radio-inputs-container']}>
 								<input type="radio" id="card" name="payment-method" className={classes['radio-input']} />
-								<label htmlFor="card" className={classes.label}>
+								<label htmlFor="card" className={`${classes.label} ${classes['radio-input-label']}`}>
 									Card
 									<div className={classes['hero-bg']}></div>
 								</label>
 							</div>
 
 							<div className={classes['radio-inputs-container']}>
-								<label htmlFor="bank" className={classes.label}>
+								<input type="radio" id="bank" name="payment-method" className={classes['radio-input']} />
+								<label htmlFor="bank" className={`${classes.label} ${classes['radio-input-label']}`}>
 									Bank
+									<div className={classes['hero-bg']}></div>
 								</label>
-								<input type="radio" id="bank" name="payment-method" />
 							</div>
 
 							<div className={classes['radio-inputs-container']}>
-								<label htmlFor="cash" className={classes.label}>
+								<input type="radio" id="cash" name="payment-method" className={classes['radio-input']} />
+								<label htmlFor="cash" className={`${classes.label} ${classes['radio-input-label']}`}>
 									Cash
+									<div className={classes['hero-bg']}></div>
 								</label>
-								<input type="radio" id="cash" name="payment-method" />
 							</div>
 						</fieldset>
 					</section>
