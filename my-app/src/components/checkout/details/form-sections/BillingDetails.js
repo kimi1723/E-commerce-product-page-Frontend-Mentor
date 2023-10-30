@@ -1,4 +1,46 @@
+import { useState, useEffect } from 'react';
+import validateForm from '../../generic/validateForm';
+
 const BillingDetails = ({ classes }) => {
+	const [nameValue, setNameValue] = useState('');
+	const [errors, setErrors] = useState({
+		name: false,
+		email: false,
+		tel: false,
+	});
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			const isValidated = validateForm(nameValue, 'name');
+
+			setErrors(prevErrors => {
+				return { ...prevErrors, name: isValidated };
+			});
+		}, 1000);
+
+		return () => {
+			clearTimeout(timeout);
+		};
+	});
+
+	const nameHandler = async e => {
+		setNameValue(e.target.value);
+		// const isValidated = await ValidateForm(e.target.value, 'name');
+
+		// setErrors(prevErrors => {
+		// return { ...prevErrors, name: isValidated };
+		// });
+		// console.log(isValidated);
+
+		// setTimeout(() => {
+		// const isError = e.target.value.trim().length < 3;
+
+		// setErrors(prevErrors => {
+		// return { ...prevErrors, name: isError };
+		// });
+		// }, 1000);
+	};
+
 	return (
 		<section className={`${classes['form-section']}`}>
 			<h2 className={classes.h2}>Billing details</h2>
@@ -7,7 +49,16 @@ const BillingDetails = ({ classes }) => {
 				<label htmlFor="name" className={classes.label}>
 					Name
 				</label>
-				<input id="name" name="name" type="text" placeholder="Enter name..." className={classes['text-input']} />
+				{errors.name && <p className={classes.error}>Name should contain at least 3 letters!</p>}
+				<input
+					id="name"
+					name="name"
+					type="text"
+					placeholder="Enter name..."
+					className={classes['text-input']}
+					value={nameValue}
+					onChange={e => nameHandler(e)}
+				/>
 			</div>
 
 			<div className={classes['inputs-container']}>

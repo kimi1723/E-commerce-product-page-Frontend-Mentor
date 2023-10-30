@@ -5,13 +5,13 @@ import classes from './Redirect.module.css';
 const Redirect = ({ componentType, children, ...props }) => {
 	if (componentType === 'button') {
 		return (
-			<button {...props} className={classes.link}>
+			<button {...props} className={classes.redirect}>
 				{children}
 			</button>
 		);
 	} else if (componentType === 'link') {
 		return (
-			<Link {...props} className={classes.link}>
+			<Link {...props} className={classes.redirect}>
 				{children}
 			</Link>
 		);
