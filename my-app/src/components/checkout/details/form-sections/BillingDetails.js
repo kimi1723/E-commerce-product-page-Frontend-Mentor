@@ -1,69 +1,71 @@
 import { useState, useEffect } from 'react';
-import useValidateForm from '../../generic/useValidateForm';
+import validateInput from '../../generic/validateInput';
 
 const BillingDetails = ({ classes }) => {
 	const [nameValue, setNameValue] = useState('');
+	const [emailValue, setEmailValue] = useState('e');
+	const [telValue, setTelValue] = useState('');
 	const [errors, setErrors] = useState({
-		name: false,
-		email: false,
-		tel: false,
+		name: true,
+		email: true,
+		tel: true,
 	});
-	// const validate = useValidateForm();
-	// console.log(validate);
-	// validate('asdasd');
 
-	const validate = useValidateForm();
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			const isValidated = validateInput(nameValue, 'name');
 
-	// useEffect(() => {
-	// 	console.log(isNameError);
-	// 	setErrors(prevErrors => {
-	// 		return { ...prevErrors, name: isNameError };
-	// 	});
-	// }, [isNameError, nameValue]);
+			setErrors(prevErrors => {
+				return { ...prevErrors, name: isValidated };
+			});
+		}, 500);
 
-	// useEffect(() => {
-	// 	const timeout = setTimeout(() => {
-	// 		const isValidated = useValidateForm(nameValue, 'name');
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, [nameValue]);
 
-	// 		setErrors(prevErrors => {
-	// 			return { ...prevErrors, name: isValidated };
-	// 		});
-	// 	}, 1000);
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			const isValidated = validateInput(emailValue, 'email');
 
-	// 	return () => {
-	// 		clearTimeout(timeout);
-	// 	};
-	// });
+			setErrors(prevErrors => {
+				return { ...prevErrors, email: isValidated };
+			});
+		}, 500);
 
-	const nameHandler = async e => {
-		setNameValue(e.target.value);
-		await validate(e.target.value, 'name');
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, [emailValue]);
 
-		// const isValidated = await ValidateForm(e.target.value, 'name');
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			const isValidated = validateInput(telValue, 'tel');
 
-		// setErrors(prevErrors => {
-		// return { ...prevErrors, name: isValidated };
-		// });
-		// console.log(isValidated);
+			setErrors(prevErrors => {
+				return { ...prevErrors, tel: isValidated };
+			});
+		}, 500);
 
-		// setTimeout(() => {
-		// const isError = e.target.value.trim().length < 3;
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, [telValue]);
 
-		// setErrors(prevErrors => {
-		// return { ...prevErrors, name: isError };
-		// });
-		// }, 1000);
-	};
+	const nameHandler = e => setNameValue(e.target.value),
+		emailHandler = e => setEmailValue(e.target.value),
+		telHandler = e => setTelValue(e.target.value);
 
 	return (
 		<section className={`${classes['form-section']}`}>
 			<h2 className={classes.h2}>Billing details</h2>
 
 			<div className={classes['inputs-container']}>
+				{errors.name && <p className={classes.error}>Your name should contain at least 3 letters!</p>}
 				<label htmlFor="name" className={classes.label}>
 					Name
 				</label>
-				{errors.name && <p className={classes.error}>Name should contain at least 3 letters!</p>}
 				<input
 					id="name"
 					name="name"
@@ -76,13 +78,23 @@ const BillingDetails = ({ classes }) => {
 			</div>
 
 			<div className={classes['inputs-container']}>
+				{errors.email && <p className={classes.error}>Please enter a valid email address!</p>}
 				<label htmlFor="email" className={classes.label}>
 					Email Address
 				</label>
-				<input id="email" name="email" type="email" placeholder="Enter email..." className={classes['text-input']} />
+				<input
+					id="email"
+					name="email"
+					type="email"
+					placeholder="Enter email..."
+					className={classes['text-input']}
+					value={emailValue}
+					onChange={e => emailHandler(e)}
+				/>
 			</div>
 
 			<div className={classes['inputs-container']}>
+				{errors.tel && <p className={classes.error}>Please enter a valid phone number!</p>}
 				<label htmlFor="tel" className={classes.label}>
 					Phone Number
 				</label>
@@ -92,8 +104,10 @@ const BillingDetails = ({ classes }) => {
 					type="tel"
 					placeholder="Enter phone number..."
 					minLength="7"
-					maxLength="11"
+					maxLength="13"
 					className={classes['text-input']}
+					value={telValue}
+					onChange={e => telHandler(e)}
 				/>
 			</div>
 		</section>
