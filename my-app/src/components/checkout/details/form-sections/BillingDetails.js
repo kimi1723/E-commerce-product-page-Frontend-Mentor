@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import validateInput from '../../generic/validateInput';
+import useValidation from '../../generic/useValidation';
 
 const BillingDetails = ({ classes }) => {
 	const [nameValue, setNameValue] = useState('');
@@ -11,47 +12,9 @@ const BillingDetails = ({ classes }) => {
 		tel: true,
 	});
 
-	useEffect(() => {
-		const timeout = setTimeout(() => {
-			const isValidated = validateInput(nameValue, 'name');
-
-			setErrors(prevErrors => {
-				return { ...prevErrors, name: isValidated };
-			});
-		}, 500);
-
-		return () => {
-			clearTimeout(timeout);
-		};
-	}, [nameValue]);
-
-	useEffect(() => {
-		const timeout = setTimeout(() => {
-			const isValidated = validateInput(emailValue, 'email');
-
-			setErrors(prevErrors => {
-				return { ...prevErrors, email: isValidated };
-			});
-		}, 500);
-
-		return () => {
-			clearTimeout(timeout);
-		};
-	}, [emailValue]);
-
-	useEffect(() => {
-		const timeout = setTimeout(() => {
-			const isValidated = validateInput(telValue, 'tel');
-
-			setErrors(prevErrors => {
-				return { ...prevErrors, tel: isValidated };
-			});
-		}, 500);
-
-		return () => {
-			clearTimeout(timeout);
-		};
-	}, [telValue]);
+	useValidation(nameValue, 'name', setErrors);
+	useValidation(emailValue, 'email', setErrors);
+	useValidation(telValue, 'tel', setErrors);
 
 	const nameHandler = e => setNameValue(e.target.value),
 		emailHandler = e => setEmailValue(e.target.value),
