@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import validateForm from '../../generic/validateForm';
+import useValidateForm from '../../generic/useValidateForm';
 
 const BillingDetails = ({ classes }) => {
 	const [nameValue, setNameValue] = useState('');
@@ -8,23 +8,37 @@ const BillingDetails = ({ classes }) => {
 		email: false,
 		tel: false,
 	});
+	// const validate = useValidateForm();
+	// console.log(validate);
+	// validate('asdasd');
 
-	useEffect(() => {
-		const timeout = setTimeout(() => {
-			const isValidated = validateForm(nameValue, 'name');
+	const validate = useValidateForm();
 
-			setErrors(prevErrors => {
-				return { ...prevErrors, name: isValidated };
-			});
-		}, 1000);
+	// useEffect(() => {
+	// 	console.log(isNameError);
+	// 	setErrors(prevErrors => {
+	// 		return { ...prevErrors, name: isNameError };
+	// 	});
+	// }, [isNameError, nameValue]);
 
-		return () => {
-			clearTimeout(timeout);
-		};
-	});
+	// useEffect(() => {
+	// 	const timeout = setTimeout(() => {
+	// 		const isValidated = useValidateForm(nameValue, 'name');
+
+	// 		setErrors(prevErrors => {
+	// 			return { ...prevErrors, name: isValidated };
+	// 		});
+	// 	}, 1000);
+
+	// 	return () => {
+	// 		clearTimeout(timeout);
+	// 	};
+	// });
 
 	const nameHandler = async e => {
 		setNameValue(e.target.value);
+		await validate(e.target.value, 'name');
+
 		// const isValidated = await ValidateForm(e.target.value, 'name');
 
 		// setErrors(prevErrors => {
