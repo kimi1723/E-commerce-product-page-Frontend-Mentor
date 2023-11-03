@@ -27,18 +27,37 @@ import CheckoutDone from './pages/checkout/CheckoutDone';
 import { action as checkoutAction } from './pages/checkout/CheckoutDone';
 
 const CollectionsPageLazy = lazy(() => import('./pages/nav-sections/collections/Collections'));
+const RootPageLazy = lazy(() => import('./pages/Root'));
+const HomePageLazy = lazy(() => import('./pages/nav-sections/Home'));
+const ProductPageLazy = lazy(() => import('./pages/Product'));
 
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <RootPage />,
+		element: (
+			<Suspense fallback="Loading...">
+				<RootPageLazy />
+			</Suspense>
+		),
 		errorElement: <ErrorPage />,
 		children: [
-			{ index: true, element: <HomePage />, loader: homeProductsLoader },
+			{
+				index: true,
+				element: (
+					<Suspense fallback="Loading...">
+						<HomePageLazy />
+					</Suspense>
+				),
+				loader: meta => import('./pages/nav-sections/Home').then(module => module.loader(meta)),
+			},
 			{
 				path: '/products/:id',
-				element: <ProductPage />,
-				loader: productLoader,
+				element: (
+					<Suspense>
+						<ProductPageLazy />
+					</Suspense>
+				),
+				loader: meta => import('./pages/Product').then(module => module.loader(meta)),
 			},
 			{
 				path: '/collections',
