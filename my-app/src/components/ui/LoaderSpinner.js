@@ -1,6 +1,6 @@
 import classes from './LoaderSpinner.module.css';
 
-const LoaderSpinner = ({ title }) => {
+const LoaderSpinner = ({ title = 'resources' }) => {
 	return (
 		<div className={classes.container}>
 			<div className={classes['custom-loader']}></div>
