@@ -25,6 +25,11 @@
 	margin-bottom: 3em;
 }
 
+.details {
+	display: flex;
+	flex-direction: column;
+}
+
 @media (min-width: 992px) {
 	.main {
 		display: flex;

@@ -1,14 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 
-import ErrorPage from './pages/Error';
-import AboutPage from './pages/nav-sections/About';
-import ContactPage from './pages/nav-sections/Contact';
 import LoaderSpinner from './components/ui/LoaderSpinner';
 
 import { action as checkoutAction } from './pages/checkout/CheckoutDone';
 
 const RootPageLazy = lazy(() => import('./pages/Root'));
+const ErrorPageLazy = lazy(() => import('./pages/Error'));
 const HomePageLazy = lazy(() => import('./pages/nav-sections/Home'));
 const ProductPageLazy = lazy(() => import('./pages/Product'));
 const CollectionsPageLazy = lazy(() => import('./pages/nav-sections/collections/Collections'));
@@ -16,6 +14,8 @@ const FallPageLazy = lazy(() => import('./pages/nav-sections/collections/Fall'))
 const SpringPageLazy = lazy(() => import('./pages/nav-sections/collections/Spring'));
 const MenPageLazy = lazy(() => import('./pages/nav-sections/Men'));
 const WomenPageLazy = lazy(() => import('./pages/nav-sections/Women'));
+const AboutPageLazy = lazy(() => import('./pages/nav-sections/About'));
+const ContactPageLazy = lazy(() => import('./pages/nav-sections/Contact'));
 const CheckoutPageLazy = lazy(() => import('./pages/checkout/Checkout'));
 const CheckoutDetailsLazy = lazy(() => import('./pages/checkout/CheckoutDetails'));
 const CheckoutDoneLazy = lazy(() => import('./pages/checkout/CheckoutDone'));
@@ -29,7 +29,11 @@ const router = createBrowserRouter([
 				<RootPageLazy />
 			</Suspense>
 		),
-		errorElement: <ErrorPage />,
+		errorElement: (
+			<Suspense fallback={<LoaderSpinner />}>
+				<ErrorPageLazy />
+			</Suspense>
+		),
 		children: [
 			{
 				index: true,
@@ -98,8 +102,22 @@ const router = createBrowserRouter([
 				),
 				loader: () => import('./pages/nav-sections/Women').then(module => module.loader()),
 			},
-			{ path: '/about', element: <AboutPage /> },
-			{ path: '/contact', element: <ContactPage /> },
+			{
+				path: '/about',
+				element: (
+					<Suspense fallback={<LoaderSpinner />}>
+						<AboutPageLazy />
+					</Suspense>
+				),
+			},
+			{
+				path: '/contact',
+				element: (
+					<Suspense fallback={<LoaderSpinner />}>
+						<ContactPageLazy />
+					</Suspense>
+				),
+			},
 			{
 				path: '/checkout',
 				element: (
