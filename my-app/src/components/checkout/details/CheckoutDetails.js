@@ -15,8 +15,8 @@ const Details = ({ countriesList }) => {
 
 			<main className={classes.main}>
 				<Form method="post" className={classes.form} action="/checkout/done">
-					<BillingDetails classes={classes} countriesList={countriesList} />
-					<ShippingInfo classes={classes} />
+					<BillingDetails classes={classes} />
+					<ShippingInfo classes={classes} countriesList={countriesList} />
 					<PaymentDetails classes={classes} />
 
 					<Redirect componentType="button" type="submit">
