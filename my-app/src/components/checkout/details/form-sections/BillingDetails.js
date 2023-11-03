@@ -54,7 +54,9 @@ const BillingDetails = ({ classes }) => {
 			<h2 className={classes.h2}>Billing details</h2>
 
 			<div className={classes['inputs-container']}>
-				{errors.name && isTouched.name && <p className={classes.error}>Your name should contain at least 3 letters!</p>}
+				{errors.name && isTouched.name && (
+					<p className={classes.error}>Your name should contain at least 3 characters!</p>
+				)}
 				<label htmlFor="name" className={classes.label}>
 					Name
 				</label>
@@ -65,7 +67,7 @@ const BillingDetails = ({ classes }) => {
 					placeholder="Enter name..."
 					className={classes['text-input']}
 					value={nameValue}
-					onChange={e => nameHandler(e)}
+					onChange={nameHandler}
 					onBlur={isTouchedNameHandler}
 				/>
 			</div>
@@ -82,7 +84,7 @@ const BillingDetails = ({ classes }) => {
 					placeholder="Enter email..."
 					className={classes['text-input']}
 					value={emailValue}
-					onChange={e => emailHandler(e)}
+					onChange={emailHandler}
 					onBlur={isTouchedEmailHandler}
 				/>
 			</div>
@@ -101,7 +103,7 @@ const BillingDetails = ({ classes }) => {
 					maxLength="13"
 					className={classes['text-input']}
 					value={telValue}
-					onChange={e => telHandler(e)}
+					onChange={telHandler}
 					onBlur={isTouchedTelHandler}
 				/>
 			</div>
