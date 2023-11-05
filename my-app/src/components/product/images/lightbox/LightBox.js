@@ -1,4 +1,6 @@
 import { createPortal } from 'react-dom';
+import { motion } from 'framer-motion';
+
 import Modal from '../../../ui/modals/Modal';
 import MainImageCarousel from '../carousel/MainImageCarousel';
 import ImagesThubmnails from '../thumbnails/ImagesThumbnails';
@@ -17,7 +19,11 @@ const Lightbox = ({ urls, carouselHandler, alts, imgIndex, setActualImageIndex, 
 		<>
 			<Modal onClick={liftHideLightBoxHandler} />
 			{createPortal(
-				<section className={classes.lightbox}>
+				<motion.section
+					className={classes.lightbox}
+					initial={{ opacity: 0, y: '-30%', x: '-50%' }}
+					animate={{ opacity: 1, y: '-50%', x: '-50%' }}
+					exit={{ opacity: 0, y: '-30%', x: '-50%' }}>
 					<button
 						type="button"
 						aria-label="Close lightbox"
@@ -36,7 +42,7 @@ const Lightbox = ({ urls, carouselHandler, alts, imgIndex, setActualImageIndex, 
 						/>
 					</div>
 					<ImagesThubmnails urls={urls} alts={alts} setActualImageIndex={setActualImageIndex} imgIndex={imgIndex} />
-				</section>,
+				</motion.section>,
 				document.getElementById('lightbox'),
 			)}
 		</>

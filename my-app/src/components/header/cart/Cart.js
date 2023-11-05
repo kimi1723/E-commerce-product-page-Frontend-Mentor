@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
+
 import RemoveItemBtn from './RemoveItemBtn';
 import getDecimals from '../../../utils/getDecimals';
 
@@ -48,10 +50,14 @@ const Cart = ({ hideCart }) => {
 		);
 	}
 	return (
-		<section className={classes.cart}>
+		<motion.section
+			className={classes.cart}
+			initial={{ opacity: 0, y: -30, x: '-50%' }}
+			animate={{ opacity: 1, y: 0, x: '-50%' }}
+			exit={{ opacity: 0, y: -30, x: '-50%' }}>
 			<h2 className={classes.heading}>Cart</h2>
 			{content}
-		</section>
+		</motion.section>
 	);
 };
 

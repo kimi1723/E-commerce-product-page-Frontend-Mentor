@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import ImagesThubmnails from './thumbnails/ImagesThumbnails';
 import cacheImages from '../../../utils/cacheImages';
 import Lightbox from './lightbox/LightBox';
@@ -30,25 +31,26 @@ const ImagesGallery = ({ urls, alts, isMobile }) => {
 	};
 
 	const hideLightBoxHandler = () => {
-		setIsLightBoxVisible(false);
-	};
-
-	const showLightBoxHandler = () => {
-		!isMobile && setIsLightBoxVisible(true);
-	};
+			setIsLightBoxVisible(false);
+		},
+		showLightBoxHandler = () => {
+			!isMobile && setIsLightBoxVisible(true);
+		};
 
 	return (
 		<section className={classes.gallery}>
-			{isLightBoxVisible && !isMobile && (
-				<Lightbox
-					urls={urls}
-					carouselHandler={carouselHandler}
-					alts={alts}
-					imgIndex={actualImageIndex}
-					setActualImageIndex={setActualImageIndex}
-					hideLightBox={hideLightBoxHandler}
-				/>
-			)}
+			<AnimatePresence>
+				{isLightBoxVisible && !isMobile && (
+					<Lightbox
+						urls={urls}
+						carouselHandler={carouselHandler}
+						alts={alts}
+						imgIndex={actualImageIndex}
+						setActualImageIndex={setActualImageIndex}
+						hideLightBox={hideLightBoxHandler}
+					/>
+				)}
+			</AnimatePresence>
 			<MainImageCarousel
 				urls={urls}
 				showCarousel={isMobile}

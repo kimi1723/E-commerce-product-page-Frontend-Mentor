@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { AnimatePresence } from 'framer-motion';
 import DesktopNavigation from '../navigation/desktop/DesktopNavigation';
 import MobileNavigation from '../navigation/mobile/MobileNavigation';
 import Cart from './cart/Cart';
@@ -86,7 +87,7 @@ const Header = () => {
 							{<CartItemsCounted />}
 						</div>
 					</button>
-					{isCartVisible && <Cart hideCart={hideCartHandler} />}
+					<AnimatePresence>{isCartVisible && <Cart hideCart={hideCartHandler} />}</AnimatePresence>
 				</div>
 				<button type="button" className={classes['avatar-btn']} aria-label="profile" onClick={showProfileHandler}>
 					<img src={avatarImg} alt="" className={classes['avatar-img']} />

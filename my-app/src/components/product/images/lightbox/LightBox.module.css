@@ -9,7 +9,6 @@
 	height: clamp(200px, 70vh, 1000px);
 	max-width: 80vw;
 	border-radius: 15px;
-	transform: translate(-50%, -50%);
 	z-index: 9999;
 }
 
