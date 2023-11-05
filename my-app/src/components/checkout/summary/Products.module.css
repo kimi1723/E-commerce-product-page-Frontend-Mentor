@@ -57,7 +57,7 @@
 @media (min-width: 992px) {
 	.list {
 		row-gap: 2.5em;
-		width: calc(100% / 3 * 2);
+		width: 60%;
 	}
 
 	.product-details {

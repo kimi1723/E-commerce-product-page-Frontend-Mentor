@@ -10,7 +10,7 @@ import LoaderSpinner from '../components/ui/LoaderSpinner';
 
 const ProductPage = () => {
 	const { productData } = useLoaderData();
-
+	console.log(productData);
 	return (
 		<Suspense fallback={<LoaderSpinner title="product" />}>
 			<Await resolve={productData}>
@@ -27,7 +27,7 @@ const ProductPage = () => {
 	);
 };
 
-export const loader = async params => {
+export const productLoader = async params => {
 	const id = params.id;
 	const productData = await getProductsData(`/products/${id}`);
 	const imagesUrls = await getImages(id, 'all');
@@ -42,9 +42,9 @@ export const loader = async params => {
 	return { productDetails, imagesData };
 };
 
-export const productLoader = ({ params, request }) => {
+export const loader = ({ params, request }) => {
 	return defer({
-		productData: loader(params),
+		productData: productLoader(params),
 	});
 };
 

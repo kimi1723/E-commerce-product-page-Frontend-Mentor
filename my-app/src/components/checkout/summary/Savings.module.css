@@ -25,6 +25,7 @@
 	}
 
 	.savings {
+		margin-top: 0;
 		position: relative;
 	}
 }

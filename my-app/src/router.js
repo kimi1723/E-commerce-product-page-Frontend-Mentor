@@ -1,67 +1,157 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
 
-import RootPage from './pages/Root';
-import HomePage from './pages/nav-sections/Home';
-import ErrorPage from './pages/Error';
-import ProductPage from './pages/Product';
-import CheckoutPage from './pages/checkout/Checkout';
-import CollectionsPage from './pages/nav-sections/collections/Collections';
-import MenPage from './pages/nav-sections/Men';
-import WomenPage from './pages/nav-sections/Women';
-import AboutPage from './pages/nav-sections/About';
-import ContactPage from './pages/nav-sections/Contact';
-import FallPage from './pages/nav-sections/collections/Fall';
-import SpringPage from './pages/nav-sections/collections/Spring';
-import CheckoutSummary from './pages/checkout/CheckoutSummary';
-import CheckoutDetails from './pages/checkout/CheckoutDetails';
+import LoaderSpinner from './components/ui/LoaderSpinner';
 
-import { productLoader } from './pages/Product';
-import { loader as homeProductsLoader } from './pages/nav-sections/Home';
-import { loader as menProductsLoader } from './pages/nav-sections/Men';
-import { loader as womenProductsLoader } from './pages/nav-sections/Women';
-import { loader as fallProductsLoader } from './pages/nav-sections/collections/Fall';
-import { loader as springProductsLoader } from './pages/nav-sections/collections/Spring';
-import { loader as checkoutDetailsLoader } from './pages/checkout/CheckoutDetails';
+import { action as checkoutAction } from './pages/checkout/CheckoutDone';
+
+const RootPageLazy = lazy(() => import('./pages/Root'));
+const ErrorPageLazy = lazy(() => import('./pages/Error'));
+const HomePageLazy = lazy(() => import('./pages/nav-sections/Home'));
+const ProductPageLazy = lazy(() => import('./pages/Product'));
+const CollectionsPageLazy = lazy(() => import('./pages/nav-sections/collections/Collections'));
+const FallPageLazy = lazy(() => import('./pages/nav-sections/collections/Fall'));
+const SpringPageLazy = lazy(() => import('./pages/nav-sections/collections/Spring'));
+const MenPageLazy = lazy(() => import('./pages/nav-sections/Men'));
+const WomenPageLazy = lazy(() => import('./pages/nav-sections/Women'));
+const AboutPageLazy = lazy(() => import('./pages/nav-sections/About'));
+const ContactPageLazy = lazy(() => import('./pages/nav-sections/Contact'));
+const CheckoutPageLazy = lazy(() => import('./pages/checkout/Checkout'));
+const CheckoutDetailsLazy = lazy(() => import('./pages/checkout/CheckoutDetails'));
+const CheckoutDoneLazy = lazy(() => import('./pages/checkout/CheckoutDone'));
+const CheckoutSummaryLazy = lazy(() => import('./pages/checkout/CheckoutSummary'));
 
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <RootPage />,
-		errorElement: <ErrorPage />,
+		element: (
+			<Suspense fallback={<LoaderSpinner />}>
+				<RootPageLazy />
+			</Suspense>
+		),
+		errorElement: (
+			<Suspense fallback={<LoaderSpinner />}>
+				<ErrorPageLazy />
+			</Suspense>
+		),
 		children: [
-			{ index: true, element: <HomePage />, loader: homeProductsLoader },
+			{
+				index: true,
+				element: (
+					<Suspense fallback={<LoaderSpinner />}>
+						<HomePageLazy />
+					</Suspense>
+				),
+				loader: () => import('./pages/nav-sections/Home').then(module => module.loader()),
+			},
 			{
 				path: '/products/:id',
-				element: <ProductPage />,
-				loader: productLoader,
+				element: (
+					<Suspense fallback={<LoaderSpinner />}>
+						<ProductPageLazy />
+					</Suspense>
+				),
+				loader: meta => import('./pages/Product').then(module => module.loader(meta)),
 			},
 			{
 				path: '/collections',
-
 				children: [
-					{ index: true, element: <CollectionsPage /> },
+					{
+						index: true,
+						element: (
+							<Suspense fallback={<LoaderSpinner />}>
+								<CollectionsPageLazy />
+							</Suspense>
+						),
+					},
 					{
 						path: 'fall',
-						element: <FallPage />,
-						loader: fallProductsLoader,
+						element: (
+							<Suspense fallback={<LoaderSpinner />}>
+								<FallPageLazy />
+							</Suspense>
+						),
+						loader: () => import('./pages/nav-sections/collections/Fall').then(module => module.loader()),
 					},
 					{
 						path: 'spring',
-						element: <SpringPage />,
-						loader: springProductsLoader,
+						element: (
+							<Suspense falllback={<LoaderSpinner />}>
+								<SpringPageLazy />
+							</Suspense>
+						),
+						loader: () => import('./pages/nav-sections/collections/Spring').then(module => module.loader()),
 					},
 				],
 			},
-			{ path: '/men', element: <MenPage />, loader: menProductsLoader },
-			{ path: '/women', element: <WomenPage />, loader: womenProductsLoader },
-			{ path: '/about', element: <AboutPage /> },
-			{ path: '/contact', element: <ContactPage /> },
+			{
+				path: '/men',
+				element: (
+					<Suspense fallback={<LoaderSpinner />}>
+						<MenPageLazy />
+					</Suspense>
+				),
+				loader: () => import('./pages/nav-sections/Men').then(module => module.loader()),
+			},
+			{
+				path: '/women',
+				element: (
+					<Suspense fallback={<LoaderSpinner />}>
+						<WomenPageLazy />
+					</Suspense>
+				),
+				loader: () => import('./pages/nav-sections/Women').then(module => module.loader()),
+			},
+			{
+				path: '/about',
+				element: (
+					<Suspense fallback={<LoaderSpinner />}>
+						<AboutPageLazy />
+					</Suspense>
+				),
+			},
+			{
+				path: '/contact',
+				element: (
+					<Suspense fallback={<LoaderSpinner />}>
+						<ContactPageLazy />
+					</Suspense>
+				),
+			},
 			{
 				path: '/checkout',
-				element: <CheckoutPage />,
+				element: (
+					<Suspense fallback={<LoaderSpinner />}>
+						<CheckoutPageLazy />
+					</Suspense>
+				),
 				children: [
-					{ index: true, element: <CheckoutSummary /> },
-					{ path: 'details', element: <CheckoutDetails />, loader: checkoutDetailsLoader },
+					{
+						index: true,
+						element: (
+							<Suspense fallback={<LoaderSpinner />}>
+								<CheckoutSummaryLazy />
+							</Suspense>
+						),
+					},
+					{
+						path: 'details',
+						element: (
+							<Suspense fallback={<LoaderSpinner />}>
+								<CheckoutDetailsLazy />
+							</Suspense>
+						),
+						loader: () => import('./pages/checkout/CheckoutDetails').then(module => module.loader()),
+					},
+					{
+						path: 'done',
+						element: (
+							<Suspense fallback={<LoaderSpinner />}>
+								<CheckoutDoneLazy />
+							</Suspense>
+						),
+						action: checkoutAction,
+					},
 				],
 			},
 		],

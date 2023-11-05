@@ -33,6 +33,7 @@ const About = () => {
 						<li>Deffering loaders and showing loading state</li>
 						<li>Splitting functions to make them reusable (e.g. for loaders)</li>
 						<li>A little bit about folder structure paradigms</li>
+						<li>React Select</li>
 					</ul>
 				</article>
 
