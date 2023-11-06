@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import cacheImages from '../../../utils/cacheImages';
 import getDecimals from '../../../utils/getDecimals';
 
@@ -36,8 +37,14 @@ const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, d
 	};
 
 	return (
-		<li className={classes.li}>
+		<motion.li
+			initial={{ opacity: 0, scale: 0.5 }}
+			animate={{ opacity: 1, scale: 1 }}
+
+			transition={{ duration: 0.5, type: 'spring', bounce: 0.25 }}
+			className={classes.li}>
 			<Link
+			
 				className={classes.link}
 				to={linkPath}
 				onMouseOver={nextImageHandler}
@@ -60,7 +67,7 @@ const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, d
 					</p>
 				</section>
 			</Link>
-		</li>
+		</motion.li>
 	);
 };
 

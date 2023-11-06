@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../../store/cart-slice';
+import { motion } from 'framer-motion';
 
 import classes from './AddToCartBtn.module.css';
 import cartImg from '../../../assets/images/white-icon-cart.svg';
@@ -19,10 +20,16 @@ const AddToCartBtn = ({ productData: { id, annotation, discount, name, price, qu
 	};
 
 	return (
-		<button className={classes['add-to-cart-btn']} onClick={updateCartDataHandler}>
+		<motion.button
+			whileHover={{ scale: 1.025 }}
+			whileFocus={{ scale: 1.025 }}
+			whileTap={{ scale: 1 }}
+			transition={{ type: 'spring', stiffness: 500 }}
+			className={classes['add-to-cart-btn']}
+			onClick={updateCartDataHandler}>
 			<img src={cartImg} alt="" className={classes['cart-icon']} />
 			Add to cart
-		</button>
+		</motion.button>
 	);
 };
 
