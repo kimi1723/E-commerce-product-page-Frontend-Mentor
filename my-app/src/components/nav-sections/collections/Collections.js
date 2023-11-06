@@ -16,13 +16,14 @@ const Collections = () => {
 	return (
 		<main className={classes.main}>
 			<h1 className={classes.title}>Collections</h1>
-			<section className={classes.collections}>
+			<motion.section className={classes.collections}>
 				<Link className={classes.link} to="fall">
 					<motion.div
 						variants={variants}
 						initial="initial"
 						animate="animate"
 						whileHover="hover"
+						// transition="transition"
 						transition="transition">
 						<div className={classes['hero-bg']}></div>
 						<p className={classes.name}>Fall</p>
@@ -36,13 +37,13 @@ const Collections = () => {
 						initial="initial"
 						animate="animate"
 						whileHover="hover"
-						transition="transition">
+						transition={{ duration: 1, type: 'spring', bounce: 0.25, delay: 0.05 }}>
 						<div className={classes['hero-bg']}></div>
 						<p className={classes.name}>Spring</p>
 						<img src={spring} className={classes.img} alt="" />
 					</motion.div>
 				</Link>
-			</section>
+			</motion.section>
 		</main>
 	);
 };

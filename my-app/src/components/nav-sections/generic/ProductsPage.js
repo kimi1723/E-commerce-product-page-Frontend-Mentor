@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import Product from './Product';
 import PageContent from '../../ui/wrappers/PageContent';
 import classes from './ProductsPage.module.css';
@@ -22,7 +23,15 @@ const ProductsPage = ({ productsData, title }) => {
 	} else {
 		const products = productsData.map(product => <Product key={product.id} product={product} />);
 
-		return <PageContent title={title}>{<ul className={classes.ul}>{products}</ul>} </PageContent>;
+		return (
+			<PageContent title={title}>
+				{
+					<motion.ul variants={{ transition: { staggerChildren: 0.05 } }} className={classes.ul}>
+						{products}
+					</motion.ul>
+				}{' '}
+			</PageContent>
+		);
 	}
 };
 
