@@ -1,5 +1,6 @@
 import Product from './Product';
 import PageContent from '../../ui/wrappers/PageContent';
+import { motion } from 'framer-motion';
 import classes from './ProductsPage.module.css';
 
 const ProductsPage = ({ productsData, title }) => {
@@ -22,7 +23,21 @@ const ProductsPage = ({ productsData, title }) => {
 	} else {
 		const products = productsData.map(product => <Product key={product.id} product={product} />);
 
-		return <PageContent title={title}>{<ul className={classes.ul}>{products}</ul>} </PageContent>;
+		return (
+			<PageContent title={title}>
+				<motion.ul
+					variants={{
+						hidden: { opacity: 0 },
+						visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+					}}
+					initial="hidden"
+					exit="hidden"
+					animate="visible"
+					className={classes.ul}>
+					{products}
+				</motion.ul>
+			</PageContent>
+		);
 	}
 };
 
