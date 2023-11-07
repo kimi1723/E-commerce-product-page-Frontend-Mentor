@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import Product from './Product';
 import PageContent from '../../ui/wrappers/PageContent';
-import { motion } from 'framer-motion';
+
 import classes from './ProductsPage.module.css';
 
 const ProductsPage = ({ productsData, title }) => {
