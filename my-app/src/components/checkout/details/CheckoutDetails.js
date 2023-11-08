@@ -1,5 +1,6 @@
-import { Form } from 'react-router-dom';
 import { useState } from 'react';
+import { Form } from 'react-router-dom';
+
 import BillingDetails from './form-sections/BillingDetails';
 import ShippingInfo from './form-sections/ShippingInfo';
 import PaymentDetails from './form-sections/PaymentDetails';

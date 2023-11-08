@@ -1,9 +1,14 @@
-.redirect {
+.div {
 	align-self: flex-end;
-	display: block;
-	padding: 0.6em 0;
 	width: 100%;
 	max-width: 400px;
+}
+
+.link,
+.btn {
+	padding: 0.6em 0;
+	display: block;
+	width: 100%;
 	font-size: 1.3rem;
 	font-weight: bold;
 	text-align: center;
@@ -11,23 +16,26 @@
 	color: hsl(223, 64%, 98%);
 	text-shadow: 0 0 1px #000;
 	background-color: hsl(220, 13%, 13%);
+	border-radius: 8px;
 	transition: background-color 0.3s, box-shadow 0.3s;
 	cursor: pointer;
 }
 
-.redirect:hover,
-.redirect:focus {
+.link:hover,
+.link:focus,
+.btn:hover,
+.btn:focus {
 	background-color: hsl(26, 100%, 55%);
 	box-shadow: 0 1px 2px 1px hsl(25, 100%, 94%);
 }
 
-.redirect:disabled {
+.btn:disabled {
 	background-color: hsl(219, 9%, 45%);
 	cursor: not-allowed;
 }
 
-.redirect:disabled:hover,
-.redirect:disabled:focus {
+.btn:disabled:hover,
+.btn:disabled:focus {
 	background-color: hsl(220, 14%, 75%);
 	box-shadow: 0 1px 2px 1px hsl(220, 14%, 75%);
 }
