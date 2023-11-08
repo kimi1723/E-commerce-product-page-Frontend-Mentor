@@ -15,21 +15,22 @@ const useSendCartData = async () => {
 		const sendData = async () => {
 			if (i < 2) {
 				i++;
-			} else {
-				try {
-					const id = await getUid();
-					await set(ref(database, `/userCarts/${id}`), data);
-				} catch (error) {
-					dispatch(
-						errorActions.setError({
-							isError: true,
-							message: {
-								content: 'Unable to send cart data',
-								error: error.code || error.message,
-							},
-						}),
-					);
-				}
+				return;
+			}
+
+			try {
+				const id = await getUid();
+				await set(ref(database, `/userCarts/${id}`), data);
+			} catch (error) {
+				dispatch(
+					errorActions.setError({
+						isError: true,
+						message: {
+							content: 'Unable to send cart data',
+							error: error.code || error.message,
+						},
+					}),
+				);
 			}
 		};
 

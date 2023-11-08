@@ -1,13 +1,13 @@
-import { useLoaderData } from 'react-router-dom';
 import { useActionData } from 'react-router-dom';
+
 
 import CheckoutSuccessful from '../../components/checkout/successful/CheckoutSuccessful';
 
 const CheckoutSuccessfulPage = () => {
-	const data = useActionData();
+	const userData = useActionData();
 
 
-	return <CheckoutSuccessful data={data}/>;
+	return <CheckoutSuccessful userData={userData} />;
 };
 
 export const action = async ({ request }) => {

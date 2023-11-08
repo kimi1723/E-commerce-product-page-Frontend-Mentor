@@ -1,6 +1,7 @@
 import { RouterProvider } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { detectDeviceTypeActions } from './store/detectDeviceType-slice';
+import { useEffect } from 'react';
 
 import router from './router';
 import useCartData from './hooks/useCartData';
@@ -12,13 +13,15 @@ function App() {
 	useSendCartData();
 	useCartData();
 
-	const detectDeviceHandler = () => {
-		const isMobile = window.innerWidth < 992 ? true : false;
+	useEffect(() => {
+		const detectDeviceHandler = () => {
+			const isMobile = window.innerWidth < 992 ? true : false;
 
-		dispatch(detectDeviceTypeActions.detectDeviceType(isMobile));
-	};
+			dispatch(detectDeviceTypeActions.detectDeviceType(isMobile));
+		};
 
-	window.addEventListener('resize', detectDeviceHandler);
+		window.addEventListener('resize', detectDeviceHandler);
+	}, []);
 
 	return <RouterProvider router={router}></RouterProvider>;
 }
