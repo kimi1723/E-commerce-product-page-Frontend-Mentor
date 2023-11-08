@@ -10,6 +10,7 @@
 	margin-bottom: 1em;
 	font-size: 2.4rem;
 	border-bottom: 1px solid hsl(26, 100%, 55%);
+	text-align: center;
 }
 
 @media (min-width: 768px) {

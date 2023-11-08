@@ -33,7 +33,7 @@ const Details = ({ countriesList }) => {
 			</header>
 
 			<main className={classes.main}>
-				<Form method="post" className={classes.form} action="/checkout/successful">
+				<Form method="post" className={classes.form} action="/checkout-successful">
 					<BillingDetails classes={classes} setAllErrors={allErrorsHandler} />
 					<ShippingInfo classes={classes} countriesList={countriesList} setAllErrors={allErrorsHandler} />
 					<PaymentDetails classes={classes} setAllErrors={allErrorsHandler} />

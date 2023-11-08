@@ -1,0 +1,19 @@
+.div {
+	margin-bottom: 0.5em;
+	display: flex;
+	gap: 0.5em;
+}
+
+.list-wrapper {
+	margin-bottom: 2em;
+	width: 100%;
+}
+
+.h2 {
+	font-size: 1.6rem;
+	margin-bottom: 0.75em;
+}
+
+.title {
+	font-weight: bold;
+}

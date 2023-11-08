@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import useValidation from '../../../../hooks/useValidation';
 
 const BillingDetails = ({ classes, setAllErrors }) => {
-	const [nameValue, setNameValue] = useState('');
-	const [emailValue, setEmailValue] = useState('');
-	const [telValue, setTelValue] = useState('');
+	const [nameValue, setNameValue] = useState('Name');
+	const [emailValue, setEmailValue] = useState('email@gmail.com');
+	const [telValue, setTelValue] = useState('123456789');
 	const [errors, setErrors] = useState({
 		name: true,
 		email: true,

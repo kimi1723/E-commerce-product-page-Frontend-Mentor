@@ -143,16 +143,16 @@ const router = createBrowserRouter([
 						),
 						loader: () => import('./pages/checkout/CheckoutDetails').then(module => module.loader()),
 					},
-					{
-						path: 'successful',
-						element: (
-							<Suspense fallback={<LoaderSpinner />}>
-								<CheckoutSuccessfulLazy />
-							</Suspense>
-						),
-						action: checkoutAction,
-					},
 				],
+			},
+			{
+				path: 'checkout-successful',
+				element: (
+					<Suspense fallback={<LoaderSpinner />}>
+						<CheckoutSuccessfulLazy />
+					</Suspense>
+				),
+				action: checkoutAction,
 			},
 		],
 	},
