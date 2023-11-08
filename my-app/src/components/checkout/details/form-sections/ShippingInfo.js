@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useValidation from '../../../../hooks/useValidation';
 
 import Select from 'react-select';
 
-const ShippingInfo = ({ classes, countriesList }) => {
+const ShippingInfo = ({ classes, countriesList, setAllErrors }) => {
 	const [addressValue, setAddressValue] = useState('');
 	const [zipCodeValue, setZipCodeValue] = useState('');
 	const [cityValue, setCityValue] = useState('');
 	const [countryValue, setCountryValue] = useState('');
 	const [errors, setErrors] = useState({
-		address: false,
-		zipCode: false,
-		city: false,
-		country: false,
+		address: true,
+		zipCode: true,
+		city: true,
+		country: true,
 	});
 	const [isTouched, setIsTouched] = useState({
 		address: false,
@@ -25,6 +25,10 @@ const ShippingInfo = ({ classes, countriesList }) => {
 	useValidation(zipCodeValue, 'zipCode', isTouched.zipCode, setErrors);
 	useValidation(cityValue, 'city', isTouched.city, setErrors);
 	useValidation(countryValue, 'country', isTouched.country, setErrors);
+
+	useEffect(() => {
+		setAllErrors(errors);
+	}, [errors]);
 
 	const customStyles = {
 		option: (styles, state) => ({
@@ -60,7 +64,6 @@ const ShippingInfo = ({ classes, countriesList }) => {
 			isTouchedCityHandler();
 		},
 		countryHandler = e => {
-			console.log(e.value);
 			setCountryValue(e.value);
 			isTouchedCountryHandler();
 		};
@@ -142,7 +145,7 @@ const ShippingInfo = ({ classes, countriesList }) => {
 					placeholder="Enter city..."
 					className={classes['text-input']}
 					onChange={cityHandler}
-					blur={isTouchedCityHandler}
+					onBlur={isTouchedCityHandler}
 					value={cityValue}
 				/>
 			</div>

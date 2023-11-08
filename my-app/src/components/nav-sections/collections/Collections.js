@@ -7,8 +7,8 @@ import spring from '../../../assets/images/collections/spring.jpg';
 
 const Collections = () => {
 	const variants = {
-		initial: { scale: 0.5 },
-		animate: { scale: 1 },
+		hidden: { scale: 0.5 },
+		visible: { scale: 1 },
 		hover: { scale: 1.05 },
 		transition: { duration: 1, type: 'spring', bounce: 0.25 },
 	};
@@ -18,13 +18,7 @@ const Collections = () => {
 			<h1 className={classes.title}>Collections</h1>
 			<motion.section className={classes.collections}>
 				<Link className={classes.link} to="fall">
-					<motion.div
-						variants={variants}
-						initial="initial"
-						animate="animate"
-						whileHover="hover"
-						// transition="transition"
-						transition="transition">
+					<motion.div variants={variants} initial="hidden" animate="visible" whileHover="hover" transition="transition">
 						<div className={classes['hero-bg']}></div>
 						<p className={classes.name}>Fall</p>
 						<img src={fall} className={classes.img} alt="" />
@@ -32,12 +26,7 @@ const Collections = () => {
 				</Link>
 
 				<Link className={classes.link} to="spring">
-					<motion.div
-						variants={variants}
-						initial="initial"
-						animate="animate"
-						whileHover="hover"
-						transition={{ duration: 1, type: 'spring', bounce: 0.25, delay: 0.05 }}>
+					<motion.div variants={variants} initial="hidden" animate="visible" whileHover="hover" transition="transition">
 						<div className={classes['hero-bg']}></div>
 						<p className={classes.name}>Spring</p>
 						<img src={spring} className={classes.img} alt="" />

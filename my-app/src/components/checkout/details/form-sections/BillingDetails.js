@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useValidation from '../../../../hooks/useValidation';
 
-const BillingDetails = ({ classes }) => {
+const BillingDetails = ({ classes, setAllErrors }) => {
 	const [nameValue, setNameValue] = useState('');
 	const [emailValue, setEmailValue] = useState('');
 	const [telValue, setTelValue] = useState('');
 	const [errors, setErrors] = useState({
-		name: false,
-		email: false,
-		tel: false,
+		name: true,
+		email: true,
+		tel: true,
 	});
 	const [isTouched, setIsTouched] = useState({
 		name: false,
@@ -19,6 +19,10 @@ const BillingDetails = ({ classes }) => {
 	useValidation(nameValue, 'name', isTouched.name, setErrors);
 	useValidation(emailValue, 'email', isTouched.email, setErrors);
 	useValidation(telValue, 'tel', isTouched.tel, setErrors);
+
+	useEffect(() => {
+		setAllErrors(errors);
+	}, [errors]);
 
 	const nameHandler = e => {
 			setNameValue(e.target.value);

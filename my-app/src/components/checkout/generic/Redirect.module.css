@@ -11,13 +11,23 @@
 	color: hsl(223, 64%, 98%);
 	text-shadow: 0 0 1px #000;
 	background-color: hsl(220, 13%, 13%);
-	border: 2px solid hsl(220, 13%, 13%);
-	transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+	transition: background-color 0.3s, box-shadow 0.3s;
+	cursor: pointer;
 }
 
 .redirect:hover,
 .redirect:focus {
+	background-color: hsl(26, 100%, 55%);
+	box-shadow: 0 1px 2px 1px hsl(25, 100%, 94%);
+}
+
+.redirect:disabled {
 	background-color: hsl(219, 9%, 45%);
-	border: 2px solid hsl(219, 9%, 45%);
-	box-shadow: 0 1px 2px 1px hsl(219, 9%, 45%);
+	cursor: not-allowed;
+}
+
+.redirect:disabled:hover,
+.redirect:disabled:focus {
+	background-color: hsl(220, 14%, 75%);
+	box-shadow: 0 1px 2px 1px hsl(220, 14%, 75%);
 }

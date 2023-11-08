@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import classes from './Redirect.module.css';
 
-const Redirect = ({ componentType, children, ...props }) => {
+const Redirect = ({ componentType, children, validated, ...props }) => {
 	if (componentType === 'button') {
 		return (
 			<button {...props} className={classes.redirect}>
