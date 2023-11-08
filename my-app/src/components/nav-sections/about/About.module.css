@@ -4,6 +4,11 @@
 
 .h2 {
 	font-size: inherit;
+	margin-bottom: 0.5em;
+}
+
+article:nth-of-type(2) .h2 {
+	margin-bottom: 0.2em;
 }
 
 .article {
@@ -36,4 +41,9 @@
 
 .bold {
 	font-weight: bold;
+}
+
+.br::before {
+	content: '\a \a';
+	white-space: pre;
 }

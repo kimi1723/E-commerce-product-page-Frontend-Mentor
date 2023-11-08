@@ -3,6 +3,7 @@ import { errorActions } from '../../../store/error-slice';
 import { useRef, useState } from 'react';
 import { ref, get } from 'firebase/database';
 import { database } from '../../../firebaseConfig';
+import { AnimatePresence } from 'framer-motion';
 import ModalContent from '../../ui/modals/ModalContent';
 
 import classes from './DiscountForm.module.css';
@@ -66,7 +67,10 @@ const DiscountForm = ({ getDiscount }) => {
 					Add
 				</button>
 			</form>
-			{modalProperties.isVisible && <ModalContent content={modalProperties.content} onClick={hideModalHandler} />}
+			<AnimatePresence>
+				{' '}
+				{modalProperties.isVisible && <ModalContent content={modalProperties.content} onClick={hideModalHandler} />}
+			</AnimatePresence>
 		</>
 	);
 };

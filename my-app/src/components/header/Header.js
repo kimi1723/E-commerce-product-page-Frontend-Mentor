@@ -92,7 +92,7 @@ const Header = () => {
 				<button type="button" className={classes['avatar-btn']} aria-label="profile" onClick={showProfileHandler}>
 					<img src={avatarImg} alt="" className={classes['avatar-img']} />
 				</button>
-				{isProfileVisible && <Profile hideProfile={hideProfileHandler} />}
+				<AnimatePresence>{isProfileVisible && <Profile hideProfile={hideProfileHandler} />}</AnimatePresence>
 			</header>
 		</>
 	);

@@ -11,12 +11,12 @@ const About = () => {
 			<article className={classes.main}>
 				<article>
 					<h2 className={classes.h2}>
-						At first it was only a project from Frontend Mentor in which I wanted to practice
-						<strong> React Router </strong> and <strong> Redux (React Redux, Redux Toolkit)</strong>.
+						At first it was only a project from Frontend Mentor in which I wanted to practice mainly
+						<strong> React Router </strong> and a little bit of <strong> Redux (React Redux, Redux Toolkit)</strong>.
 					</h2>
 					In order to do this, I would need to expand the project a little, e.g. create a cashout section and the cart
 					usable. I was looking forward to it and going along the way of learning these technologies I have found myself
-					in making the project much bigger than expected at first glance.{' '}
+					in making the project much bigger than expected at first glance.
 				</article>
 
 				<article className={classes.article}>
@@ -27,24 +27,39 @@ const About = () => {
 					<ul className={classes.list}>
 						<li>
 							Downloading plain json data from <span className={classes.bold}>Firebase</span> database and images from
-							storage
+							storage(using their library)
 						</li>
-						<li>Making paths and loaders</li>
+						<li>Creating paths and loaders</li>
 						<li>Deffering loaders and showing loading state</li>
-						<li>Splitting functions to make them reusable (e.g. for loaders)</li>
-						<li>A little bit about folder structure paradigms</li>
+						<li>Better understanding of splitting functions to make them reusable (e.g. for loaders)</li>
+						<li>A little bit about folder structure paradigms and caching(images in this case)</li>
 						<li>React Select</li>
+						<li>Lazy loading</li>
+						<li>Framer Motion</li>
 					</ul>
 				</article>
 
 				<article className={classes.article}>
-					<h2 className={classes.h2}>For the things I would like to improve the project on:</h2> making the site load
-					faster would be a good start. I have thought of downloading the content from{' '}
+					<h2 className={classes.h2}>
+						It was my first big project using a JavaScript library, and probably the biggest I have made thus far, but I
+						am pretty contnet with the results as I have built more than I initially assumed. Of course though, there
+						are a lot of things I need to improve on. Some of them that I would like to point out:
+					</h2>{' '}
+					Making the site load faster would be a good start. I have thought of downloading the content from{' '}
 					<span className={classes.bold}>Firebase</span> after the content is filtered, contrary to how it works right
-					now but I am not too deep into learning more about it right now. Also making the images adjusted to
+					now but I am not too deep into learning more about <span className={classes.bold}>Firebase</span> right now.
+					Caching more of the data downloaded would also be a great improvement.
+					<span className={classes.br}>Making </span>
+					the images adjusted to
 					<span className={classes.bold}> mobile/desktop</span> in terms of size and file extension would be nice, but
 					images provided by <span className={classes.bold}>Frontend Mentor</span> are only in one size, so{' '}
 					<strong>I wanted to stick to it and just focus on React and other libraries.</strong>
+					<span className={`${classes.bold} ${classes.br}`}> Folder structure </span>
+					is also something that would use some insight and the <span className={classes.bold}>components</span> that
+					are shared accross the whole page and the way they are built, but at first
+					<span className={classes.bold}> I was not prepared for such a big project</span> I later on realized it is,
+					but I may refactor the code later, because right now I would rather focus on learning more of{' '}
+					<span className={classes.bold}>React</span>.
 				</article>
 
 				<footer className={classes.footer}>
@@ -59,7 +74,5 @@ const About = () => {
 		</PageContent>
 	);
 };
-
-// article(ogolnie semantics) + styles + moze z firebase pobieranie tego
 
 export default About;
