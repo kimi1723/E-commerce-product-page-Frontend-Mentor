@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 
 import classes from './Redirect.module.css';
 
-const Redirect = ({ componentType, children, validated, ...props }) => {
-	const scale = 1.025;
+const Redirect = ({ componentType, children, isDisabled, ...props }) => {
+	const scale = isDisabled ? 0.975 : 1.025;
 
 	const div = children => (
 		<motion.div
@@ -18,7 +18,7 @@ const Redirect = ({ componentType, children, validated, ...props }) => {
 
 	if (componentType === 'button') {
 		return div(
-			<button className={classes.btn} {...props}>
+			<button className={classes.btn} disabled={isDisabled} {...props}>
 				{children}
 			</button>,
 		);

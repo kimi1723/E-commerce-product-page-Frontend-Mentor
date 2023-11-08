@@ -38,7 +38,7 @@ const Details = ({ countriesList }) => {
 					<ShippingInfo classes={classes} countriesList={countriesList} setAllErrors={allErrorsHandler} />
 					<PaymentDetails classes={classes} setAllErrors={allErrorsHandler} />
 
-					<Redirect componentType="button" type="submit" disabled={isButtonDisabled}>
+					<Redirect componentType="button" type="submit" isDisabled={isButtonDisabled}>
 						Next
 					</Redirect>
 				</Form>

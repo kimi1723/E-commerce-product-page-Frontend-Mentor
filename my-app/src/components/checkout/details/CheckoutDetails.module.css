@@ -89,6 +89,7 @@
 	width: calc(100% / 3 - 1.5em);
 	max-width: 150px;
 	z-index: 0;
+	transition: scale 0.3s;
 }
 
 .hero-bg {
@@ -145,16 +146,12 @@
 	font-size: 1.05rem;
 }
 
-.radio-inputs-container:has(.radio-input:checked):focus .radio-input-label,
-.radio-inputs-container:has(.radio-input:checked):hover .radio-input-label {
-	font-size: 1.15rem;
-	color: hsl(26, 100%, 70%);
+.radio-inputs-container:has(.radio-input:checked) {
+	scale: 1.1;
 }
 
 .radio-input:checked + .label {
-	text-shadow: 0 1px 3px #000;
 	font-size: 1.1rem;
-	color: hsl(26, 100%, 55%);
 }
 
 .error {
