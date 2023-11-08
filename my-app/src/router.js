@@ -3,7 +3,7 @@ import { Suspense, lazy } from 'react';
 
 import LoaderSpinner from './components/ui/LoaderSpinner';
 
-import { action as checkoutAction } from './pages/checkout/CheckoutDone';
+import { action as checkoutAction } from './pages/checkout/CheckoutSuccessful';
 
 const RootPageLazy = lazy(() => import('./pages/Root'));
 const ErrorPageLazy = lazy(() => import('./pages/Error'));
@@ -18,7 +18,7 @@ const AboutPageLazy = lazy(() => import('./pages/nav-sections/About'));
 const ContactPageLazy = lazy(() => import('./pages/nav-sections/Contact'));
 const CheckoutPageLazy = lazy(() => import('./pages/checkout/Checkout'));
 const CheckoutDetailsLazy = lazy(() => import('./pages/checkout/CheckoutDetails'));
-const CheckoutDoneLazy = lazy(() => import('./pages/checkout/CheckoutDone'));
+const CheckoutSuccessfulLazy = lazy(() => import('./pages/checkout/CheckoutSuccessful'));
 const CheckoutSummaryLazy = lazy(() => import('./pages/checkout/CheckoutSummary'));
 
 const router = createBrowserRouter([
@@ -144,10 +144,10 @@ const router = createBrowserRouter([
 						loader: () => import('./pages/checkout/CheckoutDetails').then(module => module.loader()),
 					},
 					{
-						path: 'done',
+						path: 'successful',
 						element: (
 							<Suspense fallback={<LoaderSpinner />}>
-								<CheckoutDoneLazy />
+								<CheckoutSuccessfulLazy />
 							</Suspense>
 						),
 						action: checkoutAction,

@@ -27,10 +27,6 @@ const checkoutDetailsLoader = async () => {
 	return countriesList;
 };
 
-export const action = ({ request }) => {
-	console.log(request);
-};
-
 export const loader = () => {
 	return defer({
 		countriesData: checkoutDetailsLoader(),

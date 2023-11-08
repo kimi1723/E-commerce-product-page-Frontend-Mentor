@@ -29,7 +29,7 @@ const validateInput = (value, inputName) => {
 			return cityValidation;
 		case 'country':
 			const countryValidation = value !== null;
-			console.log(countryValidation);
+
 			return !countryValidation;
 		default:
 			console.log('error validating');
