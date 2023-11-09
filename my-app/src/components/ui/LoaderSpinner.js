@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadingActions } from '../../store/loading-slice';
-import { createPortal } from 'react-dom';
 
 import classes from './LoaderSpinner.module.css';
 
@@ -17,13 +16,10 @@ const LoaderSpinner = ({ title = 'resources' }) => {
 	});
 
 	return (
-		<>
-			{createPortal(<div className={classes.placeholder}></div>, document.getElementById('loader'))}
-			<div className={classes.container}>
-				<div className={classes['custom-loader']}></div>
-				<h1 className={classes.title}>Loading {title}...</h1>
-			</div>
-		</>
+		<div className={classes.container}>
+			<div className={classes['custom-loader']}></div>
+			<h1 className={classes.title}>Loading {title}...</h1>
+		</div>
 	);
 };
 

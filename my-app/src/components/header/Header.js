@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
+
 import DesktopNavigation from '../navigation/desktop/DesktopNavigation';
 import MobileNavigation from '../navigation/mobile/MobileNavigation';
 import Cart from './cart/Cart';

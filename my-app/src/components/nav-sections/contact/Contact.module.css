@@ -1,6 +1,7 @@
 .main {
 	text-align: center;
 	font-style: normal;
+	min-height: 30vh;
 }
 
 .h2 {

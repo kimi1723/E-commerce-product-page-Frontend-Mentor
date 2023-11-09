@@ -8,13 +8,14 @@ import Footer from '../components/nav-sections/footer/Footer';
 
 const RootPage = () => {
 	const isError = useSelector(state => state.error.isError);
+	const isLoading = useSelector(state => state.loading.isLoading);
 
 	return (
 		<Wrapper layoutWrapper={true}>
 			{isError === true && <Error />}
-			<Header />
+			{!isLoading && <Header />}
 			<Outlet />
-			<Footer />
+			{!isLoading && <Footer />}
 		</Wrapper>
 	);
 };

@@ -3,9 +3,9 @@
 	max-width: 1200px;
 }
 
-.additional {
+/* .additional {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	position: relative;
 	min-height: 100vh;
-}
+} */
