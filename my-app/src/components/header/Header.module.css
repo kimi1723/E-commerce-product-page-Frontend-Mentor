@@ -84,18 +84,6 @@
 	transform: rotate(45deg);
 }
 
-.logo-link {
-	padding: 0.4em;
-	border-radius: 8px;
-	outline: none;
-	transition: background-color 0.3s;
-}
-
-.logo-link:hover,
-.logo-link:focus {
-	background-color: hsl(26, 100%, 55%);
-}
-
 .cart-container {
 	position: relative;
 	grid-column: -3/-2;
@@ -144,7 +132,7 @@
 		grid-template-columns: repeat(12, 1fr);
 	}
 
-	.logo-link {
+	.logo {
 		grid-column: 1 / 2;
 	}
 

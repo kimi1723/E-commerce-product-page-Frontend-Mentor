@@ -1,0 +1,11 @@
+.logo-link {
+	padding: 0.4em;
+	border-radius: 8px;
+	outline: none;
+	transition: background-color 0.3s;
+}
+
+.logo-link:hover,
+.logo-link:focus {
+	background-color: hsl(26, 100%, 55%);
+}

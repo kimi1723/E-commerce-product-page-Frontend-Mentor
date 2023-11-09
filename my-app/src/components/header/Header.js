@@ -6,9 +6,9 @@ import DesktopNavigation from '../navigation/desktop/DesktopNavigation';
 import MobileNavigation from '../navigation/mobile/MobileNavigation';
 import Cart from './cart/Cart';
 import Profile from './profile/Profile';
+import Logo from '../ui/Logo';
 
 import classes from './Header.module.css';
-import logo from '../../assets/images/logo.svg';
 import cartIcon from '../../assets/images/icon-cart.svg';
 import avatarImg from '../../assets/images/image-avatar.png';
 import CartItemsCounted from './cart/CartItemsQuantity';
@@ -69,9 +69,7 @@ const Header = () => {
 					</div>
 				)}
 
-				<Link to="/" className={classes['logo-link']}>
-					<img src={logo} alt="sneakers" className={classes.logo} />
-				</Link>
+				<Logo additionalClasses={classes.logo} />
 
 				{!isMobile && <DesktopNavigation />}
 

@@ -1,0 +1,56 @@
+.footer {
+	padding: 2em 2rem;
+	display: flex;
+	flex-direction: column;
+	border-top: 5px solid hsl(223, 64%, 98%);
+	border-bottom: 5px solid hsl(223, 64%, 98%);
+	/* align-items: center; */
+}
+
+.main-container {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: space-between; */
+	/* align-items: center; */
+}
+
+.logo {
+	margin: 1em 0 2.5em;
+	align-self: center;
+}
+
+.ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	gap: 1.5em 2em;
+}
+
+.link {
+	padding: 0.4em 0.8em;
+	border-radius: 8px;
+	font-weight: bold;
+	transition: background-color 0.3s;
+	outline: none;
+}
+
+.link:hover,
+.link:focus {
+	background-color: hsl(26, 100%, 55%);
+}
+
+.address {
+	padding: 2em 0;
+	font-size: 0.9rem;
+	text-align: center;
+}
+
+.contact-link {
+	font-weight: bold;
+	transition: color 0.3s;
+}
+
+.contact-link:hover,
+.contact-link:focus {
+	color: hsl(26, 100%, 55%);
+}

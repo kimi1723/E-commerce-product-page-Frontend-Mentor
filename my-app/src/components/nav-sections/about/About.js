@@ -45,7 +45,7 @@ const About = () => {
 						am pretty contnet with the results as I have built more than I initially assumed. Of course though, there
 						are a lot of things I need to improve on. Some of them that I would like to point out:
 					</h2>{' '}
-					Making the site load faster would be a good start. I have thought of downloading the content from{' '}
+					Making the site load faster would be a great. I have thought of downloading the content from{' '}
 					<span className={classes.bold}>Firebase</span> after the content is filtered, contrary to how it works right
 					now but I am not too deep into learning more about <span className={classes.bold}>Firebase</span> right now.
 					Caching more of the data downloaded would also be a great improvement.
