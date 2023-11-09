@@ -11,12 +11,14 @@ const RootPage = () => {
 	const isLoading = useSelector(state => state.loading.isLoading);
 
 	return (
-		<Wrapper layoutWrapper={true}>
-			{isError === true && <Error />}
-			{!isLoading && <Header />}
-			<Outlet />
+		<>
+			<Wrapper layoutWrapper={true}>
+				{isError === true && <Error />}
+				{!isLoading && <Header />}
+				<Outlet />
+			</Wrapper>
 			{!isLoading && <Footer />}
-		</Wrapper>
+		</>
 	);
 };
 

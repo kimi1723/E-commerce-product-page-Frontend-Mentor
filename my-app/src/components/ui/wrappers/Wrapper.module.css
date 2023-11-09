@@ -3,9 +3,6 @@
 	max-width: 1200px;
 }
 
-/* .additional {
-	display: flex;
-	flex-direction: column;
-	position: relative;
+.additional {
 	min-height: 100vh;
-} */
+}

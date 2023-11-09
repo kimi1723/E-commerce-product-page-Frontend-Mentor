@@ -1,7 +1,15 @@
 .main {
+	position: absolute;
+	top: 35%;
+	width: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	text-align: center;
 	font-style: normal;
-	min-height: 30vh;
+	min-height: 10%;
 }
 
 .h2 {
@@ -10,21 +18,27 @@
 }
 
 .list {
-	margin-top: 1.5em;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	gap: 1.5em;
+	gap: 1em;
+	margin-top: 1.5em;
 }
 
 .link {
+	padding: 0.6em 0.3em;
 	font-weight: bold;
 	color: hsl(26, 100%, 55%);
 	outline: none;
-	transition: color 0.3s;
+	border-radius: 8px;
+	transition: color 0.3s, background-color 0.3s;
 }
 
-.link:hover,
-.link:focus {
+.link:hover {
 	color: hsl(220, 14%, 75%);
+}
+
+.link:focus {
+	color: hsl(223, 64%, 98%);
+	background-color: hsl(26, 100%, 55%);
 }

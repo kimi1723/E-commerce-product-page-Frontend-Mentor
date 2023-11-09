@@ -14,7 +14,9 @@ body {
 	color: hsl(0, 0%, 0%);
 	background-color: hsl(0, 0%, 100%);
 }
-
+#root {
+	min-height: 100vh;
+}
 ul {
 	list-style: none;
 }
