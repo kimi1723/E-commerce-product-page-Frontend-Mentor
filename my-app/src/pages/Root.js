@@ -10,7 +10,7 @@ const RootPage = () => {
 	const isError = useSelector(state => state.error.isError);
 
 	return (
-		<Wrapper>
+		<Wrapper layoutWrapper={true}>
 			{isError === true && <Error />}
 			<Header />
 			<Outlet />
