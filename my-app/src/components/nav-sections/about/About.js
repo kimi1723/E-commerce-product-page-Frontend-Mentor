@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import PageContent from '../../ui/wrappers/PageContent';
 
 import classes from './About.module.css';
@@ -66,9 +65,6 @@ const About = () => {
 					<h2 className={classes.h2}>
 						<strong>Any feedback is greatly appreciated!</strong>
 					</h2>
-					<Link to="/contact" className={classes.link}>
-						Contact
-					</Link>
 				</footer>
 			</article>
 		</PageContent>

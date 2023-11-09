@@ -26,19 +26,6 @@ article:nth-of-type(2) .h2 {
 	line-height: 1.2;
 }
 
-.link {
-	font-weight: bold;
-	font-size: 1.2rem;
-	color: hsl(26, 100%, 55%);
-	outline: none;
-	transition: color 0.3s;
-}
-
-.link:hover,
-.link:focus {
-	color: hsl(220, 14%, 75%);
-}
-
 .bold {
 	font-weight: bold;
 }
