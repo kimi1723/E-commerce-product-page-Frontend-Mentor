@@ -9,7 +9,7 @@ import classes from './Cart.module.css';
 
 let content;
 
-const Cart = ({ hideCart }) => {
+const Cart = ({ hideCart, classesProvided }) => {
 	const products = useSelector(state => state.cart.products);
 
 	if (products.length > 0) {
@@ -51,7 +51,7 @@ const Cart = ({ hideCart }) => {
 	}
 	return (
 		<motion.section
-			className={classes.cart}
+			className={`${classes.cart} ${classesProvided}`}
 			initial={{ opacity: 0, y: -30, x: '-50%' }}
 			animate={{ opacity: 1, y: 0, x: '-50%' }}
 			exit={{ opacity: 0, y: -30, x: '-50%' }}>

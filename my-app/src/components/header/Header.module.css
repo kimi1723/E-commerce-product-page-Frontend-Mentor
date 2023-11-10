@@ -84,21 +84,22 @@
 	transform: rotate(45deg);
 }
 
-.cart-container {
+.cart-container,
+.account-container {
 	position: relative;
-	grid-column: -3/-2;
 	width: max-content;
 	z-index: -1;
+}
+.cart-container {
+	grid-column: -3/-2;
 }
 
 .account-container {
-	position: relative;
 	grid-column: -2 / -1;
-	width: max-content;
-	z-index: -1;
 }
 
-.cart-btn {
+.cart-btn,
+.account-btn {
 	padding: 0.4em 0.8em;
 }
 
@@ -106,15 +107,29 @@
 	position: relative;
 }
 
-.account-btn {
-	padding: 0.4em 0.8em;
-}
-
 .avatar-img {
 	width: 40px;
 	border: 3px solid transparent;
 	border-radius: 50%;
 	transition: border-color 0.3s;
+}
+
+.cart-account-container {
+	position: fixed;
+	top: 75px;
+	left: 50%;
+	transform: translate(-50%, -0%);
+	padding: 1.2em;
+	width: 100%;
+	max-width: 350px;
+	min-height: 250px;
+	background-color: hsl(223, 64%, 98%);
+	border-radius: 8px;
+	-webkit-box-shadow: 0px 10px 21px -9px rgba(66, 68, 90, 1);
+	-moz-box-shadow: 0px 10px 21px -9px rgba(66, 68, 90, 1);
+	box-shadow: 0px 10px 21px -9px rgba(66, 68, 90, 1);
+	overflow: auto;
+	max-height: 70vh;
 }
 
 .account-container:hover .account-btn .avatar-img,
@@ -131,6 +146,27 @@
 @media (min-width: 576px) {
 	.header {
 		grid-template-columns: repeat(9, 1fr);
+	}
+
+	.cart-account-container {
+		position: absolute;
+		top: 54px;
+		left: -160%;
+		max-width: none;
+	}
+
+	.cart-container .cart-account-container {
+		min-width: 350px;
+	}
+
+	.account-container .cart-account-container {
+		min-width: max-content;
+	}
+}
+
+@media (min-width: 768px) {
+	.cart-account-container {
+		left: -100%;
 	}
 }
 
@@ -150,6 +186,10 @@
 
 	.avatar-img {
 		width: 50px;
+	}
+
+	.cart-account-container {
+		top: 70px;
 	}
 }
 

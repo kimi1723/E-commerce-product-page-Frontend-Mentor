@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import classes from './Account.module.css';
 
-const Account = ({ hideAccount }) => {
+const Account = ({ hideAccount, classesProvided }) => {
 	const variants = {
 		hover: { scale: 1.05 },
 	};
 
 	return (
 		<motion.section
-			className={classes.account}
+			className={classesProvided}
 			initial={{ opacity: 0, y: -30, x: '-50%' }}
 			animate={{ opacity: 1, y: 0, x: '-50%' }}
 			exit={{ opacity: 0, y: -30, x: '-50%' }}>

@@ -85,7 +85,9 @@ const Header = () => {
 							{<CartItemsCounted />}
 						</div>
 					</button>
-					<AnimatePresence>{isCartVisible && <Cart hideCart={hideCartHandler} />}</AnimatePresence>
+					<AnimatePresence>
+						{isCartVisible && <Cart hideCart={hideCartHandler} classesProvided={classes['cart-account-container']} />}
+					</AnimatePresence>
 				</div>
 
 				<div
@@ -97,7 +99,11 @@ const Header = () => {
 					<button type="button" className={classes['account-btn']} aria-label="account" onClick={showAccountHandler}>
 						<img src={avatarImg} alt="" className={classes['avatar-img']} />
 					</button>
-					<AnimatePresence>{isAccountVisible && <Account hideAccount={hideAccountHandler} />}</AnimatePresence>
+					<AnimatePresence>
+						{isAccountVisible && (
+							<Account hideAccount={hideAccountHandler} classesProvided={classes['cart-account-container']} />
+						)}
+					</AnimatePresence>
 				</div>
 			</header>
 		</>

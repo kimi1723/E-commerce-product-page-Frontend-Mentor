@@ -1,21 +1,3 @@
-.account {
-	position: fixed;
-	top: 75px;
-	left: 50%;
-	transform: translate(-50%, -0%);
-	padding: 2.3em 1.2em 3em;
-	width: 100%;
-	max-width: 350px;
-	min-height: 250px;
-	background-color: hsl(223, 64%, 98%);
-	border-radius: 8px;
-	-webkit-box-shadow: 0px 10px 21px -9px rgba(66, 68, 90, 1);
-	-moz-box-shadow: 0px 10px 21px -9px rgba(66, 68, 90, 1);
-	box-shadow: 0px 10px 21px -9px rgba(66, 68, 90, 1);
-	overflow: auto;
-	max-height: 70vh;
-}
-
 .list {
 	display: flex;
 	flex-direction: column;
