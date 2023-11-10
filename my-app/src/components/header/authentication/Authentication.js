@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import classes from './Account.module.css';
+import classes from './Authentication.module.css';
 
-const Account = ({ hideAccount, classesProvided }) => {
+const Authentication = ({ hideAuthentication, classesProvided }) => {
 	const variants = {
 		hover: { scale: 1.05 },
 	};
@@ -17,7 +17,7 @@ const Account = ({ hideAccount, classesProvided }) => {
 				<dt className={classes.title}>Already have an account?</dt>
 				<dd className={classes.desc}>
 					<motion.span className={classes.span} variants={variants} whileHover="hover">
-						<Link to="/account/auth?mode=signin" className={classes.link} onClick={hideAccount}>
+						<Link to="/authentication?mode=signin" className={classes.link} onClick={hideAuthentication}>
 							Sign in
 						</Link>
 					</motion.span>
@@ -25,7 +25,7 @@ const Account = ({ hideAccount, classesProvided }) => {
 				<dt className={classes.title}>Is this your first time here?</dt>
 				<dd className={classes.desc}>
 					<motion.span className={classes.span} variants={variants} whileHover="hover">
-						<Link to="/account/auth?mode=signup" className={classes.link} onClick={hideAccount}>
+						<Link to="/authentication?mode=signup" className={classes.link} onClick={hideAuthentication}>
 							Sign up
 						</Link>
 					</motion.span>
@@ -35,4 +35,4 @@ const Account = ({ hideAccount, classesProvided }) => {
 	);
 };
 
-export default Account;
+export default Authentication;

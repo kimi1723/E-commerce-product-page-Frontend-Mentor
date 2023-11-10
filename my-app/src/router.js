@@ -20,7 +20,8 @@ const CheckoutPageLazy = lazy(() => import('./pages/checkout/Checkout'));
 const CheckoutDetailsLazy = lazy(() => import('./pages/checkout/CheckoutDetails'));
 const CheckoutSuccessfulLazy = lazy(() => import('./pages/checkout/CheckoutSuccessful'));
 const CheckoutSummaryLazy = lazy(() => import('./pages/checkout/CheckoutSummary'));
-const ProfilePageLazy = lazy(() => import('./pages/Profile'));
+const AccountPageLazy = lazy(() => import('./pages/Account'));
+const AuthenticationPageLazy = lazy(() => import('./pages/Authentication'));
 
 const router = createBrowserRouter([
 	{
@@ -156,10 +157,18 @@ const router = createBrowserRouter([
 				action: checkoutAction,
 			},
 			{
-				path: 'profile',
+				path: 'account',
 				element: (
 					<Suspense fallback={<LoaderSpinner />}>
-						<ProfilePageLazy />
+						<AccountPageLazy />
+					</Suspense>
+				),
+			},
+			{
+				path: 'authentication',
+				element: (
+					<Suspense fallback={<LoaderSpinner />}>
+						<AuthenticationPageLazy />
 					</Suspense>
 				),
 			},

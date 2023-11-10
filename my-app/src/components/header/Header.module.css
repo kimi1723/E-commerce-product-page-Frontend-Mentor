@@ -85,7 +85,7 @@
 }
 
 .cart-container,
-.account-container {
+.authentication-container {
 	position: relative;
 	width: max-content;
 	z-index: -1;
@@ -94,12 +94,12 @@
 	grid-column: -3/-2;
 }
 
-.account-container {
+.authentication-container {
 	grid-column: -2 / -1;
 }
 
 .cart-btn,
-.account-btn {
+.authentication-btn {
 	padding: 0.4em 0.8em;
 }
 
@@ -114,7 +114,7 @@
 	transition: border-color 0.3s;
 }
 
-.cart-account-container {
+.cart-authentication-container {
 	position: fixed;
 	top: 75px;
 	left: 50%;
@@ -132,8 +132,8 @@
 	max-height: 70vh;
 }
 
-.account-container:hover .account-btn .avatar-img,
-.account-container:focus .account-btn .avatar-img {
+.authentication-container:hover .authentication-btn .avatar-img,
+.authentication-container:focus .authentication-btn .avatar-img {
 	border: 3px solid hsl(26, 100%, 55%);
 }
 
@@ -148,24 +148,24 @@
 		grid-template-columns: repeat(9, 1fr);
 	}
 
-	.cart-account-container {
+	.cart-authentication-container {
 		position: absolute;
 		top: 54px;
 		left: -160%;
 		max-width: none;
 	}
 
-	.cart-container .cart-account-container {
+	.cart-container .cart-authentication-container {
 		min-width: 350px;
 	}
 
-	.account-container .cart-account-container {
+	.authentication-container .cart-authentication-container {
 		min-width: max-content;
 	}
 }
 
 @media (min-width: 768px) {
-	.cart-account-container {
+	.cart-authentication-container {
 		left: -100%;
 	}
 }
@@ -188,7 +188,7 @@
 		width: 50px;
 	}
 
-	.cart-account-container {
+	.cart-authentication-container {
 		top: 70px;
 	}
 }

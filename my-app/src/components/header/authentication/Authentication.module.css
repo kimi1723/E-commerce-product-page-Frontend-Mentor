@@ -56,25 +56,3 @@
 	display: block;
 	width: fit-content;
 }
-
-@media (min-width: 576px) {
-	.account {
-		position: absolute;
-		top: 54px;
-		left: -160%;
-		min-width: max-content;
-		max-width: none;
-	}
-}
-
-@media (min-width: 768px) {
-	.account {
-		left: -100%;
-	}
-}
-
-@media (min-width: 992px) {
-	.account {
-		top: 70px;
-	}
-}
