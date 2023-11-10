@@ -135,7 +135,7 @@
 		top: 54px;
 		left: -160%;
 		min-width: 350px;
-		max-width: auto;
+		max-width: fit-content;
 	}
 }
 

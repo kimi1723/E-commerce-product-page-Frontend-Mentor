@@ -90,11 +90,17 @@
 	z-index: -1;
 }
 
+.account-container {
+	position: relative;
+	grid-column: -2 / -1;
+	z-index: -1;
+}
+
 .cart-img-container {
 	position: relative;
 }
 
-.avatar-btn {
+.account-btn {
 	grid-column: -2/-1;
 }
 
@@ -105,8 +111,8 @@
 	transition: border-color 0.3s;
 }
 
-.avatar-btn:hover .avatar-img,
-.avatar-btn:focus .avatar-img {
+.account-btn:hover .avatar-img,
+.account-btn:focus .avatar-img {
 	border: 3px solid hsl(26, 100%, 55%);
 }
 

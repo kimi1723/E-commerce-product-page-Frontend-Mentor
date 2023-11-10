@@ -1,25 +1,26 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 import DesktopNavigation from '../navigation/desktop/DesktopNavigation';
 import MobileNavigation from '../navigation/mobile/MobileNavigation';
 import Cart from './cart/Cart';
-import Profile from './profile/Profile';
+import Account from './account/Account';
 import Logo from '../ui/Logo';
-
+import avatarImg from '../../assets/images/image-avatar.png';
 import classes from './Header.module.css';
 import cartIcon from '../../assets/images/icon-cart.svg';
-import avatarImg from '../../assets/images/image-avatar.png';
+
 import CartItemsCounted from './cart/CartItemsQuantity';
 
-let hideCartTimeout;
+let hideCartTimeout, hideAccountTimeout;
 
 const Header = () => {
 	const isMobile = useSelector(state => state.deviceType.isMobile);
 	const [mobileNavIsActive, setMobileNavIsActive] = useState(false);
 	const [isCartVisible, setIsCartVisible] = useState(false);
-	const [isProfileVisible, setIsProfileVisible] = useState(false);
+	const [isAccountVisible, setIsAccountVisible] = useState(true);
 
 	const showMobileNavigationHandler = () => {
 		setMobileNavIsActive(prev => !prev);
@@ -30,25 +31,35 @@ const Header = () => {
 	};
 
 	const showCartHandler = () => {
-		setIsCartVisible(true);
-		clearTimeout(hideCartTimeout);
-	};
+			setIsCartVisible(true);
+			clearTimeout(hideCartTimeout);
+		},
+		showAccountHandler = () => {
+			setIsAccountVisible(true);
+			clearTimeout(hideAccountTimeout);
+		};
 
 	const hideCartHandler = () => {
-		hideCartTimeout = setTimeout(() => {
-			setIsCartVisible(false);
-		}, 100);
-	};
+			hideCartTimeout = setTimeout(() => {
+				setIsCartVisible(false);
+			}, 100);
+		},
+		hideAccountHandler = () => {
+			setIsAccountVisible(true);
+			hideAccountTimeout = setTimeout(() => {
+				setIsCartVisible(false);
+			}, 100);
+		};
 
-	const showProfileHandler = () => {
-		document.querySelectorAll('button').forEach(btn => (btn.tabIndex = -1));
-		document.querySelectorAll('a').forEach(btn => (btn.tabIndex = -1));
-		setIsProfileVisible(true);
-	};
+	// const showAccountHandler = () => {
+	// 	document.querySelectorAll('button').forEach(btn => (btn.tabIndex = -1));
+	// 	document.querySelectorAll('a').forEach(btn => (btn.tabIndex = -1));
+	// 	setIsAccountVisible(true);
+	// };
 
-	const hideProfileHandler = () => {
-		setIsProfileVisible(false);
-	};
+	// const hideAccountHandler = () => {
+	// 	setIsAccountVisible(false);
+	// };
 
 	const navBtnClasses = mobileNavIsActive ? `${classes['nav-btn']} ${classes['btn-active']}` : `${classes['nav-btn']}`;
 
@@ -87,10 +98,24 @@ const Header = () => {
 					</button>
 					<AnimatePresence>{isCartVisible && <Cart hideCart={hideCartHandler} />}</AnimatePresence>
 				</div>
-				<button type="button" className={classes['avatar-btn']} aria-label="profile" onClick={showProfileHandler}>
+
+				<div
+					className={classes['account-container']}
+					onMouseOver={showAccountHandler}
+					onMouseLeave={hideAccountHandler}
+					onFocus={showAccountHandler}
+					onBlur={hideAccountHandler}>
+					<button type="button" className={classes['account-btn']} aria-label="account" onClick={showAccountHandler}>
+						<img src={avatarImg} alt="" className={classes['avatar-img']} />
+					</button>
+					<AnimatePresence>{isAccountVisible && <Account hideAccount={hideAccountHandler} />}</AnimatePresence>
+					{/* <AnimatePresence>{isCartVisible && <Cart hideCart={hideCartHandler} />}</AnimatePresence> */}
+				</div>
+
+				{/* <Link to="/Account" type="button" className={classes['avatar-btn']} aria-label="Account" onClick={showAccountHandler}>
 					<img src={avatarImg} alt="" className={classes['avatar-img']} />
-				</button>
-				<AnimatePresence>{isProfileVisible && <Profile hideProfile={hideProfileHandler} />}</AnimatePresence>
+				</Link> */}
+				{/* <AnimatePresence>{isAccountVisible && <Account hideAccount={hideAccountHandler} />}</AnimatePresence> */}
 			</header>
 		</>
 	);

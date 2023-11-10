@@ -20,6 +20,7 @@ const CheckoutPageLazy = lazy(() => import('./pages/checkout/Checkout'));
 const CheckoutDetailsLazy = lazy(() => import('./pages/checkout/CheckoutDetails'));
 const CheckoutSuccessfulLazy = lazy(() => import('./pages/checkout/CheckoutSuccessful'));
 const CheckoutSummaryLazy = lazy(() => import('./pages/checkout/CheckoutSummary'));
+const ProfilePageLazy = lazy(() => import('./pages/Profile'));
 
 const router = createBrowserRouter([
 	{
@@ -153,6 +154,14 @@ const router = createBrowserRouter([
 					</Suspense>
 				),
 				action: checkoutAction,
+			},
+			{
+				path: 'profile',
+				element: (
+					<Suspense fallback={<LoaderSpinner />}>
+						<ProfilePageLazy />
+					</Suspense>
+				),
 			},
 		],
 	},
