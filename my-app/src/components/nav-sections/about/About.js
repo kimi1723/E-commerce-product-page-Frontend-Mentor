@@ -63,7 +63,7 @@ const About = () => {
 
 				<footer className={classes.footer}>
 					<h2 className={classes.h2}>
-						<strong>Any feedback is greatly appreciated!</strong>
+						<strong>Feedback is greatly appreciated!</strong>
 					</h2>
 				</footer>
 			</article>

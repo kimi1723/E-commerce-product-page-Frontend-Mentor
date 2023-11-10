@@ -32,7 +32,6 @@ const ProductsPage = ({ productsData, title }) => {
 						visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 					}}
 					initial="hidden"
-					exit="hidden"
 					animate="visible"
 					className={classes.ul}>
 					{products}

@@ -23,7 +23,7 @@ const AddToCartBtn = ({ productData: { id, annotation, discount, name, price, qu
 		<motion.button
 			whileHover={{ scale: 1.025 }}
 			whileFocus={{ scale: 1.025 }}
-			whileTap={{ scale: 1 }}
+			whileTap={{ scale: 1.025 }}
 			transition={{ type: 'spring', stiffness: 500 }}
 			className={classes['add-to-cart-btn']}
 			onClick={updateCartDataHandler}>
