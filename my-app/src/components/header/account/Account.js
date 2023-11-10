@@ -5,7 +5,6 @@ import classes from './Account.module.css';
 const Account = ({ hideAccount }) => {
 	const variants = {
 		hover: { scale: 1.05 },
-		tap: { scale: 1.2 },
 	};
 
 	return (
@@ -17,16 +16,16 @@ const Account = ({ hideAccount }) => {
 			<motion.dl className={classes.list}>
 				<dt className={classes.title}>Already have an account?</dt>
 				<dd className={classes.desc}>
-					<motion.span className={classes.span} variants={variants} whileHover="hover" whileTap="tap">
-						<Link to="/account/auth?mode=signin" className={classes.link}>
+					<motion.span className={classes.span} variants={variants} whileHover="hover">
+						<Link to="/account/auth?mode=signin" className={classes.link} onClick={hideAccount}>
 							Sign in
 						</Link>
 					</motion.span>
 				</dd>
 				<dt className={classes.title}>Is this your first time here?</dt>
 				<dd className={classes.desc}>
-					<motion.span className={classes.span} variants={variants} whileHover="hover" whileTap="tap">
-						<Link to="/account/auth?mode=signup" className={classes.link}>
+					<motion.span className={classes.span} variants={variants} whileHover="hover">
+						<Link to="/account/auth?mode=signup" className={classes.link} onClick={hideAccount}>
 							Sign up
 						</Link>
 					</motion.span>

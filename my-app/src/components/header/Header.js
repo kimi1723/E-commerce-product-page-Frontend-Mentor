@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
 
 import DesktopNavigation from '../navigation/desktop/DesktopNavigation';
 import MobileNavigation from '../navigation/mobile/MobileNavigation';
@@ -45,21 +44,11 @@ const Header = () => {
 			}, 100);
 		},
 		hideAccountHandler = () => {
-			setIsAccountVisible(true);
+			setIsAccountVisible(false);
 			hideAccountTimeout = setTimeout(() => {
-				setIsCartVisible(false);
+				setIsAccountVisible(false);
 			}, 100);
 		};
-
-	// const showAccountHandler = () => {
-	// 	document.querySelectorAll('button').forEach(btn => (btn.tabIndex = -1));
-	// 	document.querySelectorAll('a').forEach(btn => (btn.tabIndex = -1));
-	// 	setIsAccountVisible(true);
-	// };
-
-	// const hideAccountHandler = () => {
-	// 	setIsAccountVisible(false);
-	// };
 
 	const navBtnClasses = mobileNavIsActive ? `${classes['nav-btn']} ${classes['btn-active']}` : `${classes['nav-btn']}`;
 
@@ -90,7 +79,7 @@ const Header = () => {
 					onMouseLeave={hideCartHandler}
 					onFocus={showCartHandler}
 					onBlur={hideCartHandler}>
-					<button type="button">
+					<button type="button" className={classes['cart-btn']} aria-label="cart" onClick={showCartHandler}>
 						<div className={classes['cart-img-container']}>
 							<img src={cartIcon} alt="cart" />
 							{<CartItemsCounted />}
@@ -109,13 +98,7 @@ const Header = () => {
 						<img src={avatarImg} alt="" className={classes['avatar-img']} />
 					</button>
 					<AnimatePresence>{isAccountVisible && <Account hideAccount={hideAccountHandler} />}</AnimatePresence>
-					{/* <AnimatePresence>{isCartVisible && <Cart hideCart={hideCartHandler} />}</AnimatePresence> */}
 				</div>
-
-				{/* <Link to="/Account" type="button" className={classes['avatar-btn']} aria-label="Account" onClick={showAccountHandler}>
-					<img src={avatarImg} alt="" className={classes['avatar-img']} />
-				</Link> */}
-				{/* <AnimatePresence>{isAccountVisible && <Account hideAccount={hideAccountHandler} />}</AnimatePresence> */}
 			</header>
 		</>
 	);

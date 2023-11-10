@@ -80,8 +80,8 @@
 		position: absolute;
 		top: 54px;
 		left: -160%;
-		min-width: 350px;
-		max-width: fit-content;
+		min-width: max-content;
+		max-width: none;
 	}
 }
 
