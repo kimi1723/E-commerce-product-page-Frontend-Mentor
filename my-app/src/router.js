@@ -4,6 +4,7 @@ import { Suspense, lazy } from 'react';
 import LoaderSpinner from './components/ui/LoaderSpinner';
 
 import { action as checkoutAction } from './pages/checkout/CheckoutSuccessful';
+import { action as authenticationAction } from './pages/Authentication';
 
 const RootPageLazy = lazy(() => import('./pages/Root'));
 const ErrorPageLazy = lazy(() => import('./pages/Error'));
@@ -171,6 +172,7 @@ const router = createBrowserRouter([
 						<AuthenticationPageLazy />
 					</Suspense>
 				),
+				action: authenticationAction,
 			},
 		],
 	},

@@ -6,11 +6,10 @@ import useValidation from '../../hooks/useValidation';
 import classes from './Authentication.module.css';
 
 const Authentication = () => {
+	const { error, errorMessage } = useActionData() || {};
 	const [searchParams] = useSearchParams();
-
-	const isSignIn = searchParams.get('mode') === 'signin';
-	const [emailValue, setEmailValue] = useState('');
-	const [passwordValue, setPasswordValue] = useState('');
+	const [emailValue, setEmailValue] = useState('email@gmail.com');
+	const [passwordValue, setPasswordValue] = useState('12345678');
 	const [errors, setErrors] = useState({
 		email: false,
 		password: false,
@@ -19,15 +18,17 @@ const Authentication = () => {
 		email: false,
 		password: false,
 	});
-	const anyErrors = Object.values(errors).includes(true);
-	const notEverythingIsTouched = Object.values(isTouched).includes(false);
-
 	const navigation = useNavigation();
-
-	const isSubmitting = navigation.state === 'submitting';
 
 	useValidation(emailValue, 'email', isTouched.email, setErrors);
 	useValidation(passwordValue, 'password', isTouched.password, setErrors);
+
+	const anyErrors = Object.values(errors).includes(true);
+	const notEverythingIsTouched = Object.values(isTouched).includes(false);
+
+	const isSignIn = searchParams.get('mode') === 'signin';
+
+	const isSubmitting = navigation.state === 'submitting';
 
 	const emailHandler = e => {
 			setEmailValue(e.target.value);
@@ -65,6 +66,7 @@ const Authentication = () => {
 						className={classes.input}
 						onChange={emailHandler}
 						onBlur={isTouchedEmailHandler}
+						value={emailValue}
 					/>
 				</p>
 				<p className={classes['input-container']}>
@@ -81,6 +83,7 @@ const Authentication = () => {
 						className={classes.input}
 						onChange={passwordHandler}
 						onBlur={isTouchedPasswordHandler}
+						value={passwordValue}
 					/>
 				</p>
 				<div className={classes.actions}>
@@ -91,6 +94,7 @@ const Authentication = () => {
 						</Link>
 					</p>
 
+					{error && <p className={classes.error}>{errorMessage}</p>}
 					<motion.button
 						type="submit"
 						whileHover={{ scale: 1.05 }}
