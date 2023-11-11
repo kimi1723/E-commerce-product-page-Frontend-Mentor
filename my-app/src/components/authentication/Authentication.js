@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { Form, Link, useActionData, useNavigation } from 'react-router-dom';
+import { Form, Link, useActionData, useNavigation, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import useValidation from '../../hooks/useValidation';
 
 import classes from './Authentication.module.css';
 
-const Authentication = ({ isSignIn }) => {
+const Authentication = () => {
+	const [searchParams] = useSearchParams();
+
+	const isSignIn = searchParams.get('mode') === 'signin';
 	const [emailValue, setEmailValue] = useState('');
 	const [passwordValue, setPasswordValue] = useState('');
 	const [errors, setErrors] = useState({
@@ -16,8 +19,8 @@ const Authentication = ({ isSignIn }) => {
 		email: false,
 		password: false,
 	});
-
-	console.log('re');
+	const anyErrors = Object.values(errors).includes(true);
+	const notEverythingIsTouched = Object.values(isTouched).includes(false);
 
 	const navigation = useNavigation();
 
@@ -94,7 +97,7 @@ const Authentication = ({ isSignIn }) => {
 						whileTap={{ scale: 1.1 }}
 						whileFocus={{ scale: 1.05 }}
 						transition={{ type: 'spring', stiffness: 500 }}
-						disabled={errors.email && errors.password}
+						disabled={anyErrors || notEverythingIsTouched}
 						className={classes.btn}>
 						{isSubmitting ? 'Submiting...' : isSignIn ? 'Sign in' : 'Sign up'}
 					</motion.button>

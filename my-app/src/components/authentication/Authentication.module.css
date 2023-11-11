@@ -97,3 +97,7 @@
 .btn:hover {
 	background-color: hsl(26, 100%, 65%);
 }
+
+.btn:disabled {
+	background-color: hsl(25, 100%, 84%);
+}
