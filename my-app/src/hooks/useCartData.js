@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { cartActions } from '../store/cart-slice';
 import { errorActions } from '../store/error-slice';
-import getUid from '../auth';
+import getUid from '../utils/getAnonymousToken';
 import getFirebaseData from '../utils/getFirebaseData';
 
 const useCartData = () => {

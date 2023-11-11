@@ -9,7 +9,7 @@ const authenticationSlice = createSlice({
 	initialState,
 	reducers: {
 		changeAuthenticationState(state, action) {
-			state.isSignedIn = action.isSignedIn;
+			state.isSignedIn = action.payload;
 		},
 	},
 });

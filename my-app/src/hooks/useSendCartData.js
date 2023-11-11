@@ -1,15 +1,14 @@
-import { get, set, ref } from 'firebase/database';
-import { database } from '../firebaseConfig';
 import { useSelector, useDispatch } from 'react-redux';
 import { errorActions } from '../store/error-slice';
 import { useEffect } from 'react';
-import getUid from '../auth';
+import getUid from '../utils/getAnonymousToken';
 
 let i = 0;
 
 const useSendCartData = async () => {
 	const dispatch = useDispatch();
 	const data = useSelector(state => state.cart);
+	const { isSignedIn } = useSelector(state => state.isSignedIn);
 
 	useEffect(() => {
 		// console.log('i');
