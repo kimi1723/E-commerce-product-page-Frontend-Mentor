@@ -31,6 +31,10 @@ const validateInput = (value, inputName) => {
 			const countryValidation = value !== null;
 
 			return !countryValidation;
+		case 'password':
+			const passwordValidation = value.trim().length > 7;
+
+			return !passwordValidation;
 		default:
 			console.log('error validating');
 	}

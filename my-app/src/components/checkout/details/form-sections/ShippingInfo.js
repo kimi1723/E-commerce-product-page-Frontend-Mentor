@@ -3,16 +3,16 @@ import useValidation from '../../../../hooks/useValidation';
 
 import Select from 'react-select';
 
-const ShippingInfo = ({ classes, countriesList, setAllErrors }) => {
-	const [addressValue, setAddressValue] = useState('address');
-	const [zipCodeValue, setZipCodeValue] = useState('12345');
-	const [cityValue, setCityValue] = useState('Warsaw');
+const ShippingInfo = ({ classes, countriesList, setAllErrors, setAllIsTouched }) => {
+	const [addressValue, setAddressValue] = useState('');
+	const [zipCodeValue, setZipCodeValue] = useState('');
+	const [cityValue, setCityValue] = useState('');
 	const [countryValue, setCountryValue] = useState('');
 	const [errors, setErrors] = useState({
-		address: true,
-		zipCode: true,
-		city: true,
-		country: true,
+		address: false,
+		zipCode: false,
+		city: false,
+		country: false,
 	});
 	const [isTouched, setIsTouched] = useState({
 		address: false,
@@ -29,6 +29,10 @@ const ShippingInfo = ({ classes, countriesList, setAllErrors }) => {
 	useEffect(() => {
 		setAllErrors(errors);
 	}, [errors]);
+
+	useEffect(() => {
+		setAllIsTouched(isTouched);
+	}, [isTouched]);
 
 	const customStyles = {
 		option: (styles, state) => ({

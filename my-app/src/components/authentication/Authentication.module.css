@@ -23,6 +23,13 @@
 	gap: 0.5em;
 }
 
+.error {
+	width: 75%;
+	font-size: 0.9rem;
+	font-weight: bold;
+	color: tomato;
+}
+
 .label {
 	font-weight: bold;
 	cursor: pointer;

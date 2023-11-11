@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import useValidation from '../../../../hooks/useValidation';
 
-const BillingDetails = ({ classes, setAllErrors }) => {
-	const [nameValue, setNameValue] = useState('Name');
-	const [emailValue, setEmailValue] = useState('email@gmail.com');
-	const [telValue, setTelValue] = useState('123456789');
+const BillingDetails = ({ classes, setAllErrors, setAllIsTouched }) => {
+	const [nameValue, setNameValue] = useState('');
+	const [emailValue, setEmailValue] = useState('');
+	const [telValue, setTelValue] = useState('');
 	const [errors, setErrors] = useState({
-		name: true,
-		email: true,
-		tel: true,
+		name: false,
+		email: false,
+		tel: false,
 	});
 	const [isTouched, setIsTouched] = useState({
 		name: false,
@@ -23,6 +23,10 @@ const BillingDetails = ({ classes, setAllErrors }) => {
 	useEffect(() => {
 		setAllErrors(errors);
 	}, [errors]);
+
+	useEffect(() => {
+		setAllIsTouched(isTouched);
+	}, [isTouched]);
 
 	const nameHandler = e => {
 			setNameValue(e.target.value);

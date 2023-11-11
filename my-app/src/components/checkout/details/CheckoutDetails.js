@@ -10,11 +10,19 @@ import classes from './CheckoutDetails.module.css';
 
 const Details = ({ countriesList }) => {
 	const [allErrors, setAllErrors] = useState({});
-	const isButtonDisabled = Object.values(allErrors).includes(true);
+	const [allIsTouched, setAllIsTouched] = useState({});
+	const isAnyError = Object.values(allErrors).includes(true);
+	const notEverythingTouched = Object.values(allIsTouched).includes(false);
 
 	const allErrorsHandler = newErrorsState => {
 		setAllErrors(prevErrorState => {
 			return { ...prevErrorState, ...newErrorsState };
+		});
+	};
+
+	const allIsTouchedHandler = newTouchedState => {
+		setAllIsTouched(prevTouchedState => {
+			return { ...prevTouchedState, ...newTouchedState };
 		});
 	};
 
@@ -34,11 +42,16 @@ const Details = ({ countriesList }) => {
 
 			<main className={classes.main}>
 				<Form method="post" className={classes.form} action="/checkout-successful">
-					<BillingDetails classes={classes} setAllErrors={allErrorsHandler} />
-					<ShippingInfo classes={classes} countriesList={countriesList} setAllErrors={allErrorsHandler} />
+					<BillingDetails classes={classes} setAllErrors={allErrorsHandler} setAllIsTouched={allIsTouchedHandler} />
+					<ShippingInfo
+						classes={classes}
+						countriesList={countriesList}
+						setAllErrors={allErrorsHandler}
+						setAllIsTouched={allIsTouchedHandler}
+					/>
 					<PaymentDetails classes={classes} setAllErrors={allErrorsHandler} />
 
-					<Redirect componentType="button" type="submit" isDisabled={isButtonDisabled}>
+					<Redirect componentType="button" type="submit" isDisabled={isAnyError && notEverythingTouched}>
 						Next
 					</Redirect>
 				</Form>
