@@ -19,14 +19,13 @@ export const action = async ({ request }) => {
 	const data = await request.formData();
 	const email = data.get('email');
 	const password = data.get('password');
+	const transformedEmail = email.replace('@', '').replace('.', '');
 
 	if (mode === 'signup') {
 		try {
 			const accountsRef = ref(database, '/users');
 			const snapshot = await get(accountsRef);
 			const accountsData = snapshot.val();
-
-			const transformedEmail = email.replace('@', '').replace('.', '');
 
 			const isAlreadyAnUser = Object.keys(accountsData).includes(transformedEmail);
 
@@ -41,24 +40,21 @@ export const action = async ({ request }) => {
 				? { error: true, errorMessage: 'There is already an account assigned to this email!' }
 				: addUser();
 		} catch (error) {
-			console.log(error);
 			return { error, errorMessage: 'An unexpected error occured!' };
 		}
 	}
 
 	if (mode === 'signin') {
 		try {
-			const accountRef = ref(database, `/users/${email}`);
+			const accountRef = ref(database, `/users/${transformedEmail}`);
 			const snapshot = await get(accountRef);
 			const accountData = snapshot.val();
-			const password = data.get('password');
+			const accountPassword = accountData.password;
 
-			console.log(accountData);
+			return password === accountPassword ? redirect('/account') : { error: true, errorMessage: 'Password invalid!' };
 		} catch (error) {
 			return { error, errorMessage: `User doesn't exist! Please make an account first.` };
 		}
 	}
-
-	return redirect('/account');
 };
 export default AuthenticationPage;
