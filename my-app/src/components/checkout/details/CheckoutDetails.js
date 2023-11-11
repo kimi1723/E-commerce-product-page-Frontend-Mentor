@@ -51,7 +51,7 @@ const Details = ({ countriesList }) => {
 					/>
 					<PaymentDetails classes={classes} setAllErrors={allErrorsHandler} />
 
-					<Redirect componentType="button" type="submit" isDisabled={isAnyError && notEverythingTouched}>
+					<Redirect componentType="button" type="submit" isDisabled={isAnyError || notEverythingTouched}>
 						Next
 					</Redirect>
 				</Form>
