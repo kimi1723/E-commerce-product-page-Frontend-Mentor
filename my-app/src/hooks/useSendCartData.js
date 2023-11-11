@@ -1,4 +1,4 @@
-import { set, ref } from 'firebase/database';
+import { get, set, ref } from 'firebase/database';
 import { database } from '../firebaseConfig';
 import { useSelector, useDispatch } from 'react-redux';
 import { errorActions } from '../store/error-slice';
@@ -12,6 +12,7 @@ const useSendCartData = async () => {
 	const data = useSelector(state => state.cart);
 
 	useEffect(() => {
+		// console.log('i');
 		const sendData = async () => {
 			if (i < 2) {
 				i++;
@@ -19,8 +20,10 @@ const useSendCartData = async () => {
 			}
 
 			try {
-				const id = await getUid();
-				await set(ref(database, `/userCarts/${id}`), data);
+				const uid = await getUid();
+
+				// await set(ref(database, `/users/anonymousTokens/${uid}/anonymousCart`), data);
+				// await set(ref(database, `/users/${id}`), data);
 			} catch (error) {
 				dispatch(
 					errorActions.setError({

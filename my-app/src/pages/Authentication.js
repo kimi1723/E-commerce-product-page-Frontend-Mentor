@@ -49,9 +49,9 @@ export const action = async ({ request }) => {
 			const accountRef = ref(database, `/users/${transformedEmail}`);
 			const snapshot = await get(accountRef);
 			const accountData = snapshot.val();
-			const accountPassword = accountData.password;
+			const storedPassword = accountData.password;
 
-			return password === accountPassword ? redirect('/account') : { error: true, errorMessage: 'Password invalid!' };
+			return password === storedPassword ? redirect('/account') : { error: true, errorMessage: 'Password invalid!' };
 		} catch (error) {
 			return { error, errorMessage: `User doesn't exist! Please make an account first.` };
 		}

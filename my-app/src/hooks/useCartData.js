@@ -1,10 +1,9 @@
-import { ref, get } from 'firebase/database';
-import { database } from '../firebaseConfig';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { cartActions } from '../store/cart-slice';
 import { errorActions } from '../store/error-slice';
 import getUid from '../auth';
+import getFirebaseData from '../utils/getFirebaseData';
 
 const useCartData = () => {
 	const dispatch = useDispatch();
@@ -13,11 +12,17 @@ const useCartData = () => {
 		const fetchCartData = async () => {
 			try {
 				const uid = await getUid();
-				const cartRef = ref(database, `/userCarts/${uid}`);
-				const snapshot = await get(cartRef);
-				const cartData = snapshot.val();
+				const anonymousUserData = await getFirebaseData(`/users/anonymousTokens/${uid}`);
 
-				if (cartData !== null) {
+				if (!anonymousUserData) return;
+
+				if (anonymousUserData.isSignedIn) {
+					// sign in, download signedIn cart data
+				} else {
+					const cartData = await getFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`);
+
+					if (cartData === null) return;
+
 					const products = [];
 
 					for (const id in cartData.products) {

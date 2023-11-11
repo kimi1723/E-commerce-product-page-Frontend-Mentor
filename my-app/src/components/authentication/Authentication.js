@@ -8,7 +8,7 @@ import classes from './Authentication.module.css';
 const Authentication = () => {
 	const { error, errorMessage } = useActionData() || {};
 	const [searchParams] = useSearchParams();
-	const [emailValue, setEmailValue] = useState('email@gmail.com');
+	const [emailValue, setEmailValue] = useState('email4@gmail.com');
 	const [passwordValue, setPasswordValue] = useState('12345678');
 	const [errors, setErrors] = useState({
 		email: false,
