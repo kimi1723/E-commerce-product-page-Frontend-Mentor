@@ -3,7 +3,7 @@ import detectDeviceTypeReducer from './detectDeviceType-slice';
 import cartReducer from './cart-slice';
 import errorReducer from './error-slice';
 import loadingReducer from './loading-slice';
-import isSignedInReducer from './authentication-slice';
+import authenticationReducer from './authentication-slice';
 
 const store = configureStore({
 	reducer: {
@@ -11,7 +11,7 @@ const store = configureStore({
 		cart: cartReducer,
 		error: errorReducer,
 		loading: loadingReducer,
-		isSignedIn: isSignedInReducer,
+		authentication: authenticationReducer,
 	},
 });
 

@@ -14,13 +14,10 @@ const AuthenticationPage = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (data === undefined || data.error) {
-			dispatch(authenticationActions.changeAuthenticationState(false));
-			return;
-		}
+		if (data === undefined) return;
 
 		navigate('/account');
-		dispatch(authenticationActions.changeAuthenticationState(true));
+		dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: true, email: data.email }));
 	}, [data, dispatch, navigate]);
 
 	return <Authentication />;
@@ -50,12 +47,9 @@ export const action = async ({ request }) => {
 			const uid = await getUid();
 
 			setFirebaseData(`/users/emails/${transformedEmail}`, { password });
-			setFirebaseData(`/users/emails/${transformedEmail}/userCart`, { password });
 			setFirebaseData(`/users/anonymousTokens/${uid}/credentials/${transformedEmail}`, { password });
 
-			// localStorage.setItem('isSignedIn', true);
-
-			return { isSignedIn: true };
+			return { isSignedIn: true, email: transformedEmail };
 		} catch (error) {
 			return { error, errorMessage: 'An unexpected error occured!' };
 		}

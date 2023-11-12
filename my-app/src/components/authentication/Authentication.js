@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { Form, Link, useActionData, useNavigation, useSearchParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Form, Link, useActionData, useNavigation, useSearchParams, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import useValidation from '../../hooks/useValidation';
 
@@ -18,10 +19,19 @@ const Authentication = () => {
 		email: false,
 		password: false,
 	});
+
+	const { isSignedIn } = useSelector(state => state.authentication);
 	const navigation = useNavigation();
+	const navigate = useNavigate();
 
 	useValidation(emailValue, 'email', isTouched.email, setErrors);
 	useValidation(passwordValue, 'password', isTouched.password, setErrors);
+
+	useEffect(() => {
+		if (isSignedIn) {
+			navigate('/account');
+		}
+	});
 
 	const anyErrors = Object.values(errors).includes(true);
 	const notEverythingIsTouched = Object.values(isTouched).includes(false);
