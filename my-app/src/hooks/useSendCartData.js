@@ -26,6 +26,7 @@ const useSendCartData = async () => {
 				if (isSignedIn && data) {
 					setFirebaseData(`/users/emails/${email}/userCart`, data);
 				} else {
+					setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: false });
 					setFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`, data);
 				}
 			} catch (error) {

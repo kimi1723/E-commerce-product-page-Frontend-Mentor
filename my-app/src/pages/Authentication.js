@@ -1,4 +1,4 @@
-import { redirect, useActionData, useNavigate } from 'react-router-dom';
+import { useActionData, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -67,6 +67,7 @@ export const action = async ({ request }) => {
 			if (!isPasswordCorrect) throw new Error(`Password invalid!`);
 
 			setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true });
+			setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, { email: transformedEmail, password });
 
 			return { isSingedIn: true, email: transformedEmail };
 		} catch (error) {
