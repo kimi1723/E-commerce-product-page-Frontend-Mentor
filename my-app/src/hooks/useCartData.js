@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { cartActions } from '../store/cart-slice';
 import { errorActions } from '../store/error-slice';
+import { authenticationActions } from '../store/authentication-slice';
 import getUid from '../utils/getAnonymousToken';
 import getFirebaseData from '../utils/getFirebaseData';
 
@@ -16,11 +17,7 @@ const useCartData = () => {
 
 				if (!anonymousUserData) return;
 
-				if (anonymousUserData.isSignedIn) {
-					// sign in, download signedIn cart data
-				} else {
-					const cartData = await getFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`);
-
+				const fetchData = cartData => {
 					if (cartData === null) return;
 
 					const products = [];
@@ -37,6 +34,18 @@ const useCartData = () => {
 							message: '',
 						}),
 					);
+				};
+
+				if (anonymousUserData.isSignedIn.status) {
+					const email = anonymousUserData.credentials.email;
+					const cartData = await getFirebaseData(`/users/emails/${email}/userCart`);
+					dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: true, email }));
+
+					fetchData(cartData);
+				} else {
+					const cartData = await getFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`);
+
+					fetchData(cartData);
 				}
 			} catch (error) {
 				dispatch(

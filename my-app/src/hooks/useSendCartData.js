@@ -23,7 +23,7 @@ const useSendCartData = async () => {
 			try {
 				const uid = await getUid();
 
-				if (isSignedIn && 0 < data.length) {
+				if (isSignedIn && data) {
 					setFirebaseData(`/users/emails/${email}/userCart`, data);
 				} else {
 					setFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`, data);

@@ -12,12 +12,12 @@ const Authentication = ({ hideAuthentication, classesProvided }) => {
 
 	return (
 		<>
-			{!isSignedIn && (
-				<motion.section
-					className={classesProvided}
-					initial={{ opacity: 0, y: -30, x: '-50%' }}
-					animate={{ opacity: 1, y: 0, x: '-50%' }}
-					exit={{ opacity: 0, y: -30, x: '-50%' }}>
+			<motion.section
+				className={classesProvided}
+				initial={{ opacity: 0, y: -30, x: '-50%' }}
+				animate={{ opacity: 1, y: 0, x: '-50%' }}
+				exit={{ opacity: 0, y: -30, x: '-50%' }}>
+				{!isSignedIn && (
 					<motion.dl className={classes.list}>
 						<dt className={classes.title}>Already have an account?</dt>
 						<dd className={classes.desc}>
@@ -36,8 +36,8 @@ const Authentication = ({ hideAuthentication, classesProvided }) => {
 							</motion.span>
 						</dd>
 					</motion.dl>
-				</motion.section>
-			)}
+				)}
+			</motion.section>
 		</>
 	);
 };

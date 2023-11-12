@@ -111,7 +111,7 @@ const Authentication = () => {
 						whileTap={{ scale: 1.1 }}
 						whileFocus={{ scale: 1.05 }}
 						transition={{ type: 'spring', stiffness: 500 }}
-						disabled={anyErrors || notEverythingIsTouched}
+						disabled={anyErrors || notEverythingIsTouched || isSubmitting}
 						className={classes.btn}>
 						{isSubmitting ? 'Submiting...' : isSignIn ? 'Sign in' : 'Sign up'}
 					</motion.button>

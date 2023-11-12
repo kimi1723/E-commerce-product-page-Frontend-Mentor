@@ -14,7 +14,7 @@ const AuthenticationPage = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (data === undefined) return;
+		if (data === undefined || data.error) return;
 
 		navigate('/account');
 		dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: true, email: data.email }));
@@ -35,6 +35,7 @@ export const action = async ({ request }) => {
 	const email = data.get('email');
 	const password = data.get('password');
 	const transformedEmail = email.replace('@', '').replace('.', '');
+	const uid = await getUid();
 
 	if (mode === 'signup') {
 		try {
@@ -44,25 +45,32 @@ export const action = async ({ request }) => {
 
 			if (isAlreadyAnUser) return { error: true, errorMessage: 'There is already an account assigned to this email!' };
 
-			const uid = await getUid();
-
 			setFirebaseData(`/users/emails/${transformedEmail}`, { password });
-			setFirebaseData(`/users/anonymousTokens/${uid}/credentials/${transformedEmail}`, { password });
+			setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true });
+			setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, { email: transformedEmail, password });
 
 			return { isSignedIn: true, email: transformedEmail };
 		} catch (error) {
-			return { error, errorMessage: 'An unexpected error occured!' };
+			return { error, errorMessage: 'An unexpected error occured!' || error };
 		}
 	}
 
 	if (mode === 'signin') {
 		try {
 			const accountData = await getFirebaseData(`/users/emails/${transformedEmail}`);
-			const storedPassword = accountData.password;
 
-			return password === storedPassword ? redirect('/account') : { error: true, errorMessage: 'Password invalid!' };
+			if (!accountData) throw new Error(`User doesn't exist! Please make an account first.`);
+
+			const storedPassword = accountData.password;
+			const isPasswordCorrect = password === storedPassword;
+
+			if (!isPasswordCorrect) throw new Error(`Password invalid!`);
+
+			setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true });
+
+			return { isSingedIn: true, email: transformedEmail };
 		} catch (error) {
-			return { error, errorMessage: `User doesn't exist! Please make an account first.` };
+			return { error, errorMessage: error.message || error };
 		}
 	}
 };
