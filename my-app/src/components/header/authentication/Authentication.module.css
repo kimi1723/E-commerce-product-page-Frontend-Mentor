@@ -56,3 +56,27 @@
 	display: block;
 	width: fit-content;
 }
+
+.signed-li:not(:last-of-type) {
+	margin-bottom: 0.75em;
+}
+
+.signed-link,
+.logout-btn {
+	padding: 0.3em 0.3em 0.3em 0;
+	font-size: 1.2rem;
+	transition: color 0.3s;
+}
+
+.signed-link:focus,
+.signed-link:hover,
+.logout-btn:focus,
+.logout-btn:hover {
+	text-decoration: underline;
+	color: hsl(220, 14%, 75%);
+}
+
+.signed-list .signed-li:nth-last-child(2) {
+	padding-bottom: 1em;
+	border-bottom: 1px solid #000;
+}

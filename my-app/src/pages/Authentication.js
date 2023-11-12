@@ -37,26 +37,20 @@ export const action = async ({ request }) => {
 	const transformedEmail = email.replace('@', '').replace('.', '');
 	const uid = await getUid();
 
-	if (mode === 'signup') {
-		try {
+	try {
+		if (mode === 'signup') {
 			const accountsData = await getFirebaseData('/users/emails');
 
 			const isAlreadyAnUser = Object.keys(accountsData).includes(transformedEmail);
 
-			if (isAlreadyAnUser) return { error: true, errorMessage: 'There is already an account assigned to this email!' };
+			if (isAlreadyAnUser) throw new Error('There is already an account assigned to this email!');
 
 			setFirebaseData(`/users/emails/${transformedEmail}`, { password });
 			setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true });
 			setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, { email: transformedEmail, password });
-
-			return { isSignedIn: true, email: transformedEmail };
-		} catch (error) {
-			return { error, errorMessage: 'An unexpected error occured!' || error };
 		}
-	}
 
-	if (mode === 'signin') {
-		try {
+		if (mode === 'signin') {
 			const accountData = await getFirebaseData(`/users/emails/${transformedEmail}`);
 
 			if (!accountData) throw new Error(`User doesn't exist! Please make an account first.`);
@@ -68,11 +62,11 @@ export const action = async ({ request }) => {
 
 			setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true });
 			setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, { email: transformedEmail, password });
-
-			return { isSingedIn: true, email: transformedEmail };
-		} catch (error) {
-			return { error, errorMessage: error.message || error };
 		}
+
+		return { isSingedIn: true, email: transformedEmail };
+	} catch (error) {
+		return { error, errorMessage: error.message || error };
 	}
 };
 export default AuthenticationPage;

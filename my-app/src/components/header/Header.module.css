@@ -122,7 +122,7 @@
 	padding: 1.2em;
 	width: 100%;
 	max-width: 350px;
-	min-height: 250px;
+	height: max-content;
 	background-color: hsl(223, 64%, 98%);
 	border-radius: 8px;
 	-webkit-box-shadow: 0px 10px 21px -9px rgba(66, 68, 90, 1);

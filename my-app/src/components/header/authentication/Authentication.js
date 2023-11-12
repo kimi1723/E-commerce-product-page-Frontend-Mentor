@@ -10,6 +10,50 @@ const Authentication = ({ hideAuthentication, classesProvided }) => {
 		hover: { scale: 1.05 },
 	};
 
+	const notSignedInContent = (
+		<motion.dl className={classes.list}>
+			<dt className={classes.title}>Already have an account?</dt>
+			<dd className={classes.desc}>
+				<motion.span className={classes.span} variants={variants} whileHover="hover">
+					<Link to="/authentication?mode=signin" className={classes.link} onClick={hideAuthentication}>
+						Sign in
+					</Link>
+				</motion.span>
+			</dd>
+			<dt className={classes.title}>Is this your first time here?</dt>
+			<dd className={classes.desc}>
+				<motion.span className={classes.span} variants={variants} whileHover="hover">
+					<Link to="/authentication?mode=signup" className={classes.link} onClick={hideAuthentication}>
+						Sign up
+					</Link>
+				</motion.span>
+			</dd>
+		</motion.dl>
+	);
+
+	const signedInContent = (
+		<ul className={classes['signed-list']}>
+			<li className={classes['signed-li']}>
+				<Link to="account/orders" className={classes['signed-link']}>
+					Orders
+				</Link>
+			</li>
+			<li className={classes['signed-li']}>
+				<Link to="account/personal-information" className={classes['signed-link']}>
+					Personal information
+				</Link>
+			</li>
+			<li className={classes['signed-li']}>
+				<Link to="account/shipment-information" className={classes['signed-link']}>
+					Shipment information
+				</Link>
+			</li>
+			<li className={classes['signed-li']}>
+				<button className={classes['logout-btn']}>Logout</button>
+			</li>
+		</ul>
+	);
+
 	return (
 		<>
 			<motion.section
@@ -17,26 +61,8 @@ const Authentication = ({ hideAuthentication, classesProvided }) => {
 				initial={{ opacity: 0, y: -30, x: '-50%' }}
 				animate={{ opacity: 1, y: 0, x: '-50%' }}
 				exit={{ opacity: 0, y: -30, x: '-50%' }}>
-				{!isSignedIn && (
-					<motion.dl className={classes.list}>
-						<dt className={classes.title}>Already have an account?</dt>
-						<dd className={classes.desc}>
-							<motion.span className={classes.span} variants={variants} whileHover="hover">
-								<Link to="/authentication?mode=signin" className={classes.link} onClick={hideAuthentication}>
-									Sign in
-								</Link>
-							</motion.span>
-						</dd>
-						<dt className={classes.title}>Is this your first time here?</dt>
-						<dd className={classes.desc}>
-							<motion.span className={classes.span} variants={variants} whileHover="hover">
-								<Link to="/authentication?mode=signup" className={classes.link} onClick={hideAuthentication}>
-									Sign up
-								</Link>
-							</motion.span>
-						</dd>
-					</motion.dl>
-				)}
+				{!isSignedIn && notSignedInContent}
+				{isSignedIn && signedInContent}
 			</motion.section>
 		</>
 	);
