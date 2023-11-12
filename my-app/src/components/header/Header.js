@@ -5,7 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import DesktopNavigation from '../navigation/desktop/DesktopNavigation';
 import MobileNavigation from '../navigation/mobile/MobileNavigation';
 import Cart from './cart/Cart';
-import Authentication from './authentication/Authentication';
+import Account from './account/Account';
 import Logo from '../ui/Logo';
 import avatarImg from '../../assets/images/image-avatar.png';
 import classes from './Header.module.css';
@@ -13,13 +13,13 @@ import cartIcon from '../../assets/images/icon-cart.svg';
 
 import CartItemsCounted from './cart/CartItemsQuantity';
 
-let hideCartTimeout, hideAuthenticationTimeout;
+let hideCartTimeout, hideAccountTimeout;
 
 const Header = () => {
 	const isMobile = useSelector(state => state.deviceType.isMobile);
 	const [mobileNavIsActive, setMobileNavIsActive] = useState(false);
 	const [isCartVisible, setIsCartVisible] = useState(false);
-	const [isAuthenticationVisible, setIsAuthenticationVisible] = useState(false);
+	const [isAccountVisible, setIsAccountVisible] = useState(false);
 
 	const showMobileNavigationHandler = () => {
 		setMobileNavIsActive(prev => !prev);
@@ -33,9 +33,9 @@ const Header = () => {
 			setIsCartVisible(true);
 			clearTimeout(hideCartTimeout);
 		},
-		showAuthenticationHandler = () => {
-			setIsAuthenticationVisible(true);
-			clearTimeout(hideAuthenticationTimeout);
+		showAccountHandler = () => {
+			setIsAccountVisible(true);
+			clearTimeout(hideAccountTimeout);
 		};
 
 	const hideCartHandler = () => {
@@ -43,10 +43,10 @@ const Header = () => {
 				setIsCartVisible(false);
 			}, 100);
 		},
-		hideAuthenticationHandler = () => {
-			setIsAuthenticationVisible(false);
-			hideAuthenticationTimeout = setTimeout(() => {
-				setIsAuthenticationVisible(false);
+		hideAccountHandler = () => {
+			setIsAccountVisible(false);
+			hideAccountTimeout = setTimeout(() => {
+				setIsAccountVisible(false);
 			}, 100);
 		};
 
@@ -86,31 +86,22 @@ const Header = () => {
 						</div>
 					</button>
 					<AnimatePresence>
-						{isCartVisible && (
-							<Cart hideCart={hideCartHandler} classesProvided={classes['cart-authentication-container']} />
-						)}
+						{isCartVisible && <Cart hideCart={hideCartHandler} classesProvided={classes['cart-account-container']} />}
 					</AnimatePresence>
 				</div>
 
 				<div
-					className={classes['authentication-container']}
-					onMouseOver={showAuthenticationHandler}
-					onMouseLeave={hideAuthenticationHandler}
-					onFocus={showAuthenticationHandler}
-					onBlur={hideAuthenticationHandler}>
-					<button
-						type="button"
-						className={classes['authentication-btn']}
-						aria-label="authentication"
-						onClick={showAuthenticationHandler}>
+					className={classes['account-container']}
+					onMouseOver={showAccountHandler}
+					onMouseLeave={hideAccountHandler}
+					onFocus={showAccountHandler}
+					onBlur={hideAccountHandler}>
+					<button type="button" className={classes['account-btn']} aria-label="account" onClick={showAccountHandler}>
 						<img src={avatarImg} alt="" className={classes['avatar-img']} />
 					</button>
 					<AnimatePresence>
-						{isAuthenticationVisible && (
-							<Authentication
-								hideAuthentication={hideAuthenticationHandler}
-								classesProvided={classes['cart-authentication-container']}
-							/>
+						{isAccountVisible && (
+							<Account hideAccount={hideAccountHandler} classesProvided={classes['cart-account-container']} />
 						)}
 					</AnimatePresence>
 				</div>

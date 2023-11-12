@@ -1,13 +1,24 @@
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
-import classes from './Authentication.module.css';
+import { useSelector, useDispatch } from 'react-redux';
 
-const Authentication = ({ hideAuthentication, classesProvided }) => {
+import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
+import { authenticationActions } from '../../../store/authentication-slice';
+
+import classes from './Account.module.css';
+
+const Account = ({ hideAuthentication, classesProvided }) => {
 	const { isSignedIn } = useSelector(state => state.authentication);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const variants = {
 		hover: { scale: 1.05 },
+	};
+
+	const logoutHandler = async () => {
+		navigate('/');
+		dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: false, email: '' }));
 	};
 
 	const notSignedInContent = (
@@ -49,7 +60,9 @@ const Authentication = ({ hideAuthentication, classesProvided }) => {
 				</Link>
 			</li>
 			<li className={classes['signed-li']}>
-				<button className={classes['logout-btn']}>Logout</button>
+				<button type="button" className={classes['logout-btn']} onClick={logoutHandler}>
+					Logout
+				</button>
 			</li>
 		</ul>
 	);
@@ -68,4 +81,4 @@ const Authentication = ({ hideAuthentication, classesProvided }) => {
 	);
 };
 
-export default Authentication;
+export default Account;
