@@ -1,3 +1,8 @@
+.section {
+	/* max-width: 14rem; */
+	/* left: 50%; */
+}
+
 .list {
 	display: flex;
 	flex-direction: column;

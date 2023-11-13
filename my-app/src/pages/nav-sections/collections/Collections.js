@@ -1,12 +1,7 @@
 import Collections from '../../../components/nav-sections/collections/Collections';
 
-
 const CollectionsPage = () => {
-	return (
-
-			<Collections />
-
-	);
+	return <Collections />;
 };
 
 export default CollectionsPage;

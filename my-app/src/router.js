@@ -21,7 +21,7 @@ const CheckoutPageLazy = lazy(() => import('./pages/checkout/Checkout'));
 const CheckoutDetailsLazy = lazy(() => import('./pages/checkout/CheckoutDetails'));
 const CheckoutSuccessfulLazy = lazy(() => import('./pages/checkout/CheckoutSuccessful'));
 const CheckoutSummaryLazy = lazy(() => import('./pages/checkout/CheckoutSummary'));
-const AccountPageLazy = lazy(() => import('./pages/Account'));
+const AccountPageLazy = lazy(() => import('./pages/account/Account'));
 const AuthenticationPageLazy = lazy(() => import('./pages/Authentication'));
 
 const router = createBrowserRouter([
@@ -172,6 +172,7 @@ const router = createBrowserRouter([
 						<AuthenticationPageLazy />
 					</Suspense>
 				),
+				children: [{ path: 'orders', element: <Suspense></Suspense> }],
 				action: authenticationAction,
 			},
 		],

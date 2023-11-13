@@ -52,9 +52,10 @@ const Cart = ({ hideCart, classesProvided }) => {
 	return (
 		<motion.section
 			className={`${classes.cart} ${classesProvided}`}
-			initial={{ opacity: 0, y: -30, x: '-50%' }}
+			initial={{ opacity: 0, y: 30, x: '-50%' }}
 			animate={{ opacity: 1, y: 0, x: '-50%' }}
-			exit={{ opacity: 0, y: -30, x: '-50%' }}>
+			exit={{ opacity: 0, y: 30, x: '-50%' }}
+			transition={{ duration: 0.2 }}>
 			<h2 className={classes.heading}>Cart</h2>
 			{content}
 		</motion.section>

@@ -46,7 +46,7 @@ const useCartData = () => {
 					);
 				};
 
-				if (anonymousUserData.isSignedIn.status) {
+				if (anonymousUserData.isSignedIn && anonymousUserData.isSignedIn.status) {
 					const email = anonymousUserData.credentials.email;
 					const cartData = await getFirebaseData(`/users/emails/${email}/userCart`);
 

@@ -6,7 +6,7 @@ import { authenticationActions } from '../store/authentication-slice';
 import setFirebaseData from '../utils/setFirebaseData';
 import getUid from '../utils/getAnonymousToken';
 
-let initial = 0;
+let initial = false;
 
 const useSendCartData = async () => {
 	const dispatch = useDispatch();
@@ -17,8 +17,8 @@ const useSendCartData = async () => {
 
 	useEffect(() => {
 		const sendData = async () => {
-			if (initial < 2) {
-				initial++;
+			if (!initial) {
+				initial = true;
 				return;
 			}
 
