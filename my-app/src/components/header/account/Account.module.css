@@ -1,8 +1,3 @@
-.section {
-	/* max-width: 14rem; */
-	/* left: 50%; */
-}
-
 .list {
 	display: flex;
 	flex-direction: column;
@@ -82,7 +77,12 @@
 	color: hsl(220, 14%, 75%);
 }
 
-.signed-list .signed-li:nth-last-child(2) {
-	padding-bottom: 1em;
-	border-bottom: 1px solid #000;
+.signed-list .signed-li:nth-last-child(2)::after {
+	content: '';
+	position: absolute;
+	top: 7em;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background-color: hsl(220, 14%, 75%);
 }

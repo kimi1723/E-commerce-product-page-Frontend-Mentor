@@ -76,7 +76,7 @@ const Account = ({ hideAuthentication, classesProvided }) => {
 	return (
 		<>
 			<motion.section
-				className={`${classesProvided} ${classes.section}`}
+				className={classesProvided}
 				initial={{ opacity: 0, y: 30, x: '-50%' }}
 				animate={{ opacity: 1, y: 0, x: '-50%' }}
 				exit={{ opacity: 0, y: 30, x: '-50%' }}

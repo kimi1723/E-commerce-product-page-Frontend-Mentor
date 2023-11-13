@@ -1,0 +1,49 @@
+.main {
+	display: flex;
+	justify-content: center;
+	margin-top: 4em;
+	padding: 2em;
+	width: 100%;
+}
+
+.main-container {
+	display: flex;
+	flex-direction: column;
+	padding: 1.5em 2em;
+	width: 100%;
+	max-width: 500px;
+	border-radius: 8px;
+	box-shadow: 0 3px 8px 1px rgba(0, 0, 0, 0.75);
+	background-color: hsl(223, 64%, 98%);
+}
+
+.h2 {
+	font-size: 1.6rem;
+	margin-bottom: 0.8em;
+}
+
+.sections-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1.2em;
+}
+
+.list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1em 0.4em;
+}
+
+.link,
+.btn {
+	padding: 0.3em;
+	font-size: 1rem;
+	border-bottom: 3px solid transparent;
+	transition: border-color 0.3s;
+}
+
+.link:hover,
+.btn:hover {
+	border-color: hsl(26, 100%, 55%);
+}
