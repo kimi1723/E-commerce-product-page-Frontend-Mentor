@@ -64,8 +64,9 @@
 .signed-link,
 .logout-btn {
 	padding: 0.3em 0.3em 0.3em 0;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	transition: color 0.3s;
+	outline: none;
 }
 
 .signed-link:focus,

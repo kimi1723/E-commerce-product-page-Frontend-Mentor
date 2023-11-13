@@ -17,7 +17,9 @@ const AuthenticationPage = () => {
 		if (data === undefined || data.error) return;
 
 		navigate('/account');
-		dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: true, email: data.email }));
+		dispatch(
+			authenticationActions.changeAuthenticationState({ isSignedIn: true, email: data.email, justSignedIn: true }),
+		);
 	}, [data, dispatch, navigate]);
 
 	return <Authentication />;
@@ -39,7 +41,7 @@ export const action = async ({ request }) => {
 
 	try {
 		if (mode === 'signup') {
-			const accountsData = await getFirebaseData('/users/emails');
+			const accountsData = (await getFirebaseData('/users/emails')) || {};
 
 			const isAlreadyAnUser = Object.keys(accountsData).includes(transformedEmail);
 

@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import { errorActions } from '../store/error-slice';
+import { authenticationActions } from '../store/authentication-slice';
 import setFirebaseData from '../utils/setFirebaseData';
 import getUid from '../utils/getAnonymousToken';
 
@@ -11,7 +12,8 @@ const useSendCartData = async () => {
 	const dispatch = useDispatch();
 	const data = useSelector(state => state.cart);
 
-	const { isSignedIn, email } = useSelector(state => state.authentication);
+	const authenticationState = useSelector(state => state.authentication);
+	const { isSignedIn, email, signedOutByLogout, justSignedIn } = authenticationState;
 
 	useEffect(() => {
 		const sendData = async () => {
@@ -24,9 +26,28 @@ const useSendCartData = async () => {
 				const uid = await getUid();
 
 				if (isSignedIn && data) {
+					if (justSignedIn) {
+						dispatch(
+							authenticationActions.changeAuthenticationState({
+								...authenticationState,
+								justSignedIn: false,
+							}),
+						);
+						return;
+					}
+
 					setFirebaseData(`/users/emails/${email}/userCart`, data);
 				} else {
-					setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: false });
+					if (signedOutByLogout) {
+						dispatch(
+							authenticationActions.changeAuthenticationState({
+								...authenticationState,
+								signedOutByLogout: false,
+							}),
+						);
+						return;
+					}
+
 					setFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`, data);
 				}
 			} catch (error) {

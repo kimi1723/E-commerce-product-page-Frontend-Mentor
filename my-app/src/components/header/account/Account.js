@@ -2,7 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
+import getUid from '../../../utils/getAnonymousToken';
+import setFirebaseData from '../../../utils/setFirebaseData';
 import { authenticationActions } from '../../../store/authentication-slice';
 
 import classes from './Account.module.css';
@@ -17,8 +18,13 @@ const Account = ({ hideAuthentication, classesProvided }) => {
 	};
 
 	const logoutHandler = async () => {
+		const uid = await getUid();
+
 		navigate('/');
-		dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: false, email: '' }));
+		setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: false });
+		dispatch(
+			authenticationActions.changeAuthenticationState({ isSignedIn: false, email: '', signedOutByLogout: true }),
+		);
 	};
 
 	const notSignedInContent = (

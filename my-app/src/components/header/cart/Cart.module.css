@@ -1,3 +1,7 @@
+.cart {
+	min-height: 250px;
+}
+
 .cart::after {
 	content: '';
 	position: absolute;

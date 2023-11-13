@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
 	isSignedIn: false,
 	email: '',
+	signedOutByLogout: false,
+	justSignedIn: false,
 };
 
 const authenticationSlice = createSlice({
@@ -10,10 +12,12 @@ const authenticationSlice = createSlice({
 	initialState,
 	reducers: {
 		changeAuthenticationState(state, action) {
-			const { isSignedIn, email = '' } = action.payload;
+			const { isSignedIn, email = '', signedOutByLogout = false, justSignedIn = false } = action.payload;
 
 			state.isSignedIn = isSignedIn;
 			state.email = email;
+			state.signedOutByLogout = signedOutByLogout;
+			state.justSignedIn = justSignedIn;
 		},
 	},
 });
