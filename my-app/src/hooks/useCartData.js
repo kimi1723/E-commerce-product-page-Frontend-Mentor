@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { cartActions } from '../store/cart-slice';
 import { errorActions } from '../store/error-slice';
@@ -8,6 +8,7 @@ import getFirebaseData from '../utils/getFirebaseData';
 
 const useCartData = () => {
 	const dispatch = useDispatch();
+	const { isSignedIn } = useSelector(state => state.authentication);
 
 	useEffect(() => {
 		const fetchCartData = async () => {
@@ -61,7 +62,7 @@ const useCartData = () => {
 		};
 
 		fetchCartData();
-	}, [dispatch]);
+	}, [dispatch, isSignedIn]);
 };
 
 export default useCartData;

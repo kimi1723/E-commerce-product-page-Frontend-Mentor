@@ -64,7 +64,7 @@ const useSendCartData = async () => {
 		};
 
 		sendData();
-	}, [data, dispatch, isSignedIn, email]);
+	}, [data, dispatch, isSignedIn]);
 };
 
 export default useSendCartData;
