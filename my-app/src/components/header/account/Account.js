@@ -1,30 +1,16 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import getUid from '../../../utils/getAnonymousToken';
-import setFirebaseData from '../../../utils/setFirebaseData';
-import { authenticationActions } from '../../../store/authentication-slice';
 
 import classes from './Account.module.css';
+import LogoutBtn from '../../ui/LogoutBtn';
 
 const Account = ({ hideAuthentication, classesProvided }) => {
 	const { isSignedIn } = useSelector(state => state.authentication);
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
 	const variants = {
 		hover: { scale: 1.05 },
-	};
-
-	const logoutHandler = async () => {
-		const uid = await getUid();
-
-		navigate('/');
-		setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: false });
-		dispatch(
-			authenticationActions.changeAuthenticationState({ isSignedIn: false, email: '', signedOutByLogout: true }),
-		);
 	};
 
 	const notSignedInContent = (
@@ -62,13 +48,11 @@ const Account = ({ hideAuthentication, classesProvided }) => {
 			</li>
 			<li className={classes['signed-li']}>
 				<Link to="account/shipment-information" className={classes['signed-link']}>
-					Shipment information
+					Shipment details
 				</Link>
 			</li>
 			<li className={classes['signed-li']}>
-				<button type="button" className={classes['logout-btn']} onClick={logoutHandler}>
-					Logout
-				</button>
+				<LogoutBtn className={classes['logout-btn']} />
 			</li>
 		</ul>
 	);

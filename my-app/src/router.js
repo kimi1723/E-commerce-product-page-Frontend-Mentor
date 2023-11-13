@@ -21,8 +21,11 @@ const CheckoutPageLazy = lazy(() => import('./pages/checkout/Checkout'));
 const CheckoutDetailsLazy = lazy(() => import('./pages/checkout/CheckoutDetails'));
 const CheckoutSuccessfulLazy = lazy(() => import('./pages/checkout/CheckoutSuccessful'));
 const CheckoutSummaryLazy = lazy(() => import('./pages/checkout/CheckoutSummary'));
-const AccountPageLazy = lazy(() => import('./pages/account/Account'));
 const AuthenticationPageLazy = lazy(() => import('./pages/Authentication'));
+const AccountPageLazy = lazy(() => import('./pages/account/Account'));
+const OrdersPageLazy = lazy(() => import('./pages/account/Orders'));
+const PersonalInformationPageLazy = lazy(() => import('./pages/account/PersonalInformation'));
+const ShipmentDetailsPageLazy = lazy(() => import('./pages/account/ShipmentDetails'));
 
 const router = createBrowserRouter([
 	{
@@ -164,6 +167,32 @@ const router = createBrowserRouter([
 						<AccountPageLazy />
 					</Suspense>
 				),
+				children: [
+					{
+						path: 'orders',
+						element: (
+							<Suspense fallback={<LoaderSpinner />}>
+								<OrdersPageLazy />
+							</Suspense>
+						),
+					},
+					{
+						path: 'personal-information',
+						element: (
+							<Suspense fallback={<LoaderSpinner />}>
+								<PersonalInformationPageLazy />
+							</Suspense>
+						),
+					},
+					{
+						path: 'shipment-details',
+						element: (
+							<Suspense fallback={<LoaderSpinner />}>
+								<ShipmentDetailsPageLazy />
+							</Suspense>
+						),
+					},
+				],
 			},
 			{
 				path: 'authentication',
@@ -172,7 +201,6 @@ const router = createBrowserRouter([
 						<AuthenticationPageLazy />
 					</Suspense>
 				),
-				children: [{ path: 'orders', element: <Suspense></Suspense> }],
 				action: authenticationAction,
 			},
 		],
