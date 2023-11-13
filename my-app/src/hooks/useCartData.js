@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+
 import { cartActions } from '../store/cart-slice';
 import { errorActions } from '../store/error-slice';
 import { authenticationActions } from '../store/authentication-slice';
 import getUid from '../utils/getAnonymousToken';
 import getFirebaseData from '../utils/getFirebaseData';
+import setFirebaseData from '../utils/setFirebaseData';
 
 const useCartData = () => {
 	const dispatch = useDispatch();
@@ -16,7 +18,14 @@ const useCartData = () => {
 				const uid = await getUid();
 				const anonymousUserData = await getFirebaseData(`/users/anonymousTokens/${uid}`);
 
-				if (!anonymousUserData) return;
+				if (!anonymousUserData) {
+					setFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`, {
+						totalQuantity: 0,
+						products: [],
+					});
+
+					return;
+				}
 
 				const fetchData = cartData => {
 					if (cartData === null) return;
