@@ -1,19 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { errorActions } from '../../../store/error-slice';
 import { useState } from 'react';
-
 import { AnimatePresence } from 'framer-motion';
+
 import ModalContent from '../../ui/modals/ModalContent';
 import getFirebaseData from '../../../utils/getFirebaseData';
 import { cartActions } from '../../../store/cart-slice';
+import { errorActions } from '../../../store/error-slice';
 
 import classes from './DiscountForm.module.css';
 
 const DiscountForm = () => {
 	const dispatch = useDispatch();
 	const { discountCode } = useSelector(state => state.cart.discount);
-
-	// const [discountCode, setDiscountCode] = useState('');
 	const [modalProperties, setModalProperties] = useState({ isVisible: false, content: '' });
 
 	const discountCodeHandler = e => {
@@ -48,7 +46,7 @@ const DiscountForm = () => {
 		}
 	};
 
-	const hideModalHandler = () => setModalProperties(false);
+	const hideModalHandler = () => setModalProperties({ isVisible: false, content: '' });
 
 	return (
 		<>

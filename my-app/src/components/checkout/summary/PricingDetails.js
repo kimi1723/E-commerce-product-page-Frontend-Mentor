@@ -1,10 +1,10 @@
 import getDecimals from '../../../utils/getDecimals';
+import { shipmentPrice as defaultShipmentPrice } from '../../../utils/shipmentPrice';
 
 import classes from './PricingDetails.module.css';
 
 const PricingDetails = ({ productsTotal, discount }) => {
-	// const { discountType: discount } = useSelector(state => state.cart.discount);
-	const shipmentPrice = discount === 'SHIPMENT' ? 0 : 5;
+	const shipmentPrice = discount === 'SHIPMENT' ? 0 : defaultShipmentPrice;
 	const totalPrice = getDecimals(Number(productsTotal) + shipmentPrice);
 
 	return (
