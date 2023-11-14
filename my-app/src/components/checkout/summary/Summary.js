@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 
 import Savings from './Savings';
 import Products from './Products';
-
 import DiscountForm from './DiscountForm';
 import PricingDetails from './PricingDetails';
 import Redirect from '../generic/Redirect';

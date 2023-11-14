@@ -5,8 +5,10 @@ import { motion } from 'framer-motion';
 import useClearPricing from '../../hooks/useClearPricing';
 
 import classes from './Checkout.module.css';
+import { useSelector } from 'react-redux';
 
 const Checkout = () => {
+	const cart = useSelector(state => state.cart.products);
 	const navigate = useNavigate();
 	const clearPricing = useClearPricing();
 	const scale = 1.05;
@@ -17,6 +19,12 @@ const Checkout = () => {
 			console.log('dismounted');
 		};
 	}, []);
+
+	useEffect(() => {
+		if (cart.length < 1) {
+			navigate('/');
+		}
+	}, [cart, navigate]);
 
 	return (
 		<nav className={classes.nav}>
