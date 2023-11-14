@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form } from 'react-router-dom';
 
 import BillingDetails from './form-sections/BillingDetails';
-import ShippingInfo from './form-sections/ShippingInfo';
+import ShippingInfo from './form-sections/ShipmentDetails';
 import PaymentDetails from './form-sections/PaymentDetails';
 
 import Redirect from '../generic/Redirect';
@@ -26,7 +26,7 @@ const Details = ({ countriesList }) => {
 			</header>
 
 			<main className={classes.main}>
-				<Form method="post" className={classes.form} action="/checkout-successful">
+				<Form method="post" className={classes.form} action="/checkout-successful" state={{ some: 'value' }}>
 					<BillingDetails classes={classes} setAllErrors={allErrorsHandler} setAllIsTouched={allIsTouchedHandler} />
 					<ShippingInfo
 						classes={classes}

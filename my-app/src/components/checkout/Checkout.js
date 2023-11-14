@@ -10,9 +10,10 @@ import { useSelector } from 'react-redux';
 let initial = true;
 
 const Checkout = ({ cartInitial }) => {
-	const cartState = useSelector(state => state.cart.products);
+	const cartCurrentState = useSelector(state => state.cart.products);
 	const navigate = useNavigate();
 	const clearPricing = useClearPricing();
+
 	const scale = 1.05;
 
 	useEffect(() => {
@@ -33,10 +34,10 @@ const Checkout = ({ cartInitial }) => {
 			return;
 		}
 
-		if (cartState.length < 1) {
+		if (cartCurrentState.length < 1) {
 			navigate('/');
 		}
-	}, [cartState, navigate]);
+	}, [cartCurrentState, navigate]);
 
 	return (
 		<nav className={classes.nav}>

@@ -27,7 +27,7 @@ const AuthenticationPage = () => {
 
 export const action = async ({ request }) => {
 	const searchParams = new URL(request.url).searchParams;
-	let mode = searchParams.get('mode') || 'login';
+	let mode = searchParams.get('mode') || 'signin';
 
 	if (mode !== 'signin' && mode !== 'signup') {
 		mode = 'signup';

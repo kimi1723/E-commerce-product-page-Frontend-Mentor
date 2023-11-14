@@ -3,10 +3,10 @@ import useValidation from '../../../../hooks/useValidation';
 
 import Select from 'react-select';
 
-const ShippingInfo = ({ classes, countriesList, setAllErrors, setAllIsTouched }) => {
-	const [addressValue, setAddressValue] = useState('');
-	const [zipCodeValue, setZipCodeValue] = useState('');
-	const [cityValue, setCityValue] = useState('');
+const ShipmentDetails = ({ classes, countriesList, setAllErrors, setAllIsTouched }) => {
+	const [addressValue, setAddressValue] = useState('address');
+	const [zipCodeValue, setZipCodeValue] = useState('12345');
+	const [cityValue, setCityValue] = useState('warsaw');
 	const [countryValue, setCountryValue] = useState('');
 	const [errors, setErrors] = useState({
 		address: false,
@@ -95,7 +95,7 @@ const ShippingInfo = ({ classes, countriesList, setAllErrors, setAllIsTouched })
 
 	return (
 		<section className={`${classes['shipping-info']} ${classes['form-section']}`}>
-			<h2 className={classes.h2}>Shipping info</h2>
+			<h2 className={classes.h2}>Shipment details</h2>
 
 			<div className={classes['inputs-container']}>
 				{errors.address && isTouched.address && (
@@ -176,4 +176,4 @@ const ShippingInfo = ({ classes, countriesList, setAllErrors, setAllIsTouched })
 	);
 };
 
-export default ShippingInfo;
+export default ShipmentDetails;

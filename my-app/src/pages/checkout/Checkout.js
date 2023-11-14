@@ -1,16 +1,17 @@
 import { Await, Outlet, defer, useLoaderData } from 'react-router-dom';
-import Wrapper from '../../components/ui/wrappers/Wrapper';
+import { Suspense } from 'react';
+
 import Checkout from '../../components/checkout/Checkout';
-import useCartData from '../../hooks/useCartData';
+import Wrapper from '../../components/ui/wrappers/Wrapper';
 import getUid from '../../utils/getAnonymousToken';
 import getFirebaseData from '../../utils/getFirebaseData';
-import { Suspense } from 'react';
+import LoaderSpinner from '../../components/ui/LoaderSpinner';
 
 const CheckoutPage = () => {
 	const { cart } = useLoaderData();
 
 	return (
-		<Suspense>
+		<Suspense fallback={<LoaderSpinner title="checkout" />}>
 			<Await resolve={cart}>
 				{cart => {
 					return (

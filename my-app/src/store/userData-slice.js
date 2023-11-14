@@ -10,7 +10,11 @@ const userDataSlice = createSlice({
 	name: 'userData',
 	initialState,
 	reducers: {
-		handleOrders(state, action) {},
+		addNewOrder(state, action) {
+			const newOrder = action.payload;
+
+			state.orders.push(newOrder);
+		},
 		handlePersonalInformaiton(state, action) {},
 		handleShipmentInformation(state, action) {},
 	},
