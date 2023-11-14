@@ -1,46 +1,50 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { errorActions } from '../../../store/error-slice';
-import { useRef, useState } from 'react';
-import { ref, get } from 'firebase/database';
-import { database } from '../../../firebaseConfig';
+import { useState } from 'react';
+
 import { AnimatePresence } from 'framer-motion';
 import ModalContent from '../../ui/modals/ModalContent';
+import getFirebaseData from '../../../utils/getFirebaseData';
+import { cartActions } from '../../../store/cart-slice';
 
 import classes from './DiscountForm.module.css';
 
-const DiscountForm = ({ getDiscount }) => {
-	const discountRef = useRef(false);
+const DiscountForm = () => {
 	const dispatch = useDispatch();
+	const { discountCode } = useSelector(state => state.cart.discount);
+
+	// const [discountCode, setDiscountCode] = useState('');
 	const [modalProperties, setModalProperties] = useState({ isVisible: false, content: '' });
+
+	const discountCodeHandler = e => {
+		dispatch(cartActions.handleDiscount({ discountCode: e.target.value }));
+	};
 
 	const checkDiscountHandler = async e => {
 		e.preventDefault();
-		const discountCode = discountRef.current.value;
 
-		if (discountCode.trim() !== '') {
-			try {
-				const discountRef = ref(database, `/promotions/discounts/${discountCode}`);
-				const snapshot = await get(discountRef);
-				const discount = snapshot.val();
+		if (discountCode.trim() === '') return;
 
-				if (discount) {
-					getDiscount(discount);
-					setModalProperties({ isVisible: true, content: 'Discount added successfully!' });
-				} else {
-					setModalProperties({ isVisible: true, content: 'Discount code is incorrect!' });
-					getDiscount(discount);
-				}
-			} catch (error) {
-				dispatch(
-					errorActions.setError({
-						isError: true,
-						message: {
-							content: `Couldn't access your discount code.`,
-							error: error.code || error.message,
-						},
-					}),
-				);
+		try {
+			const discount = await getFirebaseData(`/promotions/discounts/${discountCode}`);
+
+			if (discount) {
+				setModalProperties({ isVisible: true, content: 'Discount added successfully!' });
+				dispatch(cartActions.handleDiscount({ isDiscount: true, discountType: discount }));
+			} else {
+				setModalProperties({ isVisible: true, content: 'Discount code is incorrect!' });
+				dispatch(cartActions.handleDiscount({ isDiscount: false, discountType: null }));
 			}
+		} catch (error) {
+			dispatch(
+				errorActions.setError({
+					isError: true,
+					message: {
+						content: `Couldn't access your discount code.`,
+						error: error.code || error.message,
+					},
+				}),
+			);
 		}
 	};
 
@@ -56,8 +60,9 @@ const DiscountForm = ({ getDiscount }) => {
 						id="discount"
 						className={classes['input']}
 						placeholder=""
-						ref={discountRef}
 						autoComplete="off"
+						value={discountCode}
+						onChange={discountCodeHandler}
 					/>
 					<label htmlFor="discount" className={classes['label']}>
 						Enter discount
@@ -68,7 +73,6 @@ const DiscountForm = ({ getDiscount }) => {
 				</button>
 			</form>
 			<AnimatePresence>
-				{' '}
 				{modalProperties.isVisible && <ModalContent content={modalProperties.content} onClick={hideModalHandler} />}
 			</AnimatePresence>
 		</>

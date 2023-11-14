@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
 	totalQuantity: 0,
 	products: [],
+	discount: { isDiscount: false, discountType: null, discountCode: '' },
+	totalPrice: null,
 };
 
 const cartSlice = createSlice({
@@ -47,6 +49,12 @@ const cartSlice = createSlice({
 				state.totalQuantity += newQuantity - product.quantity;
 				product.quantity = newQuantity;
 			}
+		},
+		handleDiscount(state, action) {
+			state.discount = { ...state.discount, ...action.payload };
+		},
+		handleTotalPrice(state, action) {
+			state.totalPrice = action.payload;
 		},
 	},
 });

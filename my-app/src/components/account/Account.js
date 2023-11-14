@@ -18,6 +18,7 @@ const Account = ({ children }) => {
 	];
 
 	const path = navOptions[currentPathIndex].value;
+	const label = navOptions[currentPathIndex].label;
 
 	useEffect(() => {
 		if (path === '') {
@@ -33,8 +34,7 @@ const Account = ({ children }) => {
 		<>
 			<main className={classes.main}>
 				<div className={classes['main-container']}>
-					<h1 className={classes.h1}>Account settings</h1>
-					<div className={classes['sections-container']}>
+					<header>
 						<nav className={classes.nav}>
 							<ReactSelect
 								options={navOptions}
@@ -42,13 +42,15 @@ const Account = ({ children }) => {
 								optionStyles={{ backgroundColor: 'red' }}
 								onChange={changePathHandler}
 							/>
-						</nav>
-					</div>
+						</nav>{' '}
+						{/* <h1 className={classes.h1}>{label}</h1> */}
+					</header>
+
 					<section className={classes['content-section']}>
 						Welcome back, {`user! :)`}
 						{children}
 					</section>
-					<LogoutBtn />
+					<LogoutBtn className={classes['logout-btn']} />
 				</div>
 			</main>
 		</>
