@@ -131,6 +131,7 @@ const router = createBrowserRouter([
 						<CheckoutPageLazy />
 					</Suspense>
 				),
+				loader: meta => import('./pages/checkout/Checkout').then(module => module.loader(meta)),
 				children: [
 					{
 						index: true,

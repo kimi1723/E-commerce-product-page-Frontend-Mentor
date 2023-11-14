@@ -27,7 +27,7 @@ const ProductPage = () => {
 	);
 };
 
-export const productLoader = async params => {
+const productLoader = async params => {
 	const id = params.id;
 	const productData = await getProductsData(`/products/${id}`);
 	const imagesUrls = await getImages(id, 'all');
@@ -42,7 +42,7 @@ export const productLoader = async params => {
 	return { productDetails, imagesData };
 };
 
-export const loader = ({ params, request }) => {
+export const loader = ({ params }) => {
 	return defer({
 		productData: productLoader(params),
 	});

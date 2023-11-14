@@ -14,25 +14,10 @@ const Details = ({ countriesList }) => {
 	const isAnyError = Object.values(allErrors).includes(true);
 	const notEverythingTouched = Object.values(allIsTouched).includes(false);
 
-	const allErrorsHandler = newErrorsState => {
-		setAllErrors(prevErrorState => {
-			return { ...prevErrorState, ...newErrorsState };
-		});
-	};
+	const allErrorsHandler = newErrorsState => setAllErrors(prevErrorState => ({ ...prevErrorState, ...newErrorsState }));
 
-	const allIsTouchedHandler = newTouchedState => {
-		setAllIsTouched(prevTouchedState => {
-			return { ...prevTouchedState, ...newTouchedState };
-		});
-	};
-
-	const submitHandler = () => {
-		if (Object.values(allErrors).includes(true)) {
-			console.log('error');
-		} else {
-			console.log('no error');
-		}
-	};
+	const allIsTouchedHandler = newTouchedState =>
+		setAllIsTouched(prevTouchedState => ({ ...prevTouchedState, newTouchedState }));
 
 	return (
 		<>
