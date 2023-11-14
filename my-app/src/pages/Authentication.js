@@ -16,10 +16,10 @@ const AuthenticationPage = () => {
 	useEffect(() => {
 		if (data === undefined || data.error) return;
 
-		navigate('/account');
 		dispatch(
 			authenticationActions.changeAuthenticationState({ isSignedIn: true, email: data.email, justSignedIn: true }),
 		);
+		navigate('/account');
 	}, [data, dispatch, navigate]);
 
 	return <Authentication />;

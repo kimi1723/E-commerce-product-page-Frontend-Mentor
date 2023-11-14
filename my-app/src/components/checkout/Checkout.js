@@ -1,11 +1,22 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+
+import useClearPricing from '../../hooks/useClearPricing';
 
 import classes from './Checkout.module.css';
 
 const Checkout = () => {
 	const navigate = useNavigate();
+	const clearPricing = useClearPricing();
 	const scale = 1.05;
+
+	useEffect(() => {
+		return () => {
+			clearPricing();
+			console.log('dismounted');
+		};
+	}, []);
 
 	return (
 		<nav className={classes.nav}>

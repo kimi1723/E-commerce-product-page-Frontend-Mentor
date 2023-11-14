@@ -42,7 +42,7 @@ const Account = ({ children }) => {
 								optionStyles={{ backgroundColor: 'red' }}
 								onChange={changePathHandler}
 							/>
-						</nav>{' '}
+						</nav>
 						{/* <h1 className={classes.h1}>{label}</h1> */}
 					</header>
 

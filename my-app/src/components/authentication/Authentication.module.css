@@ -46,7 +46,7 @@
 
 .input:focus {
 	box-shadow: 0px 1px 5px 1px hsl(26, 100%, 55%);
-	border-color: hsl(26, 100%, 55%);
+	border-color: w;
 }
 
 .input:hover {
