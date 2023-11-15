@@ -10,7 +10,7 @@ const CheckoutSuccessfulPage = () => {
 	const { email, isSignedIn } = useSelector(state => state.authentication);
 	const [orderSentSuccessfuly, setOrderSentSuccessfully] = useState(undefined);
 	const orderRef = useRef(cart);
-	const order = orderRef.current;
+	const orderData = orderRef.current;
 
 	const sendOrder = useSendOrder();
 	const userData = useActionData();
@@ -18,8 +18,7 @@ const CheckoutSuccessfulPage = () => {
 	useEffect(() => {
 		const handleOrder = async () => {
 			if (userData) {
-				console.log(userData);
-				setOrderSentSuccessfully(await sendOrder({ order, email, isSignedIn }));
+				setOrderSentSuccessfully(await sendOrder({ orderData, email, isSignedIn }));
 				// dispatch(userDataActions.addNewOrder(order));
 				// dispatch(cartActions.replaceCart({ products: [], totalQuantity: 0 }));
 			}
@@ -28,7 +27,7 @@ const CheckoutSuccessfulPage = () => {
 		handleOrder();
 	}, []);
 
-	return <CheckoutSuccessful userData={userData} order={order} orderSentSuccessfuly={orderSentSuccessfuly} />;
+	return <CheckoutSuccessful userData={userData} orderData={orderData} orderSentSuccessfuly={orderSentSuccessfuly} />;
 };
 
 export const action = async ({ request }) => {

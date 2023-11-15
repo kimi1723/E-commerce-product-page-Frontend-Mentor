@@ -5,6 +5,9 @@
 }
 
 .wrapper {
+	display: flex;
+	flex-direction: column;
+	row-gap: 2em;
 	margin-bottom: 2em;
 	width: 100%;
 }
@@ -12,8 +15,12 @@
 .h2 {
 	font-size: 1.6rem;
 	margin-bottom: 0.75em;
+	/* text-align: center; */
 }
 
 .title {
 	font-weight: bold;
+}
+
+.order-content {
 }

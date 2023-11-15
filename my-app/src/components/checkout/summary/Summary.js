@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 import Savings from './Savings';
-import Products from './Products';
+import Products from '../generic/Products';
 import DiscountForm from './DiscountForm';
 import PricingDetails from './PricingDetails';
 import Redirect from '../generic/Redirect';
@@ -22,7 +22,7 @@ const Summary = () => {
 			</header>
 
 			<main className={classes.main}>
-				<Products cart={cart} />
+				<Products productsData={cart} listClasses={classes.list} />
 
 				<div className={classes.details}>
 					<Savings discount={discount} cart={cart} />

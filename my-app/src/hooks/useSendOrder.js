@@ -4,9 +4,9 @@ import setFirebaseData from '../utils/setFirebaseData';
 import getUid from '../utils/getAnonymousToken';
 
 const useSendOrder = () => {
-	const sendOrder = ({ order, email, isSignedIn }) => {
+	const sendOrder = ({ orderData, email, isSignedIn }) => {
 		if (isSignedIn && email) {
-			return setFirebaseData(`/users/emails/${email}/userOrders`, order);
+			return setFirebaseData(`/users/emails/${email}/userOrders`, orderData);
 		} else {
 			console.log('elsee');
 			return 'not signed in';
