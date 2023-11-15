@@ -9,7 +9,13 @@
 	flex-direction: column;
 	row-gap: 2em;
 	margin-bottom: 2em;
-	width: 100%;
+	padding: 1rem;
+	border-radius: 8px;
+	box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.5);
+}
+
+.form-data {
+	margin-bottom: 1em;
 }
 
 .h2 {
@@ -17,8 +23,25 @@
 	margin-bottom: 0.75em;
 }
 
+.h2:last-child,
+.order-content .h2 {
+	position: relative;
+}
+
 .h2:last-child {
+	margin-bottom: 0.3em;
 	text-align: center;
+}
+
+.h2:last-child::before,
+.order-content .h2::before {
+	content: '';
+	position: absolute;
+	top: -1em;
+	left: -1rem;
+	width: calc(100% + 2rem);
+	height: 1px;
+	background-color: hsl(220, 14%, 75%);
 }
 
 .title {
