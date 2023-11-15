@@ -15,11 +15,11 @@ const Savings = ({ cart, discount }) => {
 
 	if (discount && discount !== 'SHIPMENT') {
 		discountedTotal = getDecimals(discountedTotal - (discountedTotal * discount) / 100);
-	} else if (discount && discount === 'SHIPMENT') {
-		discountedTotal -= shipmentPrice;
 	}
 
-	const savings = getDecimals(originalTotal - discountedTotal);
+	const shipmentDiscount = discount && discount === 'SHIPMENT' ? shipmentPrice : 0;
+
+	const savings = getDecimals(originalTotal - discountedTotal + shipmentDiscount);
 
 	const savingsContent = savings > 0 ? <p className={classes.savings}>You are saving ${savings} </p> : '';
 

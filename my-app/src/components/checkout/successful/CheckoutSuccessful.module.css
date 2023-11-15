@@ -15,10 +15,18 @@
 .h2 {
 	font-size: 1.6rem;
 	margin-bottom: 0.75em;
-	/* text-align: center; */
+}
+
+.h2:last-child {
+	text-align: center;
 }
 
 .title {
+	font-weight: bold;
+}
+
+.discount {
+	text-transform: uppercase;
 	font-weight: bold;
 }
 

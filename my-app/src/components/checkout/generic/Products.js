@@ -7,7 +7,7 @@ import { cartActions } from '../../../store/cart-slice';
 
 import classes from './Products.module.css';
 
-const Products = ({ productsData, shouldQuantityBeUpdatable }) => {
+const Products = ({ productsData, shouldQuantityUpdate, discount }) => {
 	const dispatch = useDispatch();
 	const selectOptions = Array.from({ length: 11 }, (e, i) => ({ value: i, label: i }));
 
@@ -30,6 +30,8 @@ const Products = ({ productsData, shouldQuantityBeUpdatable }) => {
 		}),
 	};
 
+	const productDiscount = Number.isInteger(discount) ? 1 - Number(`0.${discount}`) : 1;
+
 	const productsList = productsData.map(
 		({ id, imageUrl, alt, annotation, name, originalPrice, discountedPrice, quantity }) => {
 			const value = { value: quantity, label: quantity };
@@ -47,11 +49,16 @@ const Products = ({ productsData, shouldQuantityBeUpdatable }) => {
 					<section className={classes['product-details']}>
 						<p className={classes.annotation}>{annotation}</p>
 						<h2 className={classes.h2}>{name}</h2>
+						{!shouldQuantityUpdate && <p className={classes.quantity}>x{quantity}</p>}
+
 						<div className={classes.prices}>
 							<p className={classes['original-price']}>${getDecimals(originalPrice * quantity)}</p>
-							<p className={classes['discounted-price']}>${getDecimals(discountedPrice * quantity)}</p>
+							<p className={classes['discounted-price']}>
+								${getDecimals(discountedPrice * productDiscount * quantity)}
+							</p>
 						</div>
-						{shouldQuantityBeUpdatable && (
+
+						{shouldQuantityUpdate && (
 							<Creatable
 								options={selectOptions}
 								value={value}
@@ -62,7 +69,6 @@ const Products = ({ productsData, shouldQuantityBeUpdatable }) => {
 								aria-label="Select item quantity"
 							/>
 						)}
-						{!shouldQuantityBeUpdatable && <p className={classes.quantity}>x{quantity}</p>}
 					</section>
 				</li>
 			);

@@ -1,18 +1,19 @@
 .list {
 	display: flex;
 	flex-direction: column;
-	row-gap: 2em;
+	row-gap: 2.5em;
 }
 
 .product {
 	display: flex;
 	justify-content: space-between;
 	column-gap: 1.5em;
+	align-items: center;
 }
 
 .img {
 	aspect-ratio: 1 / 1;
-	height: 120px;
+	height: 130px;
 	border-radius: 8px;
 	object-fit: cover;
 }
@@ -34,6 +35,7 @@
 .h2,
 .discounted-price {
 	font-size: 1.1rem;
+	text-align: right;
 }
 
 .prices {
@@ -54,7 +56,7 @@
 }
 
 .quantity {
-	font-size: 1rem;
+	font-size: 0.8rem;
 }
 
 @media (min-width: 992px) {

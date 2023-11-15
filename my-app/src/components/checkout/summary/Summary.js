@@ -14,6 +14,7 @@ const Summary = () => {
 	const totalQuantity = useSelector(state => state.cart.totalQuantity);
 	const productsTotal = useSelector(state => state.cart.totalPrice);
 
+	// console.log(productsTotal);
 	return (
 		<>
 			<header className={classes.header}>
@@ -22,7 +23,7 @@ const Summary = () => {
 			</header>
 
 			<main className={classes.main}>
-				<Products productsData={cart} listClasses={classes.list} />
+				<Products productsData={cart} shouldQuantityUpdate={true} discount={discount} />
 
 				<div className={classes.details}>
 					<Savings discount={discount} cart={cart} />

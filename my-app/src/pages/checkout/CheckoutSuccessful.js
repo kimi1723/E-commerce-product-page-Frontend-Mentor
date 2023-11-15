@@ -1,5 +1,5 @@
-import { useActionData } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useActionData, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 
 import CheckoutSuccessful from '../../components/checkout/successful/CheckoutSuccessful';
@@ -10,10 +10,11 @@ const CheckoutSuccessfulPage = () => {
 	const { email, isSignedIn } = useSelector(state => state.authentication);
 	const [orderSentSuccessfuly, setOrderSentSuccessfully] = useState(undefined);
 	const orderRef = useRef(cart);
-	const orderData = orderRef.current;
-
-	const sendOrder = useSendOrder();
 	const userData = useActionData();
+	const navigate = useNavigate();
+	const sendOrder = useSendOrder();
+
+	const orderData = orderRef.current;
 
 	useEffect(() => {
 		const handleOrder = async () => {
@@ -21,6 +22,8 @@ const CheckoutSuccessfulPage = () => {
 				setOrderSentSuccessfully(await sendOrder({ orderData, email, isSignedIn }));
 				// dispatch(userDataActions.addNewOrder(order));
 				// dispatch(cartActions.replaceCart({ products: [], totalQuantity: 0 }));
+			} else {
+				navigate('/');
 			}
 		};
 
