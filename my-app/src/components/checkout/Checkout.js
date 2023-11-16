@@ -23,7 +23,9 @@ const Checkout = ({ cartInitial }) => {
 	}, []);
 
 	useEffect(() => {
-		if (!cartInitial.products || cartInitial.products.length < 1) {
+		if (!initial) return;
+
+		if (cartInitial === null || !cartInitial.products || cartInitial.products.length < 1) {
 			navigate('/');
 		}
 	}, [cartInitial, navigate]);

@@ -47,9 +47,24 @@ export const action = async ({ request }) => {
 
 			if (isAlreadyAnUser) throw new Error('There is already an account assigned to this email!');
 
-			setFirebaseData(`/users/emails/${transformedEmail}`, { password });
-			setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true });
-			setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, { email: transformedEmail, password });
+			const isDataSet = {
+				signUp: await setFirebaseData(`/users/emails/${transformedEmail}`, { password }),
+				signedInStatus: await setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true }),
+				anonymousCredentials: await setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, {
+					email: transformedEmail,
+					password,
+				}),
+			};
+
+			const isDataSetValues = Object.values(isDataSet);
+
+			for (const request in isDataSetValues) {
+				const { status } = isDataSetValues[request];
+
+				if (status !== 200) {
+					throw new Error('Something went wrong, please try again later.');
+				}
+			}
 		}
 
 		if (mode === 'signin') {
@@ -62,8 +77,23 @@ export const action = async ({ request }) => {
 
 			if (!isPasswordCorrect) throw new Error(`Password invalid!`);
 
-			setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true });
-			setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, { email: transformedEmail, password });
+			const isDataSet = {
+				signedInStatus: await setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true }),
+				anonymousCredentials: await setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, {
+					email: transformedEmail,
+					password,
+				}),
+			};
+
+			const isDataSetValues = Object.values(isDataSet);
+
+			for (const request in isDataSetValues) {
+				const { status } = isDataSetValues[request];
+
+				if (status !== 200) {
+					throw new Error('Something went wrong, please try again later.');
+				}
+			}
 		}
 
 		return { isSingedIn: true, email: transformedEmail };

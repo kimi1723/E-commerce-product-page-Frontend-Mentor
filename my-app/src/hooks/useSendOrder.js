@@ -1,15 +1,14 @@
-import { useSelector } from 'react-redux';
-
 import setFirebaseData from '../utils/setFirebaseData';
 import getUid from '../utils/getAnonymousToken';
 
 const useSendOrder = () => {
-	const sendOrder = ({ orderData, email, isSignedIn }) => {
+	const sendOrder = async ({ orderData, email, isSignedIn }) => {
 		if (isSignedIn && email) {
-			return setFirebaseData(`/users/emails/${email}/userOrders`, orderData);
+			return setFirebaseData(`/users/emails/${email}/userOrders`, orderData, true);
 		} else {
-			console.log('elsee');
-			return 'not signed in';
+			const uid = await getUid();
+
+			return setFirebaseData(`users/anonymousTokens/${uid}/anonymousOrders`, orderData, true);
 		}
 	};
 
