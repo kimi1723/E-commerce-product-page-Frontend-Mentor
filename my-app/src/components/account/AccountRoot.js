@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import ReactSelect from '../ui/ReactSelect';
@@ -6,6 +6,8 @@ import LogoutBtn from '../ui/LogoutBtn';
 
 import classes from './Account.module.css';
 import { useSelector } from 'react-redux';
+
+let initial = true;
 
 const AccountRoot = ({ children }) => {
 	const navigate = useNavigate();
@@ -23,25 +25,22 @@ const AccountRoot = ({ children }) => {
 		return option.value === wantedPathname;
 	});
 
-	const [pathIndex, setPathIndex] = useState(defaultValueIndex);
-	let pathRef = useRef(pathIndex);
-	const currentPathIndex = pathRef.current;
+	const [currentPathIndex, setCurrentPathIndex] = useState(defaultValueIndex);
 
-	// const [currentPathIndex, setCurrentPathIndex] = useState(defaultValueIndex);
-
-	const label = navOptions[currentPathIndex].label;
-	console.log(pathRef);
+	const path = navOptions[currentPathIndex].value;
 
 	useEffect(() => {
-		console.log('effect');
-		const path = navOptions[pathRef.current].value;
+		if (initial) {
+			initial = false;
+			return;
+		}
 
 		if (path === '') {
 			navigate('/account');
 		} else {
 			navigate(`/account${path}`);
 		}
-	}, [navigate, pathRef]);
+	}, [navigate, currentPathIndex, path]);
 
 	useEffect(() => {
 		localStorage.setItem('email', email);
@@ -52,7 +51,7 @@ const AccountRoot = ({ children }) => {
 	}, [email]);
 
 	const changePathHandler = e => {
-		pathRef.current = navOptions.indexOf(e);
+		setCurrentPathIndex(navOptions.indexOf(e));
 	};
 
 	return (
@@ -68,7 +67,6 @@ const AccountRoot = ({ children }) => {
 								onChange={changePathHandler}
 							/>
 						</nav>
-						{/* <h1 className={classes.h1}>{label}</h1> */}
 					</header>
 
 					<section className={classes['content-section']}>{children}</section>

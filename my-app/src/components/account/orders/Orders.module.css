@@ -24,8 +24,8 @@
 }
 
 .label-container {
-	width: 45%;
-	max-width: 180px;
+	width: 50%;
+	max-width: 150px;
 }
 
 .label {
@@ -50,7 +50,6 @@
 	row-gap: 1em;
 	align-items: center;
 	width: 55%;
-	max-width: 180px;
 }
 
 .date {
