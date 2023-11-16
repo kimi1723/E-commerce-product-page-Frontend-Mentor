@@ -30,7 +30,7 @@ const checkoutLoader = async () => {
 	const uid = await getUid();
 	const anonymousUserData = await getFirebaseData(`/users/anonymousTokens/${uid}`);
 
-	if (anonymousUserData.isSignedIn && anonymousUserData.isSignedIn.status) {
+	if (anonymousUserData && anonymousUserData.isSignedIn && anonymousUserData.isSignedIn.status) {
 		const email = anonymousUserData.credentials.email;
 		const cartData = await getFirebaseData(`/users/emails/${email}/userCart`);
 

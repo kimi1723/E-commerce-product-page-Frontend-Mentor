@@ -32,8 +32,6 @@ const CheckoutSuccessfulPage = () => {
 		handleOrder();
 	}, []);
 
-	console.log(orderSentSuccessfuly);
-
 	return <CheckoutSuccessful userData={userData} orderData={orderData} orderSentSuccessfuly={orderSentSuccessfuly} />;
 };
 

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import getUid from '../../utils/getAnonymousToken';
 import setFirebaseData from '../../utils/setFirebaseData';
 import { authenticationActions } from '../../store/authentication-slice';
+import { errorActions } from '../../store/error-slice';
 
 const LogoutBtn = ({ className: classes }) => {
 	const navigate = useNavigate();
@@ -12,12 +13,29 @@ const LogoutBtn = ({ className: classes }) => {
 	const logoutHandler = async () => {
 		const uid = await getUid();
 
-		navigate('/');
-		setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: false });
+		try {
+			const { status } = await setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: false });
 
-		dispatch(
-			authenticationActions.changeAuthenticationState({ isSignedIn: false, email: '', signedOutByLogout: true }),
-		);
+			if (status !== 200) {
+				throw new Error(`Server response code: ${status}`);
+			}
+
+			navigate('/');
+
+			dispatch(
+				authenticationActions.changeAuthenticationState({ isSignedIn: false, email: '', signedOutByLogout: true }),
+			);
+		} catch (error) {
+			dispatch(
+				errorActions.setError({
+					isError: true,
+					message: {
+						content: 'Unable to logout',
+						error: error.code || error.message,
+					},
+				}),
+			);
+		}
 	};
 
 	return (

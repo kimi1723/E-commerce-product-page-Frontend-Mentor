@@ -36,7 +36,11 @@ const useSendCartData = async () => {
 						return;
 					}
 
-					setFirebaseData(`/users/emails/${email}/userCart`, data);
+					const { status } = await setFirebaseData(`/users/emails/${email}/userCart`, data);
+
+					if (status !== 200) {
+						throw new Error(`Server response code: ${status}`);
+					}
 				} else {
 					if (signedOutByLogout) {
 						dispatch(
@@ -48,7 +52,11 @@ const useSendCartData = async () => {
 						return;
 					}
 
-					setFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`, data);
+					const { status } = await setFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`, data);
+
+					if (status !== 200) {
+						throw new Error(`Server response code: ${status}`);
+					}
 				}
 			} catch (error) {
 				dispatch(

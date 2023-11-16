@@ -19,10 +19,14 @@ const useCartData = () => {
 				const anonymousUserData = await getFirebaseData(`/users/anonymousTokens/${uid}`);
 
 				if (!anonymousUserData) {
-					setFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`, {
+					const { status } = await setFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`, {
 						totalQuantity: 0,
 						products: [],
 					});
+
+					if (status !== 200) {
+						throw new Error(`Server response code: ${status}`);
+					}
 
 					return;
 				}
