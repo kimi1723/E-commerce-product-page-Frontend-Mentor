@@ -1,12 +1,7 @@
-import { Outlet } from 'react-router-dom';
 import Account from '../../components/account/Account';
 
 const AccountPage = () => {
-	return (
-		<Account>
-			<Outlet />
-		</Account>
-	);
+	return <Account />;
 };
 
 export default AccountPage;

@@ -21,24 +21,24 @@ const ProductsPage = ({ productsData, title }) => {
 				}
 			</PageContent>
 		);
-	} else {
-		const products = productsData.map(product => <Product key={product.id} product={product} />);
-
-		return (
-			<PageContent title={title}>
-				<motion.ul
-					variants={{
-						hidden: { opacity: 0 },
-						visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-					}}
-					initial="hidden"
-					animate="visible"
-					className={classes.ul}>
-					{products}
-				</motion.ul>
-			</PageContent>
-		);
 	}
+
+	const products = productsData.map(product => <Product key={product.id} product={product} />);
+
+	return (
+		<PageContent title={title}>
+			<motion.ul
+				variants={{
+					hidden: { opacity: 0 },
+					visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+				}}
+				initial="hidden"
+				animate="visible"
+				className={classes.ul}>
+				{products}
+			</motion.ul>
+		</PageContent>
+	);
 };
 
 export default ProductsPage;

@@ -22,10 +22,12 @@ const CheckoutDetailsLazy = lazy(() => import('./pages/checkout/CheckoutDetails'
 const CheckoutSuccessfulLazy = lazy(() => import('./pages/checkout/CheckoutSuccessful'));
 const CheckoutSummaryLazy = lazy(() => import('./pages/checkout/CheckoutSummary'));
 const AuthenticationPageLazy = lazy(() => import('./pages/Authentication'));
-const AccountPageLazy = lazy(() => import('./pages/account/Account'));
+const AccountRootPageLazy = lazy(() => import('./pages/account/AccountRoot'));
+const MyAccountPageLazy = lazy(() => import('./pages/account/MyAccount'));
 const OrdersPageLazy = lazy(() => import('./pages/account/Orders'));
 const PersonalInformationPageLazy = lazy(() => import('./pages/account/PersonalInformation'));
 const ShipmentDetailsPageLazy = lazy(() => import('./pages/account/ShipmentDetails'));
+const OrderDetailsPageLazy = lazy(() => import('./pages/account/OrderDetails'));
 
 const router = createBrowserRouter([
 	{
@@ -165,10 +167,18 @@ const router = createBrowserRouter([
 				path: 'account',
 				element: (
 					<Suspense fallback={<LoaderSpinner />}>
-						<AccountPageLazy />
+						<AccountRootPageLazy />
 					</Suspense>
 				),
 				children: [
+					{
+						index: true,
+						element: (
+							<Suspense fallback={<LoaderSpinner />}>
+								<MyAccountPageLazy />
+							</Suspense>
+						),
+					},
 					{
 						path: 'orders',
 						element: (
@@ -177,6 +187,17 @@ const router = createBrowserRouter([
 							</Suspense>
 						),
 						loader: () => import('./pages/account/Orders').then(module => module.loader()),
+						children: [
+							{
+								path: ':orderId',
+								id: 'order-details',
+								element: (
+									<Suspense fallback={<LoaderSpinner />}>
+										<OrderDetailsPageLazy />
+									</Suspense>
+								),
+							},
+						],
 					},
 					{
 						path: 'personal-information',

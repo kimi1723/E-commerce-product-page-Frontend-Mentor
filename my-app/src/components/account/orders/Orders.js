@@ -1,19 +1,23 @@
-import { motion, useScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import classes from './Orders.module.css';
 import { useSelector } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Orders = ({ ordersData }) => {
 	const { isMobile } = useSelector(state => state.deviceType);
+	const navigate = useNavigate();
 
-	const orders = ordersData.map(({ totalQuantity, products, timestamp, totalPrice }, i) => {
+	const orders = ordersData.map(({ totalQuantity, products, timestamp, totalPrice, id }) => {
 		const orderQuantityLabel = totalQuantity > 1 ? 'items' : 'item';
 		const { imageUrl, alt } = products[0];
 		const date = new Date(timestamp.seconds * 1000).toLocaleString();
 		const btnMotionScale = 0.95;
 
+		const navigateHandler = () => navigate(id);
+
 		return (
-			<li key={i} className={classes.li}>
+			<li key={id} className={classes.li}>
 				<div className={classes['label-container']}>
 					<p className={classes.label}>
 						{totalQuantity} {orderQuantityLabel}
@@ -29,6 +33,7 @@ const Orders = ({ ordersData }) => {
 						whileFocus={{ scale: btnMotionScale }}
 						transition={{ type: 'spring', duration: 0.3 }}
 						type="button"
+						onClick={navigateHandler}
 						className={classes.btn}>
 						Order details
 					</motion.button>
