@@ -5,10 +5,12 @@ import ReactSelect from '../ui/ReactSelect';
 import LogoutBtn from '../ui/LogoutBtn';
 
 import classes from './Account.module.css';
+import { useSelector } from 'react-redux';
 
 const Account = ({ children }) => {
 	const navigate = useNavigate();
 	const [currentPathIndex, setCurrentPathIndex] = useState(0);
+	const email = useSelector(state => state.authentication.email);
 
 	const navOptions = [
 		{ label: 'My account', value: '' },
@@ -27,6 +29,14 @@ const Account = ({ children }) => {
 			navigate(`/account/${path}`);
 		}
 	}, [path, navigate]);
+
+	useEffect(() => {
+		localStorage.setItem('email', email);
+
+		return () => {
+			localStorage.removeItem('email');
+		};
+	}, [email]);
 
 	const changePathHandler = e => setCurrentPathIndex(navOptions.indexOf(e));
 

@@ -176,6 +176,7 @@ const router = createBrowserRouter([
 								<OrdersPageLazy />
 							</Suspense>
 						),
+						loader: () => import('./pages/account/Orders').then(module => module.loader()),
 					},
 					{
 						path: 'personal-information',
