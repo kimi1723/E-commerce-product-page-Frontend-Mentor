@@ -1,40 +1,43 @@
-import getFirebaseData from '../../../utils/getFirebaseData';
-import getUid from '../../../utils/getAnonymousToken';
-import { useSelector } from 'react-redux';
-import Products from '../../checkout/generic/Products';
+import { motion, useScroll } from 'framer-motion';
 
 import classes from './Orders.module.css';
+import { useSelector } from 'react-redux';
 
 const Orders = ({ ordersData }) => {
-	const orders = ordersData.map((order, i) => {
-		const orderQuantityLabel = order.totalQuantity > 1 ? 'items' : 'item';
-		const { imageUrl, alt } = order.products[0];
-		const date = new Date(order.timestamp.seconds * 1000).toLocaleString();
+	const { isMobile } = useSelector(state => state.deviceType);
+
+	const orders = ordersData.map(({ totalQuantity, products, timestamp, totalPrice }, i) => {
+		const orderQuantityLabel = totalQuantity > 1 ? 'items' : 'item';
+		const { imageUrl, alt } = products[0];
+		const date = new Date(timestamp.seconds * 1000).toLocaleString();
+		const btnMotionScale = 0.95;
 
 		return (
 			<li key={i} className={classes.li}>
 				<div className={classes['label-container']}>
 					<p className={classes.label}>
-						<span className={classes.quantity}>
-							{order.totalQuantity} {orderQuantityLabel}
-						</span>
-						<span className={classes.date}> {date}</span>
+						{totalQuantity} {orderQuantityLabel}
 					</p>
 					<img src={imageUrl} alt={alt} className={classes.img} />
 				</div>
 
-				<button type="button" className={classes.btn}>
-					Show order details
-				</button>
+				<div className={classes['date-btn-container']}>
+					<p>${totalPrice}</p>
+					{!isMobile && <p className={classes.date}> {date}</p>}
+					<motion.button
+						whileHover={{ scale: btnMotionScale }}
+						whileFocus={{ scale: btnMotionScale }}
+						transition={{ type: 'spring', duration: 0.3 }}
+						type="button"
+						className={classes.btn}>
+						Order details
+					</motion.button>
+				</div>
 			</li>
 		);
 	});
 
-	return (
-		<>
-			<ul>{orders}</ul>
-		</>
-	);
+	return <ul className={classes.list}>{orders}</ul>;
 };
 
 export default Orders;
