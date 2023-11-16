@@ -3,7 +3,7 @@ import PageContent from '../../ui/wrappers/PageContent';
 import Redirect from '../generic/Redirect';
 
 import classes from './CheckoutSuccessful.module.css';
-import PricingDetails from '../summary/PricingDetails';
+import PricingDetails from '../generic/PricingDetails';
 
 const CheckoutSuccessful = ({
 	userData,
