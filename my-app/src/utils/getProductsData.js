@@ -7,8 +7,10 @@ const getProductsData = async path => {
 		const snapshot = await get(productsRef);
 		const data = snapshot.val();
 
+		// console.log('run');
 		return data;
 	} catch (error) {
+		// console.log('error');
 		return { error };
 	}
 };

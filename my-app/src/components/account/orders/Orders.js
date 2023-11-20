@@ -8,6 +8,19 @@ const Orders = ({ ordersData }) => {
 	const { isMobile } = useSelector(state => state.deviceType);
 	const navigate = useNavigate();
 
+	if (ordersData === null) {
+		return <h1 className={classes.h1}>Sorry, you have made no orders yet.</h1>;
+	}
+
+	if (ordersData.error) {
+		return (
+			<>
+				<h1 className={classes.h1}>An unexpected error has occured!</h1>
+				<p className={classes['error-text']}>{ordersData.error}</p>
+			</>
+		);
+	}
+
 	const orders = ordersData.map(({ totalQuantity, products, timestamp, totalPrice, id }) => {
 		const orderQuantityLabel = totalQuantity > 1 ? 'items' : 'item';
 		const { imageUrl, alt } = products[0];
@@ -42,7 +55,12 @@ const Orders = ({ ordersData }) => {
 		);
 	});
 
-	return <ul className={classes.list}>{orders}</ul>;
+	return (
+		<>
+			<h1 className={classes.h1}>All orders</h1>
+			<ul className={classes.list}>{orders}</ul>
+		</>
+	);
 };
 
 export default Orders;

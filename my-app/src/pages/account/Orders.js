@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import Orders from '../../components/account/orders/Orders';
 import getFirebaseData from '../../utils/getFirebaseData';
 import LoaderSpinner from '../../components/ui/LoaderSpinner';
+import getProductsData from '../../utils/getProductsData';
 
 const OrdersPage = () => {
 	const { ordersData } = useLoaderData();
@@ -17,11 +18,11 @@ const OrdersPage = () => {
 
 const ordersLoader = async () => {
 	const email = localStorage.getItem('email');
-	const ordersData = await getFirebaseData(`users/emails/${email}/userOrders`);
+	const ordersData = await getProductsData(`users/emails/${email}/userOrders`);
 
-	if (ordersData === null) {
-		// return no objects
-	}
+	if (ordersData === null) return ordersData;
+
+	if (ordersData.error) return { error: ordersData.error.message };
 
 	return Object.values(ordersData);
 };
