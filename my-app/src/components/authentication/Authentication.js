@@ -29,7 +29,7 @@ const Authentication = () => {
 
 	useEffect(() => {
 		if (isSignedIn) {
-			navigate('/account');
+			navigate('/account/myaccount');
 		}
 	});
 

@@ -22,10 +22,7 @@ const AccountRoot = ({ children }) => {
 
 	useEffect(() => {
 		localStorage.setItem('email', email);
-
-		return () => {
-			localStorage.removeItem('email');
-		};
+		console.log(email);
 	}, [email]);
 
 	const changePathHandler = e => {

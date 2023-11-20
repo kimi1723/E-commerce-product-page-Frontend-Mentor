@@ -19,7 +19,8 @@ const AuthenticationPage = () => {
 		dispatch(
 			authenticationActions.changeAuthenticationState({ isSignedIn: true, email: data.email, justSignedIn: true }),
 		);
-		navigate('/account');
+
+		navigate('/account/myaccount');
 	}, [data, dispatch, navigate]);
 
 	return <Authentication />;

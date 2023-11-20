@@ -22,6 +22,11 @@ const personalInformationLoader = async () => {
 	return { email, password };
 };
 
+export const action = e => {
+	e.preventDefault();
+	console.log('action');
+};
+
 export const loader = () => {
 	return defer({
 		personalInformationData: personalInformationLoader(),

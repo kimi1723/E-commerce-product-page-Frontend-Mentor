@@ -1,7 +1,7 @@
 import { set, ref } from 'firebase/database';
 import { database } from '../firebaseConfig';
 
-const setFirebaseData = async (url, data, isUnique = false) => {
+const setFirebaseData = async (url, data) => {
 	try {
 		const response = await set(ref(database, url), data);
 

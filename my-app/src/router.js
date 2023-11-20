@@ -5,6 +5,7 @@ import LoaderSpinner from './components/ui/LoaderSpinner';
 
 import { action as checkoutAction } from './pages/checkout/CheckoutSuccessful';
 import { action as authenticationAction } from './pages/Authentication';
+import { action as personalInformationAction } from './pages/account/PersonalInformation';
 
 const RootPageLazy = lazy(() => import('./pages/Root'));
 const ErrorPageLazy = lazy(() => import('./pages/Error'));
@@ -207,6 +208,7 @@ const router = createBrowserRouter([
 							</Suspense>
 						),
 						loader: () => import('./pages/account/PersonalInformation').then(module => module.loader()),
+						action: personalInformationAction,
 					},
 					{
 						path: 'shipment-details',
