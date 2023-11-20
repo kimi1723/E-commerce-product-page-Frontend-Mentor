@@ -24,7 +24,7 @@ const personalInformationLoader = async () => {
 
 export const action = e => {
 	e.preventDefault();
-	console.log('action');
+	console.log(e);
 };
 
 export const loader = () => {
