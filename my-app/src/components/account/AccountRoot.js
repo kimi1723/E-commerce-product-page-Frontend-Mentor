@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import ReactSelect from '../ui/ReactSelect';
@@ -7,40 +7,18 @@ import LogoutBtn from '../ui/LogoutBtn';
 import classes from './Account.module.css';
 import { useSelector } from 'react-redux';
 
-let initial = true;
-
 const AccountRoot = ({ children }) => {
 	const navigate = useNavigate();
 	const email = useSelector(state => state.authentication.email);
 	const { pathname } = useLocation();
 	const navOptions = [
-		{ label: 'My account', value: '' },
-		{ label: 'Orders', value: '/orders' },
-		{ label: 'Personal information', value: '/personal-information' },
-		{ label: 'Shipment details', value: '/shipment-details' },
+		{ label: 'My account', value: 'myaccount' },
+		{ label: 'Orders', value: 'orders' },
+		{ label: 'Personal information', value: 'personal-information' },
+		{ label: 'Shipment details', value: 'shipment-details' },
 	];
 
-	const defaultValueIndex = navOptions.findIndex(option => {
-		const wantedPathname = pathname === '/account' ? '' : pathname.slice(8);
-		return option.value === wantedPathname;
-	});
-
-	const [currentPathIndex, setCurrentPathIndex] = useState(defaultValueIndex);
-
-	const path = navOptions[currentPathIndex].value;
-
-	useEffect(() => {
-		if (initial) {
-			initial = false;
-			return;
-		}
-
-		if (path === '') {
-			navigate('/account');
-		} else {
-			navigate(`/account${path}`);
-		}
-	}, [navigate, currentPathIndex, path]);
+	const currentPathIndex = navOptions.findIndex(option => pathname.includes(option.value));
 
 	useEffect(() => {
 		localStorage.setItem('email', email);
@@ -51,7 +29,9 @@ const AccountRoot = ({ children }) => {
 	}, [email]);
 
 	const changePathHandler = e => {
-		setCurrentPathIndex(navOptions.indexOf(e));
+		const newPath = navOptions[navOptions.indexOf(e)].value;
+
+		navigate(`/account/${newPath}`);
 	};
 
 	return (

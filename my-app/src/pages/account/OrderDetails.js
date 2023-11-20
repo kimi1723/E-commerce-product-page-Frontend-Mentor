@@ -6,11 +6,18 @@ const OrderDetailsPage = () => {
 	return <h1>order details {params.orderId}</h1>;
 };
 
-const orderDetailsLoader = () => {};
+const orderDetailsLoader = async params => {
+	// const id = params.orderId;
 
-const loader = () => {
+	console.log(params);
+
+	return params;
+};
+
+export const loader = ({ params }) => {
 	return defer({
-		orderDetails: orderDetailsLoader(),
+		orderDetails: orderDetailsLoader(params),
 	});
 };
+
 export default OrderDetailsPage;

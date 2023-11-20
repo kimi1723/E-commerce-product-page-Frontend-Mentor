@@ -172,7 +172,7 @@ const router = createBrowserRouter([
 				),
 				children: [
 					{
-						index: true,
+						path: 'myaccount',
 						element: (
 							<Suspense fallback={<LoaderSpinner />}>
 								<MyAccountPageLazy />
@@ -187,17 +187,16 @@ const router = createBrowserRouter([
 							</Suspense>
 						),
 						loader: () => import('./pages/account/Orders').then(module => module.loader()),
-						children: [
-							{
-								path: ':orderId',
-								id: 'order-details',
-								element: (
-									<Suspense fallback={<LoaderSpinner />}>
-										<OrderDetailsPageLazy />
-									</Suspense>
-								),
-							},
-						],
+					},
+					{
+						path: '/account/orders/:orderId',
+						// id: 'order-details',
+						element: (
+							<Suspense fallback={<LoaderSpinner />}>
+								<OrderDetailsPageLazy />
+							</Suspense>
+						),
+						loader: meta => import('./pages/account/OrderDetails').then(module => module.loader(meta)),
 					},
 					{
 						path: 'personal-information',

@@ -9,7 +9,7 @@ const OrdersPage = () => {
 	const { ordersData } = useLoaderData();
 
 	return (
-		<Suspense fallback={<LoaderSpinner />}>
+		<Suspense fallback={<LoaderSpinner title={'orders'} />}>
 			<Await resolve={ordersData}>{loadedOrders => <Orders ordersData={loadedOrders} />}</Await>
 		</Suspense>
 	);
