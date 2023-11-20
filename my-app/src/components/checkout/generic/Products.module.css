@@ -6,10 +6,22 @@
 }
 
 .product {
+	position: relative;
 	display: flex;
 	justify-content: space-between;
 	column-gap: 1.5em;
 	align-items: center;
+}
+
+.product:not(:last-child)::after {
+	opacity: 0.3;
+	content: '';
+	position: absolute;
+	bottom: -1.5rem;
+	left: -2rem;
+	height: 1px;
+	width: calc(100% + 4rem);
+	background-color: hsl(220, 14%, 75%);
 }
 
 .img {

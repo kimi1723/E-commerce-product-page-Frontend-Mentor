@@ -10,6 +10,17 @@
 	text-align: right;
 }
 
+.error-h1 {
+	text-align: center;
+	font-size: 1.3rem;
+}
+
+.error-text {
+	text-align: center;
+	color: tomato;
+	font-weight: bold;
+}
+
 .h2 {
 	margin-bottom: 1em;
 	text-align: center;
