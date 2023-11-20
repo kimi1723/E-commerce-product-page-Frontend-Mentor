@@ -1,0 +1,45 @@
+.h1 {
+	margin-bottom: 0.5em;
+}
+
+.dl {
+	margin-bottom: 2em;
+}
+
+.item-container:not(:last-child) {
+	margin-bottom: 1em;
+}
+
+.item-container dt {
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+
+.item-container dd {
+	display: flex;
+	justify-content: space-between;
+	gap: 0.5em;
+}
+
+.btns-container {
+	display: flex;
+	gap: 0.5em;
+}
+
+.functional-btn {
+	padding: 0.3em 0.6em;
+	background-color: hsl(220, 13%, 13%);
+	border-radius: 8px;
+	color: hsl(0, 0%, 100%);
+	font-weight: bold;
+	text-transform: uppercase;
+	border: 2px solid transparent;
+	transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.functional-btn:hover,
+.functional-btn:focus {
+	background-color: #fff;
+	color: hsl(220, 13%, 13%);
+	border-color: hsl(220, 13%, 13%);
+}

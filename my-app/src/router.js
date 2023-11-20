@@ -206,6 +206,7 @@ const router = createBrowserRouter([
 								<PersonalInformationPageLazy />
 							</Suspense>
 						),
+						loader: () => import('./pages/account/PersonalInformation').then(module => module.loader()),
 					},
 					{
 						path: 'shipment-details',
