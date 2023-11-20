@@ -43,3 +43,24 @@
 .btn:hover {
 	border-color: hsl(26, 100%, 55%);
 }
+
+.signout-btn {
+	padding: 0.5em 1em;
+	align-self: flex-end;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: hsl(223, 64%, 98%);
+	font-size: 1rem;
+	letter-spacing: 1px;
+	border-radius: 8px;
+	background-color: hsl(26, 100%, 55%);
+	border: 2px solid transparent;
+	transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.signout-btn:hover,
+.signout-btn:focus {
+	color: hsl(26, 100%, 55%);
+	background-color: hsl(223, 64%, 98%);
+	border-color: hsl(26, 100%, 55%);
+}

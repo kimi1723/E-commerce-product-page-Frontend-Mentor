@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import ReactSelect from '../ui/ReactSelect';
-import LogoutBtn from '../ui/buttons/LogoutBtn';
+import SignoutBtn from '../ui/buttons/SignoutBtn';
 
 import classes from './AccountRoot.module.css';
 import { useSelector } from 'react-redux';
@@ -50,7 +50,7 @@ const AccountRoot = ({ children }) => {
 					</header>
 
 					<section className={classes['content-section']}>{children}</section>
-					<LogoutBtn className={classes['logout-btn']} />
+					<SignoutBtn className={classes['signout-btn']} />
 				</div>
 			</main>
 		</>

@@ -62,7 +62,7 @@
 }
 
 .signed-link,
-.logout-btn {
+.signout-btn {
 	padding: 0.3em 0.3em 0.3em 0;
 	font-size: 1rem;
 	transition: color 0.3s;
@@ -71,8 +71,8 @@
 
 .signed-link:focus,
 .signed-link:hover,
-.logout-btn:focus,
-.logout-btn:hover {
+.signout-btn:focus,
+.signout-btn:hover {
 	text-decoration: underline;
 	color: hsl(220, 14%, 75%);
 }

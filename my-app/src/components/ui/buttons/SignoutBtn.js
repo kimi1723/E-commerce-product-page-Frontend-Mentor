@@ -6,7 +6,7 @@ import setFirebaseData from '../../../utils/setFirebaseData';
 import { authenticationActions } from '../../../store/authentication-slice';
 import { errorActions } from '../../../store/error-slice';
 
-const LogoutBtn = ({ className: classes }) => {
+const SignoutBtn = ({ className: classes }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -45,4 +45,4 @@ const LogoutBtn = ({ className: classes }) => {
 	);
 };
 
-export default LogoutBtn;
+export default SignoutBtn;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import classes from './Account.module.css';
-import LogoutBtn from '../../ui/buttons/LogoutBtn';
+import SignoutBtn from '../../ui/buttons/SignoutBtn';
 
 const Account = ({ hideAuthentication, classesProvided }) => {
 	const { isSignedIn } = useSelector(state => state.authentication);
@@ -52,7 +52,7 @@ const Account = ({ hideAuthentication, classesProvided }) => {
 				</Link>
 			</li>
 			<li className={classes['signed-li']}>
-				<LogoutBtn className={classes['logout-btn']} />
+				<SignoutBtn className={classes['signout-btn']} />
 			</li>
 		</ul>
 	);
