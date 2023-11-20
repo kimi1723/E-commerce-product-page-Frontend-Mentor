@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import ReactSelect from '../ui/ReactSelect';
 import LogoutBtn from '../ui/LogoutBtn';
 
-import classes from './Account.module.css';
+import classes from './AccountRoot.module.css';
 import { useSelector } from 'react-redux';
 
 const AccountRoot = ({ children }) => {

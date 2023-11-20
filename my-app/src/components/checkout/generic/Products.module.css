@@ -29,6 +29,7 @@
 .annotation {
 	font-size: 0.6rem;
 	font-weight: bold;
+	text-align: right;
 	text-transform: uppercase;
 	color: hsl(26, 100%, 55%);
 }

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 import classes from './Orders.module.css';
 import { useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Orders = ({ ordersData }) => {
 	const { isMobile } = useSelector(state => state.deviceType);

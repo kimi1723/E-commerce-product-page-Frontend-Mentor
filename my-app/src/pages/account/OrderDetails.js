@@ -1,22 +1,30 @@
-import { defer, useParams } from 'react-router-dom';
+import { Await, defer, useLoaderData } from 'react-router-dom';
+import { Suspense } from 'react';
+
+import OrderDetails from '../../components/account/orders/order-details/OrderDetails';
+import getFirebaseData from '../../utils/getFirebaseData';
+import LoaderSpinner from '../../components/ui/LoaderSpinner';
 
 const OrderDetailsPage = () => {
-	const params = useParams();
+	const { orderData } = useLoaderData();
 
-	return <h1>order details {params.orderId}</h1>;
+	return (
+		<Suspense fallback={<LoaderSpinner title="order" />}>
+			<Await resolve={orderData}>{loadedOrder => <OrderDetails orderData={loadedOrder} />}</Await>
+		</Suspense>
+	);
 };
 
-const orderDetailsLoader = async params => {
-	// const id = params.orderId;
+const orderDetailsLoader = async ({ orderId }) => {
+	const email = localStorage.getItem('email');
+	const orderData = await getFirebaseData(`users/emails/${email}/userOrders/${orderId}`);
 
-	console.log(params);
-
-	return params;
+	return orderData;
 };
 
 export const loader = ({ params }) => {
 	return defer({
-		orderDetails: orderDetailsLoader(params),
+		orderData: orderDetailsLoader(params),
 	});
 };
 

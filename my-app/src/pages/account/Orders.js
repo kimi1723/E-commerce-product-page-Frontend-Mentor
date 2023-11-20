@@ -17,8 +17,11 @@ const OrdersPage = () => {
 
 const ordersLoader = async () => {
 	const email = localStorage.getItem('email');
-	const ordersData = (await getFirebaseData(`users/emails/${email}/userOrders`)) || {};
-	console.log(ordersData);
+	const ordersData = await getFirebaseData(`users/emails/${email}/userOrders`);
+
+	if (ordersData === null) {
+		// return no objects
+	}
 
 	return Object.values(ordersData);
 };
