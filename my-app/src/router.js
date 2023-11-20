@@ -178,6 +178,7 @@ const router = createBrowserRouter([
 								<MyAccountPageLazy />
 							</Suspense>
 						),
+						loader: () => import('./pages/account/MyAccount').then(module => module.loader()),
 					},
 					{
 						path: 'orders',
