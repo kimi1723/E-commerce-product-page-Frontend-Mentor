@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import ReactSelect from '../ui/ReactSelect';
-import LogoutBtn from '../ui/LogoutBtn';
+import LogoutBtn from '../ui/buttons/LogoutBtn';
 
 import classes from './AccountRoot.module.css';
 import { useSelector } from 'react-redux';

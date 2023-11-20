@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import getUid from '../../utils/getAnonymousToken';
-import setFirebaseData from '../../utils/setFirebaseData';
-import { authenticationActions } from '../../store/authentication-slice';
-import { errorActions } from '../../store/error-slice';
+import getUid from '../../../utils/getAnonymousToken';
+import setFirebaseData from '../../../utils/setFirebaseData';
+import { authenticationActions } from '../../../store/authentication-slice';
+import { errorActions } from '../../../store/error-slice';
 
 const LogoutBtn = ({ className: classes }) => {
 	const navigate = useNavigate();

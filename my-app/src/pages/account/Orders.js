@@ -2,7 +2,6 @@ import { Await, defer, useLoaderData } from 'react-router-dom';
 import { Suspense } from 'react';
 
 import Orders from '../../components/account/orders/Orders';
-import getFirebaseData from '../../utils/getFirebaseData';
 import LoaderSpinner from '../../components/ui/LoaderSpinner';
 import getProductsData from '../../utils/getProductsData';
 

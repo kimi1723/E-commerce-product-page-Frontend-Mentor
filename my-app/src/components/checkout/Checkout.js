@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { motion } from 'framer-motion';
 
 import useClearPricing from '../../hooks/useClearPricing';
+import GoBackBtn from '../ui/buttons/GoBackBtn';
 
 import classes from './Checkout.module.css';
 import { useSelector } from 'react-redux';
@@ -43,15 +43,7 @@ const Checkout = ({ cartInitial }) => {
 
 	return (
 		<nav className={classes.nav}>
-			<motion.button
-				whileHover={{ scale }}
-				whileFocus={{ scale }}
-				transition={{ type: 'spring', stiffness: 500 }}
-				type="button"
-				className={classes['go-back-btn']}
-				onClick={() => navigate(-1)}>
-				Go back
-			</motion.button>
+			<GoBackBtn whileHover={{ scale }} whileFocus={{ scale }} path={-1} />
 		</nav>
 	);
 };

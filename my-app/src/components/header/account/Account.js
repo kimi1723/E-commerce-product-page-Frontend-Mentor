@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import classes from './Account.module.css';
-import LogoutBtn from '../../ui/LogoutBtn';
+import LogoutBtn from '../../ui/buttons/LogoutBtn';
 
 const Account = ({ hideAuthentication, classesProvided }) => {
 	const { isSignedIn } = useSelector(state => state.authentication);

@@ -1,0 +1,16 @@
+.go-back-btn {
+	padding: 0.5em 1em;
+	text-align: center;
+	font-size: 0.8rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: 2px solid #000;
+	border-radius: 8px;
+	transition: color 0.3s, background-color 0.3s;
+}
+
+.go-back-btn:focus,
+.go-back-btn:hover {
+	color: hsl(223, 64%, 98%);
+	background-color: hsl(220, 13%, 13%);
+}
