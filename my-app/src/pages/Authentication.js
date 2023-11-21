@@ -40,10 +40,11 @@ export const action = async ({ request }) => {
 	const uid = await getUid();
 
 	try {
+		const allAccountsData = (await getFirebaseData('/users/validated')) || {};
+
 		if (mode === 'signup') {
 			const userAccountUid = `${uid}${new Date().getTime()}`;
-			const accountsData = (await getFirebaseData('/users/validated')) || {};
-			const accountsEntries = Object.entries(accountsData);
+			const accountsEntries = Object.entries(allAccountsData);
 			const existingAccountIndex = accountsEntries.findIndex(account => account[1].credentials.email === email);
 
 			if (existingAccountIndex !== -1) throw new Error('There is already an account assigned to this email!');
@@ -69,53 +70,33 @@ export const action = async ({ request }) => {
 		}
 
 		if (mode === 'signin') {
-			let accountData = await getFirebaseData(`/users/validated/${uid}/credentials/`);
+			const accountsValues = Object.values(allAccountsData);
+			const foundAccountIndex = accountsValues.findIndex(account => account.credentials.email === email);
 
-			if (!accountData) {
-				console.log('run fun');
-				const allAccounts = await getFirebaseData(`/users/validated`);
-				const accountsValues = Object.values(allAccounts);
+			if (foundAccountIndex === -1) throw new Error(`User doesn't exist! Please make an account first.`);
 
-				const foundAccountIndex = accountsValues.findIndex(account => account.credentials.email === email);
-				console.log(foundAccountIndex);
-				const foundAccountData = Object.entries(allAccounts)[foundAccountIndex][1];
-				const isNewAccountDataSet = await setFirebaseData(`/users/validated/${uid}`, foundAccountData);
-				// const isOldAccountDeleted = await setFirebaseData(`/users/validated`)
-				console.log(await getFirebaseData(`/users/validated`));
+			const [, { credentials: storedCredentials }] = Object.entries(allAccountsData)[foundAccountIndex];
 
-				if (isNewAccountDataSet === 500) throw new Error('Unexpected error occured!');
+			if (storedCredentials.email === email && storedCredentials.password === password) {
+				const isSignInStatusSet = {
+					signedInStatus: await setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true }),
+					anonymousCredentials: await setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, {
+						email,
+						password,
+					}),
+				};
 
-				accountData = foundAccountData.credentials;
+				const isDataSetValues = Object.values(isSignInStatusSet);
+
+				const settingDataErrors = isDataSetValues.filter(({ status }) => status !== 200);
+
+				if (settingDataErrors.length > 1) throw new Error('Something went wrong, please try again later.');
+
+				return { isSingedIn: true, email: email };
 			}
 
-			throw new Error(`User doesn't exist! Please make an account firstttt.`);
-			if (!accountData) throw new Error(`User doesn't exist! Please make an account first.`);
-
-			const storedPassword = await accountData.password;
-			const isPasswordCorrect = password === storedPassword;
-
-			if (!isPasswordCorrect) throw new Error(`Password invalid!`);
-
-			const isDataSet = {
-				signedInStatus: await setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true }),
-				anonymousCredentials: await setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, {
-					email: email,
-					password,
-				}),
-			};
-
-			const isDataSetValues = Object.values(isDataSet);
-
-			for (const request in isDataSetValues) {
-				const { status } = isDataSetValues[request];
-
-				if (status !== 200) {
-					throw new Error('Something went wrong, please try again later.');
-				}
-			}
+			throw new Error('Invalid password!');
 		}
-
-		return { isSingedIn: true, email: email };
 	} catch (error) {
 		return { error, errorMessage: error.message || error };
 	}
