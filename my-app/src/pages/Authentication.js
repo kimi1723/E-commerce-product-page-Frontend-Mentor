@@ -41,14 +41,15 @@ export const action = async ({ request }) => {
 
 	try {
 		if (mode === 'signup') {
+			const userAccountUid = `${uid}${new Date().getTime()}`;
 			const accountsData = (await getFirebaseData('/users/validated')) || {};
+			const accountsEntries = Object.entries(accountsData);
+			const existingAccountIndex = accountsEntries.findIndex(account => account[1].credentials.email === email);
 
-			const isAlreadyAnUser = Object.keys(accountsData).includes(email);
-
-			if (isAlreadyAnUser) throw new Error('There is already an account assigned to this email!');
+			if (existingAccountIndex !== -1) throw new Error('There is already an account assigned to this email!');
 
 			const isDataSet = {
-				signUp: await setFirebaseData(`/users/validated/${uid}/credentials`, { email, password }),
+				signUp: await setFirebaseData(`/users/validated/${userAccountUid}/credentials`, { email, password }),
 				signedInStatus: await setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true }),
 				anonymousCredentials: await setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, {
 					email,
@@ -71,20 +72,24 @@ export const action = async ({ request }) => {
 			let accountData = await getFirebaseData(`/users/validated/${uid}/credentials/`);
 
 			if (!accountData) {
+				console.log('run fun');
 				const allAccounts = await getFirebaseData(`/users/validated`);
-				const values = Object.values(allAccounts);
+				const accountsValues = Object.values(allAccounts);
 
-				const foundAccountIndex = values.findIndex(account => account.credentials.email === email);
-
+				const foundAccountIndex = accountsValues.findIndex(account => account.credentials.email === email);
+				console.log(foundAccountIndex);
 				const foundAccountData = Object.entries(allAccounts)[foundAccountIndex][1];
 				const isNewAccountDataSet = await setFirebaseData(`/users/validated/${uid}`, foundAccountData);
+				// const isOldAccountDeleted = await setFirebaseData(`/users/validated`)
+				console.log(await getFirebaseData(`/users/validated`));
 
 				if (isNewAccountDataSet === 500) throw new Error('Unexpected error occured!');
 
 				accountData = foundAccountData.credentials;
-			} else {
-				throw new Error(`User doesn't exist! Please make an account first.`);
 			}
+
+			throw new Error(`User doesn't exist! Please make an account firstttt.`);
+			if (!accountData) throw new Error(`User doesn't exist! Please make an account first.`);
 
 			const storedPassword = await accountData.password;
 			const isPasswordCorrect = password === storedPassword;
