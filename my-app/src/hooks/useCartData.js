@@ -52,7 +52,7 @@ const useCartData = () => {
 
 				if (anonymousUserData.isSignedIn && anonymousUserData.isSignedIn.status) {
 					const email = anonymousUserData.credentials.email;
-					const cartData = await getFirebaseData(`/users/emails/${email}/userCart`);
+					const cartData = await getFirebaseData(`/users/validated/${uid}/userCart`);
 
 					dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: true, email }));
 					fetchData(cartData);

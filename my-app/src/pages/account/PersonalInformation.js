@@ -4,6 +4,7 @@ import { Await, defer, useLoaderData } from 'react-router-dom';
 import PersonalInformation from '../../components/account/personal-information/PersonalInformation';
 import getProductsData from '../../utils/getProductsData';
 import LoaderSpinner from '../../components/ui/LoaderSpinner';
+import getUid from '../../utils/getAnonymousToken';
 
 const PersonalInformationPage = () => {
 	const { personalInformationData } = useLoaderData();
@@ -16,8 +17,8 @@ const PersonalInformationPage = () => {
 };
 
 const personalInformationLoader = async () => {
-	const email = localStorage.getItem('email');
-	const password = await getProductsData(`users/emails/${email}/password`);
+	const uid = await getUid();
+	const { email, password } = await getProductsData(`users/validated/${uid}/credentials`);
 
 	return { email, password };
 };

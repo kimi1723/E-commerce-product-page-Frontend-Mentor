@@ -41,33 +41,25 @@ const PersonalInformation = ({ data: { email, password } }) => {
 
 		try {
 			const uid = await getUid();
-			let responseUrl, anonymousResponseUrl, responseData, anonymousResponseData;
+			let responseUrl, anonymousResponseUrl, responseData;
 
 			if (credentialType === 'password') {
-				responseUrl = `/users/emails/${email}`;
+				responseUrl = `/users/validated/${uid}`;
 				anonymousResponseUrl = `users/anonymousTokens/${uid}/credentials`;
 				responseData = {
 					password: passwordValue,
 				};
-				anonymousResponseData = responseData;
 			} else {
-				const deleteDataResponse = await setFirebaseData(`users/emails/${email}`, null);
-
-				if (deleteDataResponse.status === 500) throw new Error(deleteDataResponse.error);
-
-				responseUrl = `/users/emails/${emailValue}`;
+				responseUrl = `/users/validated/${uid}/credentials`;
 				anonymousResponseUrl = `users/anonymousTokens/${uid}/credentials`;
 				responseData = {
-					password,
-				};
-				anonymousResponseData = {
 					email: emailValue,
 					password,
 				};
 			}
 
 			const response = await setFirebaseData(responseUrl, responseData);
-			const anonymousResponse = await setFirebaseData(anonymousResponseUrl, anonymousResponseData);
+			const anonymousResponse = await setFirebaseData(anonymousResponseUrl, responseData);
 
 			if (response.status === 500 || anonymousResponse === 500) {
 				throw new Error(response.error || anonymousResponse.error);

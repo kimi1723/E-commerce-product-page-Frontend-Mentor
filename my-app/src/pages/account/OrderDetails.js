@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import OrderDetails from '../../components/account/orders/order-details/OrderDetails';
 import LoaderSpinner from '../../components/ui/LoaderSpinner';
 import getProductsData from '../../utils/getProductsData';
+import getUid from '../../utils/getAnonymousToken';
 
 const OrderDetailsPage = () => {
 	const { orderData } = useLoaderData();
@@ -16,8 +17,8 @@ const OrderDetailsPage = () => {
 };
 
 const orderDetailsLoader = async ({ orderId }) => {
-	const email = localStorage.getItem('email');
-	const orderData = await getProductsData(`users/emails/${email}/userOrders/${orderId}`);
+	const uid = await getUid();
+	const orderData = await getProductsData(`users/validated/${uid}/userOrders/${orderId}`);
 
 	if (orderData === null) return orderData;
 

@@ -7,18 +7,18 @@ import getUid from '../utils/getAnonymousToken';
 
 const useSendOrder = () => {
 	const sendOrder = async ({ orderData, email, isSignedIn }) => {
+		const uid = await getUid();
+
 		if (isSignedIn && email) {
-			const url = `/users/emails/${email}/userOrders`;
+			const url = `/users/validated/${uid}/{/userOrders`;
 			const key = push(child(ref(database), url)).key;
 
 			return setFirebaseData(
-				`/users/emails/${email}/userOrders/${key}`,
+				`/users/validated/${uid}/userOrders/${key}`,
 				{ ...orderData, timestamp: Timestamp.fromDate(new Date()), id: key },
 				true,
 			);
 		} else {
-			const uid = await getUid();
-
 			return setFirebaseData(`users/anonymousTokens/${uid}/anonymousOrders`, orderData, true);
 		}
 	};
