@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 const AccountRoot = ({ children }) => {
 	const navigate = useNavigate();
 	const email = useSelector(state => state.authentication.email);
+	console.log(email);
 	const { pathname } = useLocation();
 	const navOptions = [
 		{ label: 'My account', value: 'myaccount' },
@@ -22,7 +23,10 @@ const AccountRoot = ({ children }) => {
 
 	useEffect(() => {
 		localStorage.setItem('email', email);
-		console.log(email);
+
+		return () => {
+			localStorage.removeItem('email');
+		};
 	}, [email]);
 
 	const changePathHandler = e => {
