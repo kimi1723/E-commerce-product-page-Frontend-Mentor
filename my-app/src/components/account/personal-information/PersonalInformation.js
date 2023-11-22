@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import classes from './PersonalInformation.module.css';
 import setFirebaseData from '../../../utils/setFirebaseData';
-import getUid from '../../../utils/getAnonymousToken';
+import getUid from '../../../utils/getUid';
 import Error from '../../error/Error';
 import { errorActions } from '../../../store/error-slice';
 

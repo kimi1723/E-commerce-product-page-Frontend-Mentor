@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 
 import Checkout from '../../components/checkout/Checkout';
 import Wrapper from '../../components/ui/wrappers/Wrapper';
-import getUid from '../../utils/getAnonymousToken';
+import getUid from '../../utils/getUid';
 import getFirebaseData from '../../utils/getFirebaseData';
 import LoaderSpinner from '../../components/ui/LoaderSpinner';
 

@@ -4,7 +4,7 @@ import { Await, defer, useLoaderData } from 'react-router-dom';
 import PersonalInformation from '../../components/account/personal-information/PersonalInformation';
 import getProductsData from '../../utils/getProductsData';
 import LoaderSpinner from '../../components/ui/LoaderSpinner';
-import getUid from '../../utils/getAnonymousToken';
+import getUid from '../../utils/getUid';
 
 const PersonalInformationPage = () => {
 	const { personalInformationData } = useLoaderData();

@@ -3,11 +3,11 @@ import { Timestamp } from 'firebase/firestore';
 import { database } from '../firebaseConfig';
 
 import setFirebaseData from '../utils/setFirebaseData';
-import getUid from '../utils/getAnonymousToken';
+import getUid from '../utils/getUid';
 
 const useSendOrder = () => {
-	const sendOrder = async ({ orderData, email, isSignedIn }) => {
-		if (isSignedIn && email) {
+	const sendOrder = async ({ orderData, isSignedIn }) => {
+		if (isSignedIn) {
 			const userAccountUid = await getUid(true);
 			const url = `/users/validated/${userAccountUid}/userOrders`;
 			const key = push(child(ref(database), url)).key;

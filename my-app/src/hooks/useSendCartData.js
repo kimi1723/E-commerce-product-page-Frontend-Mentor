@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { errorActions } from '../store/error-slice';
 import { authenticationActions } from '../store/authentication-slice';
 import setFirebaseData from '../utils/setFirebaseData';
-import getUid from '../utils/getAnonymousToken';
+import getUid from '../utils/getUid';
 
 let initial = false;
 

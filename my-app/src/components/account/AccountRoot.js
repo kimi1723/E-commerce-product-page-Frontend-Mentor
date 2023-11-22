@@ -1,16 +1,12 @@
-import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import ReactSelect from '../ui/ReactSelect';
 import SignoutBtn from '../ui/buttons/SignoutBtn';
 
 import classes from './AccountRoot.module.css';
-import { useSelector } from 'react-redux';
 
 const AccountRoot = ({ children }) => {
 	const navigate = useNavigate();
-	const email = useSelector(state => state.authentication.email);
-	console.log(email);
 	const { pathname } = useLocation();
 	const navOptions = [
 		{ label: 'My account', value: 'myaccount' },
@@ -20,14 +16,6 @@ const AccountRoot = ({ children }) => {
 	];
 
 	const currentPathIndex = navOptions.findIndex(option => pathname.includes(option.value));
-
-	useEffect(() => {
-		localStorage.setItem('email', email);
-
-		return () => {
-			localStorage.removeItem('email');
-		};
-	}, [email]);
 
 	const changePathHandler = e => {
 		const newPath = navOptions[navOptions.indexOf(e)].value;

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import getUid from '../../../utils/getAnonymousToken';
+import getUid from '../../../utils/getUid';
 import setFirebaseData from '../../../utils/setFirebaseData';
 import { authenticationActions } from '../../../store/authentication-slice';
 import { errorActions } from '../../../store/error-slice';
@@ -22,9 +22,7 @@ const SignoutBtn = ({ className: classes }) => {
 
 			navigate('/');
 
-			dispatch(
-				authenticationActions.changeAuthenticationState({ isSignedIn: false, email: '', signedOutByLogout: true }),
-			);
+			dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: false, signedOutByLogout: true }));
 		} catch (error) {
 			dispatch(
 				errorActions.setError({

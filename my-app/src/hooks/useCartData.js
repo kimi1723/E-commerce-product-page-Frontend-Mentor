@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { cartActions } from '../store/cart-slice';
 import { errorActions } from '../store/error-slice';
 import { authenticationActions } from '../store/authentication-slice';
-import getUid from '../utils/getAnonymousToken';
+import getUid from '../utils/getUid';
 import getFirebaseData from '../utils/getFirebaseData';
 import setFirebaseData from '../utils/setFirebaseData';
 
@@ -55,7 +55,7 @@ const useCartData = () => {
 					const userAccountUid = await getUid(true);
 					const cartData = await getFirebaseData(`/users/validated/${userAccountUid}/userCart`);
 
-					dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: true, email, userAccountUid }));
+					dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: true, email }));
 					fetchData(cartData);
 				} else {
 					const cartData = await getFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`);

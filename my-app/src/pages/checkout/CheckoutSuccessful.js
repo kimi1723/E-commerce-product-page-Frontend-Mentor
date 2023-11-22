@@ -8,7 +8,7 @@ import { cartActions } from '../../store/cart-slice';
 
 const CheckoutSuccessfulPage = () => {
 	const cart = useSelector(state => state.cart);
-	const { email, isSignedIn } = useSelector(state => state.authentication);
+	const { isSignedIn } = useSelector(state => state.authentication);
 	const [orderSentSuccessfuly, setOrderSentSuccessfully] = useState(undefined);
 	const orderRef = useRef(cart);
 	const userData = useActionData();
@@ -21,7 +21,7 @@ const CheckoutSuccessfulPage = () => {
 	useEffect(() => {
 		const handleOrder = async () => {
 			if (userData) {
-				setOrderSentSuccessfully(await sendOrder({ orderData, email, isSignedIn }));
+				setOrderSentSuccessfully(await sendOrder({ orderData, isSignedIn }));
 				// dispatch(userDataActions.addNewOrder(orderData));
 				// dispatch(cartActions.replaceCart({ products: [], totalQuantity: 0 }));
 			} else {

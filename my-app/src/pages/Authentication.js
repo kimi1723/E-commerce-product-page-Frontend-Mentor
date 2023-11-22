@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import getFirebaseData from '../utils/getFirebaseData';
 import setFirebaseData from '../utils/setFirebaseData';
 import Authentication from '../components/authentication/Authentication';
-import getUid from '../utils/getAnonymousToken';
+import getUid from '../utils/getUid';
 import { authenticationActions } from '../store/authentication-slice';
 
 const AuthenticationPage = () => {

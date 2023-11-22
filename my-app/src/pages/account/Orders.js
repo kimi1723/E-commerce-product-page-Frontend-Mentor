@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import Orders from '../../components/account/orders/Orders';
 import LoaderSpinner from '../../components/ui/LoaderSpinner';
 import getProductsData from '../../utils/getProductsData';
-import getUid from '../../utils/getAnonymousToken';
+import getUid from '../../utils/getUid';
 
 const OrdersPage = () => {
 	const { ordersData } = useLoaderData();
