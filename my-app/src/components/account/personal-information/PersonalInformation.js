@@ -41,16 +41,17 @@ const PersonalInformation = ({ data: { email, password } }) => {
 
 		try {
 			const uid = await getUid();
+			const userAccountUid = await getUid(true);
 			let responseUrl, anonymousResponseUrl, responseData;
 
 			if (credentialType === 'password') {
-				responseUrl = `/users/validated/${uid}`;
+				responseUrl = `/users/validated/${userAccountUid}`;
 				anonymousResponseUrl = `users/anonymousTokens/${uid}/credentials`;
 				responseData = {
 					password: passwordValue,
 				};
-			} else { 
-				responseUrl = `/users/validated/${uid}/credentials`;
+			} else {
+				responseUrl = `/users/validated/${userAccountUid}/credentials`;
 				anonymousResponseUrl = `users/anonymousTokens/${uid}/credentials`;
 				responseData = {
 					email: emailValue,

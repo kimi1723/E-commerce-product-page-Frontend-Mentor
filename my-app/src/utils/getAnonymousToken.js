@@ -1,12 +1,19 @@
 import { getAuth, signInAnonymously } from 'firebase/auth';
+import getFirebaseData from './getFirebaseData';
 
 const auth = getAuth();
 
-const getUid = async () => {
+const getUid = async (getAccountUid = false) => {
 	try {
-		const signIn = await signInAnonymously(auth);
+		const {
+			user: { uid },
+		} = await signInAnonymously(auth);
 
-		return signIn.user.uid;
+		if (!getAccountUid) return uid;
+
+		const { userAccountUid } = await getFirebaseData(`/users/anonymousTokens/${uid}/credentials`);
+
+		return userAccountUid;
 	} catch (error) {
 		console.log('error auth');
 	}

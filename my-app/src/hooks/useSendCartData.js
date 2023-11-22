@@ -13,8 +13,8 @@ const useSendCartData = async () => {
 	const data = useSelector(state => state.cart);
 
 	const authenticationState = useSelector(state => state.authentication);
-	const { isSignedIn, signedOutByLogout, justSignedIn, userAccountUid } = authenticationState;
-	console.log(userAccountUid);
+	const { isSignedIn, signedOutByLogout, justSignedIn } = authenticationState;
+
 	useEffect(() => {
 		const sendData = async () => {
 			if (!initial) {
@@ -23,8 +23,6 @@ const useSendCartData = async () => {
 			}
 
 			try {
-				const uid = await getUid();
-
 				if (isSignedIn && data) {
 					if (justSignedIn) {
 						dispatch(
@@ -36,27 +34,31 @@ const useSendCartData = async () => {
 						return;
 					}
 
+					const userAccountUid = await getUid(true);
+
 					const { status } = await setFirebaseData(`/users/validated/${userAccountUid}/userCart`, data);
 
 					if (status !== 200) {
 						throw new Error(`Server response code: ${status}`);
 					}
-				} else {
-					if (signedOutByLogout) {
-						dispatch(
-							authenticationActions.changeAuthenticationState({
-								...authenticationState,
-								signedOutByLogout: false,
-							}),
-						);
-						return;
-					}
+				}
 
-					const { status } = await setFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`, data);
+				if (signedOutByLogout) {
+					dispatch(
+						authenticationActions.changeAuthenticationState({
+							...authenticationState,
+							signedOutByLogout: false,
+						}),
+					);
+					return;
+				}
 
-					if (status !== 200) {
-						throw new Error(`Server response code: ${status}`);
-					}
+				const uid = await getUid();
+
+				const { status } = await setFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`, data);
+
+				if (status !== 200) {
+					throw new Error(`Server response code: ${status}`);
 				}
 			} catch (error) {
 				dispatch(
@@ -72,7 +74,7 @@ const useSendCartData = async () => {
 		};
 
 		sendData();
-	}, [data, dispatch, isSignedIn, userAccountUid]);
+	}, [data, dispatch, isSignedIn]);
 };
 
 export default useSendCartData;

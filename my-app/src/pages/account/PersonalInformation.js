@@ -17,7 +17,7 @@ const PersonalInformationPage = () => {
 };
 
 const personalInformationLoader = async () => {
-	const uid = await getUid();
+	const uid = await getUid(true);
 	const { email, password } = await getProductsData(`users/validated/${uid}/credentials`);
 
 	return { email, password };

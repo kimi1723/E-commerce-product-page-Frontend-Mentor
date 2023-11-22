@@ -17,7 +17,7 @@ const AccountPage = () => {
 };
 
 const accountLoader = async () => {
-	const uid = await getUid();
+	const uid = await getUid(true);
 	const ordersData = (await getProductsData(`users/validated/${uid}/userOrders`)) || {};
 
 	if (ordersData.error) return { error: ordersData.error.message };
