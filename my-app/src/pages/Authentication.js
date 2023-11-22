@@ -16,9 +16,7 @@ const AuthenticationPage = () => {
 	useEffect(() => {
 		if (data === undefined || data.error) return;
 
-		dispatch(
-			authenticationActions.changeAuthenticationState({ isSignedIn: true, email: data.email, justSignedIn: true }),
-		);
+		dispatch(authenticationActions.changeAuthenticationState(data));
 
 		navigate('/account/myaccount');
 	}, [data, dispatch, navigate]);
@@ -41,32 +39,30 @@ export const action = async ({ request }) => {
 
 	try {
 		const allAccountsData = (await getFirebaseData('/users/validated')) || {};
+		let userAccountUid;
 
 		if (mode === 'signup') {
-			const userAccountUid = `${uid}${new Date().getTime()}`;
+			userAccountUid = `${uid}${new Date().getTime()}`;
 			const accountsEntries = Object.entries(allAccountsData);
 			const existingAccountIndex = accountsEntries.findIndex(account => account[1].credentials.email === email);
 
 			if (existingAccountIndex !== -1) throw new Error('There is already an account assigned to this email!');
 
-			const isDataSet = {
+			const isSignUpSetObject = {
 				signUp: await setFirebaseData(`/users/validated/${userAccountUid}/credentials`, { email, password }),
 				signedInStatus: await setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true }),
 				anonymousCredentials: await setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, {
 					email,
 					password,
+					userAccountUid,
 				}),
 			};
 
-			const isDataSetValues = Object.values(isDataSet);
+			const isSignUpSetValues = Object.values(isSignUpSetObject);
 
-			for (const request in isDataSetValues) {
-				const { status } = isDataSetValues[request];
+			const settingSignUpErrors = isSignUpSetValues.filter(({ status }) => status !== 200);
 
-				if (status !== 200) {
-					throw new Error('Something went wrong, please try again later.');
-				}
-			}
+			if (settingSignUpErrors.length > 1) throw new Error('Something went wrong, please try again later.');
 		}
 
 		if (mode === 'signin') {
@@ -75,28 +71,28 @@ export const action = async ({ request }) => {
 
 			if (foundAccountIndex === -1) throw new Error(`User doesn't exist! Please make an account first.`);
 
-			const [, { credentials: storedCredentials }] = Object.entries(allAccountsData)[foundAccountIndex];
+			const [userUid, { credentials: storedCredentials }] = Object.entries(allAccountsData)[foundAccountIndex];
+			userAccountUid = userUid;
 
-			if (storedCredentials.email === email && storedCredentials.password === password) {
-				const isSignInStatusSet = {
-					signedInStatus: await setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true }),
-					anonymousCredentials: await setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, {
-						email,
-						password,
-					}),
-				};
+			if (storedCredentials.password !== password) throw new Error('Invalid password!');
 
-				const isDataSetValues = Object.values(isSignInStatusSet);
+			const isSignInSetObject = {
+				signedInStatus: await setFirebaseData(`/users/anonymousTokens/${uid}/isSignedIn`, { status: true }),
+				anonymousCredentials: await setFirebaseData(`/users/anonymousTokens/${uid}/credentials/`, {
+					email,
+					password,
+					userAccountUid,
+				}),
+			};
 
-				const settingDataErrors = isDataSetValues.filter(({ status }) => status !== 200);
+			const isSignedInSetValues = Object.values(isSignInSetObject);
 
-				if (settingDataErrors.length > 1) throw new Error('Something went wrong, please try again later.');
+			const settingSignedInErrors = isSignedInSetValues.filter(({ status }) => status !== 200);
 
-				return { isSingedIn: true, email: email };
-			}
-
-			throw new Error('Invalid password!');
+			if (settingSignedInErrors.length > 1) throw new Error('Something went wrong, please try again later.');
 		}
+
+		return { isSignedIn: true, email, justSignedIn: true, userAccountUid };
 	} catch (error) {
 		return { error, errorMessage: error.message || error };
 	}

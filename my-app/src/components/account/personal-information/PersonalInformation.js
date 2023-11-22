@@ -49,7 +49,7 @@ const PersonalInformation = ({ data: { email, password } }) => {
 				responseData = {
 					password: passwordValue,
 				};
-			} else {
+			} else { 
 				responseUrl = `/users/validated/${uid}/credentials`;
 				anonymousResponseUrl = `users/anonymousTokens/${uid}/credentials`;
 				responseData = {

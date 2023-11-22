@@ -5,6 +5,7 @@ const initialState = {
 	email: '',
 	signedOutByLogout: false,
 	justSignedIn: false,
+	userAccountUid: '',
 };
 
 const authenticationSlice = createSlice({
@@ -12,12 +13,19 @@ const authenticationSlice = createSlice({
 	initialState,
 	reducers: {
 		changeAuthenticationState(state, action) {
-			const { isSignedIn, email = '', signedOutByLogout = false, justSignedIn = false } = action.payload;
+			const {
+				isSignedIn,
+				email = '',
+				signedOutByLogout = false,
+				justSignedIn = false,
+				userAccountUid,
+			} = action.payload;
 
 			state.isSignedIn = isSignedIn;
 			state.email = email;
 			state.signedOutByLogout = signedOutByLogout;
 			state.justSignedIn = justSignedIn;
+			state.userAccountUid = userAccountUid;
 		},
 	},
 });

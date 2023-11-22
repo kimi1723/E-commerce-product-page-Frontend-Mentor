@@ -6,15 +6,15 @@ import setFirebaseData from '../utils/setFirebaseData';
 import getUid from '../utils/getAnonymousToken';
 
 const useSendOrder = () => {
-	const sendOrder = async ({ orderData, email, isSignedIn }) => {
+	const sendOrder = async ({ orderData, email, isSignedIn, userAccountUid }) => {
 		const uid = await getUid();
 
 		if (isSignedIn && email) {
-			const url = `/users/validated/${uid}/{/userOrders`;
+			const url = `/users/validated/${userAccountUid}/userOrders`;
 			const key = push(child(ref(database), url)).key;
 
 			return setFirebaseData(
-				`/users/validated/${uid}/userOrders/${key}`,
+				`/users/validated/${userAccountUid}/userOrders/${key}`,
 				{ ...orderData, timestamp: Timestamp.fromDate(new Date()), id: key },
 				true,
 			);

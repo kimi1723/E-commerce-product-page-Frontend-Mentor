@@ -13,8 +13,8 @@ const useSendCartData = async () => {
 	const data = useSelector(state => state.cart);
 
 	const authenticationState = useSelector(state => state.authentication);
-	const { isSignedIn, signedOutByLogout, justSignedIn } = authenticationState;
-
+	const { isSignedIn, signedOutByLogout, justSignedIn, userAccountUid } = authenticationState;
+	console.log(userAccountUid);
 	useEffect(() => {
 		const sendData = async () => {
 			if (!initial) {
@@ -36,7 +36,7 @@ const useSendCartData = async () => {
 						return;
 					}
 
-					const { status } = await setFirebaseData(`/users/validated/${uid}/userCart`, data);
+					const { status } = await setFirebaseData(`/users/validated/${userAccountUid}/userCart`, data);
 
 					if (status !== 200) {
 						throw new Error(`Server response code: ${status}`);
@@ -72,7 +72,7 @@ const useSendCartData = async () => {
 		};
 
 		sendData();
-	}, [data, dispatch, isSignedIn]);
+	}, [data, dispatch, isSignedIn, userAccountUid]);
 };
 
 export default useSendCartData;

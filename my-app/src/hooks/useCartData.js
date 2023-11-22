@@ -25,7 +25,7 @@ const useCartData = () => {
 					});
 
 					if (status !== 200) {
-						throw new Error(`Server response code: ${status}`);
+						throw new Error(`Couldn't connect to the server. Response code: ${status}`);
 					}
 
 					return;
@@ -52,9 +52,11 @@ const useCartData = () => {
 
 				if (anonymousUserData.isSignedIn && anonymousUserData.isSignedIn.status) {
 					const email = anonymousUserData.credentials.email;
-					const cartData = await getFirebaseData(`/users/validated/${uid}/userCart`);
+					const { userAccountUid } = await getFirebaseData(`/users/anonymousTokens/${uid}/credentials`);
 
-					dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: true, email }));
+					const cartData = await getFirebaseData(`/users/validated/${userAccountUid}/userCart`);
+
+					dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: true, email, userAccountUid }));
 					fetchData(cartData);
 				} else {
 					const cartData = await getFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`);
