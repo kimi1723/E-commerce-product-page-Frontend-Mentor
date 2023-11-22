@@ -17,7 +17,7 @@ const OrderDetailsPage = () => {
 };
 
 const orderDetailsLoader = async ({ orderId }) => {
-	const uid = await getUid(true);
+	const uid = await getUid('accountUid');
 	const orderData = await getProductsData(`users/validated/${uid}/userOrders/${orderId}`);
 
 	if (orderData === null) return orderData;

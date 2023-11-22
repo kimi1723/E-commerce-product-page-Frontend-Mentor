@@ -6,6 +6,7 @@ import setFirebaseData from '../../../utils/setFirebaseData';
 import getUid from '../../../utils/getUid';
 import Error from '../../error/Error';
 import { errorActions } from '../../../store/error-slice';
+import { Form } from 'react-router-dom';
 
 const PersonalInformation = ({ data: { email, password } }) => {
 	const [isEmailVisible, setIsEmailVisible] = useState(false);
@@ -41,21 +42,20 @@ const PersonalInformation = ({ data: { email, password } }) => {
 
 		try {
 			const uid = await getUid();
-			const userAccountUid = await getUid(true);
+			const userAccountUid = await getUid('accountUid');
 			let responseUrl, anonymousResponseUrl, responseData;
 
 			if (credentialType === 'password') {
-				responseUrl = `/users/validated/${userAccountUid}`;
+				responseUrl = `/users/validated/${userAccountUid}/credentials`;
 				anonymousResponseUrl = `users/anonymousTokens/${uid}/credentials`;
-				responseData = {
-					password: passwordValue,
-				};
+				responseData = { email, password: passwordValue };
 			} else {
 				responseUrl = `/users/validated/${userAccountUid}/credentials`;
 				anonymousResponseUrl = `users/anonymousTokens/${uid}/credentials`;
 				responseData = {
 					email: emailValue,
 					password,
+					userAccountUid,
 				};
 			}
 
@@ -87,16 +87,20 @@ const PersonalInformation = ({ data: { email, password } }) => {
 				<div className={classes['item-container']}>
 					<dt>Email</dt>
 					<dd>
-						<form className={classes['credential-container']}>
+						<Form method="post" className={classes['credential-container']}>
 							{!isEdditingEmail && isEmailVisible ? email : hideContent(email)}
 							{isEdditingEmail && (
 								<>
-									<input value={emailValue} onChange={editEmailHandler} />
-									<button onClick={e => acceptEditHandler(e, 'email')}>Accept</button>
+									<input value={emailValue} onChange={editEmailHandler} name="email" />
+									<button
+									// onClick={e => acceptEditHandler(e, 'email')}
+									>
+										Accept
+									</button>
 									<button onClick={cancelEmailEditHandler}>Cancel</button>
 								</>
 							)}
-						</form>
+						</Form>
 
 						<div className={classes['btns-container']}>
 							<button type="button" className={classes['functional-btn']} onClick={emailVisibilityHandler}>
@@ -112,20 +116,21 @@ const PersonalInformation = ({ data: { email, password } }) => {
 				<div className={classes['item-container']}>
 					<dt>Password</dt>
 					<dd>
-						<form className={classes['credential-container']}>
+						<Form method="post" className={classes['credential-container']}>
 							{!isEdditingPassword && (isPasswordVisible ? password : hideContent(password))}
 
 							{isEdditingPassword && (
 								<>
 									{isPasswordVisible ? (
-										<input type="text" value={passwordValue} onChange={editPasswordHandler} />
+										<input type="text" value={passwordValue} name="password" onChange={editPasswordHandler} />
 									) : (
-										<input type="password" value={passwordValue} onChange={editPasswordHandler} />
+										<input type="password" value={passwordValue} name="password" onChange={editPasswordHandler} />
 									)}
 									<button
 										type="submit"
 										className={classes['accept-btn']}
-										onClick={e => acceptEditHandler(e, 'password')}>
+										// onClick={e => acceptEditHandler(e, 'password')}
+									>
 										Accept
 									</button>
 									<button type="button" onClick={cancelPasswordEditHandler} className={classes['cancel-btn']}>
@@ -133,7 +138,7 @@ const PersonalInformation = ({ data: { email, password } }) => {
 									</button>
 								</>
 							)}
-						</form>
+						</Form>
 
 						<div className={classes['btns-container']}>
 							<button type="button" className={classes['functional-btn']} onClick={passwordVisibilityHandler}>

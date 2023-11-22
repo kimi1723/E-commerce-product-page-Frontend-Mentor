@@ -8,7 +8,7 @@ import getUid from '../utils/getUid';
 const useSendOrder = () => {
 	const sendOrder = async ({ orderData, isSignedIn }) => {
 		if (isSignedIn) {
-			const userAccountUid = await getUid(true);
+			const userAccountUid = await getUid('accountUid');
 			const url = `/users/validated/${userAccountUid}/userOrders`;
 			const key = push(child(ref(database), url)).key;
 

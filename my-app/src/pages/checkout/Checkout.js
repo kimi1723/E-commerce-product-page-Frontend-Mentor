@@ -28,7 +28,7 @@ const CheckoutPage = () => {
 
 const checkoutLoader = async () => {
 	const uid = await getUid();
-	const userAccountUid = await getUid(true);
+	const userAccountUid = await getUid('accountUid');
 	const anonymousUserData = await getFirebaseData(`/users/anonymousTokens/${uid}`);
 
 	if (anonymousUserData && anonymousUserData.isSignedIn && anonymousUserData.isSignedIn.status) {

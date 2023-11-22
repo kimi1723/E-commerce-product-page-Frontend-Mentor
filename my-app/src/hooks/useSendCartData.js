@@ -34,7 +34,7 @@ const useSendCartData = async () => {
 						return;
 					}
 
-					const userAccountUid = await getUid(true);
+					const userAccountUid = await getUid('accountUid');
 
 					const { status } = await setFirebaseData(`/users/validated/${userAccountUid}/userCart`, data);
 
