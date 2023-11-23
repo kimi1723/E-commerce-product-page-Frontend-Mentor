@@ -80,9 +80,11 @@ const PersonalInformation = ({ data: { email, password } }) => {
 							<button type="button" className={classes['functional-btn']} onClick={emailVisibilityHandler}>
 								{isEmailVisible ? 'Hide' : 'Show'}
 							</button>
-							<button type="button" className={classes['functional-btn']} onClick={isEdditingEmailHandler}>
-								Edit
-							</button>
+							{!isEdditingEmail && (
+								<button type="button" className={classes['functional-btn']} onClick={isEdditingEmailHandler}>
+									Edit
+								</button>
+							)}
 						</div>
 					</dd>
 				</div>
@@ -116,9 +118,11 @@ const PersonalInformation = ({ data: { email, password } }) => {
 							<button type="button" className={classes['functional-btn']} onClick={passwordVisibilityHandler}>
 								{isPasswordVisible ? 'Hide' : 'Show'}
 							</button>
-							<button type="button" className={classes['functional-btn']} onClick={isEdditingPasswordHandler}>
-								Edit
-							</button>
+							{!isEdditingPassword && (
+								<button type="button" className={classes['functional-btn']} onClick={isEdditingPasswordHandler}>
+									Edit
+								</button>
+							)}
 						</div>
 					</dd>
 				</div>
