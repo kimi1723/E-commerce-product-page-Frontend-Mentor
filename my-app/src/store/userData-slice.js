@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	orders: [],
-	personalInformation: [],
+	personalInformation: {},
 	shipmentInformation: [],
 };
 
@@ -15,7 +15,10 @@ const userDataSlice = createSlice({
 
 			state.orders.push(newOrder);
 		},
-		handlePersonalInformaiton(state, action) {},
+		handlePersonalInformation(state, { payload: { email, password } }) {
+			state.personalInformation.email = email;
+			state.personalInformation.password = password;
+		},
 		handleShipmentInformation(state, action) {},
 	},
 });

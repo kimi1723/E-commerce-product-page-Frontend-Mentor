@@ -1,11 +1,6 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import classes from './PersonalInformation.module.css';
-import setFirebaseData from '../../../utils/setFirebaseData';
-import getUid from '../../../utils/getUid';
-import Error from '../../error/Error';
-import { errorActions } from '../../../store/error-slice';
 import { Form } from 'react-router-dom';
 
 const PersonalInformation = ({ data: { email, password } }) => {
@@ -14,8 +9,9 @@ const PersonalInformation = ({ data: { email, password } }) => {
 	const [isEdditingEmail, setIsEdditingEmail] = useState(false);
 	const [isEdditingPassword, setIsEdditingPassword] = useState(false);
 	const [passwordValue, setPasswordValue] = useState(password);
+	const [previousPasswordValue, setPreviousPasswordValue] = useState(passwordValue);
 	const [emailValue, setEmailValue] = useState(email);
-	const dispatch = useDispatch();
+	const [previousEmailValue, setPreviousEmailValue] = useState(emailValue);
 
 	const emailVisibilityHandler = () => setIsEmailVisible(prevState => !prevState),
 		passwordVisibilityHandler = () => setIsPasswordVisible(prevState => !prevState);
@@ -23,8 +19,23 @@ const PersonalInformation = ({ data: { email, password } }) => {
 	const isEdditingEmailHandler = () => setIsEdditingEmail(true),
 		isEdditingPasswordHandler = () => setIsEdditingPassword(true);
 
-	const cancelPasswordEditHandler = () => setIsEdditingPassword(false),
-		cancelEmailEditHandler = () => setIsEdditingEmail(false);
+	const passwordSubmitHandler = () => {
+			setIsEdditingPassword(false);
+			setPreviousPasswordValue(passwordValue);
+		},
+		emailSubmitHandler = () => {
+			setIsEdditingEmail(false);
+			setPreviousEmailValue(emailValue);
+		};
+
+	const cancelPasswordEditHandler = () => {
+			setIsEdditingPassword(false);
+			setPasswordValue(previousPasswordValue);
+		},
+		cancelEmailEditHandler = () => {
+			setIsEdditingEmail(false);
+			setEmailValue(previousEmailValue);
+		};
 
 	const hideContent = originalContent => {
 		const originalContentSplit = [...originalContent];
@@ -37,49 +48,6 @@ const PersonalInformation = ({ data: { email, password } }) => {
 	const editPasswordHandler = e => setPasswordValue(e.target.value),
 		editEmailHandler = e => setEmailValue(e.target.value);
 
-	const acceptEditHandler = async (e, credentialType) => {
-		e.preventDefault();
-
-		try {
-			const uid = await getUid();
-			const userAccountUid = await getUid('accountUid');
-			let responseUrl, anonymousResponseUrl, responseData;
-
-			if (credentialType === 'password') {
-				responseUrl = `/users/validated/${userAccountUid}/credentials`;
-				anonymousResponseUrl = `users/anonymousTokens/${uid}/credentials`;
-				responseData = { email, password: passwordValue };
-			} else {
-				responseUrl = `/users/validated/${userAccountUid}/credentials`;
-				anonymousResponseUrl = `users/anonymousTokens/${uid}/credentials`;
-				responseData = {
-					email: emailValue,
-					password,
-					userAccountUid,
-				};
-			}
-
-			const response = await setFirebaseData(responseUrl, responseData);
-			const anonymousResponse = await setFirebaseData(anonymousResponseUrl, responseData);
-
-			if (response.status === 500 || anonymousResponse === 500) {
-				throw new Error(response.error || anonymousResponse.error);
-			}
-
-			credentialType === 'password' ? setIsEdditingPassword(false) : setIsEdditingEmail(false);
-		} catch (error) {
-			dispatch(
-				errorActions.setError({
-					isError: true,
-					message: {
-						content: 'An unexpected error happened',
-						error: error.code || error.message,
-					},
-				}),
-			);
-		}
-	};
-
 	return (
 		<>
 			<h1 className={classes.h1}>Credentials</h1>
@@ -87,16 +55,16 @@ const PersonalInformation = ({ data: { email, password } }) => {
 				<div className={classes['item-container']}>
 					<dt>Email</dt>
 					<dd>
-						<Form method="post" className={classes['credential-container']}>
-							{!isEdditingEmail && isEmailVisible ? email : hideContent(email)}
+						<Form method="post" className={classes['credential-container']} onSubmit={emailSubmitHandler}>
+							{!isEdditingEmail && (isEmailVisible ? emailValue : hideContent(emailValue))}
 							{isEdditingEmail && (
 								<>
-									<input value={emailValue} onChange={editEmailHandler} name="email" />
-									<button
-									// onClick={e => acceptEditHandler(e, 'email')}
-									>
-										Accept
-									</button>
+									{isEmailVisible ? (
+										<input value={emailValue} onChange={editEmailHandler} name="email" type="email" />
+									) : (
+										<input value={emailValue} onChange={editEmailHandler} name="email" type="password" />
+									)}
+									<button>Accept</button>
 									<button onClick={cancelEmailEditHandler}>Cancel</button>
 								</>
 							)}
@@ -116,8 +84,8 @@ const PersonalInformation = ({ data: { email, password } }) => {
 				<div className={classes['item-container']}>
 					<dt>Password</dt>
 					<dd>
-						<Form method="post" className={classes['credential-container']}>
-							{!isEdditingPassword && (isPasswordVisible ? password : hideContent(password))}
+						<Form method="post" className={classes['credential-container']} onSubmit={passwordSubmitHandler}>
+							{!isEdditingPassword && (isPasswordVisible ? passwordValue : hideContent(passwordValue))}
 
 							{isEdditingPassword && (
 								<>
@@ -126,11 +94,7 @@ const PersonalInformation = ({ data: { email, password } }) => {
 									) : (
 										<input type="password" value={passwordValue} name="password" onChange={editPasswordHandler} />
 									)}
-									<button
-										type="submit"
-										className={classes['accept-btn']}
-										// onClick={e => acceptEditHandler(e, 'password')}
-									>
+									<button type="submit" className={classes['accept-btn']}>
 										Accept
 									</button>
 									<button type="button" onClick={cancelPasswordEditHandler} className={classes['cancel-btn']}>
