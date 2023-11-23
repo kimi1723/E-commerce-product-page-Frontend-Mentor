@@ -55,8 +55,8 @@ const PersonalInformation = ({ data: { email, password } }) => {
 				<div className={classes['item-container']}>
 					<dt>Email</dt>
 					<dd>
-						<Form method="post" className={classes['credential-container']} onSubmit={emailSubmitHandler}>
-							{!isEdditingEmail && (isEmailVisible ? emailValue : hideContent(emailValue))}
+						<Form method="post" className={classes['form']} onSubmit={emailSubmitHandler}>
+							{!isEdditingEmail && <p>{isEmailVisible ? emailValue : hideContent(emailValue)}</p>}
 							{isEdditingEmail && (
 								<>
 									{isEmailVisible ? (
@@ -64,8 +64,14 @@ const PersonalInformation = ({ data: { email, password } }) => {
 									) : (
 										<input value={emailValue} onChange={editEmailHandler} name="email" type="password" />
 									)}
-									<button>Accept</button>
-									<button onClick={cancelEmailEditHandler}>Cancel</button>
+									<div className={classes['form-btns']}>
+										<button type="submit" className={classes['functional-btn']}>
+											Accept
+										</button>
+										<button type="button" onClick={cancelEmailEditHandler} className={classes['functional-btn']}>
+											Cancel
+										</button>
+									</div>
 								</>
 							)}
 						</Form>
@@ -84,8 +90,8 @@ const PersonalInformation = ({ data: { email, password } }) => {
 				<div className={classes['item-container']}>
 					<dt>Password</dt>
 					<dd>
-						<Form method="post" className={classes['credential-container']} onSubmit={passwordSubmitHandler}>
-							{!isEdditingPassword && (isPasswordVisible ? passwordValue : hideContent(passwordValue))}
+						<Form method="post" className={classes['form']} onSubmit={passwordSubmitHandler}>
+							{!isEdditingPassword && <p>{isPasswordVisible ? passwordValue : hideContent(passwordValue)}</p>}
 
 							{isEdditingPassword && (
 								<>
@@ -94,12 +100,14 @@ const PersonalInformation = ({ data: { email, password } }) => {
 									) : (
 										<input type="password" value={passwordValue} name="password" onChange={editPasswordHandler} />
 									)}
-									<button type="submit" className={classes['accept-btn']}>
-										Accept
-									</button>
-									<button type="button" onClick={cancelPasswordEditHandler} className={classes['cancel-btn']}>
-										Cancel
-									</button>
+									<div className={classes['form-btns']}>
+										<button type="submit" className={classes['functional-btn']}>
+											Accept
+										</button>
+										<button type="button" onClick={cancelPasswordEditHandler} className={classes['functional-btn']}>
+											Cancel
+										</button>
+									</div>
 								</>
 							)}
 						</Form>
