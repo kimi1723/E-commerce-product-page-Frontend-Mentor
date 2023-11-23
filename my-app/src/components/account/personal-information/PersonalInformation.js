@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { Form } from 'react-router-dom';
+
+import useValidation from '../../../hooks/useValidation';
 
 import classes from './PersonalInformation.module.css';
-import { Form } from 'react-router-dom';
 
 const PersonalInformation = ({ data: { email, password } }) => {
 	const [isEmailVisible, setIsEmailVisible] = useState(false);
@@ -12,6 +14,13 @@ const PersonalInformation = ({ data: { email, password } }) => {
 	const [previousPasswordValue, setPreviousPasswordValue] = useState(passwordValue);
 	const [emailValue, setEmailValue] = useState(email);
 	const [previousEmailValue, setPreviousEmailValue] = useState(emailValue);
+	const [errors, setErrors] = useState({
+		email: false,
+		password: false,
+	});
+
+	useValidation(emailValue, 'email', true, setErrors);
+	useValidation(passwordValue, 'password', true, setErrors);
 
 	const emailVisibilityHandler = () => setIsEmailVisible(prevState => !prevState),
 		passwordVisibilityHandler = () => setIsPasswordVisible(prevState => !prevState);
@@ -56,6 +65,7 @@ const PersonalInformation = ({ data: { email, password } }) => {
 					<dt>Email</dt>
 					<dd>
 						<Form method="post" className={classes['form']} onSubmit={emailSubmitHandler}>
+							{errors.email && <p className={classes.error}>Please enter a valid email address!</p>}
 							{!isEdditingEmail && <p>{isEmailVisible ? emailValue : hideContent(emailValue)}</p>}
 							{isEdditingEmail && (
 								<>
@@ -65,7 +75,7 @@ const PersonalInformation = ({ data: { email, password } }) => {
 										<input value={emailValue} onChange={editEmailHandler} name="email" type="password" />
 									)}
 									<div className={classes['form-btns']}>
-										<button type="submit" className={classes['functional-btn']}>
+										<button type="submit" className={classes['functional-btn']} disabled={errors.email}>
 											Accept
 										</button>
 										<button type="button" onClick={cancelEmailEditHandler} className={classes['functional-btn']}>
@@ -93,6 +103,7 @@ const PersonalInformation = ({ data: { email, password } }) => {
 					<dt>Password</dt>
 					<dd>
 						<Form method="post" className={classes['form']} onSubmit={passwordSubmitHandler}>
+							{errors.password && <p className={classes.error}>Your password should be at least 8 characters long!</p>}
 							{!isEdditingPassword && <p>{isPasswordVisible ? passwordValue : hideContent(passwordValue)}</p>}
 
 							{isEdditingPassword && (
@@ -103,7 +114,7 @@ const PersonalInformation = ({ data: { email, password } }) => {
 										<input type="password" value={passwordValue} name="password" onChange={editPasswordHandler} />
 									)}
 									<div className={classes['form-btns']}>
-										<button type="submit" className={classes['functional-btn']}>
+										<button type="submit" className={classes['functional-btn']} disabled={errors.password}>
 											Accept
 										</button>
 										<button type="button" onClick={cancelPasswordEditHandler} className={classes['functional-btn']}>

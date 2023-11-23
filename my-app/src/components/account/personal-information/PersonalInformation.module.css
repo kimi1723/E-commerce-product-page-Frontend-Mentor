@@ -1,5 +1,5 @@
 .h1 {
-	margin-bottom: 0.5em;
+	margin-bottom: 1em;
 }
 
 .dl {
@@ -7,18 +7,18 @@
 }
 
 .item-container:not(:last-child) {
-	margin-bottom: 1em;
+	margin-bottom: 1.5em;
 }
 
 .item-container dt {
+	margin-bottom: 0.3em;
 	font-weight: bold;
 	font-size: 1.2rem;
 }
 
 .item-container dd {
 	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
+	flex-direction: column;
 	gap: 0.5em;
 }
 
@@ -58,6 +58,7 @@
 	border: none;
 	border: 2px solid hsl(220, 13%, 13%);
 	transition: border-color 0.3s;
+	font-size: 1rem;
 }
 
 .form input:focus,
@@ -67,9 +68,11 @@
 }
 
 .form-btns {
+	margin-bottom: 0.2em;
 	display: flex;
 	gap: 0.5em;
 }
+
 .form-btns button {
 	font-size: 1rem;
 	text-transform: none;
@@ -97,4 +100,22 @@
 .form-btns button:last-child:focus {
 	color: hsl(0, 0%, 100%);
 	background-color: hsl(220, 13%, 13%);
+}
+
+.form-btns button:disabled {
+	background-color: hsl(25, 100%, 94%);
+	border-color: hsl(25, 100%, 94%);
+	color: hsl(219, 9%, 45%);
+}
+
+.form-btns button:disabled:hover {
+	color: hsl(220, 14%, 75%);
+	background-color: inherit;
+}
+
+.error {
+	width: 100%;
+	font-size: 0.8rem;
+	font-weight: bold;
+	color: tomato;
 }
