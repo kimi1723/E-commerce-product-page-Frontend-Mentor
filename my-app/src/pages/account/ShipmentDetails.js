@@ -16,6 +16,10 @@ const ShipmentDetailsPage = () => {
 	);
 };
 
+export const action = async ({ request }) => {
+	const formData = await request.formData();
+	console.log(formData);
+};
 const shipmentDetailsLoader = async () => {
 	const uid = await getUid('accountUid');
 	const shipmentDetailsLoaderData = await getFirebaseData(`/users/validated/${uid}/shipmentDetails`);

@@ -64,7 +64,7 @@ const PersonalInformation = ({ data: { email, password } }) => {
 				<div className={classes['item-container']}>
 					<dt>Email</dt>
 					<dd>
-						<Form method="post" className={classes['form']} onSubmit={emailSubmitHandler}>
+						<Form method="post" className={classes.form} onSubmit={emailSubmitHandler}>
 							{errors.email && <p className={classes.error}>Please enter a valid email address!</p>}
 							{!isEdditingEmail && <p>{isEmailVisible ? emailValue : hideContent(emailValue)}</p>}
 							{isEdditingEmail && (

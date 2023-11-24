@@ -6,6 +6,7 @@ import LoaderSpinner from './components/ui/LoaderSpinner';
 import { action as checkoutAction } from './pages/checkout/CheckoutSuccessful';
 import { action as authenticationAction } from './pages/Authentication';
 import { action as personalInformationAction } from './pages/account/PersonalInformation';
+import { action as shipmentDetailsAction } from './pages/account/ShipmentDetails';
 
 const RootPageLazy = lazy(() => import('./pages/Root'));
 const ErrorPageLazy = lazy(() => import('./pages/Error'));
@@ -218,6 +219,7 @@ const router = createBrowserRouter([
 							</Suspense>
 						),
 						loader: () => import('./pages/account/ShipmentDetails').then(module => module.loader()),
+						action: shipmentDetailsAction,
 					},
 				],
 			},
