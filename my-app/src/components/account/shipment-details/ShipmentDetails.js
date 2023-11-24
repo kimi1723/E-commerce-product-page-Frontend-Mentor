@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Form } from 'react-router-dom';
 
-import classes from './ShipmentDetails.module.css';
 import useValidation from '../../../hooks/useValidationRefactor';
 
-const inputTypeHandler = label => {
-	switch (label) {
+import classes from './ShipmentDetails.module.css';
+
+const inputTypeHandler = key => {
+	switch (key) {
 		case 'email':
 			return 'email';
 		case 'tel':
@@ -17,57 +18,87 @@ const inputTypeHandler = label => {
 	}
 };
 
-// const errorFeedBackHandler = label => {
-//     switch:
-// }
-
 const ShipmentDetails = ({ data }) => {
-	const [inputValues, setInputValues] = useState(data);
-	const [errors, setErrors] = useState({});
+	const [inputsData, setInputsData] = useState(data);
+	const [previousInputsData, setPreviousInputsData] = useState(inputsData);
+	const [currentEdits, setCurrentEdits] = useState({});
 
-	useValidation(inputValues, true, setErrors);
+	const errors = useValidation(inputsData, true);
 
 	const shipmentDetailsKeys = Object.keys(data);
 
 	useEffect(() => {
-		const errorsInitial = {};
+		const editsInitial = {};
 
-		shipmentDetailsKeys.forEach(key => (errorsInitial[key] = false));
+		shipmentDetailsKeys.forEach(key => {
+			editsInitial[key] = false;
+		});
 
-		setErrors(errorsInitial);
+		setCurrentEdits(editsInitial);
 	}, []);
 
 	const inputChangeHandler = e => {
-		const label = e.target.name;
+		const key = e.target.name;
 		const value = e.target.value;
 
-		setInputValues(prevValues => {
-			return { ...prevValues, [label]: value };
+		setInputsData(prevValues => {
+			return { ...prevValues, [key]: value };
 		});
 	};
 
-	const onSubmitHandler = label => {};
+	const isEdditingHandler = key => setCurrentEdits(prevEditsState => ({ ...prevEditsState, [key]: true }));
 
-	const shipmentDetailsMapped = shipmentDetailsKeys.map(label => {
-		const inputType = inputTypeHandler(label);
-		const { isError, errorFeedback } = errors[label];
+	const onSubmitHandler = key => {
+		setCurrentEdits(prevEditsState => ({ ...prevEditsState, [key]: false }));
+		setPreviousInputsData(inputsData);
+	};
+
+	const cancelEditHandler = key => {
+		setInputsData(previousInputsData);
+		setCurrentEdits(prevEditsState => ({ ...prevEditsState, [key]: false }));
+	};
+
+	const shipmentDetailsMapped = shipmentDetailsKeys.map(key => {
+		const inputType = inputTypeHandler(key);
+		const { isError, errorFeedback } = errors[key] || {};
+		const isEdditing = currentEdits[key];
+		const value = inputsData[key];
+		const shouldHide = false;
 
 		return (
-			<div className={classes['item-container']} key={label}>
+			<div className={classes['item-container']} key={key}>
 				<dt>
-					<label htmlFor={label}>{label}</label>
+					<label htmlFor={key}>{key}</label>
 				</dt>
 
 				<dd>
-					<Form method="post" className={classes.form} onSubmit={onSubmitHandler}>
+					<Form method="post" className={classes.form} onSubmit={() => onSubmitHandler(key)}>
 						{isError && <p className={classes.error}>{errorFeedback}</p>}
-						<input type={inputType} name={label} value={inputValues[label]} onChange={inputChangeHandler} />
-
-						<div className={classes['form-btns']}>
-							{/* <button type="submit">Accept</button> */}
-							{/* <button type="button">Cancel</button> */}
-						</div>
+						{!isEdditing && <p>{value}</p>}
+						{isEdditing && (
+							<>
+								<input type={inputType} name={key} value={value} onChange={inputChangeHandler} />
+								<div className={classes['form-btns']}>
+									<button type="submit" className={classes['functional-btn']} disabled={isError}>
+										Accept
+									</button>
+									<button type="button" className={classes['functional-btn']} onClick={() => cancelEditHandler(key)}>
+										Cancel
+									</button>
+								</div>
+							</>
+						)}
 					</Form>
+
+					<div className={classes['btns-container']}>
+						{shouldHide && <button type="button" className={classes['functional-btn']}></button>}
+
+						{!isEdditing && (
+							<button type="button" className={classes['functional-btn']} onClick={() => isEdditingHandler(key)}>
+								Edit
+							</button>
+						)}
+					</div>
 				</dd>
 			</div>
 		);

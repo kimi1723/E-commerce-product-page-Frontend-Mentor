@@ -1,5 +1,4 @@
-import { cleanup } from '@testing-library/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const validateInput = (value, inputName) => {
 	switch (inputName) {
@@ -50,21 +49,34 @@ const validateInput = (value, inputName) => {
 	}
 };
 
-const useValidation = (inputs, isTouched, setErrors) => {
+const useValidation = (inputs, isTouched) => {
+	const [errors, setErrors] = useState({});
+
+	useEffect(() => {
+		const inputsKeys = Object.keys(inputs);
+		const errorsInitial = {};
+
+		inputsKeys.forEach(key => {
+			errorsInitial[key] = { isError: false, errorFeedback: '' };
+		});
+
+		setErrors(errorsInitial);
+	}, []);
+
 	useEffect(() => {
 		if (!isTouched) return;
 
-		const inputsArray = Object.entries(inputs);
+		const inputsEntries = Object.entries(inputs);
 
-		inputsArray.forEach(input => {
-			const [label, value] = input;
+		inputsEntries.forEach(input => {
+			const [key, value] = input;
 
 			const timeout = setTimeout(() => {
-				const [isError, errorFeedback] = validateInput(value, label);
+				const [isError, errorFeedback] = validateInput(value, key);
 
 				setErrors(prevErrors => ({
 					...prevErrors,
-					[label]: { isError, errorFeedback },
+					[key]: { isError, errorFeedback },
 				}));
 			}, 500);
 
@@ -72,7 +84,9 @@ const useValidation = (inputs, isTouched, setErrors) => {
 				clearTimeout(timeout);
 			};
 		});
-	}, [inputs, setErrors, isTouched]);
+	}, [inputs, isTouched]);
+
+	return errors;
 };
 
 export default useValidation;
