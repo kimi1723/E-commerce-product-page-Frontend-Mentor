@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import useClearPricing from '../../hooks/useClearPricing';
 import GoBackBtn from '../ui/buttons/GoBackBtn';
 
 import classes from './Checkout.module.css';
-import { useSelector } from 'react-redux';
 
 let initial = true;
 

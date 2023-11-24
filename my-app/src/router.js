@@ -217,6 +217,7 @@ const router = createBrowserRouter([
 								<ShipmentDetailsPageLazy />
 							</Suspense>
 						),
+						loader: () => import('./pages/account/ShipmentDetails').then(module => module.loader()),
 					},
 				],
 			},

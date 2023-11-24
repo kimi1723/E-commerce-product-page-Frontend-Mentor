@@ -9,8 +9,15 @@ const CheckoutSuccessful = ({
 	userData,
 	orderData: { products, discount, totalPrice, totalQuantity } = {},
 	orderSentSuccessfuly,
+	shipmentDataSentSuccessfuly,
 }) => {
-	const isError = (orderSentSuccessfuly && orderSentSuccessfuly.status !== 200) || !orderSentSuccessfuly;
+	const isError =
+		(orderSentSuccessfuly &&
+			orderSentSuccessfuly.status !== 200 &&
+			shipmentDataSentSuccessfuly &&
+			shipmentDataSentSuccessfuly.status !== 200) ||
+		!orderSentSuccessfuly ||
+		!shipmentDataSentSuccessfuly;
 	const pageTitle = isError ? 'Something went wrong!' : 'Order sent!';
 
 	const formDataContent = (
