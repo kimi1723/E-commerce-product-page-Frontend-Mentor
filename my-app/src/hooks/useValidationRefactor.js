@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 
-const validateInput = (value, inputName) => {
-	switch (inputName) {
+const validateInput = (key, value) => {
+	value.toString();
+	switch (key) {
 		case 'name':
 			const nameValidation = value.trim().length < 3;
 			const nameFeedback = 'Name should be at least 3 characters long!';
@@ -72,7 +73,7 @@ const useValidation = (inputs, isTouched) => {
 			const [key, value] = input;
 
 			const timeout = setTimeout(() => {
-				const [isError, errorFeedback] = validateInput(value, key);
+				const [isError, errorFeedback] = validateInput(key, value);
 
 				setErrors(prevErrors => ({
 					...prevErrors,

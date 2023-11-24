@@ -2,65 +2,67 @@ import { useState } from 'react';
 import { Form } from 'react-router-dom';
 
 import useValidation from '../../../hooks/useValidation';
+import DisplayPersonalData from '../generic/DisplayPersonalData';
 
 import classes from './PersonalInformation.module.css';
 
-const PersonalInformation = ({ data: { email, password } }) => {
-	const [isEmailVisible, setIsEmailVisible] = useState(false);
-	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-	const [isEdditingEmail, setIsEdditingEmail] = useState(false);
-	const [isEdditingPassword, setIsEdditingPassword] = useState(false);
-	const [passwordValue, setPasswordValue] = useState(password);
-	const [previousPasswordValue, setPreviousPasswordValue] = useState(passwordValue);
-	const [emailValue, setEmailValue] = useState(email);
-	const [previousEmailValue, setPreviousEmailValue] = useState(emailValue);
-	const [errors, setErrors] = useState({
-		email: false,
-		password: false,
-	});
+const PersonalInformation = ({ data }) => {
+	// const [isEmailVisible, setIsEmailVisible] = useState(false);
+	// const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+	// const [isEdditingEmail, setIsEdditingEmail] = useState(false);
+	// const [isEdditingPassword, setIsEdditingPassword] = useState(false);
+	// const [passwordValue, setPasswordValue] = useState(password);
+	// const [previousPasswordValue, setPreviousPasswordValue] = useState(passwordValue);
+	// const [emailValue, setEmailValue] = useState(email);
+	// const [previousEmailValue, setPreviousEmailValue] = useState(emailValue);
+	// const [errors, setErrors] = useState({
+	// 	email: false,
+	// 	password: false,
+	// });
 
-	useValidation(emailValue, 'email', true, setErrors);
-	useValidation(passwordValue, 'password', true, setErrors);
+	// useValidation(emailValue, 'email', true, setErrors);
+	// useValidation(passwordValue, 'password', true, setErrors);
 
-	const emailVisibilityHandler = () => setIsEmailVisible(prevState => !prevState),
-		passwordVisibilityHandler = () => setIsPasswordVisible(prevState => !prevState);
+	// const emailVisibilityHandler = () => setIsEmailVisible(prevState => !prevState),
+	// 	passwordVisibilityHandler = () => setIsPasswordVisible(prevState => !prevState);
 
-	const isEdditingEmailHandler = () => setIsEdditingEmail(true),
-		isEdditingPasswordHandler = () => setIsEdditingPassword(true);
+	// const isEdditingEmailHandler = () => setIsEdditingEmail(true),
+	// 	isEdditingPasswordHandler = () => setIsEdditingPassword(true);
 
-	const passwordSubmitHandler = () => {
-			setIsEdditingPassword(false);
-			setPreviousPasswordValue(passwordValue);
-		},
-		emailSubmitHandler = () => {
-			setIsEdditingEmail(false);
-			setPreviousEmailValue(emailValue);
-		};
+	// const passwordSubmitHandler = () => {
+	// 		setIsEdditingPassword(false);
+	// 		setPreviousPasswordValue(passwordValue);
+	// 	},
+	// 	emailSubmitHandler = () => {
+	// 		setIsEdditingEmail(false);
+	// 		setPreviousEmailValue(emailValue);
+	// 	};
 
-	const cancelPasswordEditHandler = () => {
-			setIsEdditingPassword(false);
-			setPasswordValue(previousPasswordValue);
-		},
-		cancelEmailEditHandler = () => {
-			setIsEdditingEmail(false);
-			setEmailValue(previousEmailValue);
-		};
+	// const cancelPasswordEditHandler = () => {
+	// 		setIsEdditingPassword(false);
+	// 		setPasswordValue(previousPasswordValue);
+	// 	},
+	// 	cancelEmailEditHandler = () => {
+	// 		setIsEdditingEmail(false);
+	// 		setEmailValue(previousEmailValue);
+	// 	};
 
-	const hideContent = originalContent => {
-		const originalContentSplit = [...originalContent];
+	// const hideContent = originalContent => {
+	// 	const originalContentSplit = [...originalContent];
 
-		const hiddenContent = originalContentSplit.map(() => '*');
+	// 	const hiddenContent = originalContentSplit.map(() => '*');
 
-		return [...hiddenContent];
-	};
+	// 	return [...hiddenContent];
+	// };
 
-	const editPasswordHandler = e => setPasswordValue(e.target.value),
-		editEmailHandler = e => setEmailValue(e.target.value);
+	// const editPasswordHandler = e => setPasswordValue(e.target.value),
+	// 	editEmailHandler = e => setEmailValue(e.target.value);
 
 	return (
 		<>
 			<h1 className={classes.h1}>Credentials</h1>
-			<dl className={classes.dl}>
+			<DisplayPersonalData data={data} />
+			{/* <dl className={classes.dl}>
 				<div className={classes['item-container']}>
 					<dt>Email</dt>
 					<dd>
@@ -137,7 +139,7 @@ const PersonalInformation = ({ data: { email, password } }) => {
 						</div>
 					</dd>
 				</div>
-			</dl>
+			</dl> */}
 		</>
 	);
 };

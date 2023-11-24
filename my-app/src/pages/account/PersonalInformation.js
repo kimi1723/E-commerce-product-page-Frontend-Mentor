@@ -11,43 +11,28 @@ import { errorActions } from '../../store/error-slice';
 
 const PersonalInformationPage = () => {
 	const { personalInformationLoaderData } = useLoaderData();
-	const personalInformationActionData = useActionData();
+	const changedValue = useActionData();
 	const dispatch = useDispatch();
 
-	if (personalInformationActionData) {
+	if (changedValue) {
 		const changeCredentials = async () => {
 			try {
-				const isEmailChanged = personalInformationActionData.email ? true : false;
 				const uid = await getUid();
 				const userAccountUid = await getUid('accountUid');
+				const previousData = await personalInformationLoaderData;
 
-				let emailToSet, passwordToSet;
+				const newData = { ...previousData, ...changedValue };
 
-				if (isEmailChanged) {
-					const { password } = await personalInformationLoaderData;
-					passwordToSet = password;
-					emailToSet = personalInformationActionData.email;
-				} else {
-					const { email } = await personalInformationLoaderData;
-					passwordToSet = personalInformationActionData.password;
-					emailToSet = email;
-				}
-
-				const responseData = { email: emailToSet, password: passwordToSet };
-
-				const response = await setFirebaseData(`/users/validated/${userAccountUid}/credentials`, responseData);
+				const response = await setFirebaseData(`/users/validated/${userAccountUid}/credentials`, newData);
 				const anonymousResponse = await setFirebaseData(`users/anonymousTokens/${uid}/credentials`, {
-					...responseData,
+					...newData,
 					userAccountUid,
 				});
 
-				if (response.status === 500 || anonymousResponse === 500) {
+				if (response.status === 500 || anonymousResponse === 500)
 					throw new Error(response.error || anonymousResponse.error);
-				}
 
-				if (response.status !== 500) {
-					return { emailToSet, passwordToSet };
-				}
+				if (response.status !== 500) return newData;
 			} catch (error) {
 				dispatch(
 					errorActions.setError({
@@ -71,17 +56,15 @@ const PersonalInformationPage = () => {
 	);
 };
 
+export const action = async ({ request }) => {
+	const formData = await request.formData();
+
+	return Object.fromEntries(formData);
+};
+
 const personalInformationLoader = async () => {
 	const uid = await getUid('accountUid');
 	const { email, password } = await getProductsData(`users/validated/${uid}/credentials`);
-
-	return { email, password };
-};
-
-export const action = async ({ request }) => {
-	const formData = await request.formData();
-	const email = formData.get('email');
-	const password = formData.get('password');
 
 	return { email, password };
 };
