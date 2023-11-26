@@ -6,10 +6,11 @@ import getInputType from '../../../utils/getInputType';
 
 import classes from './DisplayPersonalData.module.css';
 
-const DisplayPersonalData = ({ data }) => {
+const DisplayPersonalData = ({ data, hiddenData = [] }) => {
 	const [inputsData, setInputsData] = useState(data);
 	const [previousInputsData, setPreviousInputsData] = useState(inputsData);
 	const [currentEdits, setCurrentEdits] = useState({});
+	const [hiddenValues, setHiddenValues] = useState(hiddenData);
 
 	const errors = useValidation(inputsData, true);
 
@@ -36,36 +37,64 @@ const DisplayPersonalData = ({ data }) => {
 
 	const isEdditingHandler = key => setCurrentEdits(prevEditsState => ({ ...prevEditsState, [key]: true }));
 
-	const onSubmitHandler = key => {
-		setCurrentEdits(prevEditsState => ({ ...prevEditsState, [key]: false }));
-		setPreviousInputsData(inputsData);
-	};
-
 	const cancelEditHandler = key => {
 		setInputsData(previousInputsData);
 		setCurrentEdits(prevEditsState => ({ ...prevEditsState, [key]: false }));
 	};
 
+	const onSubmitHandler = key => {
+		setCurrentEdits(prevEditsState => ({ ...prevEditsState, [key]: false }));
+		setPreviousInputsData(inputsData);
+	};
+
+	const isHiddenHandler = value => {
+		setHiddenValues(prevValues => {
+			const newValues = [...prevValues];
+			const index = newValues.findIndex(obj => obj['shouldHide'] === value);
+
+			newValues[index]['isHidden'] = !newValues[index]['isHidden'];
+
+			return newValues;
+		});
+	};
+
+	const hideContent = originalContent => {
+		const originalContentSplit = [...originalContent];
+
+		const hiddenContent = originalContentSplit.map(() => '*');
+
+		return [...hiddenContent];
+	};
+
 	const content = dataKeys.map(key => {
-		const inputType = getInputType(key);
 		const { isError, errorFeedback } = errors[key] || {};
+		const { shouldHide, isHidden } = hiddenValues.find(obj => obj['shouldHide'] === key) || {};
+
+		const inputType = getInputType(key);
 		const isEdditing = currentEdits[key];
-		const value = inputsData[key];
-		const shouldHide = false;
+		const label = key.charAt(0).toUpperCase() + key.slice(1);
+
+		let value = inputsData[key];
+
+		if (value.length === 0) value = 'Yet to be filled!';
 
 		return (
 			<div className={classes['item-container']} key={key}>
 				<dt>
-					<label htmlFor={key}>{key}</label>
+					<label htmlFor={key}>{label}</label>
 				</dt>
 
 				<dd>
 					<Form method="post" className={classes.form} onSubmit={() => onSubmitHandler(key)}>
 						{isError && <p className={classes.error}>{errorFeedback}</p>}
-						{!isEdditing && <p>{value}</p>}
+						{!isEdditing && <p>{isHidden ? hideContent(value) : value}</p>}
 						{isEdditing && (
 							<>
-								<input type={inputType} name={key} value={value} onChange={inputChangeHandler} />
+								{isHidden ? (
+									<input type="password" name={key} value={value} onChange={inputChangeHandler} />
+								) : (
+									<input type={inputType} name={key} value={value} onChange={inputChangeHandler} />
+								)}
 								<div className={classes['form-btns']}>
 									<button type="submit" className={classes['functional-btn']} disabled={isError}>
 										Accept
@@ -79,7 +108,11 @@ const DisplayPersonalData = ({ data }) => {
 					</Form>
 
 					<div className={classes['btns-container']}>
-						{shouldHide && <button type="button" className={classes['functional-btn']}></button>}
+						{shouldHide && (
+							<button type="button" className={classes['functional-btn']} onClick={() => isHiddenHandler(key)}>
+								{isHidden ? 'Show' : 'Hide'}
+							</button>
+						)}
 
 						{!isEdditing && (
 							<button type="button" className={classes['functional-btn']} onClick={() => isEdditingHandler(key)}>

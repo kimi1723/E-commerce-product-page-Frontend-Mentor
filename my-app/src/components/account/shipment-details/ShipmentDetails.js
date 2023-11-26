@@ -1,10 +1,20 @@
 import DisplayPersonalData from '../generic/DisplayPersonalData';
 
-const ShipmentDetails = ({ data }) => {
+const ShipmentDetails = ({ data = {} }) => {
+	const dataSkeleton = {
+		address: '',
+		city: '',
+		country: '',
+		email: '',
+		name: '',
+		tel: '',
+		'zip-code': '',
+	};
+
 	return (
 		<>
 			<h1>Shipment detailss</h1>
-			<DisplayPersonalData data={data} />
+			<DisplayPersonalData data={data || dataSkeleton} />
 		</>
 	);
 };

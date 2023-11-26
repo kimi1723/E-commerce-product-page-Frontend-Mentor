@@ -47,13 +47,10 @@ const PersonalInformation = ({ data }) => {
 	// 		setEmailValue(previousEmailValue);
 	// 	};
 
-	// const hideContent = originalContent => {
-	// 	const originalContentSplit = [...originalContent];
-
-	// 	const hiddenContent = originalContentSplit.map(() => '*');
-
-	// 	return [...hiddenContent];
-	// };
+	const hiddenData = [
+		{ shouldHide: 'email', isHidden: true },
+		{ shouldHide: 'password', isHidden: true },
+	];
 
 	// const editPasswordHandler = e => setPasswordValue(e.target.value),
 	// 	editEmailHandler = e => setEmailValue(e.target.value);
@@ -61,7 +58,7 @@ const PersonalInformation = ({ data }) => {
 	return (
 		<>
 			<h1 className={classes.h1}>Credentials</h1>
-			<DisplayPersonalData data={data} />
+			<DisplayPersonalData data={data} hiddenData={hiddenData} />
 			{/* <dl className={classes.dl}>
 				<div className={classes['item-container']}>
 					<dt>Email</dt>
