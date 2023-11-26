@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 const validateInput = (key, value) => {
 	value.toString();
+
 	switch (key) {
 		case 'name':
 			const nameValidation = value.trim().length < 3;
@@ -55,6 +56,7 @@ const useValidation = (inputs, isTouched) => {
 
 	useEffect(() => {
 		const inputsKeys = Object.keys(inputs);
+
 		const errorsInitial = {};
 
 		inputsKeys.forEach(key => {
