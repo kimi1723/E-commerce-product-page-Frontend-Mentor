@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import useValidation from '../../../../hooks/useValidation';
+import useValidationRefactor from '../../../../hooks/useValidationRefactor';
 
-const BillingDetails = ({ classes, setAllErrors, setAllIsTouched }) => {
-	const [nameValue, setNameValue] = useState('name');
-	const [emailValue, setEmailValue] = useState('email@gm.pl');
-	const [telValue, setTelValue] = useState('123456789');
+const BillingDetails = ({ classes, setAllErrors, setAllIsTouched, predefinedData }) => {
+	const [inputsData, setInputsData] = useState({});
+	const [nameValue, setNameValue] = useState('');
+	const [emailValue, setEmailValue] = useState('');
+	const [telValue, setTelValue] = useState('');
 	const [errors, setErrors] = useState({
 		name: false,
 		email: false,
@@ -15,6 +17,8 @@ const BillingDetails = ({ classes, setAllErrors, setAllIsTouched }) => {
 		email: false,
 		tel: false,
 	});
+
+	// const errors = useValidationRefactor()
 
 	useValidation(nameValue, 'name', isTouched.name, setErrors);
 	useValidation(emailValue, 'email', isTouched.email, setErrors);

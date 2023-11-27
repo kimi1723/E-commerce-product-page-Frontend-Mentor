@@ -13,7 +13,7 @@ const DisplayPersonalData = ({ data, hiddenData = [] }) => {
 	const [isTouchedState, setIsTouchedState] = useState({});
 	const [hiddenValues, setHiddenValues] = useState(hiddenData);
 
-	const errors = useValidation(inputsData, true);
+	const errors = useValidation(inputsData);
 
 	const dataKeys = Object.keys(data);
 

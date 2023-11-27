@@ -3,7 +3,9 @@ import useValidation from '../../../../hooks/useValidation';
 
 import Select from 'react-select';
 
-const ShipmentDetails = ({ classes, countriesList, setAllErrors, setAllIsTouched }) => {
+const ShipmentDetails = ({ classes, countriesList, setAllErrors, setAllIsTouched, shipmentData }) => {
+	const [inputsValues, setInputsValues] = useState(shipmentData);
+	
 	const [addressValue, setAddressValue] = useState('address');
 	const [zipCodeValue, setZipCodeValue] = useState('12345');
 	const [cityValue, setCityValue] = useState('warsaw');
@@ -14,6 +16,7 @@ const ShipmentDetails = ({ classes, countriesList, setAllErrors, setAllIsTouched
 		city: false,
 		country: false,
 	});
+
 	const [isTouched, setIsTouched] = useState({
 		address: false,
 		zipCode: false,

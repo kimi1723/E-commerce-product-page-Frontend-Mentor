@@ -51,7 +51,7 @@ const validateInput = (key, value) => {
 	}
 };
 
-const useValidation = (inputs, isTouched) => {
+const useValidation = inputs => {
 	const [errors, setErrors] = useState({});
 
 	useEffect(() => {
@@ -67,8 +67,6 @@ const useValidation = (inputs, isTouched) => {
 	}, []);
 
 	useEffect(() => {
-		if (!isTouched) return;
-
 		const inputsEntries = Object.entries(inputs);
 
 		inputsEntries.forEach(input => {
@@ -87,7 +85,7 @@ const useValidation = (inputs, isTouched) => {
 				clearTimeout(timeout);
 			};
 		});
-	}, [inputs, isTouched]);
+	}, [inputs]);
 
 	return errors;
 };

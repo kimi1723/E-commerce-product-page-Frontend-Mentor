@@ -8,7 +8,9 @@ import PaymentDetails from './form-sections/PaymentDetails';
 import Redirect from '../generic/Redirect';
 import classes from './CheckoutDetails.module.css';
 
-const Details = ({ countriesList }) => {
+const Details = ({ loadedData: { countriesList, shipmentData } }) => {
+	// const { countriesList, predefinedData } = loadedData;
+
 	const [allErrors, setAllErrors] = useState({});
 	const [allIsTouched, setAllIsTouched] = useState({});
 	const isAnyError = Object.values(allErrors).includes(true);
@@ -27,12 +29,18 @@ const Details = ({ countriesList }) => {
 
 			<main className={classes.main}>
 				<Form method="post" className={classes.form} action="/checkout-successful" state={{ some: 'value' }}>
-					<BillingDetails classes={classes} setAllErrors={allErrorsHandler} setAllIsTouched={allIsTouchedHandler} />
+					<BillingDetails
+						classes={classes}
+						setAllErrors={allErrorsHandler}
+						setAllIsTouched={allIsTouchedHandler}
+						shipmentData={shipmentData}
+					/>
 					<ShippingInfo
 						classes={classes}
 						countriesList={countriesList}
 						setAllErrors={allErrorsHandler}
 						setAllIsTouched={allIsTouchedHandler}
+						shipmentData={shipmentData}
 					/>
 					<PaymentDetails classes={classes} setAllErrors={allErrorsHandler} />
 

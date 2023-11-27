@@ -1,6 +1,6 @@
 import DisplayPersonalData from '../generic/DisplayPersonalData';
 
-const ShipmentDetails = ({ data = {} }) => {
+const ShipmentDetails = ({ data }) => {
 	const dataSkeleton = {
 		address: '',
 		city: '',
