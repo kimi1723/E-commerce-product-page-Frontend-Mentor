@@ -78,7 +78,7 @@ const DisplayPersonalData = ({ data, hiddenData = [] }) => {
 
 		let value = inputsData[key];
 
-		if (value.length === 0) value = 'Yet to be filled!';
+		if (!isTouched && value.length === 0) value = 'Yet to be filled!';
 
 		return (
 			<div className={classes['item-container']} key={key}>

@@ -1,13 +1,18 @@
-.h1 {
-	margin-bottom: 1em;
-}
-
 .dl {
-	margin-bottom: 2em;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 1.5em;
+	margin: 2em 0;
 }
 
-.item-container:not(:last-child) {
+/* .item-container:not(:last-child) {
 	margin-bottom: 1.5em;
+} */
+
+.item-container {
+	flex-basis: 100%;
+	/* min-width: 100%; */
 }
 
 .item-container dt {
@@ -18,8 +23,10 @@
 
 .item-container dd {
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-between;
 	gap: 0.5em;
+	width: 100%;
 }
 
 .btns-container {
@@ -50,15 +57,17 @@
 	align-items: center;
 	flex-wrap: wrap;
 	gap: 0.5em;
+	overflow: hidden;
 }
 
 .form input {
-	padding: 0.2em 0.4em;
+	padding: 0.4em 0.6em;
 	border-radius: 8px;
 	border: none;
 	border: 2px solid hsl(220, 13%, 13%);
 	transition: border-color 0.3s;
 	font-size: 1rem;
+	width: clamp(10ch, 20ch, 70%);
 }
 
 .form input:focus,
@@ -118,4 +127,10 @@
 	font-size: 0.8rem;
 	font-weight: bold;
 	color: tomato;
+}
+
+@media (min-width: 768px) {
+	.item-container {
+		/* min-width: 45%; */
+	}
 }
