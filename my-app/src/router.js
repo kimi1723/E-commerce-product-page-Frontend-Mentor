@@ -5,8 +5,8 @@ import LoaderSpinner from './components/ui/LoaderSpinner';
 
 import { action as checkoutAction } from './pages/checkout/CheckoutSuccessful';
 import { action as authenticationAction } from './pages/Authentication';
+import { action as credentialsAction } from './pages/account/Credentials';
 import { action as personalInformationAction } from './pages/account/PersonalInformation';
-import { action as shipmentDetailsAction } from './pages/account/ShipmentDetails';
 
 const RootPageLazy = lazy(() => import('./pages/Root'));
 const ErrorPageLazy = lazy(() => import('./pages/Error'));
@@ -27,8 +27,8 @@ const AuthenticationPageLazy = lazy(() => import('./pages/Authentication'));
 const AccountRootPageLazy = lazy(() => import('./pages/account/AccountRoot'));
 const MyAccountPageLazy = lazy(() => import('./pages/account/MyAccount'));
 const OrdersPageLazy = lazy(() => import('./pages/account/Orders'));
+const CredentialsPageLazy = lazy(() => import('./pages/account/Credentials'));
 const PersonalInformationPageLazy = lazy(() => import('./pages/account/PersonalInformation'));
-const ShipmentDetailsPageLazy = lazy(() => import('./pages/account/ShipmentDetails'));
 const OrderDetailsPageLazy = lazy(() => import('./pages/account/OrderDetails'));
 
 const router = createBrowserRouter([
@@ -202,6 +202,16 @@ const router = createBrowserRouter([
 						loader: meta => import('./pages/account/OrderDetails').then(module => module.loader(meta)),
 					},
 					{
+						path: 'credentials',
+						element: (
+							<Suspense fallback={<LoaderSpinner />}>
+								<CredentialsPageLazy />
+							</Suspense>
+						),
+						loader: () => import('./pages/account/Credentials').then(module => module.loader()),
+						action: credentialsAction,
+					},
+					{
 						path: 'personal-information',
 						element: (
 							<Suspense fallback={<LoaderSpinner />}>
@@ -210,16 +220,6 @@ const router = createBrowserRouter([
 						),
 						loader: () => import('./pages/account/PersonalInformation').then(module => module.loader()),
 						action: personalInformationAction,
-					},
-					{
-						path: 'shipment-details',
-						element: (
-							<Suspense fallback={<LoaderSpinner />}>
-								<ShipmentDetailsPageLazy />
-							</Suspense>
-						),
-						loader: () => import('./pages/account/ShipmentDetails').then(module => module.loader()),
-						action: shipmentDetailsAction,
 					},
 				],
 			},

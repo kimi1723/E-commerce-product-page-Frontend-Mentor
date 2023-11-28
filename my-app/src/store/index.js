@@ -4,7 +4,6 @@ import cartReducer from './cart-slice';
 import errorReducer from './error-slice';
 import loadingReducer from './loading-slice';
 import authenticationReducer from './authentication-slice';
-import userReducer from './userData-slice';
 
 const store = configureStore({
 	reducer: {
@@ -13,7 +12,6 @@ const store = configureStore({
 		error: errorReducer,
 		loading: loadingReducer,
 		authentication: authenticationReducer,
-		userData: userReducer,
 	},
 });
 

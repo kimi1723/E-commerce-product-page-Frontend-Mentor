@@ -12,7 +12,7 @@ const CheckoutSuccessfulPage = () => {
 	const cart = useSelector(state => state.cart);
 	const { isSignedIn } = useSelector(state => state.authentication);
 	const [orderSentSuccessfuly, setOrderSentSuccessfully] = useState(undefined);
-	const [shipmentDataSentSuccessfuly, setShipmentDataSentSuccessfuly] = useState(undefined);
+	const [personalInformationSentSuccessfuly, setPersonalInformationSentSuccessfuly] = useState(undefined);
 	const orderRef = useRef(cart);
 	const userData = useActionData();
 	const navigate = useNavigate();
@@ -25,12 +25,14 @@ const CheckoutSuccessfulPage = () => {
 		const handleOrder = async () => {
 			if (userData) {
 				const uid = await getUid('accountUid');
-				const { password, 'payment-method': paymentMethod, ...shipmentData } = Object.fromEntries(userData);
+				const { password, 'payment-method': paymentMethod, ...personalInformation } = Object.fromEntries(userData);
 
 				setOrderSentSuccessfully(await sendOrder({ orderData, isSignedIn }));
-				setShipmentDataSentSuccessfuly(await setFirebaseData(`/users/validated/${uid}/shipmentDetails`, shipmentData));
+				setPersonalInformationSentSuccessfuly(
+					await setFirebaseData(`/users/validated/${uid}/personalInformation`, personalInformation),
+				);
 
-				// dispatch(cartActions.replaceCart({ products: [], totalQuantity: 0 }));
+				dispatch(cartActions.replaceCart({ products: [], totalQuantity: 0 }));
 			} else {
 				navigate('/');
 			}
@@ -44,7 +46,7 @@ const CheckoutSuccessfulPage = () => {
 			userData={userData}
 			orderData={orderData}
 			orderSentSuccessfuly={orderSentSuccessfuly}
-			shipmentDataSentSuccessfuly={shipmentDataSentSuccessfuly}
+			personalInformationSentSuccessfuly={personalInformationSentSuccessfuly}
 		/>
 	);
 };

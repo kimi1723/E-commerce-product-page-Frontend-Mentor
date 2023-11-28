@@ -4,9 +4,9 @@ import { Form } from 'react-router-dom';
 import useValidation from '../../../hooks/useValidationRefactor';
 import getInputType from '../../../utils/getInputType';
 
-import classes from './DisplayPersonalData.module.css';
+import classes from './DisplayData.module.css';
 
-const DisplayPersonalData = ({ data, hiddenData = [] }) => {
+const DisplayData = ({ data, hiddenData = [] }) => {
 	const [inputsData, setInputsData] = useState(data);
 	const [previousInputsData, setPreviousInputsData] = useState(inputsData);
 	const [currentEdits, setCurrentEdits] = useState({});
@@ -130,4 +130,4 @@ const DisplayPersonalData = ({ data, hiddenData = [] }) => {
 	return <dl className={classes.dl}>{content}</dl>;
 };
 
-export default DisplayPersonalData;
+export default DisplayData;

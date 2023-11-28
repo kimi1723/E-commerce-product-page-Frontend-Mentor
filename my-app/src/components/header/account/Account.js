@@ -42,13 +42,13 @@ const Account = ({ hideAuthentication, classesProvided }) => {
 				</Link>
 			</li>
 			<li className={classes['signed-li']}>
-				<Link to="account/personal-information" className={classes['signed-link']}>
-					Personal information
+				<Link to="account/credentials" className={classes['signed-link']}>
+					Credentials
 				</Link>
 			</li>
 			<li className={classes['signed-li']}>
-				<Link to="account/shipment-details" className={classes['signed-link']}>
-					Shipment details
+				<Link to="account/personal-information" className={classes['signed-link']}>
+					Personal information
 				</Link>
 			</li>
 			<li className={classes['signed-li']}>

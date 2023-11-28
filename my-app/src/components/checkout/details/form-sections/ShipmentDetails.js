@@ -3,9 +3,16 @@ import useValidation from '../../../../hooks/useValidation';
 
 import Select from 'react-select';
 
-const ShipmentDetails = ({ classes, countriesList, setAllErrors, setAllIsTouched, shipmentData }) => {
-	const [inputsValues, setInputsValues] = useState(shipmentData);
-	
+const shipmentDetailsDataSkeleton = {
+	address: '',
+	city: '',
+	country: '',
+	zipCode: '',
+};
+
+const ShipmentDetails = ({ classes, countriesList, setAllErrors, setAllIsTouched, shipmentDetails }) => {
+	const [inputsValues, setInputsValues] = useState(shipmentDetails || shipmentDetailsDataSkeleton);
+
 	const [addressValue, setAddressValue] = useState('address');
 	const [zipCodeValue, setZipCodeValue] = useState('12345');
 	const [cityValue, setCityValue] = useState('warsaw');
@@ -123,12 +130,12 @@ const ShipmentDetails = ({ classes, countriesList, setAllErrors, setAllIsTouched
 				{errors.zipCode && isTouched.zipCode && (
 					<p className={classes.error}>Your zip code should at least be 2 characters length!</p>
 				)}
-				<label htmlFor="zip-code" className={classes.label}>
+				<label htmlFor="zipCode" className={classes.label}>
 					ZIP Code
 				</label>
 				<input
-					id="zip-code"
-					name="zip-code"
+					id="zipCode"
+					name="zipCode"
 					type="text"
 					placeholder="Enter ZIP Code..."
 					className={classes['text-input']}

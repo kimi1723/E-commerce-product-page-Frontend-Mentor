@@ -14,7 +14,6 @@ const Summary = () => {
 	const totalQuantity = useSelector(state => state.cart.totalQuantity);
 	const productsTotal = useSelector(state => state.cart.totalPrice);
 
-	// console.log(productsTotal);
 	return (
 		<>
 			<header className={classes.header}>

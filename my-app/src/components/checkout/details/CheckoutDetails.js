@@ -4,13 +4,13 @@ import { Form } from 'react-router-dom';
 import BillingDetails from './form-sections/BillingDetails';
 import ShippingInfo from './form-sections/ShipmentDetails';
 import PaymentDetails from './form-sections/PaymentDetails';
-
 import Redirect from '../generic/Redirect';
+
+import unwrapObject from '../../../utils/unwrapObject';
+
 import classes from './CheckoutDetails.module.css';
 
-const Details = ({ loadedData: { countriesList, shipmentData } }) => {
-	// const { countriesList, predefinedData } = loadedData;
-
+const Details = ({ loadedData: { countriesList, personalInformation } }) => {
 	const [allErrors, setAllErrors] = useState({});
 	const [allIsTouched, setAllIsTouched] = useState({});
 	const isAnyError = Object.values(allErrors).includes(true);
@@ -20,6 +20,9 @@ const Details = ({ loadedData: { countriesList, shipmentData } }) => {
 
 	const allIsTouchedHandler = newTouchedState =>
 		setAllIsTouched(prevTouchedState => ({ ...prevTouchedState, newTouchedState }));
+
+	const billingDetails = unwrapObject(['name', 'email', 'tel'], personalInformation);
+	const shipmentDetails = unwrapObject(['address', 'city', 'country', 'zipCode'], personalInformation);
 
 	return (
 		<>
@@ -33,14 +36,14 @@ const Details = ({ loadedData: { countriesList, shipmentData } }) => {
 						classes={classes}
 						setAllErrors={allErrorsHandler}
 						setAllIsTouched={allIsTouchedHandler}
-						shipmentData={shipmentData}
+						billingDetails={billingDetails}
 					/>
 					<ShippingInfo
 						classes={classes}
 						countriesList={countriesList}
 						setAllErrors={allErrorsHandler}
 						setAllIsTouched={allIsTouchedHandler}
-						shipmentData={shipmentData}
+						shipmentDetails={shipmentDetails}
 					/>
 					<PaymentDetails classes={classes} setAllErrors={allErrorsHandler} />
 

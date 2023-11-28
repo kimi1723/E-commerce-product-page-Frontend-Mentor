@@ -26,7 +26,7 @@ const validateInput = (key, value) => {
 			const addressFeedback = 'Your address should contain at least 4 characters!';
 
 			return [addressValidation, addressFeedback];
-		case 'zip-code':
+		case 'zipCode':
 			const zipCodeValidation = value.trim().length < 2;
 			const zipCodeFeedback = 'Your zip code should at least be 2 characters length!';
 

@@ -4,7 +4,7 @@ const getInputType = key => {
 			return 'email';
 		case 'tel':
 			return 'tel';
-		case 'zip-code':
+		case 'zipCode':
 			return 'number';
 		default:
 			return 'text';

@@ -1,15 +1,20 @@
-import DisplayPersonalData from '../generic/DisplayPersonalData';
+import DisplayData from '../generic/DisplayData';
 
 const PersonalInformation = ({ data }) => {
-	const hiddenData = [
-		{ shouldHide: 'email', isHidden: true },
-		{ shouldHide: 'password', isHidden: true },
-	];
+	const dataSkeleton = {
+		address: '',
+		city: '',
+		country: '',
+		email: '',
+		name: '',
+		tel: '',
+		zipCode: '',
+	};
 
 	return (
 		<>
-			<h1>Credentials</h1>
-			<DisplayPersonalData data={data} hiddenData={hiddenData} />
+			<h1>Personal information</h1>
+			<DisplayData data={data || dataSkeleton} />
 		</>
 	);
 };

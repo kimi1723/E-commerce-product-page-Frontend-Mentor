@@ -3,8 +3,9 @@ import { Await, defer, useActionData, useLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import PersonalInformation from '../../components/account/personal-information/PersonalInformation';
-import getProductsData from '../../utils/getProductsData';
 import LoaderSpinner from '../../components/ui/LoaderSpinner';
+
+import getFirebaseData from '../../utils/getFirebaseData';
 import getUid from '../../utils/getUid';
 import setFirebaseData from '../../utils/setFirebaseData';
 import { errorActions } from '../../store/error-slice';
@@ -15,24 +16,18 @@ const PersonalInformationPage = () => {
 	const dispatch = useDispatch();
 
 	if (changedValue) {
-		const changeCredentials = async () => {
+		const changePersonalInformation = async () => {
 			try {
-				const uid = await getUid();
-				const userAccountUid = await getUid('accountUid');
 				const previousData = await personalInformationLoaderData;
+				const userAccountUid = await getUid('accountUid');
 
 				const newData = { ...previousData, ...changedValue };
 
-				const response = await setFirebaseData(`/users/validated/${userAccountUid}/credentials`, newData);
-				const anonymousResponse = await setFirebaseData(`users/anonymousTokens/${uid}/credentials`, {
-					...newData,
-					userAccountUid,
-				});
+				const response = await setFirebaseData(`/users/validated/${userAccountUid}/personalInformation`, newData);
 
-				if (response.status === 500 || anonymousResponse === 500)
-					throw new Error(response.error || anonymousResponse.error);
+				if (response.status !== 200) throw new Error(response.error);
 
-				if (response.status !== 500) return newData;
+				return newData;
 			} catch (error) {
 				dispatch(
 					errorActions.setError({
@@ -46,7 +41,7 @@ const PersonalInformationPage = () => {
 			}
 		};
 
-		changeCredentials();
+		changePersonalInformation();
 	}
 
 	return (
@@ -64,9 +59,9 @@ export const action = async ({ request }) => {
 
 const personalInformationLoader = async () => {
 	const uid = await getUid('accountUid');
-	const { email, password } = await getProductsData(`users/validated/${uid}/credentials`);
+	const personalInformationLoaderData = await getFirebaseData(`/users/validated/${uid}/personalInformation`);
 
-	return { email, password };
+	return personalInformationLoaderData;
 };
 
 export const loader = () => {
@@ -74,4 +69,5 @@ export const loader = () => {
 		personalInformationLoaderData: personalInformationLoader(),
 	});
 };
+
 export default PersonalInformationPage;

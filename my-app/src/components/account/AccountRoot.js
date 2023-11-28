@@ -11,8 +11,8 @@ const AccountRoot = ({ children }) => {
 	const navOptions = [
 		{ label: 'My account', value: 'myaccount' },
 		{ label: 'Orders', value: 'orders' },
+		{ label: 'Credentials', value: 'credentials' },
 		{ label: 'Personal information', value: 'personal-information' },
-		{ label: 'Shipment details', value: 'shipment-details' },
 	];
 
 	const currentPathIndex = navOptions.findIndex(option => pathname.includes(option.value));

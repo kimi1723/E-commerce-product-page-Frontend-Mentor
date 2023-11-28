@@ -24,7 +24,7 @@ const CheckoutDetailsPage = () => {
 // 	if (!isSignedIn) return null;
 
 // 	const accountUid = await getUid('accountUid');
-// 	const data = await getFirebaseData(`users/validated/${accountUid}/shipmentDetails`);
+// 	const data = await getFirebaseData(`users/validated/${accountUid}/personalInformation`);
 
 // 	return data;
 // };
@@ -40,9 +40,9 @@ const checkoutLoader = async () => {
 
 	if (isSignedIn) {
 		const accountUid = await getUid('accountUid');
-		const shipmentData = await getFirebaseData(`users/validated/${accountUid}/shipmentDetails`);
+		const personalInformation = await getFirebaseData(`users/validated/${accountUid}/personalInformation`);
 
-		data['shipmentData'] = shipmentData;
+		data['personalInformation'] = personalInformation;
 	}
 
 	countries.splice(0, 46);
