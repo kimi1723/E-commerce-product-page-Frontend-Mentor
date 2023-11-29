@@ -15,7 +15,7 @@ const getUid = async (type = 'anonymous') => {
 
 		return userAccountUid;
 	} catch (error) {
-		console.log('error auth');
+		throw new Error(error);
 	}
 };
 

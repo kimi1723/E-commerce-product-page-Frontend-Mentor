@@ -13,7 +13,7 @@ import classes from './CheckoutDetails.module.css';
 const Details = ({ loadedData: { countriesList, personalInformation } }) => {
 	const [allErrors, setAllErrors] = useState({});
 	const [allIsTouched, setAllIsTouched] = useState({});
-	console.log(allIsTouched);
+
 	const isAnyError = Object.values(allErrors).filter(({ isError }) => isError === true);
 	const notEverythingTouched = Object.values(allIsTouched).includes(false);
 

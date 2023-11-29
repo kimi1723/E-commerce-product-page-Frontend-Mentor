@@ -1,101 +1,98 @@
+import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Form, Link, useActionData, useNavigation, useSearchParams, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
+
 import useValidation from '../../hooks/useValidation';
+
+import getInputLabel from '../../utils/getInputLabel';
+import getInputType from '../../utils/getInputType';
+import getInputPlaceholder from '../../utils/getInputPlaceholder';
 
 import classes from './Authentication.module.css';
 
 const Authentication = () => {
 	const { error, errorMessage } = useActionData() || {};
 	const [searchParams] = useSearchParams();
-	const [emailValue, setEmailValue] = useState('email4@gmail.com');
-	const [passwordValue, setPasswordValue] = useState('12345678');
-	const [errors, setErrors] = useState({
+	const [credentials, setCredentials] = useState({ email: '', password: '' });
+	const [isTouchedState, setIsTouchedState] = useState({
 		email: false,
 		password: false,
 	});
-	const [isTouched, setIsTouched] = useState({
-		email: false,
-		password: false,
-	});
-
 	const { isSignedIn } = useSelector(state => state.authentication);
 	const navigation = useNavigation();
 	const navigate = useNavigate();
 
-	useValidation(emailValue, 'email', isTouched.email, setErrors);
-	useValidation(passwordValue, 'password', isTouched.password, setErrors);
+	const errors = useValidation(credentials, isTouchedState);
 
 	useEffect(() => {
 		if (isSignedIn) {
 			navigate('/account/myaccount');
 		}
-	});
+	}, []);
 
-	const anyErrors = Object.values(errors).includes(true);
-	const notEverythingIsTouched = Object.values(isTouched).includes(false);
+	const credentialsKeys = Object.keys(credentials);
+
+	const anyErrors = Object.values(errors).filter(({ isError }) => isError === true);
+
+	const notEverythingIsTouched = Object.values(isTouchedState).includes(false);
 
 	const isSignIn = searchParams.get('mode') === 'signin';
 
 	const isSubmitting = navigation.state === 'submitting';
 
-	const emailHandler = e => {
-			setEmailValue(e.target.value);
-			isTouchedEmailHandler();
-		},
-		passwordHandler = e => {
-			setPasswordValue(e.target.value);
-			isTouchedPasswordHandler();
-		};
+	const inputChangeHandler = e => {
+		const key = e.target.name;
+		const value = e.target.value;
 
-	const isTouchedEmailHandler = () => {
-			setIsTouched(prev => {
-				return { ...prev, email: true };
-			});
-		},
-		isTouchedPasswordHandler = () => {
-			setIsTouched(prev => {
-				return { ...prev, password: true };
-			});
-		};
+		setCredentials(prevValues => ({ ...prevValues, [key]: value }));
+		inputTouchedHandler(e);
+	};
+
+	const inputTouchedHandler = e => {
+		const key = e.target.name;
+
+		setIsTouchedState(prevValues => ({ ...prevValues, [key]: true }));
+	};
+
+	const credentialsInputs = credentialsKeys.map(key => {
+		const { isError, errorFeedback } = errors[key] || {};
+		const isTouched = isTouchedState[key];
+
+		const inputType = getInputType(key);
+		const inputPlaceholder = getInputPlaceholder(key);
+		const label = getInputLabel(key);
+
+		let value = credentials[key];
+
+		return (
+			<p className={classes['input-container']} key={key}>
+				{isError && isTouched && <span className={classes.error}>{errorFeedback}</span>}
+
+				<label htmlFor={key} className={classes.label}>
+					{label}
+				</label>
+
+				<input
+					id={key}
+					name={key}
+					type={inputType}
+					className={classes.input}
+					onChange={inputChangeHandler}
+					onBlur={inputTouchedHandler}
+					value={value}
+					placeholder={inputPlaceholder}
+				/>
+			</p>
+		);
+	});
 
 	return (
 		<main className={classes.main}>
 			<Form method="post" className={classes.form}>
 				<h1>{isSignIn ? 'Sign in' : 'Create new account'}</h1>
-				<p className={classes['input-container']}>
-					{errors.email && isTouched.email && <span className={classes.error}>Please enter a valid email!</span>}
-					<label htmlFor="email" className={classes.label}>
-						Email
-					</label>
-					<input
-						id="email"
-						type="email"
-						name="email"
-						className={classes.input}
-						onChange={emailHandler}
-						onBlur={isTouchedEmailHandler}
-						value={emailValue}
-					/>
-				</p>
-				<p className={classes['input-container']}>
-					{errors.password && isTouched.password && (
-						<span className={classes.error}>Your password should be at least 8 characters long!</span>
-					)}
-					<label htmlFor="password" className={classes.label}>
-						Password
-					</label>
-					<input
-						id="password"
-						type="password"
-						name="password"
-						className={classes.input}
-						onChange={passwordHandler}
-						onBlur={isTouchedPasswordHandler}
-						value={passwordValue}
-					/>
-				</p>
+				{credentialsInputs}
+
 				<div className={classes.actions}>
 					<p className={classes['change-mode']}>
 						{isSignIn ? `You don't have an account yet?` : 'Already a member?'}
@@ -111,7 +108,7 @@ const Authentication = () => {
 						whileTap={{ scale: 1.1 }}
 						whileFocus={{ scale: 1.05 }}
 						transition={{ type: 'spring', stiffness: 500 }}
-						disabled={anyErrors || notEverythingIsTouched || isSubmitting}
+						disabled={anyErrors.length > 0 || notEverythingIsTouched || isSubmitting}
 						className={classes.btn}>
 						{isSubmitting ? 'Submiting...' : isSignIn ? 'Sign in' : 'Sign up'}
 					</motion.button>

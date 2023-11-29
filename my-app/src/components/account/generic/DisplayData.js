@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Form } from 'react-router-dom';
 
-import useValidation from '../../../hooks/useValidationRefactor';
+import useValidation from '../../../hooks/useValidation';
 import getInputType from '../../../utils/getInputType';
 
 import classes from './DisplayData.module.css';

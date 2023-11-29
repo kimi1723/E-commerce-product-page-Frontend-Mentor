@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import useValidation from '../../../hooks/useValidationRefactor';
+import useValidation from '../../../hooks/useValidation';
 
 import getInputType from '../../../utils/getInputType';
 import getInputLabel from '../../../utils/getInputLabel';
@@ -95,7 +95,7 @@ const DisplayInputs = ({ classes, countriesList, setAllErrors, setAllIsTouched, 
 						styles={countrySelectStyles}
 						onChange={countryChangeHandler}
 						onBlur={countryTouchedHandler}
-						// value={countryValue}
+						value={value && { value, label: value }}
 					/>
 				)}
 			</div>

@@ -12,6 +12,8 @@ const getInputPlaceholder = inputKey => {
 			return 'Enter city...';
 		case 'zipCode':
 			return 'Enter ZIP code...';
+		case 'password':
+			return 'Enter password...';
 		default:
 			return 'Enter value...';
 	}
