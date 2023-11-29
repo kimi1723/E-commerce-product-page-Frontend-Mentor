@@ -22,5 +22,9 @@
 .nav-link:hover,
 .nav-link:focus {
 	color: hsl(220, 13%, 13%);
+	border-bottom: 5px solid hsl(26, 100%, 70%);
+}
+
+.active-link {
 	border-bottom: 5px solid hsl(26, 100%, 55%);
 }
