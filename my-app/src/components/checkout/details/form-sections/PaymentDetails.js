@@ -2,19 +2,13 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const PaymentDetails = ({ classes, setAllErrors }) => {
-	const [chosenPayment, setChosenPayment] = useState(null);
-	const [errors, setErrors] = useState({ payment: true });
+	const [errors, setErrors] = useState({
+		payment: { isError: true, errorFeedback: 'Please select a proper payment!' },
+	});
 	const scale = 1.025;
 
-	const choosePaymentHandler = e => {
-		const chosenPayment = e.target.value;
-
-		setChosenPayment(chosenPayment);
-
-		setErrors(prev => {
-			return { ...prev, payment: false };
-		});
-	};
+	const choosePaymentHandler = () =>
+		setErrors({ payment: { isError: false, errorFeedback: 'Please select a proper payment!' } });
 
 	useEffect(() => {
 		setAllErrors(errors);

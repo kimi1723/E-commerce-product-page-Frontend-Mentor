@@ -13,13 +13,14 @@ import classes from './CheckoutDetails.module.css';
 const Details = ({ loadedData: { countriesList, personalInformation } }) => {
 	const [allErrors, setAllErrors] = useState({});
 	const [allIsTouched, setAllIsTouched] = useState({});
-	const isAnyError = Object.values(allErrors).includes(true);
+	console.log(allIsTouched);
+	const isAnyError = Object.values(allErrors).filter(({ isError }) => isError === true);
 	const notEverythingTouched = Object.values(allIsTouched).includes(false);
 
 	const allErrorsHandler = newErrorsState => setAllErrors(prevErrorState => ({ ...prevErrorState, ...newErrorsState }));
 
 	const allIsTouchedHandler = newTouchedState =>
-		setAllIsTouched(prevTouchedState => ({ ...prevTouchedState, newTouchedState }));
+		setAllIsTouched(prevTouchedState => ({ ...prevTouchedState, ...newTouchedState }));
 
 	const billingDetails = unwrapObject(['name', 'email', 'tel'], personalInformation);
 	const shipmentDetails = unwrapObject(['address', 'city', 'country', 'zipCode'], personalInformation);
@@ -47,7 +48,7 @@ const Details = ({ loadedData: { countriesList, personalInformation } }) => {
 					/>
 					<PaymentDetails classes={classes} setAllErrors={allErrorsHandler} />
 
-					<Redirect componentType="button" type="submit" isDisabled={isAnyError || notEverythingTouched}>
+					<Redirect componentType="button" type="submit" isDisabled={isAnyError.length > 0 || notEverythingTouched}>
 						Next
 					</Redirect>
 				</Form>

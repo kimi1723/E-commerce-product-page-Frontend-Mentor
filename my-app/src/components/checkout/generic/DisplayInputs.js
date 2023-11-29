@@ -8,26 +8,21 @@ import getInputPlaceholder from '../../../utils/getInputPlaceholder';
 
 import Select from 'react-select';
 
-const shipmentDetailsDataSkeleton = {
-	address: '',
-	city: '',
-	country: '',
-	zipCode: '',
-};
-
-const DisplayInputs = ({ classes, countriesList, setAllErrors, setAllIsTouched, shipmentDetails }) => {
-	const [inputsValues, setInputsValues] = useState(shipmentDetails || shipmentDetailsDataSkeleton);
+const DisplayInputs = ({ classes, countriesList, setAllErrors, setAllIsTouched, data, countrySelectStyles }) => {
+	const [inputsValues, setInputsValues] = useState(data);
 	const [isTouchedState, setIsTouchedState] = useState({});
 
-	const errors = useValidation(inputsValues);
+	const errors = useValidation(inputsValues, isTouchedState);
 
 	const inputsKeys = Object.keys(inputsValues);
 
 	useEffect(() => {
 		const initialData = {};
+		const dataValues = Object.values(data);
+		const isTouchedValue = dataValues.includes('') ? false : true;
 
 		inputsKeys.forEach(key => {
-			initialData[key] = false;
+			initialData[key] = isTouchedValue;
 		});
 
 		setIsTouchedState(initialData);
@@ -41,34 +36,23 @@ const DisplayInputs = ({ classes, countriesList, setAllErrors, setAllIsTouched, 
 		setAllIsTouched(isTouchedState);
 	}, [isTouchedState]);
 
-	const customStyles = {
-		option: (styles, state) => ({
-			...styles,
-			backgroundColor: state.isSelected ? 'hsl(26, 100%, 55%)' : 'white',
-			transition: 'background-color 0.3s',
-			cursor: 'pointer',
-			'&:hover': { backgroundColor: 'hsl(25, 100%, 94%)' },
-		}),
-		control: (styles, state) => ({
-			...styles,
-			minHeight: '43px',
-			fontSize: '0.9rem',
-			border: state.isFocused ? '2px solid hsl(26, 100%, 55%)' : '2px solid rgba(0, 0, 0, 0.5)',
-			borderRadius: '8px',
-			boxShadow: state.isFocused ? '0px 1px 5px 1px hsl(26, 100%, 55%)' : 'none',
-			transition: 'border-color 0.3s, box-shadow 0.3s',
-			cursor: 'pointer',
-			'&:hover': { borderColor: 'hsl(26, 100%, 55%)' },
-		}),
-	};
+	const inputTouchedStateHandler = e => {
+			const key = e.target.name;
+			setIsTouchedState(prevValues => ({ ...prevValues, [key]: true }));
+		},
+		countryTouchedHandler = () => setIsTouchedState(prevValues => ({ ...prevValues, country: true }));
 
 	const inputChangeHandler = e => {
-		const key = e.target.name;
-		const value = e.target.value;
+			const key = e.target.name;
+			const value = e.target.value;
 
-		setIsTouchedState(prevValues => ({ ...prevValues, [key]: true }));
-		setInputsValues(prevValues => ({ ...prevValues, [key]: value }));
-	};
+			inputTouchedStateHandler(e);
+			setInputsValues(prevValues => ({ ...prevValues, [key]: value }));
+		},
+		countryChangeHandler = e => {
+			setIsTouchedState(prevValues => ({ ...prevValues, country: true }));
+			setInputsValues(prevValues => ({ ...prevValues, country: e.value }));
+		};
 
 	const content = inputsKeys.map(key => {
 		const { isError, errorFeedback } = errors[key] || {};
@@ -80,32 +64,45 @@ const DisplayInputs = ({ classes, countriesList, setAllErrors, setAllIsTouched, 
 
 		let value = inputsValues[key];
 
-		if (!isTouched && value.length === 0) value = 'Yet to be filled!';
-
 		return (
 			<div className={classes['inputs-container']} key={key}>
 				{isError && isTouched && <p className={classes.error}>{errorFeedback}</p>}
 				<label htmlFor={key} className={classes.label}>
 					{label}
 				</label>
-				<input
-					id={key}
-					name={key}
-					type={inputType}
-					placeholder={inputPlaceholder}
-					className={classes['text-input']}
-					onChange={inputChangeHandler}
-				/>
+
+				{key !== 'country' && (
+					<input
+						id={key}
+						name={key}
+						type={inputType}
+						placeholder={inputPlaceholder}
+						className={classes['text-input']}
+						onChange={inputChangeHandler}
+						onBlur={inputTouchedStateHandler}
+						value={value}
+					/>
+				)}
+
+				{key === 'country' && (
+					<Select
+						options={countriesList}
+						placeholder="Select country..."
+						noOptionsMessage={() => 'Country unavailable'}
+						aria-label="Select country"
+						inputId="country"
+						name="country"
+						styles={countrySelectStyles}
+						onChange={countryChangeHandler}
+						onBlur={countryTouchedHandler}
+						// value={countryValue}
+					/>
+				)}
 			</div>
 		);
 	});
 
-	return (
-		<section className={`${classes['shipping-info']} ${classes['form-section']}`}>
-			<h2 className={classes.h2}>Shipment details</h2>
-			{content}
-		</section>
-	);
+	return content;
 };
 
 export default DisplayInputs;

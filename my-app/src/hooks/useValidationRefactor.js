@@ -37,7 +37,7 @@ const validateInput = (key, value) => {
 
 			return [cityValidation, cityFeedback];
 		case 'country':
-			const countryValidation = value !== null;
+			const countryValidation = value !== null && value.trim() !== '';
 			const countryFeedback = 'Please select a country!';
 
 			return [!countryValidation, countryFeedback];
@@ -51,7 +51,7 @@ const validateInput = (key, value) => {
 	}
 };
 
-const useValidation = inputs => {
+const useValidation = (inputs, isTouchedState) => {
 	const [errors, setErrors] = useState({});
 
 	useEffect(() => {
@@ -85,7 +85,7 @@ const useValidation = inputs => {
 				clearTimeout(timeout);
 			};
 		});
-	}, [inputs]);
+	}, [inputs, isTouchedState]);
 
 	return errors;
 };
