@@ -51,9 +51,7 @@ const Product = ({ product: { name, imagesUrls, imagesAlts, annotation, price, d
 				onFocus={nextImageHandler}
 				onBlur={previousImageHandler}
 				onMouseLeave={previousImageHandler}>
-				<div className={classes['img-container']}>
-					<img src={imgData.src} alt={imgData.alt} className={classes.img} />
-				</div>
+				<img src={imgData.src} alt={imgData.alt} className={classes.img} />
 
 				<section className={classes.details}>
 					<p className={classes.annotation}>{annotation}</p>
