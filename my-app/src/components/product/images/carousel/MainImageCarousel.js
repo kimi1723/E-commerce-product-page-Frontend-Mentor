@@ -52,7 +52,9 @@ const MainImageCarousel = ({ urls, showCarousel, carouselHandler, imgIndex, alts
 					onBlur={() => mainImgBtnActivationHandler(false)}
 					className={mainImgBtnClasses}
 					tabIndex={mainImgIndex}>
-					<img src={urls[imgIndex]} alt={imageAlt} className={classes['main-img']} />
+					<div className={classes['main-img-container']}>
+						<img src={urls[imgIndex]} alt={imageAlt} className={classes['main-img']} />
+					</div>
 				</button>
 			)}
 			{isMobile && <img src={urls[imgIndex]} alt={imageAlt} className={classes['main-img']} />}

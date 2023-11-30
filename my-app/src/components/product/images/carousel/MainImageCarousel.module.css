@@ -1,10 +1,20 @@
 @value gallery from '../ImagesGallery.module.css';
 @value lightbox from '../lightbox/LightBox.module.css';
 
+.main-img-container {
+	overflow: hidden;
+	border-radius: 15px;
+}
+
 .main-img {
 	aspect-ratio: 1 / 1;
 	width: 100%;
 	object-fit: cover;
+	transition: 0.3s ease-in-out;
+}
+
+.gallery .main-img:hover {
+	scale: 1.2;
 }
 
 .carousel-icon {
@@ -57,8 +67,8 @@
 	font-size: 0;
 }
 
-.main-img-btn-active {
-	box-shadow: 0px 3px 12px 4px hsl(26, 100%, 55%);
+.gallery .main-img-btn-active .main-img {
+	scale: 1.2;
 }
 
 @media (min-width: 768px) {
