@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { toast } from 'sonner';
+
 import ImagesGallery from './images/ImagesGallery';
 import ProductDetails from './ProductDetails';
 import AddToCartBtn from './generic/AddToCartBtn';
@@ -26,11 +28,13 @@ const Product = ({ productDetails, imagesData }) => {
 					return (prevCounter += 1);
 				} else if (action === 'remove' && prevCounter > 0) {
 					return (prevCounter -= 1);
-				} else {
-					return prevCounter;
 				}
+
+				return prevCounter;
 			});
 		};
+
+		const toastHandler = () => toast.success(`Product has been added to cart!`);
 
 		return (
 			<main className={classes.main}>
@@ -38,7 +42,6 @@ const Product = ({ productDetails, imagesData }) => {
 
 				<section className={classes.info}>
 					<ProductDetails productDetails={productDetails} />
-
 					<section className={classes['btns']}>
 						<div className={classes['amount-btns']}>
 							<button className={classes['reduce-amount-btn']} onClick={() => itemCounterHandler('remove')}>
@@ -61,6 +64,7 @@ const Product = ({ productDetails, imagesData }) => {
 								imageUrl: imagesData.urls[1],
 								alt: imagesData.alts.image1,
 							}}
+							toastHandlerLift={toastHandler}
 						/>
 					</section>
 				</section>

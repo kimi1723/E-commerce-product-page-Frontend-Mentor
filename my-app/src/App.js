@@ -1,8 +1,8 @@
 import { RouterProvider } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { detectDeviceTypeActions } from './store/detectDeviceType-slice';
 import { useEffect } from 'react';
 
+import { detectDeviceTypeActions } from './store/detectDeviceType-slice';
 import router from './router';
 import useCartData from './hooks/useCartData';
 import useSendCartData from './hooks/useSendCartData';

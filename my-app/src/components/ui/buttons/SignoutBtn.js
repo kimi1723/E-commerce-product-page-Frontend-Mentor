@@ -5,6 +5,7 @@ import getUid from '../../../utils/getUid';
 import setFirebaseData from '../../../utils/setFirebaseData';
 import { authenticationActions } from '../../../store/authentication-slice';
 import { errorActions } from '../../../store/error-slice';
+import { toast } from 'sonner';
 
 const SignoutBtn = ({ className: classes }) => {
 	const navigate = useNavigate();
@@ -23,6 +24,7 @@ const SignoutBtn = ({ className: classes }) => {
 			navigate('/');
 
 			dispatch(authenticationActions.changeAuthenticationState({ isSignedIn: false, signedOutByLogout: true }));
+			toast.success('Signed out successfuly!');
 		} catch (error) {
 			dispatch(
 				errorActions.setError({

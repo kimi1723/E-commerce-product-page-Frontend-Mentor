@@ -7,6 +7,7 @@ import setFirebaseData from '../utils/setFirebaseData';
 import Authentication from '../components/authentication/Authentication';
 import getUid from '../utils/getUid';
 import { authenticationActions } from '../store/authentication-slice';
+import { toast } from 'sonner';
 
 const AuthenticationPage = () => {
 	const data = useActionData();
@@ -63,6 +64,8 @@ export const action = async ({ request }) => {
 			const settingSignUpErrors = isSignUpSetValues.filter(({ status }) => status !== 200);
 
 			if (settingSignUpErrors.length > 1) throw new Error('Something went wrong, please try again later.');
+
+			toast.success('Signed up successfuly!');
 		}
 
 		if (mode === 'signin') {
@@ -90,6 +93,8 @@ export const action = async ({ request }) => {
 			const settingSignedInErrors = isSignedInSetValues.filter(({ status }) => status !== 200);
 
 			if (settingSignedInErrors.length > 1) throw new Error('Something went wrong, please try again later.');
+
+			toast.success('Signed in successfuly!');
 		}
 
 		return { isSignedIn: true, email, justSignedIn: true, userAccountUid };

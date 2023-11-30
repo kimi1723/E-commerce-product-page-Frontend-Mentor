@@ -68,11 +68,8 @@ const Header = () => {
 						<MobileNavigation mobileNavIsActive={mobileNavIsActive} hideNav={hideMobileNavHandler} />
 					</div>
 				)}
-
 				<Logo additionalClasses={classes.logo} />
-
 				{!isMobile && <DesktopNavigation />}
-
 				<div
 					className={classes['cart-container']}
 					onMouseOver={showCartHandler}
@@ -89,7 +86,6 @@ const Header = () => {
 						{isCartVisible && <Cart hideCart={hideCartHandler} classesProvided={classes['cart-account-container']} />}
 					</AnimatePresence>
 				</div>
-
 				<div
 					className={classes['account-container']}
 					onMouseOver={showAccountHandler}

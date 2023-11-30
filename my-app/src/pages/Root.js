@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+import { Toaster } from 'sonner';
 
 import Wrapper from '../components/ui/wrappers/Wrapper';
 import Header from '../components/header/Header';
@@ -13,6 +14,7 @@ const RootPage = () => {
 	return (
 		<>
 			<Wrapper layoutWrapper={true}>
+				<Toaster richColors />
 				{isError === true && <Error />}
 				{!isLoading && <Header />}
 				<Outlet />

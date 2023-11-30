@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+
 import cacheImages from '../../../utils/cacheImages';
 import getDecimals from '../../../utils/getDecimals';
 

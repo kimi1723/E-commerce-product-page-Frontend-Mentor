@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { toast } from 'sonner';
 
-import ModalContent from '../../ui/modals/ModalContent';
 import getFirebaseData from '../../../utils/getFirebaseData';
 import { cartActions } from '../../../store/cart-slice';
 import { errorActions } from '../../../store/error-slice';
@@ -12,7 +10,6 @@ import classes from './DiscountForm.module.css';
 const DiscountForm = () => {
 	const dispatch = useDispatch();
 	const { discountCode } = useSelector(state => state.cart.discount);
-	const [modalProperties, setModalProperties] = useState({ isVisible: false, content: '' });
 
 	const discountCodeHandler = e => {
 		dispatch(cartActions.handleDiscount({ discountCode: e.target.value }));
@@ -27,11 +24,11 @@ const DiscountForm = () => {
 			const discount = await getFirebaseData(`/promotions/discounts/${discountCode}`);
 
 			if (discount) {
-				setModalProperties({ isVisible: true, content: 'Discount added successfully!' });
 				dispatch(cartActions.handleDiscount({ isDiscount: true, discountType: discount }));
+				toast.success('Discount added successfuly!');
 			} else {
-				setModalProperties({ isVisible: true, content: 'Discount code is incorrect!' });
 				dispatch(cartActions.handleDiscount({ isDiscount: false, discountType: null }));
+				toast.error('Your discount code is invalid!');
 			}
 		} catch (error) {
 			dispatch(
@@ -45,8 +42,6 @@ const DiscountForm = () => {
 			);
 		}
 	};
-
-	const hideModalHandler = () => setModalProperties({ isVisible: false, content: '' });
 
 	return (
 		<>
@@ -70,9 +65,6 @@ const DiscountForm = () => {
 					Add
 				</button>
 			</form>
-			<AnimatePresence>
-				{modalProperties.isVisible && <ModalContent content={modalProperties.content} onClick={hideModalHandler} />}
-			</AnimatePresence>
 		</>
 	);
 };

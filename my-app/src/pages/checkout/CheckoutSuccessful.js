@@ -7,6 +7,7 @@ import useSendOrder from '../../hooks/useSendOrder';
 import { cartActions } from '../../store/cart-slice';
 import setFirebaseData from '../../utils/setFirebaseData';
 import getUid from '../../utils/getUid';
+import { toast } from 'sonner';
 
 const CheckoutSuccessfulPage = () => {
 	const cart = useSelector(state => state.cart);
@@ -32,6 +33,7 @@ const CheckoutSuccessfulPage = () => {
 					await setFirebaseData(`/users/validated/${uid}/personalInformation`, personalInformation),
 				);
 
+				toast.success('Order sent successfuly!');
 				dispatch(cartActions.replaceCart({ products: [], totalQuantity: 0 }));
 			} else {
 				navigate('/');

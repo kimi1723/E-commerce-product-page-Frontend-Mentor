@@ -32,6 +32,7 @@ const Cart = ({ hideCart, classesProvided }) => {
 				</li>
 			);
 		});
+
 		content = (
 			<>
 				<ul className={classes.list} role="list">

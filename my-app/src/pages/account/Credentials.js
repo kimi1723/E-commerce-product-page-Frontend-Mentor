@@ -8,6 +8,7 @@ import LoaderSpinner from '../../components/ui/LoaderSpinner';
 import getUid from '../../utils/getUid';
 import setFirebaseData from '../../utils/setFirebaseData';
 import { errorActions } from '../../store/error-slice';
+import { toast } from 'sonner';
 
 const CredentialsPage = () => {
 	const { credentialsLoaderData } = useLoaderData();
@@ -46,6 +47,7 @@ const CredentialsPage = () => {
 			}
 		};
 
+		toast.success(`Your ${Object.keys(changedValue)[0]} has been changed successfuly!`);
 		changeCredentials();
 	}
 
