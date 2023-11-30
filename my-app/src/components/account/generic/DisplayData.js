@@ -3,6 +3,7 @@ import { Form } from 'react-router-dom';
 
 import useValidation from '../../../hooks/useValidation';
 import getInputType from '../../../utils/getInputType';
+import getInputPlaceholder from '../../../utils/getInputPlaceholder';
 
 import classes from './DisplayData.module.css';
 
@@ -41,6 +42,7 @@ const DisplayData = ({ data, hiddenData = [] }) => {
 	const cancelEditHandler = key => {
 		setInputsData(previousInputsData);
 		setCurrentEdits(prevEditsState => ({ ...prevEditsState, [key]: false }));
+		setIsTouchedState(prevIsTouchedState => ({ ...prevIsTouchedState, [key]: false }));
 	};
 
 	const onSubmitHandler = key => {
@@ -75,10 +77,12 @@ const DisplayData = ({ data, hiddenData = [] }) => {
 		const inputType = getInputType(key);
 		const isEdditing = currentEdits[key];
 		const label = key.charAt(0).toUpperCase() + key.slice(1);
+		const placeholder = getInputPlaceholder(key);
 
-		let value = inputsData[key];
+		let value = inputsData[key],
+			placeholderValue = 'Yet to be filled!';
 
-		if (!isTouched && value.length === 0) value = 'Yet to be filled!';
+		if (!isTouched && value.length === 0) placeholderValue = 'Yet to be filled!';
 
 		return (
 			<div className={classes['item-container']} key={key}>
@@ -89,13 +93,19 @@ const DisplayData = ({ data, hiddenData = [] }) => {
 				<dd>
 					<Form method="post" className={classes.form} onSubmit={() => onSubmitHandler(key)}>
 						{isError && isTouched && <p className={classes.error}>{errorFeedback}</p>}
-						{!isEdditing && <p>{isHidden ? hideContent(value) : value}</p>}
+						{!isEdditing && <p>{isHidden ? hideContent(value) : value || placeholderValue}</p>}
 						{isEdditing && (
 							<>
 								{isHidden ? (
 									<input type="password" name={key} value={value} onChange={inputChangeHandler} />
 								) : (
-									<input type={inputType} name={key} value={value} onChange={inputChangeHandler} />
+									<input
+										type={inputType}
+										name={key}
+										value={value}
+										onChange={inputChangeHandler}
+										placeholder={placeholder}
+									/>
 								)}
 								<div className={classes['form-btns']}>
 									<button type="submit" className={classes['functional-btn']} disabled={isError && isTouched}>

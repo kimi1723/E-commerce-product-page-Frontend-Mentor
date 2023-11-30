@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Await, defer, useActionData, useLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -9,40 +9,54 @@ import getFirebaseData from '../../utils/getFirebaseData';
 import getUid from '../../utils/getUid';
 import setFirebaseData from '../../utils/setFirebaseData';
 import { errorActions } from '../../store/error-slice';
+import { toast } from 'sonner';
+
+const personalInformationSkeleton = {
+	address: '',
+	city: '',
+	country: '',
+	email: '',
+	name: '',
+	tel: '',
+	zipCode: '',
+};
 
 const PersonalInformationPage = () => {
 	const { personalInformationLoaderData } = useLoaderData();
 	const changedValue = useActionData();
 	const dispatch = useDispatch();
 
-	if (changedValue) {
-		const changePersonalInformation = async () => {
-			try {
-				const previousData = await personalInformationLoaderData;
-				const userAccountUid = await getUid('accountUid');
+	useEffect(() => {
+		if (changedValue) {
+			const changePersonalInformation = async () => {
+				try {
+					const previousData = (await personalInformationLoaderData) || personalInformationSkeleton;
+					const userAccountUid = await getUid('accountUid');
 
-				const newData = { ...previousData, ...changedValue };
+					const newData = { ...previousData, ...changedValue };
 
-				const response = await setFirebaseData(`/users/validated/${userAccountUid}/personalInformation`, newData);
+					const response = await setFirebaseData(`/users/validated/${userAccountUid}/personalInformation`, newData);
 
-				if (response.status !== 200) throw new Error(response.error);
+					if (response.status !== 200) throw new Error(response.error);
 
-				return newData;
-			} catch (error) {
-				dispatch(
-					errorActions.setError({
-						isError: true,
-						message: {
-							content: 'An unexpected error happened',
-							error: error.code || error.message,
-						},
-					}),
-				);
-			}
-		};
+					return newData;
+				} catch (error) {
+					dispatch(
+						errorActions.setError({
+							isError: true,
+							message: {
+								content: 'An unexpected error happened',
+								error: error.code || error.message,
+							},
+						}),
+					);
+				}
+			};
 
-		changePersonalInformation();
-	}
+			changePersonalInformation();
+			toast.success(`Your ${Object.keys(changedValue)[0]} has been changed succesfully!`);
+		}
+	}, [changedValue, dispatch, personalInformationLoaderData]);
 
 	return (
 		<Suspense fallback={<LoaderSpinner title="personal information" />}>

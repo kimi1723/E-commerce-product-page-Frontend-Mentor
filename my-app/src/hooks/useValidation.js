@@ -11,13 +11,13 @@ const validateInput = (key, value) => {
 			return [nameValidation, nameFeedback];
 		case 'email':
 			const emailRegEx = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/gi;
-			const emailValidation = value.match(emailRegEx);
+			const emailValidation = value.trim().match(emailRegEx);
 			const emailFeedback = 'Please enter a valid email address!';
 
 			return [!emailValidation, emailFeedback];
 		case 'tel':
 			const telRegEx = /^[+]?[(]?[0-9]{2}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
-			const telValidation = value.match(telRegEx);
+			const telValidation = value.trim().match(telRegEx);
 			const telFeedback = 'Please enter a valid phone number!';
 
 			return [!telValidation, telFeedback];

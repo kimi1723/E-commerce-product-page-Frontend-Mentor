@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Await, defer, useActionData, useLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -15,41 +15,44 @@ const CredentialsPage = () => {
 	const changedValue = useActionData();
 	const dispatch = useDispatch();
 
-	if (changedValue) {
-		const changeCredentials = async () => {
-			try {
-				const uid = await getUid();
-				const userAccountUid = await getUid('accountUid');
-				const previousData = await credentialsLoaderData;
+	useEffect(() => {
+		console.log(changedValue);
+		if (changedValue) {
+			const changeCredentials = async () => {
+				try {
+					const uid = await getUid();
+					const userAccountUid = await getUid('accountUid');
+					const previousData = await credentialsLoaderData;
 
-				const newData = { ...previousData, ...changedValue };
+					const newData = { ...previousData, ...changedValue };
 
-				const response = await setFirebaseData(`/users/validated/${userAccountUid}/credentials`, newData);
-				const anonymousResponse = await setFirebaseData(`users/anonymousTokens/${uid}/credentials`, {
-					...newData,
-					userAccountUid,
-				});
+					const response = await setFirebaseData(`/users/validated/${userAccountUid}/credentials`, newData);
+					const anonymousResponse = await setFirebaseData(`users/anonymousTokens/${uid}/credentials`, {
+						...newData,
+						userAccountUid,
+					});
 
-				if (response.status === 500 || anonymousResponse === 500)
-					throw new Error(response.error || anonymousResponse.error);
+					if (response.status === 500 || anonymousResponse === 500)
+						throw new Error(response.error || anonymousResponse.error);
 
-				if (response.status !== 500) return newData;
-			} catch (error) {
-				dispatch(
-					errorActions.setError({
-						isError: true,
-						message: {
-							content: 'An unexpected error happened',
-							error: error.code || error.message,
-						},
-					}),
-				);
-			}
-		};
+					if (response.status !== 500) return newData;
+				} catch (error) {
+					dispatch(
+						errorActions.setError({
+							isError: true,
+							message: {
+								content: 'An unexpected error happened',
+								error: error.code || error.message,
+							},
+						}),
+					);
+				}
+			};
 
-		toast.success(`Your ${Object.keys(changedValue)[0]} has been changed successfuly!`);
-		changeCredentials();
-	}
+			toast.success(`Your ${Object.keys(changedValue)[0]} has been changed successfuly!`);
+			changeCredentials();
+		}
+	}, [changedValue, dispatch, credentialsLoaderData]);
 
 	return (
 		<Suspense fallback={<LoaderSpinner title="credentials" />}>
