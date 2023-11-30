@@ -42,7 +42,7 @@ const Products = ({ productsData, shouldQuantityUpdate, discount }) => {
 
 			return (
 				<li key={id} className={classes.product}>
-					<Link to={`/products/${id}`}>
+					<Link to={`/products/${id}`} className={classes.link}>
 						<img src={imageUrl} alt={alt} className={classes.img} />
 					</Link>
 
