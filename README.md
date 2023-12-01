@@ -7,7 +7,7 @@ Full e-commerce site frontend + backend, design inspired by Frontend Mentor [sin
 As mentioned above, this project at fist was supposed to be a [single product page](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6) from Frontend Mentor with some additional content so I could consolidate my knowledege about React Router and React Redux/Toolkitjs, however
 it has turned out to be a full e-commerce app. Although, the backend is just an Firebase database and the logic validating users and storing their credentials is trivial.
 
-It has been created with 'create react app' as I have started developing it before I have encountered Vite(2 months ago) with which I would have developed the project if I were to start it now.
+Created with 'create react app' as I have started developing it (2 months ago) before I have encountered Vite with which I would have developed the project if I were to start now.
 
 ## What you can do:
 
@@ -15,7 +15,7 @@ It has been created with 'create react app' as I have started developing it befo
 
 - check different sections from the navbar, <br>
 - remove item from cart, <br>
-- move across the whole page with keyboard only(hopefully).
+- move across the whole page with keyboard only (hopefully).
 
 ### From product's page:
 
