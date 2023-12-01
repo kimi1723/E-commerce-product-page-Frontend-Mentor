@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# E-commerce Sneakers
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Full e-commerce site frontend + backend, design inspired by Frontend Mentor [single product page](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6).
 
-## Available Scripts
+## About the project
 
-In the project directory, you can run:
+As mentioned above, this project at fist was supposed to be a [single product page](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6) from Frontend Mentor with some additional content so I could consolidate my knowledege about React Router and React Redux/Toolkitjs, however
+it has turned out to be a full e-commerce app. Although, the backend is just an Firebase database and the logic validating users and storing their credentials is trivial.
 
-### `npm start`
+It has been created with 'create react app' as I have started developing it before I have encountered 'Vite'(2 months ago) with which I would have developed the project if I were to start it now.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## What you can do:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Overall:
 
-### `npm test`
+-check different sections from the navbar,
+-remove item from cart,
+-move across the whole page with keyboard only(hopefully).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### From product's page:
 
-### `npm run build`
+-add item(s) to cart,
+-open lightbox.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### From checkout pages:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-view the order summary,
+-change product's quantity and also add a custom one(e.g. 100),
+-enter discount for the current order(mentioned later),
+-fill the checkout form that has basic validation, the form is automatically filled based on your previous information if signed in and already ordered something(while singed in).
+-order and view order summary.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### From authentication pages:
 
-### `npm run eject`
+-either sign in or sign up, both have basic validation, signed in status persists between sessions.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### From account pages(if signed in):
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-view submitted orders amount(didn't have much inspiration for this page),
+-view submitted orders and check their details,
+-view credentials and edit them,
+-view personal information and edit them,
+-signout(also can be done while hovering over profile icon).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## To do:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+-write tests,
+-cache data,
+-add more animations.
 
-## Learn More
+## Technologies:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+-React,
+-Redux Toolkitjs,
+-React Router,
+-React Select,
+-Sonner,
+-Framer Motion,
+-Firebase.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Feedback is greatly appreciated!

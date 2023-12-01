@@ -6,6 +6,7 @@ import getInputType from '../../../utils/getInputType';
 import getInputPlaceholder from '../../../utils/getInputPlaceholder';
 
 import classes from './DisplayData.module.css';
+import getInputLabel from '../../../utils/getInputLabel';
 
 const DisplayData = ({ data, hiddenData = [] }) => {
 	const [inputsData, setInputsData] = useState(data);
@@ -76,7 +77,7 @@ const DisplayData = ({ data, hiddenData = [] }) => {
 
 		const inputType = getInputType(key);
 		const isEdditing = currentEdits[key];
-		const label = key.charAt(0).toUpperCase() + key.slice(1);
+		const label = getInputLabel(key);
 		const placeholder = getInputPlaceholder(key);
 
 		let value = inputsData[key],

@@ -3,7 +3,7 @@ const getInputLabel = inputName => {
 		case 'email':
 			return 'Email address';
 		case 'tel':
-			return 'Phone Number';
+			return 'Phone number';
 		case 'zipCode':
 			return 'ZIP Code';
 		default:

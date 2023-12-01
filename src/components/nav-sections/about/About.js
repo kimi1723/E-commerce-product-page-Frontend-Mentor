@@ -35,6 +35,11 @@ const About = () => {
 						<li>React Select</li>
 						<li>Lazy loading</li>
 						<li>Framer Motion</li>
+						<li>Sonner</li>
+						<li>
+							How important it is to establish a project's plan, as many things could be handled differently with a
+							better performance and code readibility
+						</li>
 					</ul>
 				</article>
 
