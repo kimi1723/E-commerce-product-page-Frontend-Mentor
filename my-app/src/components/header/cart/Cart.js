@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 
-import RemoveItemBtn from './RemoveItemBtn';
+import RemoveItemBtn from './remove-item-btn/RemoveItemBtn';
 import getDecimals from '../../../utils/getDecimals';
 
 import classes from './Cart.module.css';

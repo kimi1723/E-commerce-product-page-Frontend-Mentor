@@ -4,11 +4,11 @@ import { Form } from 'react-router-dom';
 import BillingDetails from './form-sections/BillingDetails';
 import ShippingInfo from './form-sections/ShipmentDetails';
 import PaymentDetails from './form-sections/PaymentDetails';
-import Redirect from '../generic/Redirect';
+import Redirect from '../redirect/Redirect';
 
 import unwrapObject from '../../../utils/unwrapObject';
 
-import classes from './CheckoutDetails.module.css';
+import classes from './Details.module.css';
 
 const Details = ({ loadedData: { countriesList, personalInformation } }) => {
 	const [allErrors, setAllErrors] = useState({});

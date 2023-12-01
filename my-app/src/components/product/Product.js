@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { toast } from 'sonner';
 
 import ImagesGallery from './images/ImagesGallery';
-import ProductDetails from './ProductDetails';
+import ProductDetails from './product-details/ProductDetails';
 import AddToCartBtn from './generic/AddToCartBtn';
-import PageContent from '../ui/wrappers/PageContent';
+import PageContent from '../ui/wrappers/page-content/PageContent';
 
 import classes from './Product.module.css';
 import minusIcon from '../../assets/images/icon-minus.svg';

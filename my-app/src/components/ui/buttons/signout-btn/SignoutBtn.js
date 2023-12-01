@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import getUid from '../../../utils/getUid';
-import setFirebaseData from '../../../utils/setFirebaseData';
-import { authenticationActions } from '../../../store/authentication-slice';
-import { errorActions } from '../../../store/error-slice';
+import getUid from '../../../../utils/getUid';
+import setFirebaseData from '../../../../utils/setFirebaseData';
+import { authenticationActions } from '../../../../store/authentication-slice';
+import { errorActions } from '../../../../store/error-slice';
 import { toast } from 'sonner';
 
 const SignoutBtn = ({ className: classes }) => {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { loadingActions } from '../../store/loading-slice';
+import { loadingActions } from '../../../store/loading-slice';
 
 import classes from './LoaderSpinner.module.css';
 

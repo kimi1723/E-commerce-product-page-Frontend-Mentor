@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import Credentials from '../../components/account/credentials/Credentials';
 import getProductsData from '../../utils/getProductsData';
-import LoaderSpinner from '../../components/ui/LoaderSpinner';
+import LoaderSpinner from '../../components/ui/loader-spinner/LoaderSpinner';
 import getUid from '../../utils/getUid';
 import setFirebaseData from '../../utils/setFirebaseData';
 import { errorActions } from '../../store/error-slice';
@@ -16,13 +16,15 @@ const CredentialsPage = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		console.log(changedValue);
 		if (changedValue) {
 			const changeCredentials = async () => {
 				try {
 					const uid = await getUid();
 					const userAccountUid = await getUid('accountUid');
 					const previousData = await credentialsLoaderData;
+					const changedDataKey = Object.keys(changedValue);
+
+					if (Object.values(changedValue)[0] === previousData[changedDataKey]) return;
 
 					const newData = { ...previousData, ...changedValue };
 
@@ -35,7 +37,7 @@ const CredentialsPage = () => {
 					if (response.status === 500 || anonymousResponse === 500)
 						throw new Error(response.error || anonymousResponse.error);
 
-					if (response.status !== 500) return newData;
+					toast.success(`Your ${Object.keys(changedValue)[0]} has been changed successfuly!`);
 				} catch (error) {
 					dispatch(
 						errorActions.setError({
@@ -49,10 +51,9 @@ const CredentialsPage = () => {
 				}
 			};
 
-			toast.success(`Your ${Object.keys(changedValue)[0]} has been changed successfuly!`);
 			changeCredentials();
 		}
-	}, [changedValue, dispatch, credentialsLoaderData]);
+	}, [changedValue, dispatch]);
 
 	return (
 		<Suspense fallback={<LoaderSpinner title="credentials" />}>

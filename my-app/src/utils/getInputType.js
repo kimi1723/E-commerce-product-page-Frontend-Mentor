@@ -6,8 +6,6 @@ const getInputType = key => {
 			return 'tel';
 		case 'zipCode':
 			return 'number';
-		case 'password':
-			return 'password';
 		default:
 			return 'text';
 	}

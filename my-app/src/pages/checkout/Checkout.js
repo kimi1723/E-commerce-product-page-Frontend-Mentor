@@ -1,11 +1,11 @@
 import { Await, Outlet, defer, useLoaderData } from 'react-router-dom';
 import { Suspense } from 'react';
 
-import Checkout from '../../components/checkout/Checkout';
-import Wrapper from '../../components/ui/wrappers/Wrapper';
+import CheckoutRoot from '../../components/checkout/CheckoutRoot';
+import Wrapper from '../../components/ui/wrappers/wrapper/Wrapper';
 import getUid from '../../utils/getUid';
 import getFirebaseData from '../../utils/getFirebaseData';
-import LoaderSpinner from '../../components/ui/LoaderSpinner';
+import LoaderSpinner from '../../components/ui/loader-spinner/LoaderSpinner';
 
 const CheckoutPage = () => {
 	const { cart } = useLoaderData();
@@ -16,7 +16,7 @@ const CheckoutPage = () => {
 				{cart => {
 					return (
 						<Wrapper>
-							<Checkout cartInitial={cart} />
+							<CheckoutRoot cartInitial={cart} />
 							<Outlet />
 						</Wrapper>
 					);

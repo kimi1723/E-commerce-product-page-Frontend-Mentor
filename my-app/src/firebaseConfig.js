@@ -1,9 +1,10 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
 import { getDatabase } from 'firebase/database';
+import apiKey from './firebase-api-key';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyCU0TDnQ3VtHG8olkS32xGbJejiJwlr-T8',
+	apiKey,
 	authDomain: 'react-cdfed.firebaseapp.com',
 	databaseURL: 'https://react-cdfed-default-rtdb.firebaseio.com',
 	projectId: 'react-cdfed',

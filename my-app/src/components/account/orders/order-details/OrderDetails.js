@@ -1,6 +1,6 @@
-import Products from '../../../checkout/generic/Products';
-import PricingDetails from '../../../checkout/generic/PricingDetails';
-import GoBackBtn from '../../../ui/buttons/GoBackBtn';
+import Products from '../../../ui/products/Products';
+import PricingDetails from '../../../ui/pricing-details/PricingDetails';
+import GoBackBtn from '../../../ui/buttons/go-back-btn/GoBackBtn';
 
 import classes from './OrderDetails.module.css';
 

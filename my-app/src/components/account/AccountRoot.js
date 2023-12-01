@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import ReactSelect from '../ui/ReactSelect';
-import SignoutBtn from '../ui/buttons/SignoutBtn';
+import ReactSelect from '../ui/react-select/ReactSelect';
+import SignoutBtn from '../ui/buttons/signout-btn/SignoutBtn';
 
 import classes from './AccountRoot.module.css';
 

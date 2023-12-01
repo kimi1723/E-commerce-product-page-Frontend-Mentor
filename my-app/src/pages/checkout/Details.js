@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Await, useLoaderData, defer } from 'react-router-dom';
-import LoaderSpinner from '../../components/ui/LoaderSpinner';
-import Details from '../../components/checkout/details/CheckoutDetails';
+import LoaderSpinner from '../../components/ui/loader-spinner/LoaderSpinner';
+import Details from '../../components/checkout/details/Details';
 import getFirebaseData from '../../utils/getFirebaseData';
 import getUid from '../../utils/getUid';
 

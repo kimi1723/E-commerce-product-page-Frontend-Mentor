@@ -1,9 +1,9 @@
 import { Await, defer, useLoaderData } from 'react-router-dom';
 import { Suspense } from 'react';
 
-import Account from '../../components/account/MyAccount';
+import Account from '../../components/account/my-account/MyAccount';
 import getProductsData from '../../utils/getProductsData';
-import LoaderSpinner from '../../components/ui/LoaderSpinner';
+import LoaderSpinner from '../../components/ui/loader-spinner/LoaderSpinner';
 import getUid from '../../utils/getUid';
 
 const AccountPage = () => {

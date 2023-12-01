@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import classes from './CartItemsQuantity.module.css';
+import classes from './ItemsQuantity.module.css';
 
 const CartItemsQuantity = () => {
 	const cartItemsQuantity = useSelector(state => state.cart.totalQuantity);

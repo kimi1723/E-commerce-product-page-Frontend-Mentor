@@ -6,12 +6,12 @@ import DesktopNavigation from '../navigation/desktop/DesktopNavigation';
 import MobileNavigation from '../navigation/mobile/MobileNavigation';
 import Cart from './cart/Cart';
 import Account from './account/Account';
-import Logo from '../ui/Logo';
+import Logo from '../ui/logo/Logo';
 import avatarImg from '../../assets/images/image-avatar.png';
 import classes from './Header.module.css';
 import cartIcon from '../../assets/images/icon-cart.svg';
 
-import CartItemsCounted from './cart/CartItemsQuantity';
+import CartItemsCounted from './cart/items-quantity/ItemsQuantity';
 
 let hideCartTimeout, hideAccountTimeout;
 

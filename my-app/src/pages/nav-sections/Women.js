@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Await, useLoaderData } from 'react-router-dom';
-import ProductsPage from '../../components/nav-sections/generic/ProductsPage';
-import LoaderSpinner from '../../components/ui/LoaderSpinner';
+import ProductsPage from '../../components/nav-sections/ProductsPage';
+import LoaderSpinner from '../../components/ui/loader-spinner/LoaderSpinner';
 
 import productsLoader from '../../utils/loadProducts';
 

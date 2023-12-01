@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 
-import Modal from '../../../ui/modals/Modal';
+import Modal from '../../../ui/modals/modal/Modal';
 import MainImageCarousel from '../carousel/MainImageCarousel';
 import ImagesThubmnails from '../thumbnails/ImagesThumbnails';
 

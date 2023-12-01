@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import useClearPricing from '../../hooks/useClearPricing';
-import GoBackBtn from '../ui/buttons/GoBackBtn';
+import GoBackBtn from '../ui/buttons/go-back-btn/GoBackBtn';
 
-import classes from './Checkout.module.css';
+import classes from './CheckoutRoot.module.css';
 
 let initial = true;
 
-const Checkout = ({ cartInitial }) => {
+const CheckoutRoot = ({ cartInitial }) => {
 	const cartCurrentState = useSelector(state => state.cart.products);
 	const navigate = useNavigate();
 	const clearPricing = useClearPricing();
@@ -48,4 +48,4 @@ const Checkout = ({ cartInitial }) => {
 	);
 };
 
-export default Checkout;
+export default CheckoutRoot;

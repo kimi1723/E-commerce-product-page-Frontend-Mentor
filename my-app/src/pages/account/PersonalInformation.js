@@ -3,7 +3,7 @@ import { Await, defer, useActionData, useLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import PersonalInformation from '../../components/account/personal-information/PersonalInformation';
-import LoaderSpinner from '../../components/ui/LoaderSpinner';
+import LoaderSpinner from '../../components/ui/loader-spinner/LoaderSpinner';
 
 import getFirebaseData from '../../utils/getFirebaseData';
 import getUid from '../../utils/getUid';
@@ -32,6 +32,9 @@ const PersonalInformationPage = () => {
 				try {
 					const previousData = (await personalInformationLoaderData) || personalInformationSkeleton;
 					const userAccountUid = await getUid('accountUid');
+					const changedDataKey = Object.keys(changedValue);
+
+					if (Object.values(changedValue)[0] === previousData[changedDataKey]) return;
 
 					const newData = { ...previousData, ...changedValue };
 
@@ -39,7 +42,7 @@ const PersonalInformationPage = () => {
 
 					if (response.status !== 200) throw new Error(response.error);
 
-					return newData;
+					toast.success(`Your ${Object.keys(changedValue)[0]} has been changed succesfully!`);
 				} catch (error) {
 					dispatch(
 						errorActions.setError({
@@ -54,9 +57,8 @@ const PersonalInformationPage = () => {
 			};
 
 			changePersonalInformation();
-			toast.success(`Your ${Object.keys(changedValue)[0]} has been changed succesfully!`);
 		}
-	}, [changedValue, dispatch, personalInformationLoaderData]);
+	}, [changedValue, dispatch]);
 
 	return (
 		<Suspense fallback={<LoaderSpinner title="personal information" />}>

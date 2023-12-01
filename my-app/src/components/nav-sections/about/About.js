@@ -1,4 +1,4 @@
-import PageContent from '../../ui/wrappers/PageContent';
+import PageContent from '../../ui/wrappers/page-content/PageContent';
 
 import classes from './About.module.css';
 

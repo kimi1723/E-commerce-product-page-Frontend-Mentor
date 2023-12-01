@@ -2,7 +2,7 @@ import { useActionData, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 
-import CheckoutSuccessful from '../../components/checkout/successful/CheckoutSuccessful';
+import Successful from '../../components/checkout/successful/Successful';
 import useSendOrder from '../../hooks/useSendOrder';
 import { cartActions } from '../../store/cart-slice';
 import setFirebaseData from '../../utils/setFirebaseData';
@@ -44,7 +44,7 @@ const CheckoutSuccessfulPage = () => {
 	}, []);
 
 	return (
-		<CheckoutSuccessful
+		<Successful
 			userData={userData}
 			orderData={orderData}
 			orderSentSuccessfuly={orderSentSuccessfuly}

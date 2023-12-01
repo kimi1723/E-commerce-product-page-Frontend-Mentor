@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 
-import Savings from './Savings';
-import Products from '../generic/Products';
-import DiscountForm from './DiscountForm';
-import PricingDetails from '../generic/PricingDetails';
-import Redirect from '../generic/Redirect';
+import Savings from './savings/Savings';
+import Products from '../../ui/products/Products';
+import DiscountForm from './discount-form/DiscountForm';
+import PricingDetails from '../../ui/pricing-details/PricingDetails';
+import Redirect from '../redirect/Redirect';
 
 import classes from './Summary.module.css';
 

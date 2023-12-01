@@ -5,8 +5,8 @@ import getProductsData from '../utils/getProductsData';
 import getImages from '../utils/getImages';
 
 import Product from '../components/product/Product';
-import Wrapper from '../components/ui/wrappers/Wrapper';
-import LoaderSpinner from '../components/ui/LoaderSpinner';
+import Wrapper from '../components/ui/wrappers/wrapper/Wrapper';
+import LoaderSpinner from '../components/ui/loader-spinner/LoaderSpinner';
 
 const ProductPage = () => {
 	const { productData } = useLoaderData();

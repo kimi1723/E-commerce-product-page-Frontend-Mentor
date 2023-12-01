@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { cartActions } from '../../../store/cart-slice';
-import { shipmentPrice } from '../../../utils/shipmentPrice';
-import getDecimals from '../../../utils/getDecimals';
+import { cartActions } from '../../../../store/cart-slice';
+import { shipmentPrice } from '../../../../utils/shipmentPrice';
+import getDecimals from '../../../../utils/getDecimals';
 
 import classes from './Savings.module.css';
 

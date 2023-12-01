@@ -1,7 +1,7 @@
 import { useRouteError } from 'react-router-dom';
 
 import Header from '../components/header/Header';
-import Wrapper from '../components/ui/wrappers/Wrapper';
+import Wrapper from '../components/ui/wrappers/wrapper/Wrapper';
 import Error from '../components/error/Error';
 
 const ErrorPage = () => {

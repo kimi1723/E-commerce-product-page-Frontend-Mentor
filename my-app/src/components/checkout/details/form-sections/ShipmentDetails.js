@@ -1,4 +1,4 @@
-import DisplayInputs from '../../generic/DisplayInputs';
+import DisplayInputs from '../../display-inputs/DisplayInputs';
 
 const shipmentDetailsDataSkeleton = {
 	address: '',

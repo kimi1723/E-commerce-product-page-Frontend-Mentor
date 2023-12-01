@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner';
 
-import getFirebaseData from '../../../utils/getFirebaseData';
-import { cartActions } from '../../../store/cart-slice';
-import { errorActions } from '../../../store/error-slice';
+import getFirebaseData from '../../../../utils/getFirebaseData';
+import { cartActions } from '../../../../store/cart-slice';
+import { errorActions } from '../../../../store/error-slice';
 
 import classes from './DiscountForm.module.css';
 

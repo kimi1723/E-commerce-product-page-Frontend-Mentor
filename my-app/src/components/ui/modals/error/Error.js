@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { errorActions } from '../../../store/error-slice';
+import { errorActions } from '../../../../store/error-slice';
 
-import ModalContent from './ModalContent';
+import ModalContent from '../modal-content/ModalContent';
 import classes from './Error.module.css';
 
 let content;

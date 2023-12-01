@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 
-import LoaderSpinner from './components/ui/LoaderSpinner';
+import LoaderSpinner from './components/ui/loader-spinner/LoaderSpinner';
 
-import { action as checkoutAction } from './pages/checkout/CheckoutSuccessful';
+import { action as checkoutAction } from './pages/checkout/Successful';
 import { action as authenticationAction } from './pages/Authentication';
 import { action as credentialsAction } from './pages/account/Credentials';
 import { action as personalInformationAction } from './pages/account/PersonalInformation';
@@ -20,9 +20,9 @@ const WomenPageLazy = lazy(() => import('./pages/nav-sections/Women'));
 const AboutPageLazy = lazy(() => import('./pages/nav-sections/About'));
 const ContactPageLazy = lazy(() => import('./pages/nav-sections/Contact'));
 const CheckoutPageLazy = lazy(() => import('./pages/checkout/Checkout'));
-const CheckoutDetailsLazy = lazy(() => import('./pages/checkout/CheckoutDetails'));
-const CheckoutSuccessfulLazy = lazy(() => import('./pages/checkout/CheckoutSuccessful'));
-const CheckoutSummaryLazy = lazy(() => import('./pages/checkout/CheckoutSummary'));
+const CheckoutDetailsLazy = lazy(() => import('./pages/checkout/Details'));
+const CheckoutSuccessfulLazy = lazy(() => import('./pages/checkout/Successful'));
+const CheckoutSummaryLazy = lazy(() => import('./pages/checkout/Summary'));
 const AuthenticationPageLazy = lazy(() => import('./pages/Authentication'));
 const AccountRootPageLazy = lazy(() => import('./pages/account/AccountRoot'));
 const MyAccountPageLazy = lazy(() => import('./pages/account/MyAccount'));
@@ -152,7 +152,7 @@ const router = createBrowserRouter([
 								<CheckoutDetailsLazy />
 							</Suspense>
 						),
-						loader: () => import('./pages/checkout/CheckoutDetails').then(module => module.loader()),
+						loader: () => import('./pages/checkout/Details').then(module => module.loader()),
 					},
 				],
 			},

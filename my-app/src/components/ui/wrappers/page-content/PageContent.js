@@ -1,4 +1,4 @@
-import Wrapper from './Wrapper';
+import Wrapper from '../wrapper/Wrapper';
 
 import classes from './PageContent.module.css';
 

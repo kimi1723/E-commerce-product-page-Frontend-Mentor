@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
-import Logo from '../../ui/Logo';
-import Wrapper from '../../ui/wrappers/Wrapper';
+import Logo from '../../ui/logo/Logo';
+import Wrapper from '../../ui/wrappers/wrapper/Wrapper';
 import classes from './Footer.module.css';
 
 const Footer = () => {

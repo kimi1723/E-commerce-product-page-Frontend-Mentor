@@ -1,4 +1,4 @@
-import DisplayData from '../generic/DisplayData';
+import DisplayData from '../display-data/DisplayData';
 
 const Credentials = ({ data }) => {
 	const hiddenData = [

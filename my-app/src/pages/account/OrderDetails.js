@@ -2,7 +2,7 @@ import { Await, defer, useLoaderData } from 'react-router-dom';
 import { Suspense } from 'react';
 
 import OrderDetails from '../../components/account/orders/order-details/OrderDetails';
-import LoaderSpinner from '../../components/ui/LoaderSpinner';
+import LoaderSpinner from '../../components/ui/loader-spinner/LoaderSpinner';
 import getProductsData from '../../utils/getProductsData';
 import getUid from '../../utils/getUid';
 

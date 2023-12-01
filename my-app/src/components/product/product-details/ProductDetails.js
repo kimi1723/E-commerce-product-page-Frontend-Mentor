@@ -1,4 +1,4 @@
-import getDecimals from '../../utils/getDecimals';
+import getDecimals from '../../../utils/getDecimals';
 import classes from './ProductDetails.module.css';
 
 const ProductDetails = ({ productDetails }) => {

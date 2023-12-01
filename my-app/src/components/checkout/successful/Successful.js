@@ -1,11 +1,11 @@
-import Products from '../generic/Products';
-import PageContent from '../../ui/wrappers/PageContent';
-import Redirect from '../generic/Redirect';
+import Products from '../../ui/products/Products';
+import PageContent from '../../ui/wrappers/page-content/PageContent';
+import Redirect from '../redirect/Redirect';
 
-import classes from './CheckoutSuccessful.module.css';
-import PricingDetails from '../generic/PricingDetails';
+import classes from './Successful.module.css';
+import PricingDetails from '../../ui/pricing-details/PricingDetails';
 
-const CheckoutSuccessful = ({
+const Successful = ({
 	userData,
 	orderData: { products, discount, totalPrice, totalQuantity } = {},
 	orderSentSuccessfuly,
@@ -48,7 +48,7 @@ const CheckoutSuccessful = ({
 		</section>
 	);
 
-	const checkoutSuccessfulContent = (
+	const successfulContent = (
 		<>
 			{formDataContent}
 			{orderContent}
@@ -60,7 +60,7 @@ const CheckoutSuccessful = ({
 		<PageContent title={pageTitle}>
 			<div className={classes.wrapper}>
 				{isError && <h2 className={classes.h2}>An error has occured, please try again later.</h2>}
-				{!isError && checkoutSuccessfulContent}
+				{!isError && successfulContent}
 			</div>
 
 			<Redirect componentType="link" to="/">
@@ -70,4 +70,4 @@ const CheckoutSuccessful = ({
 	);
 };
 
-export default CheckoutSuccessful;
+export default Successful;

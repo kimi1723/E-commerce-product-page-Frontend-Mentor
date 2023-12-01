@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import { Await, useLoaderData } from 'react-router-dom';
-import LoaderSpinner from '../../components/ui/LoaderSpinner';
+import LoaderSpinner from '../../components/ui/loader-spinner/LoaderSpinner';
 
 import productsLoader from '../../utils/loadProducts';
-import ProductsPage from '../../components/nav-sections/generic/ProductsPage';
+import ProductsPage from '../../components/nav-sections/ProductsPage';
 
 const MenPage = () => {
 	const { productsData } = useLoaderData();

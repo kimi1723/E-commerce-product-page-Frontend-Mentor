@@ -1,4 +1,4 @@
-import PageContent from '../../ui/wrappers/PageContent';
+import PageContent from '../../ui/wrappers/page-content/PageContent';
 import { motion } from 'framer-motion';
 
 import classes from './Contact.module.css';

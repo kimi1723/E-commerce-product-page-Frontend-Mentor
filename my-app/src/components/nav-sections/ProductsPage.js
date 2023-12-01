@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import Product from './Product';
-import PageContent from '../../ui/wrappers/PageContent';
+import Product from './product/Product';
+import PageContent from '../ui/wrappers/page-content/PageContent';
 
 import classes from './ProductsPage.module.css';
 
