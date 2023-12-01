@@ -83,8 +83,6 @@ const DisplayData = ({ data, hiddenData = [] }) => {
 		let value = inputsData[key],
 			placeholderValue = 'Yet to be filled!';
 
-		if (!isTouched && value.length === 0) placeholderValue = 'Yet to be filled!';
-
 		return (
 			<div className={classes['item-container']} key={key}>
 				<dt>
@@ -101,7 +99,7 @@ const DisplayData = ({ data, hiddenData = [] }) => {
 									<input type="password" name={key} value={value} onChange={inputChangeHandler} />
 								) : (
 									<input
-										type={inputType}
+										type={inputType === 'password' ? 'text' : inputType}
 										name={key}
 										value={value}
 										onChange={inputChangeHandler}

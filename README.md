@@ -25,9 +25,9 @@ Created with 'create react app' as I have started developing it (2 months ago) b
 ### From checkout pages:
 
 - view the order summary, <br>
-- change product's quantity and also add a custom one(e.g. 100), <br>
-- enter discount for the current order(mentioned later), <br>
-- fill the checkout form that has basic validation, the form is automatically filled based on your previous information if signed in and already ordered something(while singed in), <br>
+- change product's quantity and also add a custom one (e.g. 100), <br>
+- enter discount for the current order (mentioned later), <br>
+- fill the checkout form that has basic validation, the form is automatically filled based on your previous information if signed in and already ordered something (while singed in), <br>
 - order and view order summary. <br>
 
 ### From authentication pages:
@@ -40,7 +40,7 @@ Created with 'create react app' as I have started developing it (2 months ago) b
 - view submitted orders and check their details, <br>
 - view credentials and edit them, <br>
 - view personal information and edit them, <br>
-- signout(also can be done while hovering over profile icon).
+- signout (also can be done while hovering over profile icon).
 
 ## Test account and discounts:
 
@@ -56,7 +56,7 @@ password: 12345678 <br>
 - SNEAKERS50 - 50% off discount, <br>
 
 Promotions do combine, although discounts do not. Entering a invalid discount removes the valid one. <br> <br>
-Also, test account will probably have either invalid email or password, as any user can change it. I suggest creating your own one, as the only requirements are a valid address email(doesn't have to exist) and a password containing at least 8 characters.
+Also, test account will probably have either invalid email or password, as any user can change it. I suggest creating your own one, as the only requirements are a valid address email (doesn't have to exist) and a password containing at least 8 characters.
 
 ## To do:
 
