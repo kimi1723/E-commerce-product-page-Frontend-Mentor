@@ -46,16 +46,16 @@ It has been created with 'create react app' as I have started developing it befo
 
 ### Account credentials:
 
-email: email4@gmail.com, <br>
-password: 12345678, <br>
+email: 'email4@gmail.com' <br>
+password: '12345678' <br>
 
 ### Discounts:
 
 - 'SHIPMENT' - shipment discount only, <br>
-- 'SNEAKERS20' - 20% off discount, <br>,
+- 'SNEAKERS20' - 20% off discount, <br>
 - 'SNEAKERS50' - 50% off discount, <br>
 
-Promotions do combine, although discounts do not. Entering a invalid discount removes the valid one. <br>
+Promotions do combine, although discounts do not. Entering a invalid discount removes the valid one. <br> <br>
 Also, test account will probably have either invalid email or password, as any user can change it. I suggest creating your own one, as the only requirements are a valid address email(doesn't have to exist) and a password containing at least 8 characters.
 
 ## To do:
