@@ -34,9 +34,9 @@ It has been created with 'create react app' as I have started developing it befo
 
 - either sign in or sign up, both have basic validation, signed in status persists between sessions.
 
-### From account pages(if signed in):
+### From account pages (if signed in):
 
-- view submitted orders amount(didn't have much inspiration for this page), <br>
+- view submitted orders amount (didn't have much inspiration for this page), <br>
 - view submitted orders and check their details, <br>
 - view credentials and edit them, <br>
 - view personal information and edit them, <br>
@@ -46,14 +46,14 @@ It has been created with 'create react app' as I have started developing it befo
 
 ### Account credentials:
 
-email: 'email4@gmail.com' <br>
-password: '12345678' <br>
+email: email4@gmail.com <br>
+password: 12345678 <br>
 
 ### Discounts:
 
-- 'SHIPMENT' - shipment discount only, <br>
-- 'SNEAKERS20' - 20% off discount, <br>
-- 'SNEAKERS50' - 50% off discount, <br>
+- SHIPMENT - shipment discount only, <br>
+- SNEAKERS20 - 20% off discount, <br>
+- SNEAKERS50 - 50% off discount, <br>
 
 Promotions do combine, although discounts do not. Entering a invalid discount removes the valid one. <br> <br>
 Also, test account will probably have either invalid email or password, as any user can change it. I suggest creating your own one, as the only requirements are a valid address email(doesn't have to exist) and a password containing at least 8 characters.
