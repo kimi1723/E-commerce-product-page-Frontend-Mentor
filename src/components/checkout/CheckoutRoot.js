@@ -25,9 +25,7 @@ const CheckoutRoot = ({ cartInitial }) => {
 	useEffect(() => {
 		if (!initial) return;
 
-		if (cartInitial === null || !cartInitial.products || cartInitial.products.length < 1) {
-			navigate('/');
-		}
+		if (cartInitial === null || !cartInitial.products || cartInitial.products.length < 1) navigate('/');
 	}, [cartInitial, navigate]);
 
 	useEffect(() => {
@@ -36,9 +34,7 @@ const CheckoutRoot = ({ cartInitial }) => {
 			return;
 		}
 
-		if (cartCurrentState.length < 1) {
-			navigate('/');
-		}
+		if (cartCurrentState.length < 1) navigate('/');
 	}, [cartCurrentState, navigate]);
 
 	return (
