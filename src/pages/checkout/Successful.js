@@ -24,22 +24,24 @@ const CheckoutSuccessfulPage = () => {
 
 	useEffect(() => {
 		const handleOrder = async () => {
+			if (!userData) navigate('/');
+
+			const { password, 'payment-method': paymentMethod, ...personalInformation } = Object.fromEntries(userData);
+
 			if (userData && isSignedIn) {
-				const uid = await getUid('accountUid');
-				const { password, 'payment-method': paymentMethod, ...personalInformation } = Object.fromEntries(userData);
+				const accountUid = await getUid('accountUid');
 
 				setOrderSentSuccessfully(await sendOrder({ orderData, isSignedIn }));
 				setPersonalInformationSentSuccessfuly(
-					await setFirebaseData(`/users/validated/${uid}/personalInformation`, personalInformation),
+					await setFirebaseData(`/users/validated/${accountUid}/personalInformation`, personalInformation),
 				);
-
-				toast.success('Order sent successfuly!');
-				dispatch(cartActions.replaceCart({ products: [], totalQuantity: 0 }));
-			} else if (userData && !isSignedIn) {
-				toast.success('Order sent successfuly!');
 			} else {
-				navigate('/');
+				setOrderSentSuccessfully({ status: 200 });
+				setPersonalInformationSentSuccessfuly({ status: 200 });
 			}
+
+			toast.success('Order sent successfuly!');
+			dispatch(cartActions.replaceCart({ products: [], totalQuantity: 0 }));
 		};
 
 		handleOrder();

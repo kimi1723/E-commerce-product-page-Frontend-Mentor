@@ -18,6 +18,7 @@ const Successful = ({
 			personalInformationSentSuccessfuly.status !== 200) ||
 		!orderSentSuccessfuly ||
 		!personalInformationSentSuccessfuly;
+
 	const pageTitle = isError ? 'Something went wrong!' : 'Order sent!';
 
 	const formDataContent = (
