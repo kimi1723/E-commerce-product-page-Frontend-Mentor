@@ -24,7 +24,7 @@ const CheckoutSuccessfulPage = () => {
 
 	useEffect(() => {
 		const handleOrder = async () => {
-			if (userData) {
+			if (userData && isSignedIn) {
 				const uid = await getUid('accountUid');
 				const { password, 'payment-method': paymentMethod, ...personalInformation } = Object.fromEntries(userData);
 
@@ -35,6 +35,8 @@ const CheckoutSuccessfulPage = () => {
 
 				toast.success('Order sent successfuly!');
 				dispatch(cartActions.replaceCart({ products: [], totalQuantity: 0 }));
+			} else if (userData && !isSignedIn) {
+				toast.success('Order sent successfuly!');
 			} else {
 				navigate('/');
 			}

@@ -35,11 +35,11 @@ const checkoutLoader = async () => {
 		const cartData = await getFirebaseData(`/users/validated/${userAccountUid}/userCart`);
 
 		return cartData;
-	} else {
-		const cartData = await getFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`);
-
-		return cartData;
 	}
+
+	const cartData = await getFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`);
+
+	return cartData;
 };
 
 export const loader = () => {
