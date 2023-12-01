@@ -32,7 +32,7 @@ It has been created with 'create react app' as I have started developing it befo
 
 ### From authentication pages:
 
--either sign in or sign up, both have basic validation, signed in status persists between sessions.
+- either sign in or sign up, both have basic validation, signed in status persists between sessions.
 
 ### From account pages(if signed in):
 
@@ -42,13 +42,29 @@ It has been created with 'create react app' as I have started developing it befo
 - view personal information and edit them, <br>
 - signout(also can be done while hovering over profile icon).
 
+## Test account and discounts:
+
+### Account credentials:
+
+email: email4@gmail.com, <br>
+password: 12345678, <br>
+
+### Discounts:
+
+- 'SHIPMENT' - shipment discount only, <br>
+- 'SNEAKERS20' - 20% off discount, <br>,
+- 'SNEAKERS50' - 50% off discount, <br>
+
+Promotions do combine, although discounts do not. Entering a invalid discount removes the valid one. <br>
+Also, test account will probably have either invalid email or password, as any user can change it. I suggest creating your own one, as the only requirements are a valid address email(doesn't have to exist) and a password containing at least 8 characters.
+
 ## To do:
 
 - write tests, <br>
-- cache data, <br>
+- cache data and improve performance overall, <br>
 - add more animations.
 
-## Technologies:
+## Technologies used:
 
 - React, <br>
 - Redux Toolkitjs, <br>
@@ -56,6 +72,7 @@ It has been created with 'create react app' as I have started developing it befo
 - React Select, <br>
 - Sonner,<br>
 - Framer Motion, <br>
-- Firebase.
+- Firebase, <br>
+- CSS Modules.
 
 ## Feedback is greatly appreciated!

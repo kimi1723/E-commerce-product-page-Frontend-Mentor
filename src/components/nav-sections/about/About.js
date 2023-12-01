@@ -15,8 +15,15 @@ const About = () => {
 					</h2>
 					In order to do this, I would need to expand the project a little, e.g. create a cashout section and the cart
 					usable. I was looking forward to it and going along the way of learning these technologies I have found myself
-					in making the project much bigger than expected at first glance.
+					in making the project much bigger than expected at first glance.{' '}
 				</article>
+				<a
+					className={classes['readme']}
+					href="https://github.com/kimi1723/e-commerce-sneakers"
+					rel="noreferrer"
+					target="_blank">
+					GithHub readme (including what you can do)
+				</a>
 
 				<article className={classes.article}>
 					<h2 className={classes.h2}>

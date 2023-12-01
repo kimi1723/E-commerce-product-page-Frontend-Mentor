@@ -34,3 +34,20 @@ article:nth-of-type(2) .h2 {
 	content: '\a \a';
 	white-space: pre;
 }
+
+.readme {
+	display: block;
+	margin: 1.5em 0;
+	text-align: center;
+	font-size: 1rem;
+	font-weight: bold;
+	color: hsl(26, 100%, 55%);
+	transition: color 0.3s, scale 0.3s;
+	outline: none;
+}
+
+.readme:hover,
+.readme:focus {
+	color: hsl(220, 14%, 75%);
+	scale: 1.05;
+}
