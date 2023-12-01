@@ -1,5 +1,5 @@
 import { ref, getDownloadURL, listAll } from 'firebase/storage';
-import { storage } from '../firebaseConfig';
+import { storage } from '../firebaseInitialization';
 
 const getImages = async (id, action) => {
 	switch (action) {

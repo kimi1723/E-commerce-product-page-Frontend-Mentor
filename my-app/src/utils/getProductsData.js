@@ -1,5 +1,5 @@
 import { ref, get } from 'firebase/database';
-import { database } from '../firebaseConfig';
+import { database } from '../firebaseInitialization';
 
 const getProductsData = async path => {
 	try {

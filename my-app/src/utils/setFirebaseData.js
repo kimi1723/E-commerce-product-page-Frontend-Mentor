@@ -1,5 +1,5 @@
 import { set, ref } from 'firebase/database';
-import { database } from '../firebaseConfig';
+import { database } from '../firebaseInitialization';
 
 const setFirebaseData = async (url, data) => {
 	try {

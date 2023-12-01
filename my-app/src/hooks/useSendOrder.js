@@ -1,6 +1,6 @@
 import { ref, push, child } from 'firebase/database';
 import { Timestamp } from 'firebase/firestore';
-import { database } from '../firebaseConfig';
+import { database } from '../firebaseInitialization';
 
 import setFirebaseData from '../utils/setFirebaseData';
 import getUid from '../utils/getUid';
