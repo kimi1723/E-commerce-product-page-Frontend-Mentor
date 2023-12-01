@@ -22,13 +22,16 @@ const AccountRoot = ({ children }) => {
 	const { isSignedIn } = useSelector(state => state.authentication);
 
 	useEffect(() => {
+		if (!initial) return;
+		if (!isSignedIn) navigate('/authentication');
+	}, [isSignedIn, navigate]);
+
+	useEffect(() => {
 		if (initial) {
 			initial = false;
 			return;
 		}
-
-		if (!isSignedIn) navigate('/authentication');
-	}, [isSignedIn, navigate]);
+	}, []);
 
 	const currentPathIndex = navOptions.findIndex(option => pathname.includes(option.value));
 
