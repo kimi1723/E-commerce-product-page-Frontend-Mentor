@@ -1,11 +1,11 @@
 # E-commerce sneakers
 
-Full e-commerce site frontend + backend, design inspired by Frontend Mentor [single product page](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6) challenge.
+E-commerce site with user authentication, orderding, reviewing previous orders and changing current credentials. Design inspired by Frontend Mentor [single product page](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6) challenge.
 
 ## About the project
 
 As mentioned above, this project at first was supposed to be a [single product page](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6) from Frontend Mentor with some additional content so I could consolidate my knowledege about React Router and React Redux/Toolkitjs, however
-it has turned out to be a full e-commerce app. Although, the backend is just an Firebase database and the logic validating users and storing their credentials is trivial.
+it has turned out to be a full e-commerce app. Although, Firebase database and the logic validating users and storing their credentials is trivial.
 
 Created with 'create react app' as I have started developing it (2 months ago) before I have encountered Vite with which I would have developed the project if I were to start now.
 
