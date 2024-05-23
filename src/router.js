@@ -19,7 +19,7 @@ const MenPageLazy = lazy(() => import('./pages/nav-sections/Men'));
 const WomenPageLazy = lazy(() => import('./pages/nav-sections/Women'));
 const AboutPageLazy = lazy(() => import('./pages/nav-sections/About'));
 const ContactPageLazy = lazy(() => import('./pages/nav-sections/Contact'));
-const CheckoutPageLazy = lazy(() => import('./pages/checkout/Checkout'));
+const CheckoutRootPageLazy = lazy(() => import('./pages/checkout/CheckoutRoot'));
 const CheckoutDetailsLazy = lazy(() => import('./pages/checkout/Details'));
 const CheckoutSuccessfulLazy = lazy(() => import('./pages/checkout/Successful'));
 const CheckoutSummaryLazy = lazy(() => import('./pages/checkout/Summary'));
@@ -132,10 +132,10 @@ const router = createBrowserRouter([
 				path: '/checkout',
 				element: (
 					<Suspense fallback={<LoaderSpinner />}>
-						<CheckoutPageLazy />
+						<CheckoutRootPageLazy />
 					</Suspense>
 				),
-				loader: meta => import('./pages/checkout/Checkout').then(module => module.loader(meta)),
+				loader: meta => import('./pages/checkout/CheckoutRoot').then(module => module.loader(meta)),
 				children: [
 					{
 						index: true,

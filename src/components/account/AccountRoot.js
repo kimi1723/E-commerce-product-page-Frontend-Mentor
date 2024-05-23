@@ -4,6 +4,10 @@ import ReactSelect from '../ui/react-select/ReactSelect';
 import SignoutBtn from '../ui/buttons/signout-btn/SignoutBtn';
 
 import classes from './AccountRoot.module.css';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
+let initial = true;
 
 const AccountRoot = ({ children }) => {
 	const navigate = useNavigate();
@@ -14,6 +18,20 @@ const AccountRoot = ({ children }) => {
 		{ label: 'Credentials', value: 'credentials' },
 		{ label: 'Personal information', value: 'personal-information' },
 	];
+
+	const { isSignedIn } = useSelector(state => state.authentication);
+
+	useEffect(() => {
+		if (!initial) return;
+		if (!isSignedIn) navigate('/authentication');
+	}, [isSignedIn, navigate]);
+
+	useEffect(() => {
+		if (initial) {
+			initial = false;
+			return;
+		}
+	}, []);
 
 	const currentPathIndex = navOptions.findIndex(option => pathname.includes(option.value));
 

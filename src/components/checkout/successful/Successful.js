@@ -1,9 +1,11 @@
 import Products from '../../ui/products/Products';
 import PageContent from '../../ui/wrappers/page-content/PageContent';
 import Redirect from '../redirect/Redirect';
+import PricingDetails from '../../ui/pricing-details/PricingDetails';
+
+import getInputLabel from '../../../utils/getInputLabel';
 
 import classes from './Successful.module.css';
-import PricingDetails from '../../ui/pricing-details/PricingDetails';
 
 const Successful = ({
 	userData,
@@ -26,10 +28,11 @@ const Successful = ({
 			<h2 className={classes.h2}>Informations provided:</h2>
 			{userData &&
 				Object.entries(Object.fromEntries(userData)).map(element => {
-					let title = element[0].charAt(0).toUpperCase() + element[0].slice(1);
+					let title = getInputLabel(element[0]);
 					let value = element[1];
 
 					if (title.includes('-')) title = title.replace('-', ' ');
+					if (title === 'Payment method') value = value.charAt(0).toUpperCase() + value.slice(1);
 
 					return (
 						<div key={title} className={classes.div}>

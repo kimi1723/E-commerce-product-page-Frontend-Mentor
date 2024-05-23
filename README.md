@@ -1,11 +1,11 @@
 # E-commerce sneakers
 
-Full e-commerce site frontend + backend, design inspired by Frontend Mentor [single product page](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6) challenge.
+E-commerce site with user authentication, orderding, reviewing previous orders and changing current credentials. Design inspired by Frontend Mentor [single product page](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6) challenge.
 
 ## About the project
 
-As mentioned above, this project at fist was supposed to be a [single product page](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6) from Frontend Mentor with some additional content so I could consolidate my knowledege about React Router and React Redux/Toolkitjs, however
-it has turned out to be a full e-commerce app. Although, the backend is just an Firebase database and the logic validating users and storing their credentials is trivial.
+As mentioned above, this project at first was supposed to be a [single product page](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6) from Frontend Mentor with some additional content so I could consolidate my knowledege about React Router and React Redux/Toolkitjs, however
+it has turned out to be a full e-commerce app. Although, Firebase database and the logic validating users and storing their credentials is trivial.
 
 Created with 'create react app' as I have started developing it (2 months ago) before I have encountered Vite with which I would have developed the project if I were to start now.
 
@@ -27,7 +27,7 @@ Created with 'create react app' as I have started developing it (2 months ago) b
 - view the order summary, <br>
 - change product's quantity and also add a custom one (e.g. 100), <br>
 - enter discount for the current order (mentioned later), <br>
-- fill the checkout form that has basic validation, the form is automatically filled based on your previous information if signed in and already ordered something (while singed in), <br>
+- fill the checkout form that has basic validation, the form is automatically filled based on your previous information (either changed by creating an order or changing it in the personal information's tab) if signed in - with that in mind, you can fill out shipment form only once and then test the order submission only providing a payment method by hand, <br>
 - order and view order summary. <br>
 
 ### From authentication pages:
@@ -49,6 +49,8 @@ Created with 'create react app' as I have started developing it (2 months ago) b
 email: email4@gmail.com <br>
 password: 12345678 <br>
 
+Test account will probably have either invalid email or password, as any user can change it. I suggest creating your own one, as the only requirements are a valid address email (doesn't have to exist) and a password containing at least 8 characters.
+
 ### Discounts:
 
 - SHIPMENT - shipment discount only, <br>
@@ -56,7 +58,7 @@ password: 12345678 <br>
 - SNEAKERS50 - 50% off discount, <br>
 
 Promotions do combine, although discounts do not. Entering a invalid discount removes the valid one. <br> <br>
-Also, test account will probably have either invalid email or password, as any user can change it. I suggest creating your own one, as the only requirements are a valid address email (doesn't have to exist) and a password containing at least 8 characters.
+
 
 ## To do:
 

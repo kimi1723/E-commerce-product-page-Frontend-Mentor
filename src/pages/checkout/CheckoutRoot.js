@@ -7,7 +7,7 @@ import getUid from '../../utils/getUid';
 import getFirebaseData from '../../utils/getFirebaseData';
 import LoaderSpinner from '../../components/ui/loader-spinner/LoaderSpinner';
 
-const CheckoutPage = () => {
+const CheckoutRootPage = () => {
 	const { cart } = useLoaderData();
 
 	return (
@@ -48,4 +48,4 @@ export const loader = () => {
 	});
 };
 
-export default CheckoutPage;
+export default CheckoutRootPage;

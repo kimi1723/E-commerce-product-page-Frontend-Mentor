@@ -26,10 +26,8 @@ const Authentication = () => {
 	const errors = useValidation(credentials, isTouchedState);
 
 	useEffect(() => {
-		if (isSignedIn) {
-			navigate('/account/myaccount');
-		}
-	}, []);
+		if (isSignedIn) navigate('/account/myaccount');
+	}, [isSignedIn]);
 
 	const credentialsKeys = Object.keys(credentials);
 
