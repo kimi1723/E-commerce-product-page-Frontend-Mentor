@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import crypto from 'crypto';
+// import crypto from 'crypto-js';
 import { validationResult } from 'express-validator';
 import { User } from '../models/User';
 
@@ -20,6 +20,8 @@ export const postLogin: RequestHandler = async (req, res, _next) => {
 		req.session.isLoggedIn = true;
 		req.session.save(err => {
 			if (err) throw new Error('Something went wrong creating your session. Please, try again later');
+
+			return res.status(200).json({ message: 'Logged in successfuly!' });
 		});
 	} catch (err) {
 		let errorMessage = 'Something went wrong. Please try again later.';

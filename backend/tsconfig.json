@@ -12,6 +12,8 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
+		// "rootDir": "./src",
+		// "outDir": "./dist",
 
 		/* Linting */
 		"strict": true,

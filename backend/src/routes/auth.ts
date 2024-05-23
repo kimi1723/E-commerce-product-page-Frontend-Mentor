@@ -1,5 +1,5 @@
 import express from 'express';
-import { check, body } from 'express-validator';
+import { check } from 'express-validator';
 import bcrypt from 'bcryptjs';
 import { User } from '../models/User';
 import { postLogin, postLogout, postSignUp } from '../controllers/auth';
@@ -35,7 +35,7 @@ router.post(
 			.isEmail()
 			.withMessage('Please enter a valid email address')
 			.normalizeEmail()
-			.custom(async (value, { req }) => {
+			.custom(async (_value, { req }) => {
 				const { email } = req.body;
 				const user = await User.findOne({ email });
 
@@ -49,3 +49,5 @@ router.post(
 );
 
 router.post('/logout', postLogout);
+
+export { router as authRoutes };

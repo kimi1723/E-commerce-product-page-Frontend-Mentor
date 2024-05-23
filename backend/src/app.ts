@@ -6,12 +6,13 @@ import { connect } from 'mongoose';
 import connectMongoDBSession from 'connect-mongodb-session';
 import { User } from './models/User';
 import { IUser } from './types';
+import { authRoutes } from './routes/auth';
 
 dotenv.config();
 
 const MongoDBStore = connectMongoDBSession(session);
 
-const MONGODB_URI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.qfooitn.mongodb.net/`;
+const MONGODB_URI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.qfooitn.mongodb.net/shop`;
 
 const app: Express = express();
 const store = new MongoDBStore({ uri: MONGODB_URI, collection: 'sessions' });
@@ -34,9 +35,13 @@ app.use((async (req, res, next) => {
 	}
 }) as RequestHandler);
 
+app.use(authRoutes);
+
 (async () => {
 	try {
 		await connect(MONGODB_URI);
+
+		console.log('server running');
 
 		app.listen(3000);
 	} catch (err) {
