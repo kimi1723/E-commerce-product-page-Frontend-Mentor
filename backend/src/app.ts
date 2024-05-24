@@ -4,7 +4,7 @@ import session from 'express-session';
 import bodyParser from 'body-parser';
 import { connect } from 'mongoose';
 import connectMongoDBSession from 'connect-mongodb-session';
-import { User } from './models/User';
+import { User } from './models/user';
 import { IUser } from './types/user';
 import { authRoutes } from './routes/auth';
 import { catchError } from './utils/catchError';

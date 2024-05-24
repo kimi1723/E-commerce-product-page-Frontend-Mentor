@@ -2,7 +2,7 @@ import express from 'express';
 import { body } from 'express-validator';
 import bcrypt from 'bcryptjs';
 
-import { User } from '../models/User';
+import { User } from '../models/user';
 import {
 	postActivateAccount,
 	postLogin,

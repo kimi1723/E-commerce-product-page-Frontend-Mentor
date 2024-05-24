@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 import sendgridTransport from 'nodemailer-sendgrid-transport';
 import { validationResult } from 'express-validator';
 
-import { User } from '../models/User';
+import { User } from '../models/user';
 
 import { RequestHandler } from 'express';
 import { IUser } from '../types/user';
@@ -170,3 +170,8 @@ export const postActivateAccount: RequestHandler = async (req, res, _next) => {
 		return catchError(err, res);
 	}
 };
+
+// export const postCheatActivateAccount: RequestHandler = async (req,res,_next) => {
+// 	const {session} = req;
+// 	session.user
+// }
