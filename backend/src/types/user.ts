@@ -8,4 +8,5 @@ export interface IUser extends Document {
 	refreshTokenExpiration?: number | Date;
 	activateToken?: string;
 	activateTokenExpiration?: number | Date;
+	isActive: boolean;
 }

@@ -44,7 +44,10 @@ export const postSignUp: RequestHandler = async (req, res, _next) => {
 	const { email, password } = req.body;
 
 	try {
-		const isUser = (await User.findOne({ email })) as IUser | undefined;
+		const isUser = (await User.findOne({
+			email,
+			$or: [{ isActive: true }, { activateTokenExpiration: { $gt: Date.now() } }],
+		})) as IUser | undefined;
 
 		if (isUser) return res.status(409).json({ error: 'User already exists!' });
 
@@ -58,17 +61,19 @@ export const postSignUp: RequestHandler = async (req, res, _next) => {
 
 			user.activateToken = token;
 			user.activateTokenExpiration = Date.now() + 3600000;
+			user.isActive = false;
 
 			await user.save();
 
 			transporter.sendMail({
 				to: email,
 				from: process.env.SENDGRID_EMAIL_SENDER,
-				subject: 'You have requested a password reset',
-				html: `<a href="http://localhost:3000/new-password/${token}">Click here</a> to reset your password.`,
+				subject: 'Activate your account',
+				html: `<div><h1>In order to activate your account, click the link below.</h1></div>
+				<a href="http://localhost:3000/activate-account/${token}">Click here</a> to activate your account.`,
 			});
 
-			return res.status(200).json({
+			return res.status(201).json({
 				message: 'Account created successfuly! Please check your inbox to activate the account.',
 			});
 		});
@@ -118,11 +123,11 @@ export const postResetPassword: RequestHandler = async (req, res, _next) => {
 };
 
 export const postNewPassword: RequestHandler = async (req, res, _next) => {
-	const { password: newPassword, userId, refreshToken } = req.body;
+	const { password: newPassword } = req.body;
+	const { refreshToken } = req.params;
 
 	try {
 		const user = await User.findOne({
-			_id: userId,
 			refreshToken,
 			refreshTokenExpiration: { $gt: Date.now() },
 		});
@@ -138,6 +143,29 @@ export const postNewPassword: RequestHandler = async (req, res, _next) => {
 		await user.save();
 
 		return res.status(200).json({ message: 'Password changed successfuly!' });
+	} catch (err) {
+		return catchError(err, res);
+	}
+};
+
+export const postActivateAccount: RequestHandler = async (req, res, _next) => {
+	const { activateToken } = req.params;
+
+	try {
+		const user = await User.findOne({ activateToken, activateTokenExpiration: { $gt: Date.now() } });
+
+		if (!user)
+			throw new Error(
+				"Activation token has expired. If that's not the case, please try creating your account once again.",
+			);
+
+		user.activateToken = undefined;
+		user.activateTokenExpiration = undefined;
+		user.isActive = true;
+
+		await user.save();
+
+		return res.status(200).json({ message: 'Account successfuly activated!' });
 	} catch (err) {
 		return catchError(err, res);
 	}

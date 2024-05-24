@@ -3,7 +3,14 @@ import { body } from 'express-validator';
 import bcrypt from 'bcryptjs';
 
 import { User } from '../models/User';
-import { postLogin, postLogout, postNewPassword, postResetPassword, postSignUp } from '../controllers/auth';
+import {
+	postActivateAccount,
+	postLogin,
+	postLogout,
+	postNewPassword,
+	postResetPassword,
+	postSignUp,
+} from '../controllers/auth';
 
 const router = express.Router();
 
@@ -66,6 +73,12 @@ router.post(
 	postResetPassword,
 );
 
-router.post('/new-password', [body('password').trim().isLength({ min: 8 }).isAlphanumeric()], postNewPassword);
+router.post(
+	'/new-password/:refreshToken',
+	[body('password').trim().isLength({ min: 8 }).isAlphanumeric()],
+	postNewPassword,
+);
+
+router.post('/activate-account/:activateToken', postActivateAccount);
 
 export { router as authRoutes };

@@ -8,6 +8,7 @@ const userSchema = new Schema<IUser>({
 	refreshTokenExpiration: { type: Date },
 	activateToken: { type: String },
 	activateTokenExpiration: { type: Date },
+	isActive: { type: Boolean },
 });
 
 export const User = model<IUser>('User', userSchema);
