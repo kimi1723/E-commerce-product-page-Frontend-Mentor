@@ -1,5 +1,9 @@
 import { Document, ObjectId } from 'mongoose';
 
+export interface IProduct {
+	productId: ObjectId;
+	quantity: number;
+}
 export interface IUser extends Document {
 	_id: ObjectId;
 	email: string;
@@ -8,11 +12,17 @@ export interface IUser extends Document {
 	cart: {
 		// totalQuantity: number;
 		// totalPrice: number;
-		products: {
-			productId: string;
-			quantity: number;
-		}[];
+		products: [IProduct];
 	};
+	orders: {
+		discount: {
+			discountCode?: string;
+			isDiscount: boolean;
+		};
+		orderId: ObjectId;
+		products: [IProduct];
+		timestamp: number | Date;
+	}[];
 	refreshToken?: string;
 	refreshTokenExpiration?: number | Date;
 	activateToken?: string;

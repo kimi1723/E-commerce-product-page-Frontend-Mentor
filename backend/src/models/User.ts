@@ -1,17 +1,26 @@
 import { Schema, model } from 'mongoose';
-import { IUser } from '../types/user';
+import { IProduct, IUser } from '../types/user';
+
+const productSchema = new Schema<IProduct>({
+	productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+	quantity: { type: Number, required: true },
+});
 
 const userSchema = new Schema<IUser>({
 	email: { type: String, required: true },
 	password: { type: String, required: true },
 	isActive: { type: Boolean, required: true },
 	cart: {
-		products: [
-			{
-				productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
-				quantity: { type: Number, required: true },
-			},
-		],
+		products: [productSchema],
+	},
+	orders: {
+		discount: {
+			discountCode: { type: String },
+			isDiscount: { type: Boolean, required: true },
+		},
+		products: [productSchema],
+		orderId: { type: Schema.Types.ObjectId, required: true },
+		timestamp: { type: Date, required: true },
 	},
 	refreshToken: { type: String },
 	refreshTokenExpiration: { type: Date },
