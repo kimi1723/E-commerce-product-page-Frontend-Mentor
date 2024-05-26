@@ -8,6 +8,6 @@ router.post('/products', postRetrieveProducts);
 
 router.post('/products/:productId', postRetrieveProduct);
 
-router.post('/add-to-cart/:productId', postAddToCart);
+router.post('/add-to-cart/:productId/:quantity', postAddToCart);
 
 export { router as shopRoutes };

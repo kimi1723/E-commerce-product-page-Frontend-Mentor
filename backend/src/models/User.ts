@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { ICart, IUser } from '../types/user';
+import { ICart, IOrders, IUser } from '../types/user';
 
 export const cartSchema = new Schema<ICart>({
 	products: [
@@ -11,19 +11,24 @@ export const cartSchema = new Schema<ICart>({
 	totalQuantity: { type: Number },
 });
 
+const ordersSchema = new Schema<IOrders>({
+	discount: {
+		discountCode: { type: String },
+		isDiscount: { type: Boolean, required: true },
+	},
+	cart: cartSchema,
+	orderId: { type: Schema.Types.ObjectId, required: true },
+	timestamp: { type: Date, required: true },
+});
+
 const userSchema = new Schema<IUser>({
 	email: { type: String, required: true },
 	password: { type: String, required: true },
 	isActive: { type: Boolean, required: true },
 	cart: cartSchema,
 	orders: {
-		discount: {
-			discountCode: { type: String },
-			isDiscount: { type: Boolean, required: true },
-		},
-		cart: cartSchema,
-		orderId: { type: Schema.Types.ObjectId, required: true },
-		timestamp: { type: Date, required: true },
+		type: ordersSchema,
+		required: false,
 	},
 	refreshToken: { type: String },
 	refreshTokenExpiration: { type: Date },
@@ -31,10 +36,8 @@ const userSchema = new Schema<IUser>({
 	activateTokenExpiration: { type: Date },
 });
 
-userSchema.methods.addToCart = async () => {
-	const cartItems = this;
-
-	console.log(cartItems);
+userSchema.methods.saveCart = async function () {
+	await this.save();
 };
 
 export const User = model<IUser>('User', userSchema);
