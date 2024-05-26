@@ -90,6 +90,8 @@ export const postAddToCart: RequestHandler = async (req, res, _next) => {
 		if (req.user) {
 			req.user.cart = updatedCart;
 			await req.user.saveCart();
+
+			return res.status(200).json({ cart: updatedCart });
 		} else {
 			req.session.cart = updatedCart;
 			req.session.save(err => {
@@ -98,10 +100,7 @@ export const postAddToCart: RequestHandler = async (req, res, _next) => {
 
 				return res.status(200).json({ cart: updatedCart });
 			});
-			return;
 		}
-
-		return res.status(200).json({ cart: updatedCart });
 	} catch (err) {
 		return catchError(err, res);
 	}
