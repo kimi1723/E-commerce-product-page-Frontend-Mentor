@@ -1,12 +1,13 @@
 import express from 'express';
-import { body } from 'express-validator';
 
-import { postRetrieveProducts, postRetrieveProduct } from './../controllers/shop';
+import { postRetrieveProducts, postRetrieveProduct, postAddToCart } from './../controllers/shop';
 
 const router = express.Router();
 
 router.post('/products', postRetrieveProducts);
 
 router.post('/products/:productId', postRetrieveProduct);
+
+router.post('/add-to-cart/:productId', postAddToCart);
 
 export { router as shopRoutes };

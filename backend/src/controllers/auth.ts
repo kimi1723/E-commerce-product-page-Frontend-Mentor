@@ -154,10 +154,7 @@ export const postActivateAccount: RequestHandler = async (req, res, _next) => {
 	try {
 		const user = await User.findOne({ activateToken, activateTokenExpiration: { $gt: Date.now() } });
 
-		if (!user)
-			throw new Error(
-				"Activation token has expired. If that's not the case, please try creating your account once again.",
-			);
+		if (!user) throw new Error('Activation token has expired. Please try creating your account once again.');
 
 		user.activateToken = undefined;
 		user.activateTokenExpiration = undefined;

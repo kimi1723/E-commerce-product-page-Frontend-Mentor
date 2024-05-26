@@ -38,14 +38,12 @@ app.use((async (req, res, next) => {
 app.use(shopRoutes);
 app.use(authRoutes);
 
-(async () => {
-	try {
-		await connect(MONGODB_URI);
+try {
+	await connect(MONGODB_URI);
 
-		console.log('server running');
+	console.log('server running');
 
-		app.listen(8080);
-	} catch (err) {
-		console.log(err);
-	}
-})();
+	app.listen(8080);
+} catch (err) {
+	console.log(err);
+}

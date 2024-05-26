@@ -1,26 +1,23 @@
 import { Document, ObjectId } from 'mongoose';
 
-export interface IProduct {
-	productId: ObjectId;
-	quantity: number;
+export interface ICart {
+	products?: { productId: ObjectId; quantity: number }[];
+	totalQuantity?: number;
 }
+
 export interface IUser extends Document {
 	_id: ObjectId;
 	email: string;
 	password: string;
 	isActive: boolean;
-	cart: {
-		// totalQuantity: number;
-		// totalPrice: number;
-		products: [IProduct];
-	};
-	orders: {
+	cart?: ICart;
+	orders?: {
 		discount: {
 			discountCode?: string;
 			isDiscount: boolean;
 		};
 		orderId: ObjectId;
-		products: [IProduct];
+		cart: ICart;
 		timestamp: number | Date;
 	}[];
 	refreshToken?: string;
