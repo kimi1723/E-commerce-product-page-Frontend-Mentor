@@ -17,49 +17,40 @@ const useSendCartData = async () => {
 
 	useEffect(() => {
 		const sendData = async () => {
-			if (!initial) {
-				initial = true;
-				return;
-			}
+			if (!initial) return (initial = true);
 
 			try {
 				if (isSignedIn && data) {
 					if (justSignedIn) {
-						dispatch(
+						return dispatch(
 							authenticationActions.changeAuthenticationState({
 								...authenticationState,
 								justSignedIn: false,
 							}),
 						);
-						return;
 					}
 
 					const userAccountUid = await getUid('accountUid');
 
 					const { status } = await setFirebaseData(`/users/validated/${userAccountUid}/userCart`, data);
 
-					if (status !== 200) {
-						throw new Error(`Server response code: ${status}`);
-					}
+					if (status !== 200) throw new Error(`Server response code: ${status}`);
 				}
 
 				if (signedOutByLogout) {
-					dispatch(
+					return dispatch(
 						authenticationActions.changeAuthenticationState({
 							...authenticationState,
 							signedOutByLogout: false,
 						}),
 					);
-					return;
 				}
 
 				const uid = await getUid();
 
 				const { status } = await setFirebaseData(`/users/anonymousTokens/${uid}/anonymousCart`, data);
 
-				if (status !== 200) {
-					throw new Error(`Server response code: ${status}`);
-				}
+				if (status !== 200) throw new Error(`Server response code: ${status}`);
 			} catch (error) {
 				dispatch(
 					errorActions.setError({

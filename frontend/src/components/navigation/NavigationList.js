@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 
-const NavigationList = ({ classes: { link, list, activeLink }, linksIndex, hideNav }) => {
-	const navNames = ['collections', 'men', 'women', 'about', 'contact'];
+const navNames = ['collections', 'men', 'women', 'about', 'contact'];
 
+const NavigationList = ({ classes: { link, list, activeLink }, linksIndex, hideNav }) => {
 	const navList = (
 		<ul role="list" className={list}>
 			{navNames.map(name => (

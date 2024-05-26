@@ -8,9 +8,7 @@ const loadProducts = async filter => {
 
 	const data = await getProductsData('/products');
 
-	if (data.error) {
-		return data;
-	}
+	if (data.error) return data;
 
 	for (const id in data) {
 		if (filter.gender === 'all' || filter.gender.includes(data[id].gender) || filter.season === data[id].season) {

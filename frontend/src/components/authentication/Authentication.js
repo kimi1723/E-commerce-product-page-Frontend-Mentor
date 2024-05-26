@@ -27,7 +27,7 @@ const Authentication = () => {
 
 	useEffect(() => {
 		if (isSignedIn) navigate('/account/myaccount');
-	}, [isSignedIn]);
+	}, [isSignedIn, navigate]);
 
 	const credentialsKeys = Object.keys(credentials);
 
