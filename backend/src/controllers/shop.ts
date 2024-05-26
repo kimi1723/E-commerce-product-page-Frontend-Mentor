@@ -46,5 +46,3 @@ export const postRetrieveProduct: RequestHandler = async (req, res, _next) => {
 		return catchError(err, res);
 	}
 };
-
-export const postRetrieveCollections: RequestHandler = async (req, res, _next) => {};
