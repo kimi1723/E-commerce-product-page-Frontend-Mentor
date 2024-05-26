@@ -22,8 +22,4 @@ const userSchema = new Schema<IUser>({
 	activateTokenExpiration: { type: Date },
 });
 
-userSchema.methods.saveCart = async function () {
-	await this.save();
-};
-
 export const User = model<IUser>('User', userSchema);

@@ -89,7 +89,7 @@ export const postAddToCart: RequestHandler = async (req, res, _next) => {
 
 		if (req.user) {
 			req.user.cart = updatedCart;
-			await req.user.saveCart();
+			await req.user.save();
 
 			return res.status(200).json({ cart: updatedCart });
 		} else {
