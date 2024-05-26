@@ -8,6 +8,7 @@ export interface IProduct extends Document {
 	price: number;
 	season: string;
 	imagesAlts: { imageId: string }[];
+	imagesUrls: { imageUrl: string }[];
 	discount: number;
 }
 

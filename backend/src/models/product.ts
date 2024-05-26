@@ -13,6 +13,7 @@ const productSchema = new Schema<IProduct>({
 			imageId: { type: String, required: true },
 		},
 	],
+	imagesUrls: [{ imageUrl: { type: String, required: true } }],
 	discount: { type: Number },
 });
 
