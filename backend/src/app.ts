@@ -7,6 +7,7 @@ import connectMongoDBSession from 'connect-mongodb-session';
 import { User } from './models/user';
 import { IUser } from './types/user';
 import { authRoutes } from './routes/auth';
+import { shopRoutes } from './routes/shop';
 import { catchError } from './utils/catchError';
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.use((async (req, res, next) => {
 	}
 }) as RequestHandler);
 
+app.use(shopRoutes);
 app.use(authRoutes);
 
 (async () => {

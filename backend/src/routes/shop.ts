@@ -10,3 +10,5 @@ router.post('/products', postRetrieveProducts);
 router.post('/products/:productId', postRetrieveProduct);
 
 router.post('/collections', postRetrieveCollections);
+
+export { router as shopRoutes };

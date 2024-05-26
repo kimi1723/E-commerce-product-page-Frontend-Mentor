@@ -10,3 +10,8 @@ export interface IProduct extends Document {
 	imagesAlts: { imageId: string }[];
 	discount: number;
 }
+
+export interface IProductQuery {
+	gender?: string;
+	season?: string;
+}
