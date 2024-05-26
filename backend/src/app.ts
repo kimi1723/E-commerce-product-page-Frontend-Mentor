@@ -9,6 +9,7 @@ import { IUser } from './types/user';
 import { authRoutes } from './routes/auth';
 import { shopRoutes } from './routes/shop';
 import { catchError } from './utils/catchError';
+import { accountRoutes } from './routes/account';
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.use((async (req, res, next) => {
 
 app.use(shopRoutes);
 app.use(authRoutes);
+app.use('/account', accountRoutes);
 
 try {
 	await connect(MONGODB_URI);

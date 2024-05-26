@@ -6,14 +6,16 @@ import {
 	postRetrieveOrders,
 	postRetrieveCredentials,
 	postRetrievePersonalInfo,
-} from '../controllers/user';
+} from '../controllers/account';
 
 const router = express.Router();
 
-router.post('/account', postRetrieveUser);
+router.post('/myaccount', postRetrieveUser);
 
 router.post('/orders', postRetrieveOrders);
 
 router.post('/credentials', postRetrieveCredentials);
 
 router.post('/personal-information', postRetrievePersonalInfo);
+
+export { router as accountRoutes };

@@ -105,3 +105,7 @@ export const postAddToCart: RequestHandler = async (req, res, _next) => {
 		return catchError(err, res);
 	}
 };
+
+export const postRemoveFromCart: RequestHandler = async (req, res, _next) => {};
+
+export const postCreateOrder: RequestHandler = async (req, res, _next) => {};
