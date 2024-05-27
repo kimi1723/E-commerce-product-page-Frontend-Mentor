@@ -152,8 +152,6 @@ export const postRemoveFromCart: RequestHandler = async (req, res, _next) => {
 	} catch (err) {
 		catchError(err, res);
 	}
-
-	return res.status(200).json({ message: 'Product successfuly removed!' });
 };
 
 export const postCreateOrder: RequestHandler = async (req, res, _next) => {};
