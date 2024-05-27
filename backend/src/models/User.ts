@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+
 import { ICart, IUser } from '../types/user';
 
 export const cartSchema = new Schema<ICart>({

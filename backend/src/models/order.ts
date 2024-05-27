@@ -1,5 +1,6 @@
-import { cartSchema } from './user';
 import { Schema, model } from 'mongoose';
+
+import { cartSchema } from './user';
 import { IOrder } from '../types/order';
 
 const orderSchema = new Schema<IOrder>({

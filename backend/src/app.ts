@@ -4,12 +4,16 @@ import session from 'express-session';
 import bodyParser from 'body-parser';
 import { connect } from 'mongoose';
 import connectMongoDBSession from 'connect-mongodb-session';
+
 import { User } from './models/user';
+
 import { IUser } from './types/user';
+
 import { authRoutes } from './routes/auth';
 import { shopRoutes } from './routes/shop';
-import { catchError } from './utils/catchError';
 import { accountRoutes } from './routes/account';
+
+import { catchError } from './utils/catchError';
 
 dotenv.config();
 

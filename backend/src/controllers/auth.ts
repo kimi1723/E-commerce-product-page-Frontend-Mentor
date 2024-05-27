@@ -1,13 +1,14 @@
+import { RequestHandler } from 'express';
+import { validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
 import sendgridTransport from 'nodemailer-sendgrid-transport';
-import { validationResult } from 'express-validator';
 
 import { User } from '../models/user';
 
-import { RequestHandler } from 'express';
 import { IUser } from '../types/user';
+
 import { catchError } from '../utils/catchError';
 
 const transporter = nodemailer.createTransport(
