@@ -1,5 +1,5 @@
 import express from 'express';
-import { param } from 'express-validator';
+import { param, check } from 'express-validator';
 import { Types } from 'mongoose';
 
 import {
@@ -9,6 +9,7 @@ import {
 	postRemoveFromCart,
 	postCreateOrder,
 } from './../controllers/shop';
+import { ICart } from '../types/user';
 
 const router = express.Router();
 
@@ -29,6 +30,20 @@ router.post('/add-to-cart/:productId/:quantity', productValidation, postAddToCar
 
 router.post('/remove-from-cart/:productId/:quantity', productValidation, postRemoveFromCart);
 
-router.post('/create-order', postCreateOrder);
+router.post(
+	'/create-order',
+	[
+		check('cart')
+			.custom((_value, { req }) => {
+				const cart: ICart = req.user ? req.user.cart : req.session.cart;
+
+				if (!cart.products || cart.products.length < 0) return;
+
+				return true;
+			})
+			.withMessage('You have no products in your cart!'),
+	],
+	postCreateOrder,
+);
 
 export { router as shopRoutes };

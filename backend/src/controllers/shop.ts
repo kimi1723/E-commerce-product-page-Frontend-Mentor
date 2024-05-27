@@ -7,6 +7,7 @@ import { IProductQuery } from '../types/product';
 import { Product } from '../models/product';
 
 import { catchError } from '../utils/catchError';
+import { Order } from '../models/order';
 
 // TO ADD: images
 export const postRetrieveProducts: RequestHandler = async (req, res, _next) => {
@@ -154,4 +155,32 @@ export const postRemoveFromCart: RequestHandler = async (req, res, _next) => {
 	}
 };
 
-export const postCreateOrder: RequestHandler = async (req, res, _next) => {};
+export const postCreateOrder: RequestHandler = async (req, res, _next) => {
+	const errors = validationResult(req);
+
+	if (!errors.isEmpty()) return res.status(422).json({ error: errors.array()[0].msg });
+
+	const cart = (req.user ? req.user.cart : req.session.cart) as ICart;
+	const { discount } = req.body;
+
+	try {
+		const order = new Order({
+			...(req.user && { user: req.user._id }),
+			cart,
+			discount,
+		});
+
+		await order.save();
+
+		if (req.user) {
+			req.user.cart = undefined;
+			req.user.save();
+		} else {
+			req.session.cart = undefined;
+		}
+
+		return res.status(200).json({ message: 'Order placed successfuly!', cart });
+	} catch (err) {
+		catchError(err, res);
+	}
+};
