@@ -113,6 +113,46 @@ export const postRemoveFromCart: RequestHandler = async (req, res, _next) => {
 
 	if (!errors.isEmpty()) return res.status(422).json({ error: errors.array()[0].msg });
 
+	const { productId, quantity: stringQuantity } = req.params;
+	const quantity = +stringQuantity;
+
+	try {
+		const cart: ICart = req.user ? req.user.cart || {} : req.session.cart || {};
+		const cartProducts = cart.products || [];
+		const cartProductIndex = cartProducts.findIndex(p => p.productId.toString() === productId);
+		const updatedProducts = [...cartProducts];
+		let totalQuantity = cart.totalQuantity as number;
+
+		if (cartProductIndex < 0) return res.status(400).json({ error: "Product with provided id doesn't exist!" });
+
+		const previousQuantity = updatedProducts[cartProductIndex].quantity;
+		const newQuantity = (updatedProducts[cartProductIndex].quantity -= quantity);
+
+		if (newQuantity <= 0) {
+			updatedProducts.splice(cartProductIndex, 1);
+			totalQuantity -= previousQuantity;
+		} else {
+			totalQuantity -= quantity;
+		}
+
+		const updatedCart = { products: [...updatedProducts], totalQuantity };
+		if (req.user) {
+			req.user.cart = updatedCart;
+			await req.user.save();
+
+			return res.status(200).json({ cart: updatedCart });
+		} else {
+			req.session.cart = updatedCart;
+			req.session.save(err => {
+				if (err) throw new Error("Couldn't save your cart. Please try again later.");
+
+				return res.status(200).json({ cart: updatedCart });
+			});
+		}
+	} catch (err) {
+		catchError(err, res);
+	}
+
 	return res.status(200).json({ message: 'Product successfuly removed!' });
 };
 
