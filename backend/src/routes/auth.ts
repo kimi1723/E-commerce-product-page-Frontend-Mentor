@@ -66,7 +66,7 @@ router.post(
 			const { email } = req.body;
 			const user = await User.findOne({ email });
 
-			if (user) throw new Error('User with provided email address already exists');
+			if (!user) throw new Error("User with provided email doesn't exist");
 
 			return true;
 		}),

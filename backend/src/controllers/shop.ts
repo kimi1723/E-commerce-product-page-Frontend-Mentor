@@ -1,12 +1,12 @@
-import { ICart } from './../types/user';
 import { RequestHandler } from 'express';
+import { validationResult } from 'express-validator';
 
-import { catchError } from '../utils/catchError';
-import { Product } from '../models/product';
+import { ICart } from './../types/user';
 import { IProductQuery } from '../types/product';
 
-import { checkId } from '../utils/checkId';
-import { checkQuantity } from '../utils/checkQuantity';
+import { Product } from '../models/product';
+
+import { catchError } from '../utils/catchError';
 
 // TO ADD: images
 export const postRetrieveProducts: RequestHandler = async (req, res, _next) => {
@@ -43,9 +43,11 @@ export const postRetrieveProducts: RequestHandler = async (req, res, _next) => {
 };
 
 export const postRetrieveProduct: RequestHandler = async (req, res, _next) => {
-	const { productId } = req.params;
+	const errors = validationResult(req);
 
-	if (checkId(productId)) return res.status(400).json({ error: 'Invalid product id provided!' });
+	if (!errors.isEmpty()) return res.status(422).json({ error: errors.array()[0].msg });
+
+	const { productId } = req.params;
 
 	try {
 		const product = await Product.findById(productId);
@@ -59,12 +61,12 @@ export const postRetrieveProduct: RequestHandler = async (req, res, _next) => {
 };
 
 export const postAddToCart: RequestHandler = async (req, res, _next) => {
+	const errors = validationResult(req);
+
+	if (!errors.isEmpty()) return res.status(422).json({ error: errors.array()[0].msg });
+
 	const { productId, quantity: stringQuantity } = req.params;
 	const quantity = +stringQuantity;
-
-	if (checkQuantity(quantity)) return res.status(400).json({ error: 'Invalid quantity provided!' });
-
-	if (checkId(productId)) return res.status(400).json({ error: 'Invalid product id provided!' });
 
 	try {
 		const product = await Product.findById(productId).select('_id');
@@ -106,6 +108,12 @@ export const postAddToCart: RequestHandler = async (req, res, _next) => {
 	}
 };
 
-export const postRemoveFromCart: RequestHandler = async (req, res, _next) => {};
+export const postRemoveFromCart: RequestHandler = async (req, res, _next) => {
+	const errors = validationResult(req);
+
+	if (!errors.isEmpty()) return res.status(422).json({ error: errors.array()[0].msg });
+
+	return res.status(200).json({ message: 'Product successfuly removed!' });
+};
 
 export const postCreateOrder: RequestHandler = async (req, res, _next) => {};

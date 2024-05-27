@@ -91,6 +91,10 @@ export const postLogout: RequestHandler = (req, res, _next) => {
 };
 
 export const postResetPassword: RequestHandler = async (req, res, _next) => {
+	const errors = validationResult(req);
+
+	if (!errors.isEmpty()) return res.status(422).json({ error: errors.array()[0].msg });
+
 	const { email } = req.body;
 
 	try {
@@ -123,6 +127,10 @@ export const postResetPassword: RequestHandler = async (req, res, _next) => {
 };
 
 export const postNewPassword: RequestHandler = async (req, res, _next) => {
+	const errors = validationResult(req);
+
+	if (!errors.isEmpty()) return res.status(422).json({ error: errors.array()[0].msg });
+
 	const { password: newPassword } = req.body;
 	const { refreshToken } = req.params;
 
