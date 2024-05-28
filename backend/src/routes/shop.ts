@@ -1,5 +1,5 @@
 import express from 'express';
-import { param, check } from 'express-validator';
+import { param, body } from 'express-validator';
 import { Types } from 'mongoose';
 
 import {
@@ -8,7 +8,9 @@ import {
 	postAddToCart,
 	postRemoveFromCart,
 	postCreateOrder,
+	postAddDiscount,
 } from './../controllers/shop';
+
 import { ICart } from '../types/user';
 
 const router = express.Router();
@@ -31,9 +33,15 @@ router.post('/add-to-cart/:productId/:quantity', productValidation, postAddToCar
 router.post('/remove-from-cart/:productId/:quantity', productValidation, postRemoveFromCart);
 
 router.post(
+	'/add-discount',
+	body('discountCode').notEmpty().isString().withMessage('Inproper discount code!'),
+	postAddDiscount,
+);
+
+router.post(
 	'/create-order',
 	[
-		check('cart')
+		body('cart')
 			.custom((_value, { req }) => {
 				const cart: ICart = req.user ? req.user.cart : req.session.cart;
 

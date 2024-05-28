@@ -1,25 +1,28 @@
+import { IProduct } from './../types/product';
 import { RequestHandler } from 'express';
 import { validationResult } from 'express-validator';
 
 import { ICart } from './../types/user';
 import { IProductQuery } from '../types/product';
+import { IDiscount } from '../types/discount';
 
 import { Product } from '../models/product';
+import { Order } from '../models/order';
+import { Discount } from '../models/discount';
 
 import { catchError } from '../utils/catchError';
-import { Order } from '../models/order';
 
 // TO ADD: images
 export const postRetrieveProducts: RequestHandler = async (req, res, _next) => {
 	const { gender, season } = req.query as IProductQuery;
 
 	const filterQuery = {
-		...(gender && { gender: { $in: ['unisex', gender] } }),
+		...(gender && { gender: { $in: ['unisexx', gender] } }),
 		...(season && { season: { $in: ['all', season] } }),
 	};
 
 	try {
-		const products = await Product.aggregate([
+		const products: IProduct[] | [] = await Product.aggregate([
 			{ $match: filterQuery },
 			{
 				$project: {
@@ -35,7 +38,7 @@ export const postRetrieveProducts: RequestHandler = async (req, res, _next) => {
 			},
 		]);
 
-		if (!products) throw new Error('Could not find any products. Please try again later.');
+		if (products.length > 1) throw new Error('Could not find any products. Please try again later.');
 
 		return res.status(200).json({ products });
 	} catch (err) {
@@ -51,7 +54,7 @@ export const postRetrieveProduct: RequestHandler = async (req, res, _next) => {
 	const { productId } = req.params;
 
 	try {
-		const product = await Product.findById(productId);
+		const product: IProduct | null = await Product.findById(productId);
 
 		if (!product) throw new Error('Could not find this particular product. Please try again later.');
 
@@ -72,7 +75,7 @@ export const postAddToCart: RequestHandler = async (req, res, _next) => {
 	try {
 		const product = await Product.findById(productId).select('_id');
 
-		if (!product) throw new Error('Product not found. Please try again later.');
+		if (!product) return res.status(404).json({ error: 'Product not found' });
 
 		const cart: ICart = req.user ? req.user.cart || {} : req.session.cart || {};
 		const cartProducts = cart.products || [];
@@ -150,6 +153,24 @@ export const postRemoveFromCart: RequestHandler = async (req, res, _next) => {
 				return res.status(200).json({ cart: updatedCart });
 			});
 		}
+	} catch (err) {
+		catchError(err, res);
+	}
+};
+
+export const postAddDiscount: RequestHandler = async (req, res, _next) => {
+	const errors = validationResult(req);
+
+	if (!errors.isEmpty()) return res.status(422).json({ error: errors.array()[0].msg });
+
+	const { discountCode } = req.body;
+
+	try {
+		const discount = (await Discount.findOne({ discountCode })) as IDiscount;
+
+		if (!discount) return res.status(400).json({ error: 'Invalid discount code!' });
+
+		return res.status(200).json({ message: 'Discount added successfuly!' });
 	} catch (err) {
 		catchError(err, res);
 	}

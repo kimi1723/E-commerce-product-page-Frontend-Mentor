@@ -2,14 +2,15 @@ import { Document, ObjectId } from 'mongoose';
 
 export interface IProduct extends Document {
 	productId: ObjectId;
-	title: string;
-	description: string;
-	gender: string;
+	annotation: string;
+	name: string;
 	price: number;
-	season: string;
+	discount: number;
 	imagesAlts: { imageId: string }[];
 	imagesUrls: { imageUrl: string }[];
-	discount: number;
+	description?: string;
+	gender?: string;
+	season?: string;
 }
 
 export interface IProductQuery {

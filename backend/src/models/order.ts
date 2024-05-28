@@ -5,9 +5,9 @@ import { IOrder } from '../types/order';
 
 const orderSchema = new Schema<IOrder>({
 	user: { type: Schema.Types.ObjectId, ref: 'User' },
-	discount: { type: String },
-	cart: cartSchema,
 	createdAt: { type: Date, default: Date.now() },
+	cart: cartSchema,
+	discount: { type: String },
 });
 
 export const Order = model<IOrder>('Order', orderSchema);
